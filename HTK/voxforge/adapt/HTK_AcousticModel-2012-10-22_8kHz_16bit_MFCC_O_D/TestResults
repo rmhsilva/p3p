@@ -1,0 +1,97 @@
+DISCLAIMER: this is a *sanity test* only, and is *not* to be regarded as a valid test of the VoxForge Acoustic Models!
+ * the speech files used for testing use a single person's voice;
+ * the same person also contributed speech for the creation of the VoxForge the Acoustic Models;
+ * there are only 50 audio samples in the test database - not enough for a good test;
+ * the VoxForge Acoustic Models are still an alpha release with respect to Speaker Independent Speech Recognition, so please donate some speech to VoxForge,
+
+ thanks,
+
+ VoxForge team
+
+
+Testing Acoustic Models created in: /data/svn-mirror/Nightly_Builds/AcousticModel-2012-10-22
+
+HTK 8kHz_16bit
+---------------
+  Parameters:
+	word insertion penalty: 0.0
+	grammar scale factor: 1.0
+====================== Results Analysis =======================
+  Date: Mon Oct 22 04:03:04 2012
+  Ref : /tmp/oRmUsPXiAA/testref.mlf
+  Rec : /tmp/oRmUsPXiAA/recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=72.00 [H=36, S=14, N=50]
+WORD: %Corr=96.30, Acc=85.19 [H=182, D=1, S=6, I=21, N=189]
+===================================================================
+
+Julian 8kHz_16bit
+------------------
+  Parameters:
+	word insertion penalty
+	  first pass (-penalty1):0.5
+	  second pass (-penalty2):100.0
+	transition penalty (-iwsppenalty):-55.0 (for short-term inter-word pauses between words)
+====================== Results Analysis =======================
+  Date: Mon Oct 22 04:03:06 2012
+  Ref : /tmp/oRmUsPXiAA/testref.mlf
+  Rec : /tmp/oRmUsPXiAA/julianProcessed
+------------------------ Overall Results --------------------------
+SENT: %Correct=74.00 [H=37, S=13, N=50]
+WORD: %Corr=88.89, Acc=88.36 [H=168, D=16, S=5, I=1, N=189]
+===================================================================
+
+Notes:
+
+    * the line starting with SENT gives the percentage of sentences that were recognized correctly, out of N sentences in total.
+    * the line starting with WORD gives the percentage of words that were recognized correctly, out of N words in total
+      However, since HTK or Julius erroneously 'added' words that are not in the audio file (i.e. insertion errors) they usually get a lower percentage accuracy rating.
+    * Count definitions:
+          o D - Deletion Error
+          o S - Substitution Error
+          o I - Insertion Error
+
+
+
+================================================================================================================
+For comparison purposes, see below for the same Tests on the most current release of the VoxForge Acoustic Models: (/data/svn-mirror/Main/Tags/Releases//0_1_1-build726)
+================================================================================================================
+HTK 8kHz_16bit
+---------------
+  Parameters:
+	word insertion penalty: 0.0
+	grammar scale factor: 1.0
+====================== Results Analysis =======================
+  Date: Mon Oct 22 04:03:08 2012
+  Ref : /tmp/oRmUsPXiAA/testref.mlf
+  Rec : /tmp/oRmUsPXiAA/recout.mlf
+------------------------ Overall Results --------------------------
+SENT: %Correct=76.00 [H=38, S=12, N=50]
+WORD: %Corr=97.88, Acc=87.30 [H=185, D=0, S=4, I=20, N=189]
+===================================================================
+
+Julian 8kHz_16bit
+------------------
+  Parameters:
+	word insertion penalty
+	  first pass (-penalty1):0.5
+	  second pass (-penalty2):100.0
+	transition penalty (-iwsppenalty):-55.0 (for short-term inter-word pauses between words)
+====================== Results Analysis =======================
+  Date: Mon Oct 22 04:03:09 2012
+  Ref : /tmp/oRmUsPXiAA/testref.mlf
+  Rec : /tmp/oRmUsPXiAA/julianProcessed
+------------------------ Overall Results --------------------------
+SENT: %Correct=74.00 [H=37, S=13, N=50]
+WORD: %Corr=89.95, Acc=89.95 [H=170, D=16, S=3, I=0, N=189]
+===================================================================
+
+Notes:
+
+    * the line starting with SENT gives the percentage of sentences that were recognized correctly, out of N sentences in total.
+    * the line starting with WORD gives the percentage of words that were recognized correctly, out of N words in total
+      However, since HTK or Julius erroneously 'added' words that are not in the audio file (i.e. insertion errors) they usually get a lower percentage accuracy rating.
+    * Count definitions:
+          o D - Deletion Error
+          o S - Substitution Error
+          o I - Insertion Error

@@ -1,0 +1,74 @@
+%!TEX root = main.tex
+% 943 words
+\chapter{Technical Progress} % (fold)
+\label{cha:technical_progress}
+
+
+\section{System Design} % (fold)
+\label{sec:system_design}
+The most progress so far has been made in the area of speech recognition research and overall system structure.  At this stage there is a fairly solid idea of the final system, and only implementation remains.
+
+Initially the aim was to build a small dictionary recogniser, based on methods similar to those used by Tor \cite{tor2003}.  However, further research showed that a phoneme based system would be far more useful and interesting to build.  The primary steps to such a system include:
+\begin{itemize}
+	\item Pre-processing (convert waveform to MFCCs)
+	\item Observation probability calculations (based on Gaussian output distributions for each state)
+	\item Decoding to find the best chain of states and HMMs (Viterbi decoder preferable)
+	\item Results compilation (backtrack HMMs and compile into words)
+\end{itemize}
+
+As mentioned before, this project will focus on the second and third points, and will attempt to implement these in an embedded environment.
+
+There are a huge number of design choices that must be made for a speech recognition system.  In designing the project's system, it was important that it is implementable in the time given, will challenge the author's abilities, and has potential for extendability or further work.  The existence of the Voxforge acoustic models was also a strong influence.  Not only do they remove the need to spend time training models, but also they may be used with other speech recognition software in order to test the project's performance.
+
+% section system_design (end)
+
+\section{Model training} % (fold)
+\label{sec:model_training}
+The acoustic models from Voxforge (\ref{sec:the_htk}) have proven to be very useful.  Using the HTK, they have been adapted to the author's voice, and a complete set of HMMs is now ready to be used.  The model uses:
+\begin{itemize}
+	\item 7094 States
+	\item 8309 HMM definitions (each with 3 outputting states)
+	\item 51 monophones
+\end{itemize}
+The term `outputting states' refers to states that produce an observation.  The HMMs have 5 states in total, but the first and last are non-emitting.  The transition probability from the fourth to last state is the probability of exiting that particular HMM.  Similar to the approach taken by \cite{melnikoff2003speech}, the first state of all the HMMs is ignored for implementation, as it always transitions to the second state with a probability of one.
+% section model_training (end)
+
+\section{Pre-Processing Tools} % (fold)
+\label{sec:pre_processing_tools}
+The chosen method of pre-processing speech is MFCCs, as they are a compact and simple representation, but are good at modelling speech acoustics.  For training and testing, the HTK is capable of producing MFCCs with a variety of options (time derivatives, absolute energy, etc) for a given waveform.
+
+For the final product, the goal is to build a dedicated pre-processing module which will run on the L'Imperatrice board and send data to the FPGA.  A library exists for computing MFCCs \footnote{libmfcc is a C library for computing MFCCs (http://code.google.com/p/libmfcc/)}, and there are many Fast Fourier Transform libraries available.  A combination of FFTW \footnote{FFTW: Open source FFT library (http://www.fftw.org/)} and LibMFCC will be used to perform this task, and custom code will need to be written to calculate the MFCC time derivatives.  
+% section pre_processing_tools (end)
+
+\section{Code Prototypes} % (fold)
+\label{sec:code_prototypes}
+The first goal of the project is to produce software that performs the statistical calculations that will ultimately be built into hardware.  As detailed in the System Design section (\ref{sec:system_design}), this is comprised of two main parts -- the output probability calculations, and the Viterbi decoding.  So far, the output probability calculations have been implemented in C, which is the first block of the system.  In addition, a script to extract the requried data from HTK files has been created.  This includes the HMM definitions, along with associated gaussian distribution parameters, and MFCC file data.
+% section code_prototypes (end)
+
+\section{Hardware Development Environment} % (fold)
+\label{sec:hardware}
+As the Micro Arcana is still under active development, part of the project involves setting up and testing the two boards that the project aims to use.
+
+\subsection{La Papessa} % (fold)
+\label{sub:la_papessa}
+In order to facilitate the development of code on the La Papessa board, several combinations of software environments were explored.  The board is based on a Xilinx Spartan 3AN FPGA, which is compatible with the Xilinx ISE Webpack design software package \cite{xilinxISE}.  However, one drawback to the ISE Webpack is its lack of support for synthesis in SystemVerilog.  Synplify Pro/Premier is an alternative HDL synthesis tool, which is compatible with the Xilinx software toolchain and also supports SystemVerilog.  For this reason, and because the author is more familiar with the Synplify design flow, it was decided that Synplify Premier would be used for synthesis for the project.
+
+However, there is limited documentation on getting synplify to work with the ISE tools.  This has been accomplished and tested with very simple code (a binary counter in SystemVerilog), and works correctly.  However, with larger designs it may be that this design flow may need to be tweaked or adapted.  The fallback is to use the ISE Webpack for everything, so the code will be written such that it is very close to Verilog, and thus easy to adapt for the ISE tools.
+% subsection la_papessa (end)
+
+\subsection{L'Imperatrice} % (fold)
+\label{sub:l_imperatrice}
+The ARM based L'Imperatrice board is still under active development, and several important features are not yet working on it.  To be used for the project, the following items are critical:
+\begin{itemize}
+	\item GPIO functionality
+	\item Native or cross compiler set-up
+	\item Microphone input access
+\end{itemize}
+An LTIB (Linux Target Image Builder) environment has been installed on an Ubuntu virtual machine, which is to be used for setting up the board support package (BSP).  This has been used to build and test various kernel configurations,   TODO: check cross compiler etc
+In addition to LTIB, the ArchLinux build system (ABS) has been investigated as a potential alternative to LTIB.  The primary advantage of the ABS is that only a small number of files need to be distributed, which, when run, will download and compile all dependencies of the build.  An ABS configuration exists for the Olinuxino, a linux board also based on the Freescale iMX23, which may be tweaked to suit the L'Imperatrice.  However, due to the (perceived) relative ease of the LTIB set-up, this has not been done yet.
+% subsection l_imperatrice (end)
+
+% section hardware (end)
+
+
+% chapter technical_progress (end)

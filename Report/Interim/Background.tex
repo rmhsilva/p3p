@@ -1,0 +1,73 @@
+%!TEX root = main.tex
+% 1265 words
+\chapter{Background} % (fold)
+\label{cha:background}
+
+\section{Speech Recognition Systems} % (fold)
+\label{sec:speech_recognition_systems}
+In general, `Speech Recognition' refers to the process of translating spoken words or phrases into a form that can be understood by an electronic system, which usually means using mathematical models and methods to process and then decode the sound signal.  Translating a speech waveform into this form typically requires three main steps \cite{melnikoff2003speech}.  The raw waveform must be converted into an `observation vector', which is a set of data that is compatible with the chosen speech model.  This data is then sent through a decoder, which attempts to recognise which words or sub-word units were spoken.  These are then sent through a language model, which imposes rules on what combinations of words of syntax are allowed.  This project aims to focus on the first and second tasks, as they are the more interesting from an electronic engineering point of view.
+
+There are a variety of different methods and models that have been used to perform speech recognition.  An overview of the most popular will be described here, along with the chosen approach.
+
+\subsection{Tor's Algorithm} % (fold)
+\label{sub:tors_algorithm}
+The author first became interested in speech recognition when reading about ``Tor's Algorithm'', which is a very simple small dictionary speech recognition system \cite{tor2003}.  This algorithm is capable of very accurate speaker dependent speech recognition for a dictionary of less than ten words.  It is based on a fingerprinting model where each word in the dictionary must be trained to form an acoustic `fingerprint'.  This fingerprint is based on the time variations of the speech signal after being filtered appropriately.  Then recognition is reduced to finding the Euclidean distance squared between the input vector and each of the stored fingerprints.  The `closest' match is the word with the smallest distance from the input.
+Although this system is very simplistic, it outlines two major components of any speech recognition system -- pre-processing and decoding (recognition).  More complex systems just use more complex speech models and pre-processing methods.
+% subsection tors_algorithm (end)
+
+\subsection{Dynamic Time Warping} % (fold)
+\label{sub:dynamic_time_warping}
+Speech, by nature, is not constrained to be at a certain speed -- the duration of words will vary between utterance, and a speech recognition system should be able to handle this.  Dynamic Time Warping (DTW) is essentially the process of expanding and contracting the time axis, so that waveforms may be compared, independent of talking speed.  Combined with a dynamic programming technique for finding the optimal `warp' amount, it became a widely used approach to solving the problem of speech duration modelling \cite{furui1989speech}.  One useful property of DTW is that it may offer good performance even with little training, as it only needs one word as a template \cite{melnikoff2003speech}.  Conversly, the performance of DTW based systems cannot be increased much with more training, unlike Hidden Markov Models.
+% subsection dynamic_time_warping (end)
+
+\subsection{HMMs \cite{rabiner1989tutorial}} % (fold)
+\label{sub:about_hmms}
+By far the most prevalent and successful approach to modern speech recognition uses Hidden Markov Models (HMMs) for the statistical modelling and decoding of speech \cite{cox1988hidden}.  The flexibility inherent in HMMs is key to their success, as a system can be made more and more accurate by simply improving the HMM models or training the models further.  The classic tutorial paper by Rabiner is one of the best references for HMMs in speech recognition, and provides a very good overview of modern systems.
+
+The most simple HMM based systems use a single HMM for every word in the recognition dictionary.  Given a set of observations, each HMM can be scored based on the probability that it would output the observations.  The HMM with the highest score is taken as the recognised word.  The most apparent limitation of this system is that a very large amount of training would be required if a dictionary of any size was to be used.  At the very least, one sample of each word would need to be recorded to train the full system, which would be a very time consuming process.  However, for simple applications (voice dailing, for example) this is sufficient.
+
+The next step up in complexity from single word HMMs is models that consider sub-word utterances (phenomes).  talk about this...
+
+<HMM picture here>
+
+% subsection about_hmms (end)
+
+% section speech_recognition_systems (end)
+
+
+
+
+\section{Speech Pre-Processing} % (fold)
+\label{sec:speech_pre_processing}
+Speech signals are complex waveforms and cannot be processed without some form of feature extraction which reduces the complexity while retaining the important features.  In modern speech recognition systems the two most common methods of analysing and representing speech are: \cite{gaikwad2010review}
+\begin{itemize}
+	\item Linear Predictive Coding (LPC)
+	\item Mel-Frequency Cepstrum Coefficients (MFCC)
+\end{itemize}
+Both these methods attempt to model the movement and dynamics of the human vocal tract and auditory perception.  LPC is more suited to speaker recognition (the process of identifying voices, rather than speech), while MFCCs are more useful for speech recognition \cite{sd2012interview}.
+
+The Mel-Frequency Cepstrum is based on a filterbank analysis with a cepstral transformation, which is required due to the high correlation between filterbank amplitudes.  The human ear perceives sound on a non-linear frequency scale, and one way of improving recognition performance is by using a similar scale for analysis of speech.  A filterbank analysis can be used to perform this discrimination between different frequencies, and the frequency bins are usually spaced using the Mel frequency scale.  However, the filterbank amplitudes are highly correlated, which greatly increases the computational complexity of the HMM based recogniser as the covariance matrix will not be diagonal.  In order to correct this, a discrete cosine transform is taken on the log filterbank amplitudes, finally resulting in a set of Mel Frequency Cepstrum Coefficients.  The HTK (\ref{sec:the_htk}) defaults to using twelve MFCC filterbank bins. \cite{htkbook} \cite{melnikoff2003speech}
+
+In order to attain MFCCs, a sampling rate must be chosen such that enough data is gathered while allowing sufficient processing time.  In addition, to perform Fourier transforms on the speech, the incoming signal must be windowed appropriately.  Talk about HTK giving defaults...
+
+An improvement to both LPC and MFCCs is to compute time derivatives in the feature extraction process, which gives a better idea of how the signal changes over time.  In addition, the log energy of each sample may also be computed to also boost recognition ability.
+
+% section speech_pre_processing (end)
+
+
+\section{The HTK and VoxForge} % (fold)
+\label{sec:the_htk}
+The Hidden Markov Model Toolkit (HTK) is a set of tools and libraries for developing and testing Hidden Markov Models (HMMs), primarily for speech processing and recognition tools \cite{htkbook}.  Given a model structure and a set of transcribed speech recordings (a `speech corpus'), a set of HMMs may be trained using the HTK.  This includes performing all pre-processing in a number of formats, and testing recognition capabilities of a model.
+
+Voxforge is an open source speech corpus which is aimed at facilitating speech recognition development.  It provides pre-compiled acoustic models -- essentially large sets of HMMs -- in the format created by HTK, licensed under the GPL (GNU General Public License) \cite{voxforge}.  The alternative would be to use another speech corpus (such as TIMIT), and then use the HTK to design and train the acoustic model.  This is potentially a very time consuming process, so Voxforge is useful because it essentially cuts this step out.  In addition, the Voxforge models may be easily adapted to a specific person's voice using only a few minutes of transcribed speech.  However, the drawback is that the Voxforge model is very complex (~8000 tri-phone HMMs with Gaussian output probabilities, 25 coefficient observation vectors).  Implementing a recogniser system based on this model will require a lot more work than if a simpler model was used, such as one based on discrete (output probability) HMMs.
+% section the_htk (end)
+
+
+\section{Embedded hardware and Speech Silicon} % (fold)
+\label{sec:embedded_hardware}
+A wide range of speech recognition software (commercial and open source) exists for desktop PCs or laptops.  However, speech recognition for embedded systems is less widespread.  Recently there has been increased research into the use of DSPs and FPGAs for speech recognition \cite{melnikoff2003speech}, \cite{schuster2006speech}, \cite{nedevschi2005hardware}.  Of particular interest is Stephen Melnikoff's PhD Thesis and the Speech Silicon architecture.  The former investigates a variety of HMM based recognisers on an FPGA, using a PC to perform pre and post processing.  The latter details a flexible FPGA based system capable of performing recognition on medium-sized vocabularies.
+
+% section embedded_hardware (end)
+
+
+% chapter background (end)
