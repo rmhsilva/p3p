@@ -6,9 +6,9 @@
 
 \section{System Design} % (fold)
 \label{sec:system_design}
-The most progress so far has been made in the area of speech recognition research and overall system structure.  At this stage there is a fairly solid idea of the final system, and only implementation remains.
+The main progress so far has been made in the area of speech recognition research and overall system structure.  At this stage there is a fairly solid idea of the final system, and only implementation remains.
 
-Initially the aim was to build a small dictionary recogniser, based on methods similar to those used by Tor \cite{tor2003}.  However, further research showed that a phoneme based system would be far more useful and interesting to build.  The primary steps to such a system include:
+Initially the aim was to build a small dictionary recogniser, based on methods similar to those used by Tor \cite{tor2003}.  However, further research showed that a phoneme based system would be far more useful and interesting to build.  The primary steps to such a system are:
 \begin{itemize}
 	\item Pre-processing (convert waveform to MFCCs)
 	\item Observation probability calculations (based on Gaussian output distributions for each state)
@@ -16,11 +16,9 @@ Initially the aim was to build a small dictionary recogniser, based on methods s
 	\item Results compilation (backtrack HMMs and compile into words)
 \end{itemize}
 
-As mentioned before, this project will focus on the second and third points, and will attempt to implement these in an embedded environment.
-
 There are a huge number of design choices that must be made for a speech recognition system.  In designing the project's system, it was important that it is implementable in the time given, will challenge the author's abilities, and has potential for extendability or further work.  The existence of the Voxforge acoustic models was also a strong influence.  Not only do they remove the need to spend time training models, but also they may be used with other speech recognition software in order to test the project's performance.
 
-TODO: more about sys design?
+The main focus has been on developing solutions for the second and third steps in the above list.  The system proposed to run on the FPGA will contain two main blocks -- the probability calculator and the viterbi decoder.
 
 % section system_design (end)
 
@@ -39,7 +37,7 @@ The term `outputting states' refers to states that produce an observation.  The 
 \label{sec:pre_processing_tools}
 The chosen method of pre-processing speech is MFCCs, as they are a compact and simple representation, but are good at modelling speech acoustics.  For training and testing, the HTK is capable of producing MFCCs with a variety of options (time derivatives, absolute energy, etc) for a given waveform.
 
-For the final product, the goal is to build a dedicated pre-processing module which will run on the L'Imperatrice board and send data to the FPGA.  A library exists for computing MFCCs \footnote{libmfcc is a C library for computing MFCCs (http://code.google.com/p/libmfcc/)}, and there are many Fast Fourier Transform libraries available.  A combination of FFTW \footnote{FFTW: Open source FFT library (http://www.fftw.org/)} and LibMFCC will be used to perform this task, and custom code will need to be written to calculate the MFCC time derivatives.  
+For the final product, the goal is to build a dedicated pre-processing module which will run on the L'Imperatrice board and send data to the FPGA.  A library exists for computing MFCCs \footnote{libmfcc is a C library for computing MFCCs (http://code.google.com/p/libmfcc/)}, and there are many Fast Fourier Transform libraries available.  A combination of FFTW \footnote{FFTW: Open source FFT library (http://www.fftw.org/)} and LibMFCC will be used to perform this task, and custom code will need to be written to calculate the MFCC time derivatives.
 % section pre_processing_tools (end)
 
 \section{Code Prototypes} % (fold)
