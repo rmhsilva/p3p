@@ -1,6 +1,6 @@
 %!TEX root = main.tex
 % 1265 words
-\chapter{Background} % (fold)
+\chapter{Background and Investigations} % (fold)
 \label{cha:background}
 
 \section{Speech Recognition Systems} % (fold)
@@ -20,21 +20,35 @@ Although this system is very simplistic, it outlines two major components of any
 Speech, by nature, is not constrained to be at a certain speed -- the duration of words will vary between utterance, and a speech recognition system should be able to handle this.  Dynamic Time Warping (DTW) is essentially the process of expanding and contracting the time axis, so that waveforms may be compared, independent of talking speed.  Combined with a dynamic programming technique for finding the optimal `warp' amount, it became a widely used approach to solving the problem of speech duration modelling \cite{furui1989speech}.  One useful property of DTW is that it may offer good performance even with little training, as it only needs one word as a template \cite{melnikoff2003speech}.  Conversly, the performance of DTW based systems cannot be increased much with more training, unlike Hidden Markov Models.
 % subsection dynamic_time_warping (end)
 
-\subsection{HMMs \cite{rabiner1989tutorial}} % (fold)
+\subsection{HMMs} % (fold)
 \label{sub:about_hmms}
-By far the most prevalent and successful approach to modern speech recognition uses Hidden Markov Models (HMMs) for the statistical modelling and decoding of speech \cite{cox1988hidden}.  The flexibility inherent in HMMs is key to their success, as a system can be made more and more accurate by simply improving the HMM models or training the models further.  The classic tutorial paper by Rabiner is one of the best references for HMMs in speech recognition, and provides a very good overview of modern systems.
+By far the most prevalent and successful approach to modern speech recognition uses Hidden Markov Models (HMMs) for the statistical modelling and decoding of speech \cite{cox1988hidden}.  The flexibility inherent in HMMs is key to their success, as a system can be made more and more accurate by simply improving the HMM models or training the models further.  The classic tutorial paper by Rabiner (\cite{rabiner1989tutorial}) is one of the best references for HMMs in speech recognition, and provides a very good overview of modern systems.  The following three sections are based heavily on \cite{rabiner1989tutorial} and \cite{htkbook}.
 
-The most simple HMM based systems use a single HMM for every word in the recognition dictionary.  Given a set of observations, each HMM can be scored based on the probability that it would output the observations.  The HMM with the highest score is taken as the recognised word.  The most apparent limitation of this system is that a very large amount of training would be required if a dictionary of any size was to be used.  At the very least, one sample of each word would need to be recorded to train the full system, which would be a very time consuming process.  However, for simple applications (voice dailing, for example) this is sufficient.
+\subsubsection{Single Word HMMs} % (fold)
+\label{ssub:single_word_hmms}
+The simplest HMM based systems use a single HMM for every word in the recognition dictionary.  Given a set of observations, each HMM can be scored based on the probability that it would output the observations.  The HMM with the highest score is taken as the recognised word.  The most apparent limitation of this system is that a very large amount of training would be required if a dictionary of any size was to be used.  At the very least, one sample of each word would need to be recorded to train the full system, which would be a very time consuming process.  However, for simple applications (voice dialling, for example) this is manageable.
+% subsubsection single_word_hmms (end)
 
-The next step up in complexity from single word HMMs is models that consider sub-word utterances (phenomes).  talk about this...
+\subsubsection{Sub-word HMMs} % (fold)
+\label{ssub:sub_word_hmms}
+The next step up in complexity from single word HMMs is models that consider sub-word utterances (phonemes).  This allows a smaller set of HMMs to be used for much larger dictionary recognition, as words are recognised based on sequences of sub-word HMMs.  Thus instead of searching through a single HMM to recognise a word, the recognition process becomes a search through a trellis of multiple HMMs in order to find the best path through them.  The most simple HMM system of this form is based on monophones, of which there are about 50 in English.  This may be improved by using bi- or tri-phone HMMs, which model transitions between two or three monophones.  Using this form of HMM will increase the acoustic model size greatly however, as there are many possible combinations of monophones in the English language.
+% subsubsection sub_word_hmms (end)
 
-<HMM picture here>
+\subsubsection{Viterbi Decoding} % (fold)
+\label{ssub:viterbi_decoding}
+For most HMM models there are three problems: 
+\begin{itemize}
+	\item Training the model
+	\item Finding the probability that a model produced a given observation sequence
+	\item Finding the `best' path through a model to produce a given observation sequence
+\end{itemize}
+The `best' path is generally taken to be the path with highest probability, and it is this problem that is central to the project.  The first problem is solved by using Voxforge (\ref{sec:the_htk}), and the second problem is more important for word based recognisers.
+
+In all literature encountered, the Viterbi algorithm is the primary method for solving problem 3.  It is an iterative approach to solving the optimisation problem, and has the added bonus that not much data needs to be stored during the calculation \cite{schuster2006speech}.  A full explanation of the Viterbi decoding process is available from \cite{rabiner1989tutorial},\cite{melnikoff2003speech},\cite{saeed2008advanced}.
+% subsubsection viterbi_decoding (end)
 
 % subsection about_hmms (end)
-
 % section speech_recognition_systems (end)
-
-
 
 
 \section{Speech Pre-Processing} % (fold)
@@ -48,7 +62,7 @@ Both these methods attempt to model the movement and dynamics of the human vocal
 
 The Mel-Frequency Cepstrum is based on a filterbank analysis with a cepstral transformation, which is required due to the high correlation between filterbank amplitudes.  The human ear perceives sound on a non-linear frequency scale, and one way of improving recognition performance is by using a similar scale for analysis of speech.  A filterbank analysis can be used to perform this discrimination between different frequencies, and the frequency bins are usually spaced using the Mel frequency scale.  However, the filterbank amplitudes are highly correlated, which greatly increases the computational complexity of the HMM based recogniser as the covariance matrix will not be diagonal.  In order to correct this, a discrete cosine transform is taken on the log filterbank amplitudes, finally resulting in a set of Mel Frequency Cepstrum Coefficients.  The HTK (\ref{sec:the_htk}) defaults to using twelve MFCC filterbank bins. \cite{htkbook} \cite{melnikoff2003speech}
 
-In order to attain MFCCs, a sampling rate must be chosen such that enough data is gathered while allowing sufficient processing time.  In addition, to perform Fourier transforms on the speech, the incoming signal must be windowed appropriately.  Talk about HTK giving defaults...
+In order to attain MFCCs, a sampling rate must be chosen such that enough data is gathered while allowing sufficient processing time.  In addition, to perform Fourier transforms on the speech, the incoming signal must be windowed appropriately.  The HTK has a set of default values for these parameters, which are assumed to be appropriate.
 
 An improvement to both LPC and MFCCs is to compute time derivatives in the feature extraction process, which gives a better idea of how the signal changes over time.  In addition, the log energy of each sample may also be computed to also boost recognition ability.
 
@@ -65,8 +79,7 @@ Voxforge is an open source speech corpus which is aimed at facilitating speech r
 
 \section{Embedded hardware and Speech Silicon} % (fold)
 \label{sec:embedded_hardware}
-A wide range of speech recognition software (commercial and open source) exists for desktop PCs or laptops.  However, speech recognition for embedded systems is less widespread.  Recently there has been increased research into the use of DSPs and FPGAs for speech recognition \cite{melnikoff2003speech}, \cite{schuster2006speech}, \cite{nedevschi2005hardware}.  Of particular interest is Stephen Melnikoff's PhD Thesis and the Speech Silicon architecture.  The former investigates a variety of HMM based recognisers on an FPGA, using a PC to perform pre and post processing.  The latter details a flexible FPGA based system capable of performing recognition on medium-sized vocabularies.
-
+A wide range of speech recognition software (commercial and open source) exists for desktop PCs or laptops.  However, speech recognition for embedded systems is less widespread.  Recently there has been increased research into the use of DSPs and FPGAs for speech recognition \cite{melnikoff2003speech}, \cite{schuster2006speech}, \cite{nedevschi2005hardware}.  Of particular interest is Stephen Melnikoff's PhD Thesis, and the Speech Silicon architecture.  The former investigates a variety of HMM based recognisers on an FPGA, using a PC to perform pre and post processing.  The latter details a flexible FPGA based system capable of performing recognition on medium-sized vocabularies.
 % section embedded_hardware (end)
 
 
