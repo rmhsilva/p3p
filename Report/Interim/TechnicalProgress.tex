@@ -18,7 +18,7 @@ Initially the aim was to build a small dictionary recogniser, based on methods s
 
 There are a huge number of design choices that must be made for a speech recognition system.  In designing the project's system, it was important that it is implementable in the time given, will challenge the author's abilities, and has potential for extendability or further work.  The existence of the Voxforge acoustic models was also a strong influence.  Not only do they remove the need to spend time training models, but also they may be used with other speech recognition software in order to test the project's performance.
 
-The main focus has been on developing solutions for the second and third steps in the above list.  The system proposed to run on the FPGA will contain two main blocks -- the probability calculator and the viterbi decoder.
+The main focus has been on developing solutions for the second and third steps in the above list.  The system proposed to run on the FPGA will contain two main blocks -- the probability calculator and the viterbi decoder.  
 
 % section system_design (end)
 
@@ -64,7 +64,7 @@ The ARM based L'Imperatrice board is still under active development, and several
 	\item Native or cross compiler set-up
 	\item Microphone input access
 \end{itemize}
-An LTIB (Linux Target Image Builder) environment has been installed on an Ubuntu virtual machine, which is to be used for setting up the board support package (BSP).  This has been used to build and test various kernel configurations,   TODO: check cross compiler etc
+An LTIB (Linux Target Image Builder) environment has been installed on an Ubuntu virtual machine, which is to be used for setting up the board support package (BSP).  This has been used to build and test various kernel configurations, and also has full cross-compiler support for the board.
 In addition to LTIB, the ArchLinux build system (ABS) has been investigated as a potential alternative to LTIB.  The primary advantage of the ABS is that only a small number of files need to be distributed, which, when run, will download and compile all dependencies of the build.  An ABS configuration exists for the Olinuxino, a linux board also based on the Freescale iMX23, which may be tweaked to suit the L'Imperatrice.  However, due to the (perceived) relative ease of the LTIB set-up, this has not been done yet.
 % subsection l_imperatrice (end)
 

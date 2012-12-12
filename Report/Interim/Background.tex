@@ -24,18 +24,18 @@ Speech, by nature, is not constrained to be at a certain speed -- the duration o
 \label{sub:about_hmms}
 By far the most prevalent and successful approach to modern speech recognition uses Hidden Markov Models (HMMs) for the statistical modelling and decoding of speech \cite{cox1988hidden}.  The flexibility inherent in HMMs is key to their success, as a system can be made more and more accurate by simply improving the HMM models or training the models further.  The classic tutorial paper by Rabiner (\cite{rabiner1989tutorial}) is one of the best references for HMMs in speech recognition, and provides a very good overview of modern systems.  The following three sections are based heavily on \cite{rabiner1989tutorial} and \cite{htkbook}.
 
-\subsubsection{Single Word HMMs} % (fold)
-\label{ssub:single_word_hmms}
+% \subsubsection{Single Word HMMs} % (fold)
+% \label{ssub:single_word_hmms}
 The simplest HMM based systems use a single HMM for every word in the recognition dictionary.  Given a set of observations, each HMM can be scored based on the probability that it would output the observations.  The HMM with the highest score is taken as the recognised word.  The most apparent limitation of this system is that a very large amount of training would be required if a dictionary of any size was to be used.  At the very least, one sample of each word would need to be recorded to train the full system, which would be a very time consuming process.  However, for simple applications (voice dialling, for example) this is manageable.
 % subsubsection single_word_hmms (end)
 
-\subsubsection{Sub-word HMMs} % (fold)
-\label{ssub:sub_word_hmms}
-The next step up in complexity from single word HMMs is models that consider sub-word utterances (phonemes).  This allows a smaller set of HMMs to be used for much larger dictionary recognition, as words are recognised based on sequences of sub-word HMMs.  Thus instead of searching through a single HMM to recognise a word, the recognition process becomes a search through a trellis of multiple HMMs in order to find the best path through them.  The most simple HMM system of this form is based on monophones, of which there are about 50 in English.  This may be improved by using bi- or tri-phone HMMs, which model transitions between two or three monophones.  Using this form of HMM will increase the acoustic model size greatly however, as there are many possible combinations of monophones in the English language.
+% \subsubsection{Sub-word HMMs} % (fold)
+% \label{ssub:sub_word_hmms}
+The next step up in complexity from single word HMMs is models that consider sub-word utterances (phonemes).  This allows a smaller set of HMMs to be used for much larger dictionary recognition, as words are recognised based on sequences of sub-word HMMs.  Thus instead of searching through a single HMM to recognise a word, the recognition process becomes a search through a trellis of multiple HMMs in order to find the best path through them.  The most simple HMM system of this form is based on mono-phones, of which there are about 50 in English.  This may be improved by using bi- or tri-phone HMMs, which model transitions between two or three mono-phones.  Using this form of HMM will increase the acoustic model size greatly however, as there are many possible combinations of mono-phones in the English language.
 % subsubsection sub_word_hmms (end)
 
-\subsubsection{Viterbi Decoding} % (fold)
-\label{ssub:viterbi_decoding}
+% \subsubsection{Viterbi Decoding} % (fold)
+% \label{ssub:viterbi_decoding}
 For most HMM models there are three problems: 
 \begin{itemize}
 	\item Training the model
