@@ -13,20 +13,21 @@ For every current state (senone!!!), get the mean and variance, and calc the bj(
 
 */
 
-#define COMPS 26		// The number of components per observation vector
+#define COMPS    25		// The number of components per observation vector
+#define senones  7094	// Number of states (senones)
 
 typedef union {
 	struct {
 		double mfcc[12];
 		double del[13];
 	} s;
-	double comp[25];
+	double comp[COMPS];
 } OVector;
 
 
 // First two samples of sample1.mfcc (12xMFCC, C0, 12xDel, DelC0)
 // $ HList -h -e 3 -o sample1.mfcc
-float sample1[][25] = {
+float sample1[][COMPS] = {
 					{	-18.684, -4.821, -4.996, -1.257, -3.512, -0.453, -6.513, -1.960, -4.348, 1.189,
         				-3.690,  -0.572,/*52.985,*/-0.005,  0.495,  0.045, -0.285,  0.093,  1.178, 0.909,
          				0.662,   -0.380, -1.215, -0.892, -0.678, -0.052},
@@ -61,6 +62,11 @@ int main(int argc, char const *argv[])
 {
 	// Test: 
 	//printf("%f\n", sample1[1][2]);	// => -4.339
+
+	// The state and HMM definitions will be in a header somewhere
+
+	// 
+
 
 	printf("--- Done ---\n");
 	return 0;
