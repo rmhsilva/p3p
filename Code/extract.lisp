@@ -10,22 +10,24 @@
 
 (defstruct
     (senone :constructor
-      (:constructor new-senone (sname means variances gconst)))
-  "A state (senone) struct - means and variances + gconst"
-  sname means variances gconst)
-
-(defstruct
-    (ovector)
-      ;(:constructor new-ovector ()))
-  "An observation vector struct"
-  mfccs deltas deltaC0)
+      (:constructor new-senone (sname means omegas gconst)))
+  "A state (senone) struct - means and variances + gconst.
+   Also the score of the senone for the current observation"
+  sname means omegas gconst score)
 
 (defstruct
     (hmm :constructor
-	 (:constructor new-hmm (hname state1 state2 state3 tmatrix)))
+	 (:constructor new-hmm (hname state1 state2 state3 tmatrix word-final word-initial context-left context-right)))
   "An HMM struct - ties everything together"
-  hname state1 state2 state3 tmatrix active h1p h2p h3p)
+  hname state1 state2 state3 tmatrix (active t) (h0 0) (h1p 0) (h2p 0) (h3p 0)
+  hbest hexit word-final word-initial context-left context-right)
 
+(defstruct oframe
+  "Observation frame - 12 MFCCs, 12 Deltas, 1 Delta(C0)"
+  components)
+
+;(defstruct wlr
+;  time 
 
 
 ;;; Utilities
@@ -106,7 +108,6 @@
 
 ;;; Parsing
 (defun parse-hmmdefs (hmmdefs-file)
-  ;; Start with empty lists
   (let (t-mats senones hmms)
     (open-file-blocks
      (hmmdefs-file :direction :input)
@@ -119,7 +120,14 @@
 	      ("([^ ]+) ([^ ]+) [^ ]*$" t22 t23)
 	      ("([^ ]+) ([^ ]+)$" t33 t3e))
        (setf t-mats
-	     (cons (new-t-matrix tname t11 t12 t22 t23 t33 t3e) t-mats)))
+	     (cons (new-t-matrix tname
+				 (read-from-string t11)
+				 (read-from-string t12)
+				 (read-from-string t22)
+				 (read-from-string t23)
+				 (read-from-string t33)
+				 (read-from-string t3e))
+		   t-mats)))
 
      ;; Read in the states, blockwise
      (:block (("~s \"(.*)\"" sname)
@@ -135,9 +143,10 @@
 				(mapcar #'(lambda (x) ; to read 1023e-01 etc
 					    (read-from-string x))
 					(cl-ppcre:split " " means))
-				:variances
+				:omegas ; precompute 0.5/sigma^2
 				(mapcar #'(lambda (x)
-					    (read-from-string x))
+					    (/ 0.5
+					       (expt (read-from-string x) 2)))
 					(cl-ppcre:split " " variances)))
 		   senones)))
 
@@ -149,27 +158,66 @@
 	      (:skipline) ("~s \"([A-Za-z0-9_]+)\"" state2)
 	      (:skipline) ("~s \"([A-Za-z0-9_]+)\"" state3)
 	      ("~t \"(.*)\"" tmatrix))
-       (setf hmms
-	     (cons (make-hmm :hname hname :active t
-			     :state1 (get-senone state1 senones)
-			     :state2 (get-senone state2 senones)
-			     :state3 (get-senone state3 senones)
-			     :tmatrix (get-tmatrix tmatrix t-mats))
-		   hmms))))
+
+       (let ((ctx-left (cl-ppcre:split "-" hname)) (ctx-right (cl-ppcre:split "\\+" hname)))
+	 (setf hmms
+	       (cons (make-hmm :hname hname :active t
+			       :word-final (= 0 (count #\+ hname))
+			       :word-initial (= 0 (count #\- hname))
+			       :context-left (if (= (length ctx-left) 2) (car ctx-left) nil)
+			       :context-right (if (= (length ctx-right) 2) (cdr ctx-right) nil)
+			       :state1 (get-senone state1 senones)
+			       :state2 (get-senone state2 senones)
+			       :state3 (get-senone state3 senones)
+			       :tmatrix (get-tmatrix tmatrix t-mats))
+		     hmms)))))
 
     ;; Return
     (values hmms senones t-mats)))
-;; NOTE: need to manually add sil and sp HMMs
+;; NOTE: need to manually add iy,ey,er,sp,ax,ay,ow,aa,sil HMMs
+
+(defun parse-input (samples-file)
+  (let (samples)
+    (with-open-file (fp samples-file :direction :input)
+      (dotimes (n 7)
+	(read-line fp))
+      
+      (do ((line (read-line fp nil)
+		  (read-line fp nil)))
+	  ((null line))
+	
+	(let ((vars (mapcar #'(lambda (x) (read-from-string x))
+			    (subseq
+			     (cl-ppcre:split "[ ]+" line) 1 27))))
+	  ;; Extract the sample and append to collection
+	  (setf samples
+		(cons (make-oframe
+		       :components (append (subseq vars 0 12)
+					   (subseq vars 13 25)
+					   (list (nth 25 vars))))
+		      samples)))))
+    ;; Return the samples
+    (reverse samples)))
+	 
 
 
-(defmacro def-searcher (name fn)
+;; HMM searcher functions
+
+(defmacro def-searcher (name fn &key (multiple 'nil))
   "Create a function to search through lists of structs"
-  `(defun ,name (item seq)
-     (find item seq :test #'(lambda (x test)
-			      (equal x (funcall ,fn test))))))
+  `(defun ,name (item seq &key (multiple ,multiple))
+     (if (null multiple)
+	 (find item seq :test #'(lambda (x test)
+				  (equal x (funcall ,fn test))))
+	 (remove-if-not #'(lambda (x)
+			    (equal t (funcall ,fn x)))
+			seq))))
 
 (def-searcher get-senone #'senone-sname)
 (def-searcher get-tmatrix #'t-matrix-tname)
+(def-searcher active-hmms #'hmm-active :multiple t)
+(def-searcher word-final-hmms #'hmm-word-final :multiple t)
+(def-searcher word-initial-hmms #'hmm-word-initial :multiple t)
 
 
 (defun test ()
@@ -181,13 +229,13 @@
 
 (defun probability (observation state)
   "Calcs probability that observation came from state"
-  (let ((dist (getf state :gconst)))
-    (* -1  ; Get the negative prob
-       (exp (+ dist
-	       (loop for mean in (getf state :means)
-		  and omega in (getf state :omegas)
-		  and ocomp in (getf observation :components)
-		    sum (* omega (- ocomp mean) (- ocomp mean))))))))
+  (let ((dist (senone-gconst state)))
+    ;(* -1 (exp  ; Get the negative prob
+	   (+ dist
+	       (loop for mean in (senone-means state)
+		  and omega in (senone-omegas state)
+		  and ocomp in (oframe-components observation)
+		    sum (* omega (expt (- ocomp mean) 2))))))
 
 
 ;; step through a list of observation frames
@@ -207,7 +255,7 @@
 
 ;; Each HMM has an 'active' flag which is used to prune them
 
-(defparameter *neg-inf* -10 "Negative infinity representation")
+(defparameter *neg-inf* -10e10 "Negative infinity representation")
 
 (defun reset-hmm (hmm-old)
   "Writes the reset values to the HMMs tokens (h1-3)"
@@ -221,39 +269,127 @@
   "Calcs H3,H2,H1, and Hbest, Hexit for a given HMM and senone scores.
    Ie it propagates a 'token', based on the viterbi algo"
   (let* ((tmat (hmm-tmatrix hmm))
-	 (h3 (+ s2 (max (+ h3p (t-matrix-t33 tmat))
+	 (h3 (+ s3 (max (+ h3p (t-matrix-t33 tmat))
 			(+ h2p (t-matrix-t23 tmat)))))
-	 (h2 (+ s1 (max (+ h2p (t-matrix-t22 tmat))
+	 (h2 (+ s2 (max (+ h2p (t-matrix-t22 tmat))
 			(+ h1p (t-matrix-t12 tmat)))))
-	 (h1 (+ s0 (max (+ h1p (t-matrix-t11 tmat))
+	 (h1 (+ s1 (max (+ h1p (t-matrix-t11 tmat))
 			hin))))
     (values
      (max h3 h2 h1)		; Hbest
      (+ h3 (t-matrix-t3e tmat))	; Hexit
-     (list h3 h2 h1))))		; h1-3: node tokens in hmm
+     h3 h2 h1)))		; h3-1: node tokens in hmm
 
 
 (defparameter *beam* 1 "The beam used for pruning")
 (defparameter *beam-min* 10 "The min value required to pass prune test")
 
-(defun prune-hmm (hmms-all)
+(defun prune-best (hmms threshold)
   "Performs a beam search elimination on the active hmms"
-  (let ((hmms (active-hmms hmms-all)))
-    (dolist (h hmms hmms)
-      (setf (hmm-active h) (prune-test h)))))
+  (dolist (h hmms)
+    ;(setf (hmm-active h) (prune-test h threshold)))))
+    (setf (hmm-active h) (> (hmm-hbest h) threshold)))
+  (active-hmms t hmms))
 
-(defun prune-test (hmm)
+;; TODO: The threshold should change each iteration, depending on
+;; The current best score. See Sphinx s3-2 doc.
+;; Also, Two beams, one for active, one for word exit?
+(defun prune-test (hmm threshold)
   "Returns false if the hmm should be pruned"
-  (and (> (+ (hmm-hbest hmm) *beam*)
+  (and (> (+ (hmm-hbest hmm) threshold)
 	  *beam-min*)
-       (> (+ (hmm-hexit hmm) *beam*)
+       (> (+ (hmm-hexit hmm) threshold)
 	  *beam-min*)))
+
+
+(defun max-field (hmms fieldfn)
+  "Finds the max 'field' from a set of HMMs"
+  (labels ((recur (hmms best)
+	     (if (null hmms)
+		 best
+		 (let ((fieldval (funcall fieldfn (car hmms))))
+		   (if (> best fieldval)
+		       (recur (cdr hmms) best)
+		       (recur (cdr hmms) fieldval))))))
+    (recur hmms 0)))
+
+(defun insert-new-wlr (hmm)
+  (format t "New WLR: ~s ~%" (hmm-hname hmm)))
 
 ;; initialise: every hmm, {h1: 0, h2,h3: -inf}
 ;; loop over all hmms.
-;;     -> calculate HBest, HExit etc for all of em, and propagate h1-3
-;; prune list
+;;     -> calc HBest, HExit etc for all of em, and propagate h1-3
+;; prune list, based on HBest and HExit
 ;; give a list of active/inactive hmms to word modeller
 ;; examine all active HExit scores - find highest score and
-(dolist (h hmms)
-  (multiple-value-list
+
+;(dolist (h hmms)
+;  (multiple-value-list
+
+
+(defun decode (&key data hmmdefs)
+  "Given a set of HMMs and input data (in form MFCC_D_Z_0), decode it!"
+  ;; First extract data using various parsers
+  (format t "Extracting data... ")
+  (let* ((oframes (parse-input data))
+	 (statistics (multiple-value-list (parse-hmmdefs hmmdefs)))
+	 (hmms (first statistics))
+	 (senones (second statistics))
+	 (t-mats (third statistics))
+	 (wlrs '()))
+
+    (format t "Done. HMMs: ~a, Senones: ~a ~%" (length hmms) (length senones))
+
+    (dolist (h hmms)
+      (setf h (reset-hmm h)))
+
+    ;; Loop for all observation data!
+    (dolist (o (list (car oframes)))
+
+      ;; First calc senone scores
+      (dolist (s senones)
+	(setf (senone-score s) (probability o s)))
+
+      ;; Loop over all active hmms, each frame. Reset, Propagate "tokens"
+      (dolist (h hmms)
+	(if (hmm-active h)
+	    (let ((s3 (senone-score (hmm-state3 h)))
+		  (s2 (senone-score (hmm-state2 h)))
+		  (s1 (senone-score (hmm-state1 h)))
+		  (hin (hmm-h0 h))) ;; TODO: sort out hin. Propagates from previous...
+	      (multiple-value-bind (hbest hexit h3 h2 h1) (propagate h s3 s2 s1
+								     (hmm-h3p h)
+								     (hmm-h2p h)
+								     (hmm-h1p h)
+								     hin)
+		;; Store results
+		(setf (hmm-hbest h) hbest)
+		(setf (hmm-hexit h) hexit)
+		(setf (hmm-h3p h) h3)
+		(setf (hmm-h2p h) h2)
+		(setf (hmm-h1p h) h1)))))
+
+
+      ;; Main control step. First get pruning thresholds
+      (let ((prune-thresh (* 0.7 (max-field hmms #'hmm-hbest)))
+	    (exit-thresh (* 0.5 (max-field hmms #'hmm-hexit))))
+	(dolist (h hmms)
+	  (if (and (hmm-active h) (> (hmm-hbest h) prune-thresh))
+	      ;; If hmm active and above pruning threshold
+	      (progn
+		;(format t "HMM is above hbest thresh: ~a (~a) ~%"
+		;	(hmm-hname h) (hmm-hbest h))
+		(if (hmm-word-final h)  ; If it's a word-final hmm
+		    (if (> (hmm-hexit h) exit-thresh)
+			(insert-new-wlr h))
+		    (let ((context-right (hmm-context-right h))
+			  (exit (hmm-hexit h)))
+		      (dolist (ht hmms) ; Otherwise, propagate to next hmms
+			;; Only prop if greater h0 prob and equal ctx
+			(when (and (> exit (hmm-h0 ht))
+				   (equal (hmm-context-left ht) context-right))
+			  (setf (hmm-h0 ht) exit)
+			  (setf (hmm-active ht) t))))))
+	      
+	      ;; Otherwise, deactivate
+	      (setf (hmm-active h) nil)))))))
