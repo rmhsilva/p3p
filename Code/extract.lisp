@@ -138,15 +138,14 @@
 	      ("<GCONST> (.*)$" gconst))
        (setf senones
 	     (cons (make-senone :sname sname
-				:gconst (read-from-string gconst)
+				:gconst (/ (read-from-string gconst) 2)
 				:means
 				(mapcar #'(lambda (x) ; to read 1023e-01 etc
 					    (read-from-string x))
 					(cl-ppcre:split " " means))
 				:omegas ; precompute 0.5/sigma^2
 				(mapcar #'(lambda (x)
-					    (/ 0.5
-					       (expt (read-from-string x) 2)))
+					    (/ 0.5 (read-from-string x)))
 					(cl-ppcre:split " " variances)))
 		   senones)))
 
@@ -343,12 +342,35 @@
     (dolist (h hmms)
       (setf h (reset-hmm h)))
 
+    (let ((smax (list 0)) (omax 0))
+      (dolist (o oframes omax)
+	(dolist (comp (oframe-components o))
+	  (if (> (abs comp) (abs omax))
+	      (setf omax comp))))
+      (format t "Max observation component: ~a ~%" omax)
+      
+      (dolist (s senones smax)
+	(dolist (x (append (senone-means s) (senone-omegas s) (list (senone-gconst s))))
+	  (if (> (abs x) (abs (car smax)))
+	      (setf smax (list x s)))))
+      (format t "Max senone value: ~a (from ~a) ~%" (car smax) (senone-sname (second smax))))
+
+    ;(break)
+
     ;; Loop for all observation data!
     (dolist (o (list (car oframes)))
 
       ;; First calc senone scores
       (dolist (s senones)
 	(setf (senone-score s) (probability o s)))
+
+      (let ((pmax 0))
+	(dolist (s senones)
+	  (if (> (abs (senone-score s)) pmax)
+	      (setf pmax (senone-score s))))
+	(format t "Max senone score (probability): ~a ~%" pmax))
+
+      (break)
 
       ;; Loop over all active hmms, each frame. Reset, Propagate "tokens"
       (dolist (h hmms)
