@@ -11,18 +11,12 @@
   `(mapcar #'(lambda (x) (cons (funcall ,function x) (list x)))
 	   ,lst))
 
+(defun >> (num shift)
+  (/ num (expt 2 shift)))
 
-;;; Binary repr stuff
-
-(defun makebins (numbins point)
-  "Makes a list of powers for binary positions (4 2 1 0.5 0.25 ...)"
-  (cond
-    ((= numbins 0) 'nil)
-    (t (cons
-	(expt 2 (- numbins point))
-	(makebins (1- numbins) point)))))
-
-(defparameter +bins+ (makebins 15 5) "My binary format!")
+(defun shift (num amount)
+  "Shift - amount may be + or -, for left or right shift"
+  (* num (expt 2 amount)))
 
 (defun flip (x)
   "Flips the bits in x (in my format)"
@@ -33,7 +27,43 @@
 	(flip (cdr x))))))
 
 
-(defun dec2bin (x)
+;;; Binary repr stuff
+(defparameter +bins+ (makebins 15 11) "My binary format!")
+
+(defun makebins (numbins point)
+  "Makes a list of powers for binary positions (4 2 1 0.5 0.25 ...)"
+  (cond
+    ((= numbins 0) 'nil)
+    (t (cons
+	(expt 2 (- numbins point))
+	(makebins (1- numbins) point)))))
+
+(defun bin2hex (x)
+  "Converts bin (my format) to hex representation"
+  (if (null x)
+      'nil
+      (let ((sl (subseq x 0 4)))
+	(cons (cond
+		((equal sl '(0 0 0 0)) 0)
+		((equal sl '(0 0 0 1)) 1)
+		((equal sl '(0 0 1 0)) 2)
+		((equal sl '(0 0 1 1)) 3)
+		((equal sl '(0 1 0 0)) 4)
+		((equal sl '(0 1 0 1)) 5)
+		((equal sl '(0 1 1 0)) 6)
+		((equal sl '(0 1 1 1)) 7)
+		((equal sl '(1 0 0 0)) 8)
+		((equal sl '(1 0 0 1)) 9)
+		((equal sl '(1 0 1 0)) 'A)
+		((equal sl '(1 0 1 1)) 'B)
+		((equal sl '(1 1 0 0)) 'C)
+		((equal sl '(1 1 0 1)) 'D)
+		((equal sl '(1 1 1 0)) 'E)
+		((equal sl '(1 1 1 1)) 'F))
+	      (bin2hex (cddddr x))))))
+
+
+(defun dec2bin (x &optional (bins +bins+))
   "Converts a decimal number into my binary format"
   (labels ((getbin (nx vals)
 	     (cond
@@ -49,11 +79,11 @@
 	       (t
 		(cons 0 (getbin nx (cdr vals)))))))
     (if (< x 0) ; Handle negatives by adding first then flipping 
-	(flip (cons 0 (getbin (abs (+ x (car (last +bins+)))) +bins+)))
-	(cons 0 (getbin x +bins+)))))
+	(flip (cons 0 (getbin (abs (+ x (car (last bins)))) bins)))
+	(cons 0 (getbin x bins)))))
     
 
-(defun bin2dec (x)
+(defun bin2dec (x &optional (bins +bins+))
   "Converts bin (my format) to decimal"
   (labels ((getdec (nx vals)
 	     (cond
@@ -66,9 +96,47 @@
 	       ((= (car nx) 1)
 		(+ (car vals) (getdec (cdr nx) (cdr vals))))
 	       (t (getdec (cdr nx) (cdr vals))))))
-    (* (if (= (car x) 1) -1 1) ; Handle negatives by multiplying back
-       (float (getdec (cdr x) +bins+)))))
+    (float (if (= (car x) 1)
+	       (* -1 (1+ (getdec (flip (cdr x)) bins)))
+	       (getdec (cdr x) bins))))) ; Handle negatives by multiplying back
 
+
+;;; Extra binary things
+
+(defun 2sbin (x &optional (scale 5))
+  "Converts x to binary, scaled by amount"
+  (dec2bin (shift x scale)))
+
+(defun sbin2dec (x &optional (scale 5))
+  "Converts a scaled x back to decimal"
+  (shift (bin2dec x) (* -1 scale)))
+
+
+;;; System Models
+
+(defun gdp ()
+  (let ((acc_sum 0))
+    (lambda (x k mean omega last_c first_c)
+      ((lambda (sum)
+	 (if last_c
+	     (- k sum)
+	     sum))
+       (setf acc_sum (+ (* omega (expt (- x mean) 2))
+			(if first_c
+			    0
+			    acc_sum)))))))
+
+(setf my-gdp (gdp))
+
+(defun feed-gdp (x k/8 mean omega last_c first_c &rest more-sets)
+  (let ((gdp (gdp)))
+    (funcall gdp x (shift k/8 3) mean omega last_c first_c)
+    (dolist (d more-sets)
+      (let* ((x (car d)) (mean (third d)) (omega (fourth d))
+	     (k (shift (second d) 3)) (last_c (nth 5 d)) (first_c (nth 6 d))
+	     (result (funcall gdp x k mean omega last_c first_c)))
+	(if last_c
+	    (format t "Result: ~a ~%" result))))))
 
 ;;; Testbench things
 
