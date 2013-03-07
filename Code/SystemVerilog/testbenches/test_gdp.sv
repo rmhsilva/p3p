@@ -18,7 +18,7 @@ initial begin
 end
 
 // Properties to be fullfilled
-assert property (@(posedge clk) last_calc |-> ##4 data_ready);
+assert property (@(posedge clk) last_calc |-> ##5 data_ready);
 
 
 // Set signals
@@ -38,22 +38,6 @@ initial begin
   omega = 16'h002B;
   mean = 16'h17A3;
   
-//  #10ns;
-//  first_calc = 0;
-//  x = ;
-//  omega = ;
-//  mean = ;
-//
-//  #5ns;
-//  x = ;
-//  omega = ;
-//  mean = ;
-//  
-//  #5ns;
-//  x = ;
-//  omega = ;
-//  mean = ;
-  
   #10ns;
   first_calc = 0;
   last_calc = 1;
@@ -64,25 +48,13 @@ initial begin
   
   #10ns last_calc = 0;
   
-  #15ns;
+  #40ns;
   assert(data_ready == 1'b1);
-  assert(ln_p == 16'h0000) $display("Finished, correct result");
+  assert(ln_p == 16'h12C7) $display("Finished, correct result :)");
   
 end
 
 // connect modules
 gdp pipe(.*);
-
-//module gdp(
-//	 input clk, reset,
-//	 input first_calc, last_calc,
-//    input [0:15] x,		// Observation vector component
-//    input [0:15] k,		// K value for this state
-//    input [0:15] omega,	// Corresponding omega component...
-//    input [0:15] mean,	// ... and mean component
-//	 
-//    output reg [0:15] ln_p,	// ln(P(X)) = ln[ probability of X for this state ]
-//    output data_ready
-//    );
 
 endmodule

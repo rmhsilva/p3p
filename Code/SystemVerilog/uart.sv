@@ -1,4 +1,4 @@
-typedef logic signed [15:0] num;    // My number format
+typedef logic signed [15:0] num; // My number format
 
 module uart #(parameter n_tx_bytes=2, n_rx_bytes=2*25)
     (
@@ -24,19 +24,19 @@ num rx_buffer [n_rx_bytes:0];
 always_ff @(posedge clk) begin : proc_tx
     if (tx_index < n_tx_bytes) begin
         start_tx <= 1'b1;
-        tx_byte  <= tx_buffer[tx_index];
+        tx_byte <= tx_buffer[tx_index];
         tx_index <= tx_index + 1;
     end
     else if (send_data) begin
         tx_buffer <= tx_bytes;
-        tx_index  <= 1;
-        start_tx  <= 1'b1;
-        tx_byte   <= tx_bytes[0];
+        tx_index <= 1;
+        start_tx <= 1'b1;
+        tx_byte <= tx_bytes[0];
     end
     else start_tx <= 0;
 end
 
-assign tx_ready = ~start_tx;    // tx_ready: high when not tx'ing anymore
+assign tx_ready = ~start_tx; // tx_ready: high when not tx'ing anymore
 
 
 // Rx process

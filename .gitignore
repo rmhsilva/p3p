@@ -34,3 +34,7 @@
 *.fls
 
 *.DS_Store
+
+*.lisp#
+*.fasl
+*~

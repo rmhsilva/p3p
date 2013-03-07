@@ -50,9 +50,7 @@ always_ff@(posedge clk or posedge reset) begin : proc_main
         scale_out <= (square_out * omega_r[1])>>>decimal_position-1;
         acc_sum <= (first_calc_r[2])? (0+scale_out) : (acc_sum+scale_out);
 
-        // Outputs
-        // TODO: Fix ln_p assignemnt - it's getting ZERO -.-
-        //ln_p <= {(k_r[3]<<<3 - acc_sum)>>>3}[15:0];
+        // Calc result and set output!
         result <= ((k_r[3]<<<3) - acc_sum)>>>3;
         data_ready <= last_calc_r[3];
     end

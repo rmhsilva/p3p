@@ -14,9 +14,8 @@
 (defun >> (num shift)
   (/ num (expt 2 shift)))
 
-(defun shift (num amount)
-  "Shift - amount may be + or -, for left or right shift"
-  (* num (expt 2 amount)))
+(defun << (num shift)
+  (* num (expt 2 shift)))
 
 (defun flip (x)
   "Flips the bits in x (in my format)"
@@ -29,6 +28,7 @@
 
 ;;; Binary repr stuff
 (defparameter +bins+ (makebins 15 11) "My binary format!")
+(defparameter +bigbins+ (makebins 32 11) "Large numbers!")
 
 (defun makebins (numbins point)
   "Makes a list of powers for binary positions (4 2 1 0.5 0.25 ...)"
@@ -61,6 +61,9 @@
 		((equal sl '(1 1 1 0)) 'E)
 		((equal sl '(1 1 1 1)) 'F))
 	      (bin2hex (cddddr x))))))
+
+(defun dec2hex (x)
+  (bin2hex (dec2bin x)))
 
 
 (defun dec2bin (x &optional (bins +bins+))
@@ -114,7 +117,11 @@
 
 ;;; System Models
 
+(defvar *k-shift* 3)
+(defvar *result-shift* 3)
+
 (defun gdp ()
+  "A model of the GDP as a closure - subsequent calls work right"
   (let ((acc_sum 0))
     (lambda (x k mean omega last_c first_c)
       ((lambda (sum)
@@ -128,63 +135,82 @@
 
 (setf my-gdp (gdp))
 
-(defun feed-gdp (x k/8 mean omega last_c first_c &rest more-sets)
-  (let ((gdp (gdp)))
-    (funcall gdp x (shift k/8 3) mean omega last_c first_c)
+(defun feed-gdp (x k/shift mean omega last_c first_c &rest more-sets)
+  (let ((tgdp (gdp)))
+    (funcall tgdp x (<< k/shift *k-shift*) mean omega last_c first_c)
     (dolist (d more-sets)
       (let* ((x (car d)) (mean (third d)) (omega (fourth d))
-	     (k (shift (second d) 3)) (last_c (nth 5 d)) (first_c (nth 6 d))
-	     (result (funcall gdp x k mean omega last_c first_c)))
-	(if last_c
-	    (format t "Result: ~a ~%" result))))))
+	     (k (<< (second d) *k-shift*)) (last_c (nth 4 d)) (first_c (nth 5 d))
+	     (result (funcall tgdp x k mean omega last_c first_c)))
+	(when last_c
+	  (format t "Result: ~d ~%" result))))))
+
+
+(defun feed-observation (x-comps senones &optional (numcomps 25))
+  "Get all senone scores for a given observation and senones"
+  (format t "Starting scoring of ~a senones, with ~a components per frame~%"
+	  (length senones) numcomps)
+  (dolist (s senones)  ;; Only use a certain number of components:
+    (let ((omegas (subseq (senone-omegas s) 0 numcomps))
+	  (means (subseq (senone-means s) 0 numcomps))
+	  (k (senone-gconst s)) (tgdp (gdp)) (score 0))
+      
+      ;; Call first calc explicitly
+      (funcall tgdp (car x-comps) k (car means) (car omegas) nil t)
+      
+      ;; Process rest of components
+      (setf score (loop for (x . rest) on (cdr x-comps)
+		     and omega in (cdr omegas)
+		     and  mean in (cdr means)
+		     when rest do (funcall tgdp x k mean omega nil nil)
+		     else do (return (funcall tgdp x k mean omega t nil))))
+
+      (format t "Senone ~a score: ~d ~a~%"
+	      (senone-sname s)
+	      score
+	      (dec2bin (shift score -3))))))
+
 
 ;;; Testbench things
 
-(defmacro printl (stream &rest lines)
-  "Make the printlines look nicer below :D"
+(defmacro printl (stream prepend append &rest lines)
+  "Make the printlines look nicer below :)"
   (let ((res 'nil))
     (dolist (l lines)
       (setf res
 	    (append res
-		    `((format ,stream ,(s+ "    " (car l) "~%") ,@(cdr l))))))
+		    `((format ,stream ,(s+ prepend (car l) append) ,@(cdr l))))))
     `(progn
        ,@res)))
-  
-
-(defun print-tests3 (stream &rest tests)
-  "Print tests in format (x y z)"
-  (let ((xs "x") (ys "y") (zs "theta") (delay 20))
-    (dolist (test tests)
-      ;;For each test, print out a testbench thing
-      (let* ((x (first test)) (y (second test))
-	     (a (third test)) (b (fourth test))
-	     (res (multiple-value-list (assig3 x y a b))))
-	(printl stream
-		("~%  #~dns;" delay)
-		("x = 16'b~{~a~}; // ~a" (dec2bin x) x)
-		("y = 16'b~{~a~}; // ~a" (dec2bin y) y)
-		("a = 16'b~{~a~}; // ~a" (dec2bin a) a)
-		("b = 16'b~{~a~}; // ~a" (dec2bin b) b)
-		("//X: ~a  (~a)" (dec2bin (car res)) (car res))
-		("//Y: ~a  (~a)" (dec2bin (cadr res)) (cadr res)))))))
-
-(defun print-tests2 (stream &rest tests)
-  "Prints tests for part 1"
-  (dolist (test tests)
-    (let* ((x (first test)) (y (second test)) (z (2rad (third test)))
-	   (res (multiple-value-list (cordic x y (third test) :rot 'nil))))
-      (printl stream
-	      ("~%   #20ns")
-	      ("x = 16'b~{~a~}; // ~a" (dec2bin x) x)
-	      ("y = 16'b~{~a~}; // ~a" (dec2bin y) y)
-	      ("z = 16'b~{~a~}; // ~a" (dec2bin z) z)
-	      ("//sqrt: ~a (~a)" (dec2bin (car res)) (car res))
-	      ("//atan: ~a (~a)" (dec2bin (2rad (caddr res)))
-				 (2rad (caddr res)))))))
 
 
-(defun print-to-file (func filepath &rest tests)
+(defun print-senone-data (stream senones &optional (numcomps 25))
+  (format t "Printing ~a senones, with ~a components per frame~%"
+	  (length senones) numcomps)
+  ;; Print header stuff
+  (format stream "senone_data all_s_data [~a:0] = {~%" (1- (length senones)))
+  (let ((count (length senones)))
+    
+    ;; Print the rest!
+    (dolist (s (reverse senones))  ;; Only use a certain number of components:
+      (decf count)
+      (let ((omegas (reverse (subseq (senone-omegas s) 0 numcomps)))
+	    (means (reverse (subseq (senone-means s) 0 numcomps)))
+	    (k (senone-gconst s)))
+
+	(printl stream "  " "~%"
+		("// Senone ~a (~a)" count (senone-sname s))
+		("{ k:      16'h~{~a~}," (dec2hex (>> k *k-shift*)))
+		("  omegas: {~{16'h~{~a~}~^, ~}}," (mapcar #'dec2hex omegas))
+		("  means:  {~{16'h~{~a~}~^, ~}}" (mapcar #'dec2hex means))
+		("},"))))
+    
+    (format stream "};")))
+        
+
+
+(defun print-to-file (func filepath &rest args)
   "Outputs the tests to a file instead"
   (with-open-file (fp filepath :direction :output :if-exists :supersede)
-    (apply func fp tests)
+    (apply func fp args)
     (format t "---Done---")))
