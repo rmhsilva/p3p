@@ -10,6 +10,7 @@ module gdp_controller #(parameter n_components=5, n_senones=10)
     output logic [7:0] senone_idx, // index of senone currently scoring
     output num senone_score,
     output logic score_ready, // flag. data on senone_score is valid
+    output logic last_senone, // flag. this is the final senone
 
     output logic gdp_idle // High when done processing
     );
@@ -47,7 +48,7 @@ always_ff@(posedge clk or posedge reset) begin : proc_main
         senone_idx_buffer <= {senone_index, senone_idx_buffer[4:1]};
 
         // Do the counter logic
-        if (state == IDLE) begin 
+        if (state == IDLE) begin
           comp_index <= 0;
           senone_index <= 0;
         end
@@ -62,7 +63,7 @@ always_ff@(posedge clk or posedge reset) begin : proc_main
           end
           else comp_index <= comp_index + 1;
         end
-        
+
         //if (state == LOADGDP) $display(all_s_data[senone_index].omegas[comp_index]);
     end
 end
@@ -76,22 +77,22 @@ always_comb begin : proc_maincomb
             omega = 0;
             mean = 0;
             x_component = 0;
-            
+
             if (new_vector_available) begin
               next = LOADGDP;
               x_buf = x;  // Latch the x input data here
             end
             else next = IDLE;
           end
-          
-        LOADGDP: begin            
+
+        LOADGDP: begin
             // Various signals
             if (comp_index==0) first_calc = 1'b1;
             else first_calc = 0;
-              
+
             if (comp_index==n_components-1) last_calc = 1'b1;
             else last_calc = 0;
-            
+
             // Assign data
             k             = all_s_data[senone_index].k;
             omega         = all_s_data[senone_index].omegas[comp_index];
@@ -108,6 +109,7 @@ end : proc_maincomb
 
 assign gdp_idle = (state==IDLE);
 assign senone_idx = senone_idx_buffer[0];
+assign last_senone = score_ready & (senone_idx == n_senones-1);
 
 
 // Instantiate modules
