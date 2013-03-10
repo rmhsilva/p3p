@@ -150,26 +150,28 @@
   "Get all senone scores for a given observation and senones"
   (format t "Starting scoring of ~a senones, with ~a components per frame~%"
 	  (length senones) numcomps)
-  (dolist (s senones)  ;; Only use a certain number of components:
-    (let ((omegas (subseq (senone-omegas s) 0 numcomps))
-	  (means (subseq (senone-means s) 0 numcomps))
-	  (k (senone-gconst s)) (tgdp (gdp)) (score 0))
-      
-      ;; Call first calc explicitly
-      (funcall tgdp (car x-comps) k (car means) (car omegas) nil t)
-      
-      ;; Process rest of components
-      (setf score (loop for (x . rest) on (cdr x-comps)
-		     and omega in (cdr omegas)
-		     and  mean in (cdr means)
-		     when rest do (funcall tgdp x k mean omega nil nil)
-		     else do (return (funcall tgdp x k mean omega t nil))))
-
-      (format t "Senone ~a score: ~d ~a~%"
-	      (senone-sname s)
-	      score
-	      (dec2bin (shift score -3))))))
-
+  (let (result)
+    (dolist (s senones)  ;; Only use a certain number of components:
+      (let ((omegas (subseq (senone-omegas s) 0 numcomps))
+	    (means (subseq (senone-means s) 0 numcomps))
+	    (k (senone-gconst s)) (tgdp (gdp)) (score 0))
+	
+	;; Call first calc explicitly
+	(funcall tgdp (car x-comps) k (car means) (car omegas) nil t)
+	
+	;; Process rest of components
+	(setf score (loop for (x . rest) on (cdr x-comps)
+		       and omega in (cdr omegas)
+		       and  mean in (cdr means)
+		       when rest do (funcall tgdp x k mean omega nil nil)
+		       else do (return (funcall tgdp x k mean omega t nil))))
+	
+	(setf result (cons (cons (senone-sname s) score) result))))
+;	(format t "Senone ~a score: ~d ~a~%"
+;		(senone-sname s)
+;		score
+;		(dec2bin (shift score -3)))))
+    (reverse result)))
 
 ;;; Testbench things
 
@@ -188,7 +190,7 @@
   (format t "Printing ~a senones, with ~a components per frame~%"
 	  (length senones) numcomps)
   ;; Print header stuff
-  (format stream "senone_data all_s_data [~a:0] = {~%" (1- (length senones)))
+  (format stream "senone_data all_s_data [n_senones-1:0] = {~%")
   (let ((count (length senones)))
     
     ;; Print the rest!
@@ -201,13 +203,35 @@
 	(printl stream "  " "~%"
 		("// Senone ~a (~a)" count (senone-sname s))
 		("{ k:      16'h~{~a~}," (dec2hex (>> k *k-shift*)))
-		("  omegas: {~{16'h~{~a~}~^, ~}}," (mapcar #'dec2hex omegas))
-		("  means:  {~{16'h~{~a~}~^, ~}}" (mapcar #'dec2hex means))
-		("},"))))
+		("  omegas: { ~{16'h~{~a~}~^, ~} }," (mapcar #'dec2hex omegas))
+		("  means:  { ~{16'h~{~a~}~^, ~} }" (mapcar #'dec2hex means))
+		("}~a" (if (= 0 count) " " ",")))))
     
     (format stream "};")))
-        
 
+
+(defun print-testbench (stream observations senones &optional (numcomps 25))
+  ;; Print out the list of X etc
+  (printl stream "  " "~%"
+	  ("reset = 0;")
+	  ("new_vector_available = 1'b1;")
+	  ("x = { ~{16'h~{~a~}~^, ~} };~%" (reverse
+					    (mapcar #'dec2hex observations)))
+	  ("#10ns new_vector_available = 0;")
+	  ("#~ans; // Wait for output~%~%" (+ 40 (* numcomps 10)))) ;; Assuming period = 10ns
+  
+  (let ((interval (* numcomps 5)))
+    (dolist (val (feed-observation observations senones numcomps))
+      (printl stream "  " "~%"
+	      ("assert (score_ready == 1'b1) else $display(\"score_ready not high!\");")
+	      ("assert (senone_score[15:6] == 10'b~{~a~}) // (0x~{~a~})"
+	       (subseq (dec2bin (>> (cdr val) *result-shift*)) 0 10)
+	       (dec2hex (>> (cdr val) *result-shift*)))
+	      ("  else $display(\"Error in score for ~a!\");~%" (car val))
+	      ("#~ans assert (score_ready == 1'b0) else $display(\"score_ready not low!\");"
+	       interval)
+	      ("#~ans;" interval)))))  ;; Assuming clk period = 10ns
+	      
 
 (defun print-to-file (func filepath &rest args)
   "Outputs the tests to a file instead"

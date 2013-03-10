@@ -5,7 +5,7 @@ typedef logic signed [15:0] num; // My number format
 
 module test_gdp_controller();
   
-parameter n_components=10, n_senones=10;
+parameter n_components=5, n_senones=10;
 
 // Signals
 logic reset, clk;
@@ -43,7 +43,7 @@ initial begin
   #90ns; // Wait for output
 
 
-  assert (score_ready == 1'b1) else $display("score_ready not high!");
+  assert (score_ready == 1'b1);
   assert (senone_score[15:6] == 10'b0001001011)
     else $display("Error in score for ST_ey_4_47!");
 

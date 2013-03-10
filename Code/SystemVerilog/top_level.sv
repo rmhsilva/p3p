@@ -15,7 +15,7 @@ module top_level (
 	output logic duart_tx_out,	//  -> FTDI RX pin
 
 	// Onboard SRAM signals:
-	inout logic [7:0] sram_data,
+	inout [7:0] sram_data,
 	output logic [20:0] sram_addr,
 	output logic sram_ce, sram_we, sram_oe
 	);
@@ -43,13 +43,16 @@ logic last_senone;
 
 // Max unit signals
 num best_score;
+logic max_done;
+
+// Other signals
+logic norm_done, send_done;
 
 
 // UART signals
-logic rx_available;
-logic start_tx;
-num tx_buffer [n_tx_bytes-1:0];
-num rx_buffer [n_rx_bytes-1:0];
+logic rx_available, tx_ready, start_tx;
+num tx_buffer [n_tx_nums-1:0];
+num rx_buffer [n_components-1:0];
 
 
 // State machine setup
@@ -63,17 +66,44 @@ state_t state, next;
 // Main state machine
 always_ff@(posedge clk50M or posedge reset) begin : proc_mainFF
     if (reset) begin
-
+      state <= IDLE;
     end begin
-
+      state <= next;
     end
 end
 
 always_comb begin : proc_maincomb
+  if (reset) begin
+    next = IDLE;
+  end
+  else begin
     unique case (state)
-        IDLE: if ()
+        IDLE: begin
+          //IDLE: if (rx_available) next = PROC;
+          if (duart_rx_in) next = PROC;   // TESTING. replace with above
+          //new_vector_available = 
+        end
+        PROC: begin
+          if (last_senone) next = NORM;
+            
+          if (score_ready) begin
+            // write to SRAM
+            write_data <= 1;
+            data_addr <= senone_idx<<1;
+            data_in <= senone_score;
+          end
+        end
+        NORM: if (norm_done) next = SEND;
+        SEND: if (send_done) next = IDLE;
+        default: next = IDLE;
     endcase
+  end
 end : proc_maincomb
+
+
+// TESTING:
+assign new_vector_available = duart_rx_in;
+assign x = { 16'hF6A5, 16'hFEDA, 16'hFD3C, 16'h00C1, 16'hDABE }; // normally = rx_buffer
 
 
 // Simple flashing LED to indicate operation.
@@ -100,14 +130,17 @@ assign {duart_rx_out,duart_tx_out} = {duart_rx_in,duart_tx_in};
 
 // Serial connection to L'Imperatrice
 uart #(.n_tx_nums(n_tx_nums), .n_rx_nums(n_components)) data_uart
-        (.clk(clk50M), .reset, .rx(uart_rx), .tx(uart_tx), .send_data(start_tx), .rx_available, .tx_nums(tx_buffer), .rx_nums(rx_buffer));
+        (.clk(clk50M), .reset, .rx(uart_rx), .tx(uart_tx), .send_data(start_tx), .rx_available, 
+        .tx_ready, .tx_nums(tx_buffer), .rx_nums(rx_buffer));
 
 // GDP controller
 gdp_controller #(.n_components(n_components), .n_senones(n_senones)) gdp_c
                  (.clk(clk50M), .*);
 
 // Maximiser unit
-max (.new_senone(score_ready), .current_score(senone_score), .*)
+max maximiser(.clk(clk50M), .new_senone(score_ready), .current_score(senone_score), .*);
+
+// Normaliser unit
 
 
 endmodule
