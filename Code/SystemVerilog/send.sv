@@ -18,6 +18,8 @@ module send #(parameter n_senones=10)
     output logic send_done
 	);
 
+// Module to send all the senone scores from memory to L'Imperatrice (via UART)
+
 logic sending;
 logic [7:0] senone_index;
 
@@ -31,7 +33,6 @@ always_ff @(posedge clk or posedge reset) begin
         sending <= 1'b1;
         senone_index <= 0;
         send_done <= 1'b0;
-        read_data <= 1;
     end
     else if (sending) begin
         if (senone_index == n_senones-1) begin
@@ -47,11 +48,13 @@ always_ff @(posedge clk or posedge reset) begin
         end
         else begin
             start_tx <= 0;
-            read_data <= 1;
         end
     end
+    else send_done <= 0;
 end
 
+// Assign sram signals conditionally, to avoid bus contention
+assign read_data = (sending)? 1'b1 : 1'bZ;
 assign sram_addr = (sending)? senone_index<<1 : 21'bZ;
 
 endmodule

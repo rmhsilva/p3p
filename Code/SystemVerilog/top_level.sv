@@ -63,7 +63,12 @@ state_t state, next;
 /***************************************************************************/
 /*****[ Main Operations ]***************************************************/
 
-// Main state machine
+
+// TESTING:
+assign new_vector_available = duart_rx_in;
+assign x = { 16'hF6A5, 16'hFEDA, 16'hFD3C, 16'h00C1, 16'hDABE }; // normally = rx_buffer
+
+// State machine
 always_ff@(posedge clk50M or posedge reset) begin : proc_mainFF
     if (reset) begin
       state <= IDLE;
@@ -72,7 +77,8 @@ always_ff@(posedge clk50M or posedge reset) begin : proc_mainFF
     end
 end
 
-always_comb begin : proc_maincomb
+// State change logic
+always_comb begin : proc_statecomb
   if (reset) begin
     next = IDLE;
   end
@@ -81,29 +87,53 @@ always_comb begin : proc_maincomb
         IDLE: begin
           //IDLE: if (rx_available) next = PROC;
           if (duart_rx_in) next = PROC;   // TESTING. replace with above
-          //new_vector_available = 
+          //new_vector_available =
         end
-        PROC: begin
-          if (last_senone) next = NORM;
-            
-          if (score_ready) begin
-            // write to SRAM
-            write_data <= 1;
-            data_addr <= senone_idx<<1;
-            data_in <= senone_score;
-          end
-        end
+        PROC: if (last_senone) next = NORM;
         NORM: if (norm_done) next = SEND;
         SEND: if (send_done) next = IDLE;
         default: next = IDLE;
     endcase
   end
-end : proc_maincomb
+end : proc_statecomb
+
+// Signal logic
+always_comb begin : proc_outputlogic
+  start_norm = (state==NORM && ~norm_done)? 1'b1 : 1'b0;
+  start_send = (state==SEND && ~send_done)? 1'b1 : 1'b0;
+end : proc_outputlogic
 
 
-// TESTING:
-assign new_vector_available = duart_rx_in;
-assign x = { 16'hF6A5, 16'hFEDA, 16'hFD3C, 16'h00C1, 16'hDABE }; // normally = rx_buffer
+// Assign SRAM signals only when required, to avoid contention
+always_comb begin : proc_sram_signals
+    unique
+    if (state==PROC && score_ready) begin
+      read_sram = 1'b0;
+      write_sram = 1'b1;
+      sram_data_addr = senone_idx<<1;
+      sram_data_in   = senone_score;
+    end
+    else if (state==NORM) begin
+      // Assign sram signals to normaliser outputs
+      read_sram  = norm_sram_read;
+      write_sram = norm_sram_write;
+      sram_data_addr = norm_sram_addr;
+      sram_data_in   = norm_sram_data;
+    end
+    else if (state==SEND) begin
+      // And to send outputs
+      read_sram  = send_read_sram;
+      write_sram = send_write_sram;
+      sram_data_addr = send_sram_addr;
+      sram_data_in   = send_sram_data;
+    end
+    else begin
+      read_sram  = 1'bz;
+      write_sram = 1'bZ;
+      sram_data_addr = 20'bZ;
+      sram_data_in   = 8'bZ;
+    end
+end : proc_sram_signals
 
 
 // Simple flashing LED to indicate operation.
@@ -125,12 +155,11 @@ end : proc_statusLED
 assign {duart_rx_out,duart_tx_out} = {duart_rx_in,duart_tx_in};
 
 
-
 /*****[ Connect Modules up ]*************************************************/
 
 // Serial connection to L'Imperatrice
 uart #(.n_tx_nums(n_tx_nums), .n_rx_nums(n_components)) data_uart
-        (.clk(clk50M), .reset, .rx(uart_rx), .tx(uart_tx), .send_data(start_tx), .rx_available, 
+        (.clk(clk50M), .reset, .rx(uart_rx), .tx(uart_tx), .send_data(start_tx), .rx_available,
         .tx_ready, .tx_nums(tx_buffer), .rx_nums(rx_buffer));
 
 // GDP controller
