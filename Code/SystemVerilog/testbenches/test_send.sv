@@ -17,17 +17,27 @@ logic start_send, send_done;  // to the send module
 logic uart_ready, start_tx;   // between send and uart
 num tx_value;
 
-// SRAM connection
+// sender SRAM connection
 num data_in;
 logic sram_ready, read_data;
+logic [20:0] data_addr;
+
+// Actual SRAM connections
+wire [7:0] sram_data;
 logic [20:0] sram_addr;
+logic sram_ce, sram_we, sram_oe;
 
 // Module inst.
 send #(.n_senones(5)) sender (.*);
 uart #(.n_tx_nums(1), .n_rx_nums(10)) serial
-  (.tx_nums(tx_value), .tx_ready(uart_ready) .send_data(start_tx) .*);
+  (.tx_nums(tx_value), .tx_ready(uart_ready), .send_data(start_tx), .*);
 
-// TODO: test this with the sram module included.
+// SRAM access module
+sram ram(.clk, .reset, .data_addr, .sram_ready, .data_out(data_in),
+  .write_data(), .data_in(), .read_data, .sram_addr, .sram_data, .*);
+
+// SRAM model
+sram_model mem(.cs(sram_ce), .we(sram_we), .oe(sram_oe), .addr(sram_addr), .data(sram_data));
 
 // Clock function
 initial begin
@@ -35,12 +45,12 @@ initial begin
   forever #5ns clk = ~clk;
 end
 
+//assign data_in = 16'h8008 + sram_addr<<1;
+
 // Set signals
 initial begin
   reset = 1;
   start_send = 0;
-  data_in = 16'h55aa;
-  sram_ready = 1;
 
   #20ns;
   reset = 0;

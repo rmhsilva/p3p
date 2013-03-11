@@ -12,7 +12,7 @@ module send #(parameter n_senones=10)
     // SRAM connection
     input num data_in,
     input logic sram_ready,
-    output logic [20:0] sram_addr,
+    output logic [20:0] data_addr,
     output logic read_data,
 
     output logic send_done
@@ -20,41 +20,52 @@ module send #(parameter n_senones=10)
 
 // Module to send all the senone scores from memory to L'Imperatrice (via UART)
 
-logic sending;
 logic [7:0] senone_index;
+
+typedef enum {IDLE, READING, SENDING} state_t;
+state_t state;
+
 
 always_ff @(posedge clk or posedge reset) begin
     if (reset) begin
         senone_index <= 0;
         send_done <= 0;
-        sending <= 0;
+        state <= IDLE;
     end
-    else if (~sending && start_send) begin
-        sending <= 1'b1;
-        senone_index <= 0;
-        send_done <= 1'b0;
-    end
-    else if (sending) begin
-        if (senone_index == n_senones-1) begin
-            senone_index <= 0;
-            sending <= 0;
-            send_done <= 1'b1;
-            start_tx <= 0;
-        end
-        else if (uart_ready && sram_ready) begin
-            senone_index <= senone_index + 1;
-            tx_value <= data_in;
-            start_tx <= 1;
-        end
-        else begin
-            start_tx <= 0;
-        end
-    end
-    else send_done <= 0;
+    else
+        case (state)
+            IDLE:
+                if (start_send) begin
+                    state <= READING;
+                    senone_index <= 0;
+                    send_done <= 0;
+                end
+
+            READING:
+                if (sram_ready) begin
+                    state <= SENDING;
+                    tx_value <= data_in;
+                    start_tx <= 1;
+                end
+
+            SENDING: begin
+                start_tx <= 0;
+                if (uart_ready) begin
+                    if (senone_index == n_senones-1) begin
+                        state <= IDLE;
+                        send_done <= 1'b1;
+                    end else begin
+                        state <= READING;
+                        senone_index <= senone_index + 1;
+                    end
+                end
+              end
+        endcase
 end
 
-// Assign sram signals conditionally, to avoid bus contention
-assign read_data = (sending)? 1'b1 : 1'bZ;
-assign sram_addr = (sending)? senone_index<<1 : 21'bZ;
+// Assign sram and uart signals conditionally, to avoid bus contention
+assign read_data = (state==READING)? 1'b1 : 1'bZ;
+assign data_addr = (state==READING)? senone_index<<1 : 21'bZ;
+
 
 endmodule

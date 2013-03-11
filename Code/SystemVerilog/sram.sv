@@ -77,7 +77,7 @@ always_comb begin
 		  sram_we = 1;
 		  sram_oe = 0;
           buffer[7:0] = (state==READ1)? sram_data : buffer[7:0];
-          buffer[15:8]= (state==READ2)? sram_data : buffer[15:0];
+          buffer[15:8]= (state==READ2)? sram_data : buffer[15:8];
 		  sram_addr = (state==READ1)? address : address+1;
     end
   endcase
@@ -91,6 +91,6 @@ end
 //     Possibly just do sram_ready = READ2 | WRITE2 ?
 assign sram_data = (state==WRITE1 || state==WRITE2)? sram_data_reg : 'bZ;
 assign data_out = buffer;
-assign sram_ready = sram_ce;
+assign sram_ready = (state==READ2) || (state==WRITE2);
 
 endmodule

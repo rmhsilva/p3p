@@ -35,7 +35,7 @@ always_ff @(posedge clk or posedge reset) begin
         case (state)
             IDLE: begin
                 norm_done <= 0;
-                if (start_norm)
+                if (start_norm) begin
                     state <= READING;
                     best_score_reg <= best_score;
                     senone_index <= 0;
