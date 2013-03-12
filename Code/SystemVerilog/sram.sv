@@ -3,7 +3,8 @@ typedef logic signed [15:0] num; // My number format
 module sram (
   input logic clk, reset,
   input logic [20:0] data_addr,
-  output logic sram_ready,
+  output logic sram_ready,      // indicates finished reading or writing
+  output logic sram_idle,       // indicates no operation currently in process
 
   input logic write_data,
   input num data_in,
@@ -60,37 +61,31 @@ end
 always_comb begin
   unique case (state)
     IDLE: begin
-		  sram_ce = 1;
 		  sram_we = 1;
 		  sram_oe = 1;
-          if (write_data) buffer = data_in;
+      if (write_data) buffer = data_in;
 		end
     WRITE1, WRITE2: begin
-		  sram_ce = 0;
 		  sram_we = 0;
 		  sram_oe = 1;
 		  sram_data_reg = (state==WRITE1)? buffer[7:0] : buffer[15:8];
 		  sram_addr = (state==WRITE1)? address : address+1;
     end
     READ1, READ2: begin
-		  sram_ce = 0;
 		  sram_we = 1;
 		  sram_oe = 0;
-          buffer[7:0] = (state==READ1)? sram_data : buffer[7:0];
-          buffer[15:8]= (state==READ2)? sram_data : buffer[15:8];
+      buffer[7:0] = (state==READ1)? sram_data : buffer[7:0];
+      buffer[15:8]= (state==READ2)? sram_data : buffer[15:8];
 		  sram_addr = (state==READ1)? address : address+1;
     end
   endcase
 end
 
 // Assign outputs!
-// TODO: change sram_ready one clock cycle earlier, so that it doesn't
-// need to go into IDLE for 1 clock cycle (waste...)
-// Should be able to change the address line every 2 cycles, and get data every
-// 2 cycles.
-//     Possibly just do sram_ready = READ2 | WRITE2 ?
+assign sram_ce = (state==IDLE)? 1'b1 : 1'b0;
 assign sram_data = (state==WRITE1 || state==WRITE2)? sram_data_reg : 'bZ;
 assign data_out = buffer;
 assign sram_ready = (state==READ2) || (state==WRITE2);
+assign sram_idle = (state==IDLE);
 
 endmodule

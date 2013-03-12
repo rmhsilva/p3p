@@ -34,12 +34,13 @@ always_ff @(posedge clk or posedge reset) begin
     end
     else
         case (state)
-            IDLE:
+            IDLE: begin
+                send_done <= 0;
                 if (start_send) begin
                     state <= READING;
                     senone_index <= 0;
-                    send_done <= 0;
                 end
+            end
 
             READING:
                 if (sram_ready) begin

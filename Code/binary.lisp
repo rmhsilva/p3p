@@ -108,11 +108,11 @@
 
 (defun 2sbin (x &optional (scale 5))
   "Converts x to binary, scaled by amount"
-  (dec2bin (shift x scale)))
+  (dec2bin (<< x scale)))
 
 (defun sbin2dec (x &optional (scale 5))
   "Converts a scaled x back to decimal"
-  (shift (bin2dec x) (* -1 scale)))
+  (>> (bin2dec x) scale))
 
 
 ;;; System Models
@@ -133,6 +133,7 @@
 			    0
 			    acc_sum)))))))
 
+(defvar my-gdp (gdp))
 (setf my-gdp (gdp))
 
 (defun feed-gdp (x k/shift mean omega last_c first_c &rest more-sets)

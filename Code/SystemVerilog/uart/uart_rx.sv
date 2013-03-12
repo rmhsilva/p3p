@@ -24,23 +24,29 @@ always_ff @(posedge clk)
 logic [1:0] rx_count;
 logic rx_bit_inv;
 
-always_ff @(posedge clk)
-if (baudtick8) begin
-  if (rx_sync_inv[1] && rx_count!=2'b11) rx_count <= rx_count + 2'h1;
-  else // Decrement count when rx is low
-  if (~rx_sync_inv[1] && rx_count!=2'b00) rx_count <= rx_count - 2'h1;
-
-  // rx must be low 3 clocks in sequence for a valid start bit
-  if (rx_count==2'b00) rx_bit_inv <= 0;
+always_ff @(posedge clk or posedge reset)
+  if (reset)
+    rx_count <= 0;
   else
-  if (rx_count==2'b11) rx_bit_inv <= 1;
-end
+  if (baudtick8) begin
+    if (rx_sync_inv[1] && rx_count!=2'b11) rx_count <= 1 + rx_count;
+    else // Decrement count when rx is low
+    if (~rx_sync_inv[1] && rx_count!=2'b00) rx_count <= -1 + rx_count;
+  
+    // rx must be low 3 clocks in sequence for a valid start bit
+    if (rx_count==2'b00) rx_bit_inv <= 0;
+    else
+    if (rx_count==2'b11) rx_bit_inv <= 1;
+  end
 
 // Receiver state machine
 logic [3:0] state;
 logic next_bit;
 
-always_ff @(posedge clk)
+always_ff @(posedge clk or posedge reset)
+  if (reset)
+    state <= 4'b0;
+  else
   if (baudtick8)
   case(state)
     4'b0000: if(rx_bit_inv) state <= 4'b1000; // wait for start bit

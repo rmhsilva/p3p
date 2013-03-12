@@ -12,6 +12,7 @@ logic status_led;	    // (P31) onboard status LED
 // Data uart:
 logic uart_tx;		//  -> pin 2, bank 2 of L'Imperatrice
 logic uart_rx;		//  -> pin 3, bank 2 of L'Imperatrice
+logic new_vector_incoming;
 
 // L'Imperatrice Debug uart re-route:
 logic duart_rx_in;	 //  -> FTDI TX pin
@@ -25,8 +26,18 @@ logic [20:0] sram_addr;
 logic sram_ce, sram_we, sram_oe;
 
 
-top_level top (.clk50M(clk), .sram_data(sram_data), .*);
-  
+top_level top(.*);
+
+// SRAM model for testing purposes:
+sram_model mem(.cs(sram_ce), .we(sram_we), .oe(sram_oe), .addr(sram_addr), .data(sram_data));
+
+// Use a virtual UART thing to simulate receiving data
+logic virtual_send, virtual_ready;
+num virtual_data [4:0];
+uart #(.n_tx_nums(5), .n_rx_nums(1)) virtual_serial
+  ( .rx(), .tx(uart_rx), .send_data(virtual_send), .tx_nums(virtual_data),
+    .tx_ready(virtual_ready), .rx_available(), .rx_nums(), .*);
+
 
 // Clock function
 initial begin
@@ -38,11 +49,23 @@ end
 // Set signals
 initial begin
   reset = 1;
-  duart_rx_in = 0;
+  virtual_send = 0;
+  virtual_data = { 16'hF6A5, 16'hFEDA, 16'hFD3C, 16'h00C1, 16'hDABE }; // normally = rx_buffer
   
   #20ns;
   reset = 0;
-  duart_rx_in = 1;
+  new_vector_incoming = 1;
+  virtual_send = 1;
+  
+  #20ns;
+  new_vector_incoming = 0;
+  virtual_send = 0;
+  
+  #1100us;
+  //new_vector_incoming = 1;
+  
+  #20ns;
+  //new_vector_incoming = 0;
   
 end
 

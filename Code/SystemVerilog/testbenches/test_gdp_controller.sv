@@ -14,7 +14,7 @@ num x [n_components-1:0];
 logic [7:0] senone_idx;
 num senone_score;
 logic score_ready;
-logic gdp_idle;
+logic gdp_idle, last_senone;
 
 // connect module
 gdp_controller #(.n_components(n_components), .n_senones(n_senones)) gdp_c (.*);
