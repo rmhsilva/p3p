@@ -1,0 +1,74 @@
+
+NET "sram_addr[0]" LOC = P60;
+NET "sram_addr[1]" LOC = P59;
+NET "sram_addr[2]" LOC = P58;
+NET "sram_addr[3]" LOC = P55;
+NET "sram_addr[4]" LOC = P54;
+NET "sram_addr[5]" LOC = P44;
+NET "sram_addr[6]" LOC = P48;
+NET "sram_addr[7]" LOC = P47;
+NET "sram_addr[8]" LOC = P46;
+NET "sram_addr[9]" LOC = P45;
+NET "sram_addr[10]" LOC = P27;
+NET "sram_addr[11]" LOC = P25;
+NET "sram_addr[12]" LOC = P24;
+NET "sram_addr[13]" LOC = P29;
+NET "sram_addr[14]" LOC = P30;
+NET "sram_addr[15]" LOC = P18;
+NET "sram_addr[16]" LOC = P16;
+NET "sram_addr[17]" LOC = P15;
+NET "sram_addr[18]" LOC = P13;
+NET "sram_addr[19]" LOC = P28;
+NET "sram_addr[20]" LOC = P12;
+NET "sram_data[0]" LOC = P50;
+NET "sram_data[1]" LOC = P49;
+NET "sram_data[2]" LOC = P41;
+NET "sram_data[3]" LOC = P42;
+NET "sram_data[4]" LOC = P31;
+NET "sram_data[5]" LOC = P32;
+NET "sram_data[6]" LOC = P21;
+NET "sram_data[7]" LOC = P20;
+NET "sram_ce" LOC = P51;
+NET "sram_oe" LOC = P19;
+NET "sram_we" LOC = P43;
+
+NET "clk" LOC = P57;
+NET "reset" LOC = P33;       # button is the reset
+NET "status_led" LOC = P62;
+#NET "switch3" LOC = P33;
+#NET "switch4" LOC = P35;
+
+NET "uart_tx" LOC = P68;             # P2.2
+NET "uart_rx" LOC = P67;             # P2.3
+NET "new_vector_incoming" LOC = P69; # P2.5
+
+NET "duart_rx_in" LOC = P10;  # P3.6 ftdi tx
+NET "duart_tx_out" LOC = P11; # P3.7 ftdi rx
+NET "duart_tx_in" LOC = P63;  # P2.1
+NET "duart_rx_out" LOC = P64; # P2.0
+
+NET "state_output[0]" LOC = P75; # P1.0
+NET "state_output[1]" LOC = P77; # P1.2
+NET "state_output[2]" LOC = P79; # P1.4
+
+NET "norm_done" LOC = P87;  # P4.0
+NET "send_done" LOC = P90;  # P4.2
+NET "start_norm" LOC = P92; # P4.4
+NET "start_send" LOC = P96; # P4.6
+
+NET "sram_data_debug[0]" LOC = P111; # P4.17
+NET "sram_data_debug[1]" LOC = P113;
+NET "sram_data_debug[2]" LOC = P115;
+NET "sram_data_debug[3]" LOC = P117;
+NET "sram_data_debug[4]" LOC = P121;
+NET "sram_data_debug[5]" LOC = P125;
+NET "sram_data_debug[6]" LOC = P127; # P4.29
+NET "sram_data_debug[7]" LOC = P130; # P4.31
+NET "sram_addr_debug[0]" LOC = P112; # P4.16
+NET "sram_addr_debug[1]" LOC = P114; # P4.18
+NET "sram_addr_debug[2]" LOC = P116;
+NET "sram_addr_debug[3]" LOC = P120;
+
+NET "ce_db" LOC = P85; # P4.1
+NET "we_db" LOC = P88; # P4.3 
+NET "oe_db" LOC = P91; # P4.5
