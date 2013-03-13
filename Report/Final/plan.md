@@ -28,7 +28,6 @@ Things I need to write about (10000 words max):
 		- UART (note: reference fpga4fun - "...standard pattern, described on []")
 
 - Testing and Evaluation
-	- Lisp software written to parse HTK files and test the SV code
 	- Test vectors used
 	- Benchmarks against established software (e.g. HTK)
 	- Hardware vs software speed benchmarks
@@ -47,7 +46,7 @@ Things I need to write about (10000 words max):
 
 ### Major sections:
 
-- Intro + Goals of project
+- Intro + Goals of project + outline of my contributions / what I had to learn etc
 
 - Background
 	+ Literature review etc
@@ -56,7 +55,7 @@ Things I need to write about (10000 words max):
 	+ Micro Arcana
 	+ etc. Take content from interim
 	
-- My approach / solution to the problem (overview)
+- Designs (approach). My approach / solution to the problem (overview)
 	+ Full system overview
 	+ Skills I had / needed to acquire
 	+ Analysis of solution - my contribution, usefulness, extendability, etc
@@ -70,7 +69,7 @@ Things I need to write about (10000 words max):
 		* GDP pipe
 		* Normaliser
 		* UART
-	+ 
+	+ Lisp software to parse HTK files and generate SV test code
 
 - Testing / Results of individual components and full system
 	+ L'Imperatrice
@@ -94,5 +93,6 @@ Things I need to write about (10000 words max):
 
 - Appendices
 	+ Original project brief
-	+ Instructions for using Synplify etc, setting up LTIB
-	+ Detailed info of the ASR problem (?)
+	+ Instructions for using Synplify etc, setting up LTIB, gpios
+	+ Detailed info of the ASR problem (?) not too much!
+	+ Top level modules etc
