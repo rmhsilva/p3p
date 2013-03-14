@@ -24,8 +24,8 @@ module gdp_controller #(parameter n_components=5, n_senones=10)
 // Senone struct
 typedef struct packed {
   num k;
-  num omegas [n_components-1:0];
-  num means  [n_components-1:0];
+  num [n_components-1:0] omegas;
+  num [n_components-1:0] means;
 } senone_data;
 
 senone_data senone;
@@ -48,8 +48,9 @@ state_t state, next;
 always_ff@(posedge clk or posedge reset) begin : proc_main
     if(reset) begin
         state <= IDLE;
-        comp_index <= 0;
-        senone_index <= 0;
+        comp_index <= 'b0;
+        senone_index <= 'b0;
+        //senone_idx_buffer <= 'b0;
     end
     else begin
         state <= next;
@@ -63,10 +64,8 @@ always_ff@(posedge clk or posedge reset) begin : proc_main
         else if (state == LOADGDP) begin
           if (comp_index == n_components-1) begin
             comp_index <= 0;
-            if (senone_index == n_senones-1) begin
+            if (senone_index == n_senones-1)
               senone_index <= 0;
-              state <= IDLE;
-            end
             else senone_index <= senone_index + 1;
           end
           else comp_index <= comp_index + 1;
@@ -74,9 +73,22 @@ always_ff@(posedge clk or posedge reset) begin : proc_main
 
         //if (state == LOADGDP) $display(all_s_data[senone_index].omegas[comp_index]);
     end
-end
+end : proc_main
 
 always_comb begin : proc_maincomb
+	// Defaults
+	last_calc = 0;
+	first_calc = 0;
+	k = 'b0;
+	omega = 'b0;
+	mean = 'b0;
+	x_component = 'b0;
+	next = IDLE;
+	gdp_idle = 0;
+	
+	senone_idx = senone_idx_buffer[0];
+	last_senone = (score_ready && (senone_idx == n_senones-1));
+	
     case (state)
         IDLE: begin
             last_calc = 0;
@@ -85,42 +97,33 @@ always_comb begin : proc_maincomb
             omega = 0;
             mean = 0;
             x_component = 0;
-
-            if (new_vector_available) begin
-              next = LOADGDP;
-              x_buf = x;  // Latch the x input data here
-            end
-            else next = IDLE;
+            gdp_idle = 1'b1;
+            
+            next = (new_vector_available)? LOADGDP : IDLE;
           end
 
         LOADGDP: begin
             // Various signals
-            if (comp_index==0) first_calc = 1'b1;
-            else first_calc = 0;
-
-            if (comp_index==n_components-1) last_calc = 1'b1;
-            else last_calc = 0;
+            first_calc = (comp_index==0)? 'b1 : 'b0;
+            last_calc  = (comp_index==n_components-1)? 'b1 : 'b0;
 
             // Assign data
-//            k             = all_s_data[senone_index].k;
-//            omega         = all_s_data[senone_index].omegas[comp_index];
-//            mean          = all_s_data[senone_index].means[comp_index];
 			k     = senone.k;
 			omega = senone.omegas[comp_index];
 			mean  = senone.means[comp_index];
             x_component = x_buf[comp_index];
+            
+            next = ((comp_index == n_components-1) && (senone_index == n_senones-1))? IDLE : LOADGDP;
         end
 
         default: next = state;
     endcase
 end : proc_maincomb
 
-// GDP_clk must change with the actual clock, but only when we're loading the GDP
-//assign gdp_clk = clk & (state==LOADGDP);
-
-assign gdp_idle = (state==IDLE);
-assign senone_idx = senone_idx_buffer[0];
-assign last_senone = score_ready & (senone_idx == n_senones-1);
+// Latch the x input data
+always_latch
+	if ((state===IDLE) && new_vector_available)
+		x_buf <= x;
 
 
 // Instantiate modules

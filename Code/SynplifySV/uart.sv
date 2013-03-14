@@ -30,6 +30,7 @@ always_ff @(posedge clk or posedge reset) begin : proc_tx
     if (reset) begin
       sending <= 0;
       tx_index <= 0;
+      tx_byte <= 0;
     end
     else if (sending) begin
       tx_byte <= tx_buffer[tx_index];

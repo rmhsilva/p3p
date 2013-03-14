@@ -24,6 +24,7 @@ state_t state;
 
 // Buffers to store data as it's being processed
 num buffer;
+num buffer_in;
 logic [20:0] address;
 reg [7:0] sram_data_reg;
 
@@ -32,9 +33,10 @@ always_ff @(posedge clk or posedge reset) begin
     state <= IDLE;
 	end
 	else begin
-	  unique case (state)
+	  case (state)
 	    IDLE: if (write_data | read_data) begin
 	            address <= data_addr;
+	            buffer_in <= data_in;
 
 	            if (write_data) begin
 	              state <= WRITE1;
@@ -59,24 +61,34 @@ always_ff @(posedge clk or posedge reset) begin
 end
 
 always_comb begin
-  unique case (state)
+  // Defaults
+  sram_we = 0;
+  sram_oe = 1;
+  sram_data_reg = 'b0;
+  sram_addr = 'b0;
+  
+  case (state)
     IDLE: begin
 		  sram_we = 1;
 		  sram_oe = 1;
-      if (write_data) buffer = data_in;
+      //buffer = (write_data)? data_in : 'b0;
 		end
     WRITE1, WRITE2: begin
 		  sram_we = 0;
 		  sram_oe = 1;
-		  sram_data_reg = (state==WRITE1)? buffer[7:0] : buffer[15:8];
+		  sram_data_reg = (state==WRITE1)? buffer_in[7:0] : buffer_in[15:8];
 		  sram_addr = (state==WRITE1)? address : address+1;
     end
     READ1, READ2: begin
 		  sram_we = 1;
 		  sram_oe = 0;
-      buffer[7:0] = (state==READ1)? sram_data : buffer[7:0];
-      buffer[15:8]= (state==READ2)? sram_data : buffer[15:8];
+          buffer[7:0] = (state==READ1)? sram_data : buffer[7:0];
+          buffer[15:8]= (state==READ2)? sram_data : buffer[15:8];
 		  sram_addr = (state==READ1)? address : address+1;
+    end
+    default: begin
+    	sram_we = 1;
+    	sram_oe = 1;
     end
   endcase
 end

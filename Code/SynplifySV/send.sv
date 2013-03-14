@@ -11,19 +11,24 @@ module send #(parameter n_senones=10)
 
     // SRAM connection
     input num data_in,
-    input logic sram_ready,
+    input logic sram_ready, sram_idle,
     output logic [20:0] data_addr,
     output logic read_data,
 
-    output logic send_done
+    output logic send_done,
+    
+    // Debug
+    output logic [2:0] sender_state
 	);
 
 // Module to send all the senone scores from memory to L'Imperatrice (via UART)
 
 logic [7:0] senone_index;
 
-typedef enum {IDLE, READING, SENDING} state_t;
+typedef enum {IDLE, WAITING, READING, SENDING} state_t;
 state_t state;
+
+assign sender_state = state;
 
 
 always_ff @(posedge clk or posedge reset) begin
@@ -37,10 +42,12 @@ always_ff @(posedge clk or posedge reset) begin
             IDLE: begin
                 send_done <= 0;
                 if (start_send) begin
-                    state <= READING;
                     senone_index <= 0;
+                    state <= (sram_idle)? READING : WAITING;
                 end
             end
+            
+            WAITING: state <= (sram_idle)? READING : WAITING;
 
             READING:
                 if (sram_ready) begin
@@ -65,8 +72,8 @@ always_ff @(posedge clk or posedge reset) begin
 end
 
 // Assign sram and uart signals conditionally, to avoid bus contention
-assign read_data = (state==READING)? 1'b1 : 1'bZ;
-assign data_addr = (state==READING)? senone_index<<1 : 21'bZ;
+assign read_data = (state==READING)? 1'b1 : (state==IDLE)? 1'bZ : 1'b0;
+assign data_addr = (state==READING)? senone_index<<1 : (state==IDLE)? 21'bZ : 21'b0;
 
 
 endmodule

@@ -1,17 +1,17 @@
 //typedef logic signed [15:0] num; // My number format
 
 module top_level (
-	input logic clk,	reset,	 // clk: (P60) 50MHz onboard clock
-	output logic status_led,	// (P31) onboard status LED
+	input logic clk, reset,  // clk: (P60) 50MHz onboard clock
+	output logic status_led, // (P31) onboard status LED
 
 	// Data uart:
-	output logic uart_tx,		          //-> pin 2, bank 2 of L'Imperatrice
-	input logic uart_rx,		           //-> pin 3, bank 2 of L'Imperatrice
+	output logic uart_tx,		     //-> pin 2, bank 2 of L'Imperatrice
+	input logic uart_rx,		     //-> pin 3, bank 2 of L'Imperatrice
 	input logic new_vector_incoming, //-> pin 5, bank 2 of L'Imperatrice
 
 	// L'Imperatrice Debug uart re-route:
-	input logic duart_rx_in,	  //-> FTDI TX pin
-	input logic duart_tx_in,	  //-> pin 1, bank 2 of L'Imperatrice
+	input logic duart_rx_in,	//-> FTDI TX pin
+	input logic duart_tx_in,	//-> pin 1, bank 2 of L'Imperatrice
 	output logic duart_rx_out,	//-> pin 0, bank 2 of L'Imperatrice
 	output logic duart_tx_out,	//-> FTDI RX pin
 
@@ -21,17 +21,25 @@ module top_level (
 	output logic sram_ce, sram_we, sram_oe,
 	
 	// Debug outputs
+	output logic clk_out,
 	output logic [2:0] state_output,
 	output logic start_norm, start_send, norm_done, send_done,
 	output logic [7:0] sram_data_debug,
 	output logic [3:0] sram_addr_debug,
-	output logic ce_db, we_db, oe_db
+	output logic ce_db, we_db, oe_db,
+	output logic [2:0] sender_state
 	);
 
-parameter n_components = 3;
-parameter n_senones = 2;
+parameter n_components = 4;
+parameter n_senones = 3;
 parameter n_tx_nums = 1;
 
+// Prescale the clock...
+//logic clk;
+//assign clk = clk50M;
+//logic [3:0] clk_cnt;
+//always_ff @(posedge clk50M) clk_cnt <= clk_cnt + 1;
+//assign clk = clk_cnt[3];
 
 
 /*****[ Internal signals and wires ]***************************************/
@@ -57,9 +65,9 @@ logic max_done;
 logic sram_ready, sram_idle;
 num sram_data_out;
 logic read_sram,             norm_read_sram,  send_read_sram;
-logic write_sram,            norm_write_sram, send_write_sram;
+logic write_sram,            norm_write_sram;
 logic [20:0] sram_data_addr, norm_sram_addr,  send_sram_addr;
-num sram_data_in,            norm_sram_data,  send_sram_data;
+num sram_data_in,            norm_sram_data;
 
 // Other control signals
 //logic start_norm, start_send;
@@ -88,7 +96,7 @@ assign new_vector_available = rx_available;
 //assign x = { 16'hF6A5, 16'hFEDA, 16'hFD3C, 16'h00C1, 16'hDABE }; // normally = rx_buffer
 
 // State machine
-always_ff@(posedge clk or posedge reset) begin : proc_mainFF
+always_ff @(posedge clk or posedge reset) begin : proc_mainFF
     if (reset)
       state <= IDLE;
     else
@@ -104,16 +112,34 @@ always_ff@(posedge clk or posedge reset) begin : proc_mainFF
       endcase
 end
 
-// Signal logic
-always_comb begin : proc_outputlogic
-  start_norm = ((state==NORM && ~norm_done) && (sram_idle | start_norm))? 1'b1 : 1'b0;
-  start_send = ((state==SEND && ~send_done) && (sram_idle | start_send))? 1'b1 : 1'b0;
-end : proc_outputlogic
+// Signal logic//
+//always_comb begin : proc_outputlogic
+//  start_norm = ((state==NORM && ~norm_done) && (sram_idle || start_norm))? 1'b1 : 1'b0;
+//  start_send = ((state==SEND && ~send_done) && (sram_idle || start_send))? 1'b1 : 1'b0;
+//end : proc_outputlogic
 
+always_ff @(posedge clk or posedge reset) begin : proc_start_signals
+	if (reset) begin
+		start_norm <= 0;
+		start_send <= 0;
+	end
+	else
+		case (state)
+			PROC: if (last_senone) start_norm <= 1;
+			NORM: begin
+				start_norm <= 0;
+				if (norm_done) start_send <= 1;
+			end
+			SEND: start_send <= 0;
+			default: begin
+				start_norm <= 0;
+				start_send <= 0;
+			end
+		endcase
+end
 
 // Assign SRAM signals only when required, to avoid contention
 always_comb begin : proc_sram_signals
-    unique
     if (state==PROC && score_ready) begin
       read_sram = 1'b0;
       write_sram = 1'b1;
@@ -130,14 +156,14 @@ always_comb begin : proc_sram_signals
     else if (state==SEND) begin
       // And to send outputs
       read_sram  = send_read_sram;
-      write_sram = send_write_sram;
+      write_sram = 'b0;
       sram_data_addr = send_sram_addr;
-      sram_data_in   = send_sram_data;
+      sram_data_in   = 'b0;
     end
     else begin
       read_sram  = 1'bz;
       write_sram = 1'bZ;
-      sram_data_addr = 20'bZ;
+      sram_data_addr = 21'bZ;
       sram_data_in   = 16'bZ;
     end
 end : proc_sram_signals
@@ -163,13 +189,15 @@ end : proc_statusLED
 assign {duart_rx_out,duart_tx_out} = {duart_rx_in,duart_tx_in};
 
 // Debug info on pins!
-assign state_output = state;
 always_comb begin
 	sram_data_debug = sram_data;
 	sram_addr_debug = sram_addr[3:0];
 	ce_db = sram_ce;
 	we_db = sram_we;
 	oe_db = sram_oe;
+	
+	state_output[2] = sram_ready;
+	clk_out = clk;
 	
 	case (state)
 		IDLE: state_output[1:0] = 2'b00;
@@ -178,7 +206,6 @@ always_comb begin
 		SEND: state_output[1:0] = 2'b11;
 	endcase
 end
-
 
 /*****[ Connect Modules up ]*************************************************/
 
@@ -199,17 +226,17 @@ max maximiser(.clk, .reset, .last_senone, .max_done, .best_score,
 
 // Normaliser unit
 normaliser #(.n_senones(n_senones)) norm
-              ( .clk, .reset, .start_norm, .best_score, .sram_ready, .norm_done,
+              ( .clk, .reset, .start_norm, .best_score, .sram_ready, .norm_done, .sram_idle,
                 .data_addr(norm_sram_addr), .write_data(norm_write_sram),
                 .data_out(norm_sram_data),  .read_data(norm_read_sram),
-                .data_in(sram_data_out) );
+                .data_in(sram_data_out),    .do_norm(1'b0) );
 
 // Sender unit
 send #(.n_senones(n_senones)) sender
-        ( .clk, .reset, .start_send, .send_done, .sram_ready,
+        ( .clk, .reset, .start_send, .send_done, .sram_ready, .sram_idle,
           .uart_ready(tx_ready),   .tx_value(tx_buffer[0]), .start_tx,
           .data_in(sram_data_out), .data_addr(send_sram_addr),
-          .read_data(send_read_sram) );
+          .read_data(send_read_sram), .sender_state );
 
 // SRAM
 sram ram_access(.sram_data, .sram_addr, .sram_ce, .sram_we, .sram_oe, .sram_idle,

@@ -2,11 +2,11 @@
 
 module normaliser #(parameter n_senones=10)
     (
-    input logic clk, reset, start_norm,
+    input logic clk, reset, start_norm, do_norm,
     input num best_score,
 
     // SRAM connections
-    input logic sram_ready,
+    input logic sram_ready, sram_idle,
     output logic [20:0] data_addr,
     output logic write_data,
     output num data_out,
@@ -23,7 +23,7 @@ logic [7:0] senone_index;
 num current_score;
 num best_score_reg;
 
-typedef enum {IDLE, READING, WRITING} state_t;
+typedef enum {IDLE, WAITING, READING, WRITING} state_t;
 state_t state;
 
 always_ff @(posedge clk or posedge reset) begin
@@ -36,11 +36,13 @@ always_ff @(posedge clk or posedge reset) begin
             IDLE: begin
                 norm_done <= 0;
                 if (start_norm) begin
-                    state <= READING;
                     best_score_reg <= best_score;
                     senone_index <= 0;
+                    state <= (sram_idle)? READING : WAITING;
                 end
             end
+            
+            WAITING: state <= (sram_idle)? READING : WAITING;
 
             READING:
                 if (sram_ready) begin
@@ -66,9 +68,11 @@ end
 // Assign sram signals conditionally, to avoid bus contention
 always_comb begin
     data_addr  = (state!=IDLE)? senone_index<<1 : 21'bZ;
-    data_out   = (state==WRITING)? (best_score_reg - current_score) : 8'bZ;
     write_data = (state==WRITING)? 1'b1 : 1'bZ;
     read_data  = (state==READING)? 1'b1 : 1'bZ;
+    
+    if (do_norm) data_out = (state==WRITING)? (best_score_reg - current_score) : 8'bZ;
+    else         data_out = (state==WRITING)? current_score : 8'bZ;
 end
 
 
