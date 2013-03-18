@@ -2,13 +2,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdint.h>
 #include <fcntl.h>		// for file open flags
 #include <termios.h>	// for baud rate #defines
+#include <errno.h>
 #include "gpio.h"
 #include "serial.h"
 
 // Display (Debug) messages to the screen
-#define DISP(msg) ({ printf(msg"\n"); system("echo '"msg"' > /dev/tty0"); })
+#define DISP(msg) ({ printf("%s\n",msg); system("echo "msg" > /dev/tty0"); })
 
 #define NUM_COMPS     4					// Number of components per vector
 #define NUM_SENONES   3					// Number of senones to be scored
@@ -53,7 +55,7 @@ int init() {
 	// Initialise serial
 	uart = open(TTY_SER, O_RDWR | O_NOCTTY | O_SYNC);
 	if (uart < 0) {
-		fprintf(stderr, "Error %d opening device %s: %s", errno, tty_name, strerror(errno));
+		fprintf(stderr, "Error %d opening device %s: %s", errno, TTY_SER, strerror(errno));
 		return -1;
 	}
 	serial_init(uart, BAUD_DEFAULT);
@@ -63,6 +65,8 @@ int init() {
 	gpio_map();
 	gpio_output(NEW_VEC_GPIO);
 	gpio_wr(NEW_VEC_GPIO, 0);
+	gpio_output(GPIO_TO_PIN(60));
+	gpio_wr(GPIO_TO_PIN(60), 1);
 
 	DISP("[+] Init complete.");
 	return 0;
@@ -102,17 +106,17 @@ int main(int argc, char const *argv[])
 	// Display results
 	for(i=0; i<NUM_SENONES; i++) {
 		sprintf(disp_buf, "Senone %d score: 0x%x", i, scores[i]);
-		DISP(disp_buf);
+		printf("%s\n",disp_buf);
+		sprintf(disp_buf, "echo \"Senone %d score: 0x%x\" > /dev/tty0", i, scores[i]);
+		system(disp_buf);
 	}
 	DISP("[+] Done.");
 
 	close(uart);
+	usleep(100000);
+	gpio_wr(GPIO_TO_PIN(60), 0);
 	return 0;
 }
-
-
-
-
 
 
 
