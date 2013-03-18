@@ -15,7 +15,7 @@
 #define NUM_COMPS     4					// Number of components per vector
 #define NUM_SENONES   3					// Number of senones to be scored
 #define WAIT          100000			// 0.1s delay for uart
-#define NEW_VEC_GPIO  GPIO_TO_PIN(82)	// convert to bank,pin
+#define NEW_VEC_GPIO  GPIO_TO_PIN(92)	// new vector flag: bank,pin
 #define TTY_SER       "/dev/ttySP1"
 
 int uart;	// The UART file descriptor
