@@ -90,6 +90,10 @@ Things I need to write about (10000 words max):
 		* What have I learnt?
 		* Were my original goals sensible, etc?
 	+ Possible future work / projects based on this work
+		* Developing high speed comms with PC
+		* Viterbi decoding
+		* This provides a basis for speech recog dev at the uni :)
+		* Speaker recognition? Paired with gait recognition??
 
 - Appendices
 	+ Original project brief

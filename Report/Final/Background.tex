@@ -1,0 +1,39 @@
+%!TEX root = Main.tex
+% Background: words
+\chapter{Background} % (fold)
+\label{cha:background}
+
+\section{Speech Recognition Systems} % (fold)
+\label{sec:speech_recognition_systems}
+	In general, `Speech Recognition' refers to the process of translating spoken words or phrases into a form that can be understood by an electronic system, which usually means using mathematical models and methods to process and then decode the sound signal.  Translating a speech waveform into this form typically requires three main steps \cite{melnikoff2003speech}.  The raw waveform must be converted into an `observation vector', which is a set of data that is compatible with the chosen speech model.  This data is then sent through a decoder, which attempts to recognise which words or sub-word units were spoken.  These are then sent through a language model, which imposes rules on what combinations of words of syntax are allowed.  This project focusses on implementing the first stage of the decoder, as this is an interesting task from an electronic engineering point of view.
+
+	There are a variety of different methods and models that have been used to perform speech recognition.  An overview of the most popular will be described here, along with the chosen approach.
+% section speech_recognition_systems (end)
+
+
+\section{FPGAs} % (fold)
+\label{sec:fpgas}
+% Write about what FPGAs have to offer for speech recognition
+% ... "In a real speaker independent, context-dependent system there could be thousands of these states, each requiring a large number of calculations, depending on how complex the models are."
+
+% section fpgas (end)
+
+
+\section{Personal Contribution} % (fold)
+\label{sec:personal_contribution}
+	% What did I do?
+	% This is primarily a POC system
+	The initial goal of the project, to build a complete speech recognition system, was very ambitious and had to be narrowed down as more was learnt about the complexities of modern speech recognition systems.  Instead of attempting to build a full system, it was decided that development would focus on the decoding stage of recognition.  Speech pre-processing is a very established process, and implementing it is usually a case of linking together the appropriate libraries.
+
+	The result of this project is a system spread across two development boards from the Micro Arcana: L'Imperatrice and La Papessa.  
+	This involved...
+		- 
+
+		- Benefit from developing my knowledge of SV, speech recognition, intelligent algorithms, etc
+		- Providing an application for the Micro Arcana family, and showing that it can do stuff
+		- Providing a solid basis for future work in the area
+% section personal_contribution (end)
+
+
+
+% chapter background (end)
