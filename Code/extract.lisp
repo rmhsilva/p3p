@@ -1,4 +1,5 @@
 ;;;; A better extraction method
+;;;; Compiler notes: compile cars and cdrs BEFORE C-c C-k.
 
 (require :cl-ppcre)
 
