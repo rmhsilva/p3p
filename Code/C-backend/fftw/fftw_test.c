@@ -12,18 +12,18 @@
 #include <fftw3.h>		// FFTW library
 #include "libmfcc.h"
 
-#define S_RATE	8000 	// The Sampling Rate (Hz)
+#define S_RATE	8000.0 	// The Sampling Rate (Hz)
 #define PRE_EM	0.97 	// Pre-emphasis to apply to data. Same as HTK
 #define N 		200		// Sample number = 25ms window * 8kHz sampling rate
 #define N_CEPS	12 		// Number of MFCC coefficients to compute
 #define N_CHANS 26 		// Number of channels for MFCC comp. See HTK p77
-#define CEP_LIFT 22 	// Scaling for MFCCs. See HTK p75
-#define BIN_SIZE 40 	// 8000 / 200 = 40Hz per bin
+#define CEP_LIFT 22.0 	// Scaling for MFCCs. See HTK p75
+#define BIN_SIZE 40.0 	// 8000 / 200 = 40Hz per FFT bin
 
 /*
  * 3kHz sine wave:
  */
-double sin_test[200] = {
+const double sin_test[200] = {
 	0.0 ,
 	0.707106781187 ,
 	-1.0 ,
@@ -226,18 +226,90 @@ double sin_test[200] = {
 	-0.707106781187
 };
 
+static double *hamming_window;
+static int hamming_length = -1;
+
+static double *lifters;
+static int lifter_length = -1;
+
+/**
+ * Initialises the array of lifter values
+ * @param length   : number of MFCC coefficients
+ * @param cep_lift : the scaling factor
+ */
+void lifter_init(int length, double cep_lift) {
+	int i;
+	lifter_length = length;
+	lifters = (double *) malloc(sizeof(double) * length);
+
+	for(i=0; i<length; i++)
+		lifters[i] = 1 + (cep_lift/2.0) * sin(PI*i/(cep_lift*1.0));
+}
+
+/**
+ * Perform `Liftering' on a set of mfcc coefficients.
+ * lifter_init must be called first
+ * See HTK p84
+ * @param mfccs : The Cepstral coefficients to be liftered
+ * @return      : Number of coefficients liftered, -1 on error
+ */
+int lifter(double *mfccs) {
+	int i;
+	if (lifter_length == -1) {
+		fprintf(stderr, "lifter_init(...) MUST be called before lifter()\n");
+		return -1;
+	}
+	for(i=0; i<lifter_length; i++)
+		mfccs[i] *= lifters[i];
+	return i;
+}
+
+/**
+ * Initialises the array of window values to be used by hamming()
+ * @param length : The window length
+ */
+void hamming_init(int length) {
+	int i;
+	hamming_length = length;
+	hamming_window = (double *) malloc(sizeof(double) * length);
+
+	for (i=0; i<length; i++)
+		hamming_window[i] = 0.54-(0.46*cos(2*PI*(i/((length - 1)*1.0))));
+}
+
 /**
  * Apply a hamming window to some data
+ * This function is made to work with pre-calculated values for a
+ * specific window size.  First call hamming_init(N)
  * http://en.wikipedia.org/wiki/Window_function#Hamming_window
  * @param data   : input data
- * @param length : window length
+ * @return       : length of the window used, -1 on error
  */
-void hamming(double *data, int length) {
+int hamming(double *data) {
 	int i;
-	for(i=0; i<length; i++) {
-		data[i] = 0.54 - (0.46* cos(2*PI*(i/((length - 1) * 1.0))) );
+	if (hamming_length == -1) {
+		fprintf(stderr, "hamming_init(...) MUST be called before hamming()\n");
+		return -1;
 	}
+	for(i=0; i<hamming_length; i++)
+		data[i] *= hamming_window[i];
+	return i;
 }
+
+/**
+ * Pre-emphasise the input data with a simply difference equation
+ * s'[n] = s[n] - pre_em_coeff * s[n-1].   See HTK p82
+ * @param input : input data
+ * @param a     : Pre-Emphasis coefficient
+ * @param n     : number of data points
+ */
+void pre_emphasise(double *input, double a, uint n) {
+	int i;
+	for(i=1; i<n; i++)
+		input[i] -= a*input[i-1];
+	input[0] *= 1.0 - a;
+}
+
 
 int main(int argc, char const *argv[])
 {
@@ -248,32 +320,41 @@ int main(int argc, char const *argv[])
 	fftw_plan p;
 	double mfccs[N_CEPS];
 
-	printf("[+] Initialising FFTW... ");
+	printf("[+] Initialising... ");
 	tic = clock();
 	in = (double*) fftw_malloc(sizeof(double) * N);
 	spectrum = (double*) malloc(sizeof(double) * N);
 	out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * N);
 	p = fftw_plan_dft_r2c_1d(N, in, out, FFTW_MEASURE);
+
+	hamming_init(N);
+	lifter_init(N_CEPS, CEP_LIFT);
 	toc = clock();
 	printf("Done, took: %f s\n", (double)(toc - tic) / CLOCKS_PER_SEC);
 
-	// test: copy data.
-	for(i=0; i<N; i++) {
-		in[i] = sin_test[i];
-		// TODO: Pre-emphasis
-	}
+	// for(i=0; i<N; i++) {
+	// 	printf("Hamming[%d]: %lf\n", i, hamming_window[i]);
+	// }
+	// for(i=0; i<N_CEPS; i++) {
+	// 	printf("Lifter[%d]: %lf\n", i, lifters[i]);
+	// }
 
-	printf("[+] Running FFTW... ");
+	// test: copy data.
+	for(i=0; i<N; i++)
+		in[i] = sin_test[i];
+
+	printf("[+] Running FFT... ");
 	tic = clock();
 
-	// Apply hamming window to the data and then execute the FFT
-	hamming(in, N);
+	// Apply pre-emphasis and hamming window to the data
+	pre_emphasise(in, PRE_EM, N);
+	hamming(in);
+
 	fftw_execute(p);
 
 	// take magnitude of the DFT
-	for (i = 0; i < N; i++) {
+	for (i=0; i<N; i++)
 		spectrum[i] = sqrt((out[i][0]*out[i][0]) + (out[i][1]*out[i][1]));
-	}
 
 	toc = clock();
 	printf("Done, took: %f s\n", (double)(toc - tic) / CLOCKS_PER_SEC);
@@ -283,11 +364,17 @@ int main(int argc, char const *argv[])
 	// }
 
 	// pass to libMFCC
+	// Problem: Computing each MFCC takes the same amount of time (~0.16s)
+	// This should not be the case, as the multiplication factors need to
+	// be computed only once...?
+	// The GetCoefficient should return ALL the coeffs..
+	// Computing the 10th coeff requires computing all the previous ones...?
 	printf("[+] Computing MFCCs... ");
 	tic = clock();
-	for (i = 0; i < N_CEPS; i++) {
-		mfccs[i] = GetCoefficient(spectrum, S_RATE, N_CHANS, BIN_SIZE, i);
+	for (i=0; i<N_CEPS; i++) {
+		mfccs[i] = GetCoefficient(spectrum, S_RATE, N_CHANS, N, i);
 	}
+	lifter(mfccs);
 	toc = clock();
 	printf("Done, took: %f s\n", (double)(toc - tic) / CLOCKS_PER_SEC);
 

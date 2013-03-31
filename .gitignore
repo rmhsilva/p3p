@@ -39,6 +39,9 @@
 *.fasl
 *~
 
+*.mfc
+*.wav
+
 HTK
 Julius
 LImperatrice

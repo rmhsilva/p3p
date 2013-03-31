@@ -1,13 +1,17 @@
 # Hello make
+# Ricardo da Silva, 2013
 
 # Final ELF name
 TARGET = main
 
 # Source files
-SOURCES = main.c serial.c preProcess.c gpio.c libmfcc/libmfcc.c
+# Automatically create header dependencies from the source files
+SOURCES = main.c serial.c preProcess.c sample.c gpio.c libmfcc/libmfcc.c
 DEPS = $(SOURCES:%.c=%.h)
 
-# Dir for all the objects (must not be blank!)
+# Directory for all the objects (must not be blank!)
+# Automatically create the objects too!
+# The directories *must* be created first....
 OBJDIR = ./obj
 OBJECTS = $(SOURCES:%.c=$(OBJDIR)/%.o)
 
