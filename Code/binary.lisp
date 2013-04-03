@@ -1,4 +1,5 @@
 ;;;; Helpful binary utilities
+;;;; s+ and makebins need to be compiled first
 
 ;;; Utilities
 
@@ -187,11 +188,13 @@
        ,@res)))
 
 
-(defun print-senone-data (stream senones &optional (numcomps 25))
+(defun print-senone-data (stream senones &key (c-header nil) (numcomps 25))
   (format t "Printing ~a senones, with ~a components per frame~%"
 	  (length senones) numcomps)
   ;; Print header stuff
-  (format stream "senone_data all_s_data [n_senones-1:0] = {~%")
+  (if c-header
+      (format stream "Senone senones[] = {~%")
+      (format stream "senone_data all_s_data [n_senones-1:0] = {~%"))
   (let ((count (length senones)))
     
     ;; Print the rest!
@@ -201,12 +204,18 @@
 	    (means (reverse (subseq (senone-means s) 0 numcomps)))
 	    (k (senone-gconst s)))
 
-	(printl stream "  " "~%"
-		("// Senone ~a (~a)" count (senone-sname s))
-		("{ k:      16'h~{~a~}," (dec2hex (>> k *k-shift*)))
-		("  omegas: { ~{16'h~{~a~}~^, ~} }," (mapcar #'dec2hex omegas))
-		("  means:  { ~{16'h~{~a~}~^, ~} }" (mapcar #'dec2hex means))
-		("}~a" (if (= 0 count) " " ",")))))
+	(if c-header
+	    (printl stream "    " "~%"
+		    ("/* Senone ~a (~a) */" count (senone-sname s))
+		    ("{ k:     ~a," k)
+		    ("  mean:  { ~{~a~^, ~} }," means)
+		    ("  omega: { ~{~a~^, ~} } }," omegas))
+	    (printl stream "  " "~%"
+		    ("// Senone ~a (~a)" count (senone-sname s))
+		    ("{ k:      16'h~{~a~}," (dec2hex (>> k *k-shift*)))
+		    ("  omegas: { ~{16'h~{~a~}~^, ~} }," (mapcar #'dec2hex omegas))
+		    ("  means:  { ~{16'h~{~a~}~^, ~} }" (mapcar #'dec2hex means))
+		    ("}~a" (if (= 0 count) " " ","))))))
     
     (format stream "};")))
 

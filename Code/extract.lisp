@@ -33,17 +33,6 @@
 
 ;;; Utilities
 
-(defun str-to-list (regex string)
-  "Returns a list of captured groups, or nil if no regex match"
-  (let ((result (multiple-value-list
-		 (cl-ppcre:scan-to-strings regex string))))
-    (if (null (car result))
-	'nil
-	(coerce (cadr result) 'list))))
-
-(defun startswith (pattern string)
-  (str-to-list (concatenate 'string "^" pattern) string))
-
 (defun cars (lists)
   "Get a list of the cars of sublists in 'lists'"
   (cond
@@ -55,6 +44,17 @@
   (cond
     ((null lists) 'nil)
     (t (cons (cdar lists) (cdrs (cdr lists))))))
+
+(defun str-to-list (regex string)
+  "Returns a list of captured groups, or nil if no regex match"
+  (let ((result (multiple-value-list
+		 (cl-ppcre:scan-to-strings regex string))))
+    (if (null (car result))
+	'nil
+	(coerce (cadr result) 'list))))
+
+(defun startswith (pattern string)
+  (str-to-list (concatenate 'string "^" pattern) string))
 
 (defmacro with-named-gsyms ((&rest names) &body body)
   `(let ,(loop for n in names collect `(,n (gensym (symbol-name ',n))))
