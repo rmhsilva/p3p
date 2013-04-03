@@ -1,14 +1,70 @@
 %!TEX root = Main.tex
 % Design Approach: words
-\chapter{Design Approach} % (fold)
+\chapter{Design Theory and Approach} % (fold)
 \label{cha:design_approach}
 
-% High level system overview - what exactly was built, where each of the pieces fit where, what I needed to learn to build each section.
+% High level system overview - what exactly was built, where each of the pieces fit, what I needed to learn to build each section.
 % Analyse my solution - what does it do, where does it fall short
+
+\section{The HMM based model} % (fold)
+\label{sec:the_hmm_based_model}
+	Due to the flexibility of HMMs, and the complexity of speech, there have been several different approaches to building speech models (the sheer size of the HTK book indicates how much flexibility exists).  However, at this stage the author is more interested in the implementation of the algorithms, rather than devising the best way of modelling speech.  Therefore, it was decided to use the pre-designed models from Voxforge for this project, and build the hardware to work with these models.  Thus, various parameters were fixed from the start, including:
+
+	\begin{itemize}
+		\item Sampling rate of audio: 8kHz (Low Pass Filter with $\omega_0 = 4kHz$ required).
+		\item Window size: 25ms (length of observation vectors).
+		\item Frame period: 10ms (time between observation vectors).
+		\item Number of components per observation: 25 (12 MFCCs, 12 derivatives, 1 Energy).
+		\item Output probabilities: Single Gaussian distribution, 25-element mean and variance vectors.
+		\item Number of monophones: 51 (Includes a monophone for silence.  This is also the number of transition matrices).
+		\item Number of senones: ~7000.
+		\item Number of HMMs: ~8300\footnote{There are more HMMs than senones because some senones are used in more than one HMM}.
+	\end{itemize}
+
+	The only modification made to the Voxforge models was that they were adapted for the author's voice, primarily to gain confidence with using the HTK and HMMs.  Please see Appendix !!TODO!! for the scripts and HTK configuration files used to generate these models.
+
+	The senones are context dependent, that is, there are many different senones for each monophone, each with different predecessor and successor monophones.  Most of the HMMs have 3 emitting states, and 2 states used to model entering and leaving a certain sequence. The number of transition matrices is equal to the number of monophones because...
+	% TODO: tidy up the description of my models.  Maybe this needs a whole section??
+% section the_hmm_based_model (end)
+
+\section{Design Requirements} % (fold)
+\label{sec:design_requirements}
+	As described in the section on HMMs (\ref{sec:about_hmms}), one of the more computationally complex parts of HMM based recognisers is the process of scoring every senone, for every observation vector.  In this system the new vectors arrive once every 10ms, and there are about 7000 senones that must be evaluated.  The scoring process starts by evaulating the correlation between an observation 
+
+	The hardware related goals outlined in Chapters 1 and 2 can be summarised as
+	\begin{itemize}
+		\item Design a system in programmable logic that can 
+	\end{itemize}
+% section design_requirements (end)
+
+
+\section{FPGAs} % (fold)
+\label{sec:fpgas}
+% Write about what FPGAs have to offer for speech recognition
+% ... "In a real speaker independent, context-dependent system there could be thousands of these states, each requiring a large number of calculations, depending on how complex the models are."
+
+% section fpgas (end)
+
 
 \section{System Overview} % (fold)
 \label{sec:system_overview}
 
+	The overall system layout, shown in Figure~\ref{fig:hlsystem} is comprised of two primary blocks -- L'Imperatrice and La Papessa (referred to from now on as `The processor' and `The FPGA' respectively). The entire system is powered from a single supply connected to the processor board's battery connector, and the FPGA is powered through ribbon cable connecting the two boards.  This was done in order to minimise the amount of external circuitry needed, and to show that the two devices are able to work together fairly easily.
+
+	% How to display which tasks are accomplished by which parts
+
+	% TODO:
+	% Diagram of the ribbon cable connections (ie which pins do what)
+	% Write about the software side (Lisp, parsing hmms etc)
+	% There's both hardware, and support software
+
+	\begin{figure}[tb]
+		\begin{center}
+			\includegraphics[width=\textwidth]{high-level-system-overview.png}
+		\end{center}
+		\caption{High level system layout overview}
+		\label{fig:hlsystem}
+	\end{figure}
 % section system_overview (end)
 
 
