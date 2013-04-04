@@ -27,15 +27,31 @@
 	% TODO: tidy up the description of my models.  Maybe this needs a whole section??
 % section the_hmm_based_model (end)
 
-\section{Design Requirements} % (fold)
-\label{sec:design_requirements}
-	As described in the section on HMMs (\ref{sec:about_hmms}), one of the more computationally complex parts of HMM based recognisers is the process of scoring every senone, for every observation vector.  In this system the new vectors arrive once every 10ms, and there are about 7000 senones that must be evaluated.  The scoring process starts by evaulating the correlation between an observation 
+\section{Detailed Goal Specification} % (fold)
+\label{sec:goal_specification}
+	As described in previous sections, the FPGA is intended to be used for scoring every senone in the model, for every observation vector.  In this system the new vectors arrive once every 10ms, and there are about 7000 senones that must be evaluated.  The mathematical operations required to do this are now outlined. % !!TODO!! some kind of 'this is x calculations'?
+
+	Each senone $j$ has an $N$-element vector of means, $\mu_j$, and a $N\times N$ matrix of covariances, $\sigma_j$.  However, since MFCCs are uncorrelated, the covariance matrix is diagonal, and $\sigma_j$ is taken as an $N$-element vector.  If the observation vector at time $t$ is denoted as $\mathbf{O}_t = {O_{t1}, O_{t2}, ..., O_{tN}}$, then the score of senone $j$ is given in Equation~\ref{eq:score1}.  However, the hardware complexity may be greatly reduced by taking the logs of both sides, removing the requirement to evaluate $N$ exponentials for each senone.  In addition, several parts of the equation may be precomputed, thus reducing the necessary sequence of operations to subtract, square, multiply, and accumulate.  This derivation is shown in Equations \ref{eq:score_ln}--\ref{eq:score_final}, with the final result being the one most suited to hardware implementation.
+
+	\begin{equation}
+	\label{eq:score1}
+		b_j(O_t) = N(O_t; \mu_j,\sigma_j) = product...
+	\end{equation}
+	\begin{equation}
+	\label{eq:score_ln}
+		ln of both sides
+	\end{equation}
+	\begin{equation}
+	\label{eq:score_final}
+		final equation with subs (TODO)
+	\end{equation}
 
 	The hardware related goals outlined in Chapters 1 and 2 can be summarised as
 	\begin{itemize}
-		\item Design a system in programmable logic that can 
+		\item Design a system in programmable logic that can efficiently evaluate Equation~!!!.
+		\item Design a C program to pre-process speech data according to the required form described in Section~\ref{sec:the_hmm_based_model}.
 	\end{itemize}
-% section design_requirements (end)
+% section goal_specification (end)
 
 
 \section{FPGAs} % (fold)
@@ -48,10 +64,11 @@
 
 \section{System Overview} % (fold)
 \label{sec:system_overview}
+	The overall system layout, shown in Figure~\ref{fig:hlsystem} is comprised of two primary blocks -- L'Imperatrice and La Papessa (referred to from now on as ``The processor'' and ``The FPGA'' respectively). The entire system is powered from a single supply connected to the processor board's battery connector, and the FPGA is powered through ribbon cable connecting the two boards.  This was done in order to minimise the amount of external circuitry needed, and to show that the two devices are able to work together fairly easily.
 
-	The overall system layout, shown in Figure~\ref{fig:hlsystem} is comprised of two primary blocks -- L'Imperatrice and La Papessa (referred to from now on as `The processor' and `The FPGA' respectively). The entire system is powered from a single supply connected to the processor board's battery connector, and the FPGA is powered through ribbon cable connecting the two boards.  This was done in order to minimise the amount of external circuitry needed, and to show that the two devices are able to work together fairly easily.
+	The two boards communicate over UART at approximately !!!11.5kbps!!! (115200 baud rate).
 
-	% How to display which tasks are accomplished by which parts
+	% How to display which tasks are accomplished by which parts?
 
 	% TODO:
 	% Diagram of the ribbon cable connections (ie which pins do what)
@@ -70,6 +87,23 @@
 
 \section{Analysis of Solution} % (fold)
 \label{sec:analysis_of_solution}
+
+	\subsection{The FPGA} % (fold)
+	\label{sub:the_fpga}
+		The FPGA used (Xilinx !!TODO!!) was very small, and the full required design could not fit on it.  In particular, the size of the model had to be reduced, so that each Senone had fewer than 25 components, and not all 7000 senones were processed.  This is mainly due to the small amount of onboard RAM on the FPGA, so the design would greatly benefit from having more RAM available.
+	% subsection the_fpga (end)
+
+	% The fixed point accuracy? 16 bit?
+
+	% The communication method (UART) is extremely slow and is the weakest point of the system.  It was used primarily for the ease of implementation, and because at this stage real-time operations are not required.  However, for this system to be realistically useful, a better communication method needs to be developed -- either a faster serial bus or some form of parallel connection.
+
+	\subsection{The processor} % (fold)
+	\label{sub:the_processor}
+		% Weak points
+		% The MFCC calculation has several problems.  The library used is slow and inefficient, and doesn't match the results given by HTK.
+
+
+	% subsection the_processor (end)
 
 % section analysis_of_solution (end)
 
