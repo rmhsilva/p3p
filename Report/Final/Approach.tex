@@ -3,8 +3,23 @@
 \chapter{Design Theory and Approach} % (fold)
 \label{cha:design_approach}
 
+
+%TODO: restructure this.  Make hmm_model a subsection of hmm_tasks? and others?
 % High level system overview - what exactly was built, where each of the pieces fit, what I needed to learn to build each section.
 % Analyse my solution - what does it do, where does it fall short
+
+\section{The HMM tasks} % (fold)
+\label{sec:hmm_tasks}
+	For an HMM model, $\lambda$, there are usually three important problems: 
+	\begin{itemize}
+		\item Training the model to accurately represent real data
+		\item Finding the probability that an HMM produced a given observation sequence, $P(\lambda | O)$
+		\item Finding the `best' path through a trellis of HMMs to produce a given observation sequence !!TODOequation!!
+	\end{itemize}
+	For this project, the first problem is solved by using Voxforge (\ref{sec:the_htk}).  The second problem is potentially very computationally expensive, as the speech model may be complex or large.  In particular, this step requires scoring the senones of each HMM for every new observation frame, which is particularly time consuming if the HMMs have continuous output distributions. !!TODO: Speech silicon has refs to confirm this is most expensive!!
+
+	In all literature encountered, the Viterbi algorithm is the preferred method for solving problem 3.  It is an iterative approach to solving the optimisation problem, and has the added bonus that not much data needs to be stored during the calculation \cite{schuster2006speech}.  This problem is beyond the scope of the current project, but a full explanation of the Viterbi decoding process is available from \cite{rabiner1989tutorial},\cite{melnikoff2003speech},\cite{saeed2008advanced}.
+% section hmm_tasks (end)
 
 \section{The HMM based model} % (fold)
 \label{sec:the_hmm_based_model}
@@ -12,9 +27,9 @@
 
 	\begin{itemize}
 		\item Sampling rate of audio: 8kHz (Low Pass Filter with $\omega_0 = 4kHz$ required).
-		\item Window size: 25ms (length of observation vectors).
-		\item Frame period: 10ms (time between observation vectors).
-		\item Number of components per observation: 25 (12 MFCCs, 12 derivatives, 1 Energy).
+		\item Window size: 25ms (duration of observation frames).
+		\item Frame period: 10ms (time between observation frames).
+		\item Pre-processing output: 12 MFCCs, 12 MFCC derivatives, 1 Energy.
 		\item Output probabilities: Single Gaussian distribution, 25-element mean and variance vectors.
 		\item Number of monophones: 51 (Includes a monophone for silence.  This is also the number of transition matrices).
 		\item Number of senones: ~7000.
@@ -31,7 +46,7 @@
 \label{sec:goal_specification}
 	As described in previous sections, the FPGA is intended to be used for scoring every senone in the model, for every observation vector.  In this system the new vectors arrive once every 10ms, and there are about 7000 senones that must be evaluated.  The mathematical operations required to do this are now outlined. % !!TODO!! some kind of 'this is x calculations'?
 
-	Each senone $j$ has an $N$-element vector of means, $\mu_j$, and a $N\times N$ matrix of covariances, $\sigma_j$.  However, since MFCCs are uncorrelated, the covariance matrix is diagonal, and $\sigma_j$ is taken as an $N$-element vector.  If the observation vector at time $t$ is denoted as $\mathbf{O}_t = {O_{t1}, O_{t2}, ..., O_{tN}}$, then the score of senone $j$ is given in Equation~\ref{eq:score1}.  However, the hardware complexity may be greatly reduced by taking the logs of both sides, removing the requirement to evaluate $N$ exponentials for each senone.  In addition, several parts of the equation may be precomputed, thus reducing the necessary sequence of operations to subtract, square, multiply, and accumulate.  This derivation is shown in Equations \ref{eq:score_ln}--\ref{eq:score_final}, with the final result being the one most suited to hardware implementation.
+	Each senone $j$ has an $N$-element vector of means, $\mu_j$, and a $N\times N$ matrix of covariances, $\sigma_j$.  However, since MFCCs are uncorrelated, the covariance matrix is diagonal, and $\sigma_j$ is taken as an $N$-element vector.  If the observation vector at time $t$ is denoted as $\mathbf{O}_t = {O_{t1}, O_{t2}, ..., O_{tN}}$, then the score of senone $j$ is given in Equation~\ref{eq:score1}.  However, the hardware complexity may be greatly reduced by taking the logarithms of both sides, removing the requirement to evaluate $N$ exponentials for each senone.  In addition, several parts of the equation may be precomputed, thus reducing the necessary sequence of operations to subtract, square, multiply, and accumulate.  This derivation is shown in Equations \ref{eq:score_ln}--\ref{eq:score_final}, with the final result being the one most suited to hardware implementation.
 
 	\begin{equation}
 	\label{eq:score1}
@@ -46,7 +61,7 @@
 		final equation with subs (TODO)
 	\end{equation}
 
-	The hardware related goals outlined in Chapters 1 and 2 can be summarised as
+	The hardware related goals outlined in Chapters 1 and 2 can be summarised as:
 	\begin{itemize}
 		\item Design a system in programmable logic that can efficiently evaluate Equation~!!!.
 		\item Design a C program to pre-process speech data according to the required form described in Section~\ref{sec:the_hmm_based_model}.
@@ -58,7 +73,7 @@
 \label{sec:fpgas}
 % Write about what FPGAs have to offer for speech recognition
 % ... "In a real speaker independent, context-dependent system there could be thousands of these states, each requiring a large number of calculations, depending on how complex the models are."
-
+	
 % section fpgas (end)
 
 
@@ -90,7 +105,7 @@
 
 	\subsection{The FPGA} % (fold)
 	\label{sub:the_fpga}
-		The FPGA used (Xilinx !!TODO!!) was very small, and the full required design could not fit on it.  In particular, the size of the model had to be reduced, so that each Senone had fewer than 25 components, and not all 7000 senones were processed.  This is mainly due to the small amount of onboard RAM on the FPGA, so the design would greatly benefit from having more RAM available.
+		The FPGA used was very small, and the full required design could not fit on it.  In particular, the size of the model had to be reduced, so that each Senone had fewer than 25 components, and not all 7000 senones were processed.  This is mainly due to the small amount of onboard RAM on the FPGA, so the design would greatly benefit from having more RAM available.
 	% subsection the_fpga (end)
 
 	% The fixed point accuracy? 16 bit?
@@ -101,7 +116,7 @@
 	\label{sub:the_processor}
 		% Weak points
 		% The MFCC calculation has several problems.  The library used is slow and inefficient, and doesn't match the results given by HTK.
-
+		% Do real sampling, not just reading wav files
 
 	% subsection the_processor (end)
 

@@ -41,6 +41,7 @@ logic [4:0] senone_index;             // Index of currently processed senone and
 logic [4:0] senone_idx_buffer [4:0];  // The score arrives after the index has changed. Use shift
 
 // State machine setup
+// TODO: WAITNEW not needed
 typedef enum {IDLE, WAITNEW, LOADGDP} state_t;
 state_t state, next;
 
@@ -85,10 +86,10 @@ always_comb begin : proc_maincomb
 	x_component = 'b0;
 	next = IDLE;
 	gdp_idle = 0;
-	
+
 	senone_idx = senone_idx_buffer[0];
 	last_senone = (score_ready && (senone_idx == n_senones-1));
-	
+
     case (state)
         IDLE: begin
             last_calc = 0;
@@ -98,7 +99,7 @@ always_comb begin : proc_maincomb
             mean = 0;
             x_component = 0;
             gdp_idle = 1'b1;
-            
+
             next = (new_vector_available)? LOADGDP : IDLE;
           end
 
@@ -112,7 +113,7 @@ always_comb begin : proc_maincomb
 			omega = senone.omegas[comp_index];
 			mean  = senone.means[comp_index];
             x_component = x_buf[comp_index];
-            
+
             next = ((comp_index == n_components-1) && (senone_index == n_senones-1))? IDLE : LOADGDP;
         end
 

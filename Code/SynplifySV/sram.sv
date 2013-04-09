@@ -2,7 +2,7 @@
 
 module sram (
   input logic clk, reset,
-  input logic [20:0] data_addr,
+  input logic [20:0] data_addr, // TODO make it 1 bit shorter.
   output logic sram_ready,      // indicates finished reading or writing
   output logic sram_idle,       // indicates no operation currently in process
 
@@ -66,7 +66,7 @@ always_comb begin
   sram_oe = 1;
   sram_data_reg = 'b0;
   sram_addr = 'b0;
-  
+
   case (state)
     IDLE: begin
 		  sram_we = 1;

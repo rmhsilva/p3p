@@ -20,7 +20,9 @@
 
 	\subsection{Dynamic Time Warping} % (fold)
 		\label{sub:dynamic_time_warping}
-		Speech, by nature, is not constrained to be at a certain speed -- the duration of words will vary between utterance, and a speech recognition system should be able to handle this.  Dynamic Time Warping (DTW) is essentially the process of expanding and contracting the time axis, so that waveforms may be compared, independent of talking speed.  Combined with a dynamic programming technique for finding the optimal `warp' amount, it became a widely used approach to solving the problem of speech duration modelling \cite{furui1989speech}.  One useful property of DTW is that it may offer good performance even with little training, as it only needs one word as a template \cite{melnikoff2003speech}.  Conversly, the performance of DTW based systems cannot be increased much with more training, unlike Hidden Markov Models.
+		%TODO: find paper on DTW for ASR, reference here.
+		% Background should contain _Lit Reviews_! ie show I've read around.
+		Speech, by nature, is not constrained to be at a certain speed -- the duration of words will vary between utterances, and a speech recognition system should be able to handle this.  Dynamic Time Warping (DTW) is essentially the process of expanding and contracting the time axis, so that waveforms may be compared, independent of talking speed.  Combined with a dynamic programming technique for finding the optimal `warp' amount, it became a widely used approach to solving the problem of speech duration modelling \cite{furui1989speech}.  One useful property of DTW is that it may offer good performance even with little training, as it only needs one word as a template \cite{melnikoff2003speech}.  Conversly, the performance of DTW based systems cannot be increased much with more training, unlike Hidden Markov Models.
 		%TODO: write about about DTW is a special form of HMM (and ref it!)
 		% Why mention this??
 	% subsection dynamic_time_warping (end)
@@ -32,30 +34,19 @@
 
 	An $N$-state Markov Chain can be described as a finite state machine of $N$ nodes with an $N{\times}N$ matrix of probabilities which define the transitions between each state.  According to the notation in \cite{rabiner1989tutorial}, the elements of this matrix are defined as $a_{ij} = P($state at time $t = j |$state at time $t-1 = i)$.  To make this a `Hidden' Markov Model, each state is assigned an emission probability for every possible observation, which defines how likely that state will emit that observation.  In this case, the actual position in the state machine is unknown -- only the state emissions (thus `Hidden Markov Model').  The probability that a state $j$ will emit observation $O$ is defined as $b_j(O)$, and may be either a discrete value or a continuous distribution depending on the nature of the observations.  Thus, an HMM is defined entirely by the matrices $a$ and $b$, and a set of initial probabilities for each state, $\pi$, collectively denoted as $\lambda(\pi,a,b)$.
 
-	For speech recognition, the performance is substantially improved by using continuous HMMs, as it removes the need to quantise the speech data which is, by nature, continuous. !!TODOcite!!  A common  distribution used for continuous probabilities is the multivariate Gaussian Mixture, which is essentially a summation of several Normal distributions with different means and variances \cite{bilmes2006hmms}.  However, for use in HMMs, the computational complexity is greatly reduced if the covariance matrix is diagonal (ie the components of each gaussian are uncorrelated).  This requirement can lead to requiring extra pre-processing of observation data in order to remove correlation between the components.
+	For speech recognition, the performance is substantially improved by using continuous HMMs, as it removes the need to quantise the speech data which is, by nature, continuous. !!TODOcite!!  A common  distribution used for continuous probabilities is the multivariate Gaussian Mixture, which is essentially a weighted summation of several different Normal distributions \cite{bilmes2006hmms}.  However, for use in HMMs, the computational complexity is greatly reduced if the covariance matrix is diagonal (ie the components of each gaussian are uncorrelated).  This requirement can lead to requiring extra pre-processing of observation data in order to remove correlation between the components.
 
 	\subsection{Levels of Complexity} % (fold)
 	\label{sub:levels_of_complexity}
+		%TODO find papers on 'word based hmm recognisers', etc
 		The simplest HMM based systems use a single HMM for every word in the recognition dictionary.  Given a set of observations, each HMM can be scored based on the probability that it would output the observations.  The HMM with the highest score is taken as the recognised word.  The most apparent limitation of this system is that a very large amount of training would be required if a dictionary of substantial size was to be used.  At the very least, one sample of each word would need to be recorded to train the full system, which would be a very time consuming process.  However, for simple applications (voice dialling, for example) this is manageable.
 
 		The next step up in complexity from single word HMMs is models that consider sub-word utterances (phonemes).  This allows a smaller set of HMMs to be used for much larger dictionary recognition, as words are recognised based on sequences of sub-word HMMs.  Thus instead of searching through a single HMM to recognise a word, the recognition process becomes a search through a trellis of multiple HMMs in order to find the best path through them.  The most simple HMM system of this form is based on mono-phones, of which there are about 50 in the English language.
 
-		Even more complexity (and, potentially, recognition accuracy) can be introduced by using bi- or tri-phone HMMs, which model transitions between two or three mono-phones.  Using this form of HMM will increase the acoustic model size greatly however, as there are many possible combinations of mono-phones in the English language.  However, it allows context dependent scoring of phonemes, including HMMs that model word endings and starts, or silences.  In the Sphinx 3 recognition engine, the internal states of these HMMs are referred to as `Senones', and the term has been adopted and used extensively in this project.
+		Even more complexity (and, potentially, recognition accuracy) can be introduced by using bi- or tri-phone HMMs, which model transitions between two or three mono-phones.  Using this form of HMM will increase the acoustic model size greatly however, as there are many possible combinations of mono-phones in the English language.  However, it allows context dependent scoring of phonemes, including HMMs that model word endings and starts, or silences.  In the Sphinx 3 recognition engine, the internal states of these HMMs are referred to as `Senones', and the term has been adopted and used extensively in this project \cite{sphinx}.
 		%TODO: confirm 'senone' was started by Sphinx...
 	% subsection levels_of_complexity (end)
 
-	\subsection{The HMM tasks} % (fold)
-	\label{sub:viterbi_decoding}
-		For an HMM model, $\lambda$, there are usually three important problems: 
-		\begin{itemize}
-			\item Training the model to accurately represent real data
-			\item Finding the probability that an HMM produced a given observation sequence, $P(\lambda | O)$
-			\item Finding the `best' path through a trellis of HMMs to produce a given observation sequence !!TODOequation!!
-		\end{itemize}
-		For this project, the first problem is solved by using Voxforge (\ref{sec:the_htk}).  The second problem is potentially very computationally expensive, as the speech model may be complex or large.  In particular, this step requires scoring the senones of each HMM for every new observation frame, which is particularly time consuming if the HMMs have continuous output distributions.
-
-		In all literature encountered, the Viterbi algorithm is the preferred method for solving problem 3.  It is an iterative approach to solving the optimisation problem, and has the added bonus that not much data needs to be stored during the calculation \cite{schuster2006speech}.  This problem is beyond the scope of the current project, but a full explanation of the Viterbi decoding process is available from \cite{rabiner1989tutorial},\cite{melnikoff2003speech},\cite{saeed2008advanced}.
-	% subsection viterbi_decoding (end)
 % section about_hmms (end)
 
 

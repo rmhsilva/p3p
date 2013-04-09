@@ -3,18 +3,75 @@
 \chapter{Design Detail} % (fold)
 \label{cha:system_design}
 
-% Detailed description of the implementation
+A detailed description of the implemented design is given in this chapter, expanding on the outline given in the previous chapter.
 
 \section{La Papessa (The FPGA)} % (fold)
 \label{sec:la_papessa_fpga}
-
-	% The development environement used (Detailed documentation in Appendix)
-
+	% The development environment used (Detailed documentation in Appendix)
 	% GD Pipeline
 	% SRAM
 	% Controller
 	% Normaliser pipeline
 	% Communications
+
+	The FPGA on La Papessa is a Xilinx Spartan XC3S50AN, which is the smallest of its family, and is designed to be used with the Xilinx ISE Webpack software.  Except for simulation, this software handles the entire design cycle, the most important operations being IO port mapping, synthesis, programming file generation (in .bit format).  Unfortunately, the software only supports synthesis of Verilog or VHDL (!!??!!), and not the author's preferred hardware description language, SystemVerilog.  Due to the advantages gained from using SystemVerilog, it was decided to use Synopsys Synplify to perform the synthesis.  Besides being syntatically more powerful, SystemVerilog is the HDL that is currently taught to all new undergraduates at the University of Southampton.  Having some documentation of a proven way to use SystemVerilog with this board would improve its reception and usage.  Finally, SystemVerilog has advantages over Verilog for verification and simulation, which will be used to improve the design.  The other design tasks (port mapping, programming file generation) are accomplished with ISE Webpack (See Appendix !!! for detailed description of this process).
+	%TODO: Revise this paragraph. See interim, section on La Papessa!!!
+
+	\section{Number Format} % (fold)
+	\label{sec:number_format}
+		% 16 bit numbers, scaling up and down
+		% How were these chosen?
+	% section number_format (end)
+
+	\subsection{Top Level Module} % (fold)
+	\label{sub:top_level_module}
+		A simplified hierarchical diagram of the top level module is given in Figure~\ref{fig:toplevel}, showing the main components of the system.  This module included the main controller logic, which essentially waited for a new observation vector, then cycled through the necessary operation states.  Figure~\ref{fig:topstatemachine} shows an ASM of this logic, and also outlines the main areas of the design that need explanation.
+
+		The top level module is also responsible for handling access to the on-board SRAM chip, which several modules need to write or read from.  It essentially multiplexes the required signals, and leaves them floating (high impedance) when they are not needed.  The 'Debug signals' shown in Figure~\ref{fig:toplevel} are a number of internal signals that are routed to output ports in order to facilitate hardware debugging.
+
+		\begin{figure}[tb]
+			\begin{center}
+				\includegraphics[width=\textwidth]{fig:toplevel}
+			\end{center}
+			\caption{Hierarchical diagram of Top Level Module (\ref{sub:top_level_module})}
+			\label{fig:figure1}
+		\end{figure}
+	% subsection top_level_module (end)
+
+	\subsection{Gaussian Distance Pipeline} % (fold)
+	\label{sub:gaussian_distance_pipeline}
+		The Gaussian Distance Pipeline (GDP) is the core component of the system, and computes Equation~\ref{eq:score_final}.  It is a relatively simple 4-stage pipeline, with one stage for every step in the equation (subtract, square, scale, accumulate).  Although the gains from using a pipeline in this case are fairly small, it would be very useful if more complex models were used.  The Speech Silicon \cite{schuster2006speech} project had a substantially more complex GDP, as their senones have several Gaussian distributions that must be mixed to produce the final output distribution.
+
+		The actual pipeline is fed by a controller which cycles through the senones and their components, sequentially feeding values into the pipe.  This is a very simple state machine of only two states (IDLE and LOADGDP), which begins feeding the pipe when a `new vector available' input flag is asserted.  A `last senone' output flag is asserted when the GDP has finished processing the last senone.  This signal instructs the Normaliser module to begin its operation.
+		% Through the top level module, it is connected on one end to the UART module, and on the other end to the SRAM.
+	% subsection gaussian_distance_pipeline (end)
+
+	\subsection{Normaliser} % (fold)
+	\label{sub:normaliser}
+		The Speech Silicon architecture included a module which normalised the senones before they were used for decoding.  A very similar module is implemented here to perform the same normalisation.  The highest score is found while scores are being evaluated, and then this score is subtracted from all the final scores.  This causes the senone with the highest score to have a score of 0, which corresponds to a probablity of 1 (the scores are log probabilities, see Section !!TODO!!).
+	% subsection normaliser (end)
+
+	\subsection{SRAM} % (fold)
+	\label{sub:onboard_sram}
+		In order for the normaliser to access the senone scores, they must be stored somewhere as they are processed through the GDP.  One option would be to store them on the FPGA itself, where they would be accessible by all the modules.  However, this is impractical due to the potential size of an HMM model, and thus the large amount of RAM that would be required.  A better alternative would be to use external SRAM with low latency that is made accessible to whichever modules need it.  In the future, this could also allow the full speech recognition decoder to be implemented on the FPGA, as it needs access to the normalised scores.
+
+		Revision C of La Papessa board includes an onboard SRAM chip, which has an 8 bit data bus and 21 bit address bus, and was completely untested before this work.  As with the UART module, an SRAM module was created primarily to interface the 8 bit data bus with the 16 bit number system used.  It's only operations are to write and read 16 bit values to the SRAM, and signal when it is ready or idle.  This is accomplished with the state machine shown in Figure~\ref{fig:sram_asm}.
+
+		\begin{figure}[tb]
+			\begin{center}
+				\includegraphics[]{sram_asm.png}
+			\end{center}
+			\caption{ASM of the SRAM access module (\ref{sub:onboard_sram})}
+			\label{fig:sram_asm}
+		\end{figure}
+	% subsection onboard_sram (end)
+
+	\subsection{Communications} % (fold)
+	\label{sub:communications}
+		The primary method of communication between the FPGA and processor is a UART connection, running at 115200 baud.  The communications module on the FPGA is essentially comprised of UART receive/transmit modules and a module that is wrapped around them to provide a higher level of data abstraction.  Because numbers are all 16 bits long in this system, and UART words are normally 8 bits, one of the wrapper functions is to receive and transmit 16 bit numbers.  In addition, it is known beforehand that the FPGA should receive a certain number of bytes per observation vector.  This allows the UART module to wait until a 'packet' with that number of bytes has arrived, before signalling to the main controller that a new vector has arrived.  In this implementation, a buffer is simply filled up as new bytes arrive, and then is passed to the main controller when full.  However, it may happen that the UART module erroneously receives a byte, causing the buffer to be one byte fuller than it should be, and therefore causing the last byte of a new observation to be dropped.  In order to work around this, a 'new vector incoming' flag is added, which will empty the buffer when asserted by the processor.  Another (possibly better way) of avoiding errors would be to automatically empty the buffer if new data is not received for a timeout period.
+	% subsection communications (end)
+	
+	% TODO: Sender module??
 
 % section la_papessa_fpga (end)
 
@@ -30,6 +87,11 @@
 	% LibMFCC
 	% Various bits from HTK (liftering etc)
 	%
+
+	\section{LTIB} % (fold)
+	\label{sec:ltib}
+
+	% section ltib (end)
 
 % section l_imperatrice (end)
 
