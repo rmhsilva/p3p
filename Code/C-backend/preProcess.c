@@ -52,7 +52,7 @@ void hamming_init(int length) {
 	hamming_window = (double *) malloc(sizeof(double) * length);
 
 	for (i=0; i<length; i++)
-		hamming_window[i] = 0.54-(0.46*cos(2*PI*(i/((length - 1)*1.0))));
+		hamming_window[i] = 0.54-(0.46*cos(TPI*(i/((length - 1)*1.0))));
 }
 
 

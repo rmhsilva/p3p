@@ -72,6 +72,7 @@ void disp(int dlvl, const char *format, ...) {
 			vfprintf(tty_fd, format, args);
 			fprintf(tty_fd, "\n");
 		}
+		va_end(args);
 	}
 }
 
@@ -140,8 +141,8 @@ uint send_vector(uint16_t observation[]) {
 }
 
 /**
- * Given an observation vector (of MFCCs), send them to La Papessa and return
- * the senone scores.
+ * Given an observation vector (of MFCCs), send them to La Papessa and
+ * return the senone scores.
  * @param observation : The observation components
  * @param scores      : An array to write the scores back to
  */
@@ -171,7 +172,7 @@ void get_scores(uint16_t *observation, uint16_t *scores) {
 
 
 /**
- * init: Does all initialisation and setup for main
+ * main_init: Does all initialisation and setup for main
  */
 void main_init() {
 	disp(2,"[ ] Initialising UART, GPIO, MEM, FFTW");
@@ -191,10 +192,11 @@ void main_init() {
 	gpio_output(GPIO_TO_PIN(60));
 	gpio_wr(GPIO_TO_PIN(60), 1);	// Power the onboard status LED
 
-	// Initialise pre-processing (FFTW, Hamming, Liftering)
+	// Initialise pre-processing (Hamming, Liftering)
 	hamming_init(N);
 	lifter_init(N_CEPS, CEP_LIFT);
 
+	// Allocate FFTW memory and initialise the plan (fft_p)
 	fft_spectrum = (double*) malloc(sizeof(double) * N);
 	fft_in       = (double*) fftw_malloc(sizeof(double) * N);
 	fft_out      = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * N);

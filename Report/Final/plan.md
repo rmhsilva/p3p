@@ -2,6 +2,14 @@
 
 <!--
 
+Basic layout
+	- Intro
+	- Background = what has already been done : why
+	- Approach   = what will be done          : what
+	- System     = how its been done          : how
+	- Testing    = how well it's been done    : well?
+	- Conclusions
+
 Things I need to write about (10000 words max):
 
 - Background

@@ -4,6 +4,7 @@
 \label{cha:background}
 
 % TODO: I think this background is too focussed on theory.  I hardly mention *any* actual background work... Fix?
+% TODO: Did I explain why I decided to use an FPGA???
 
 \section{Speech Recognition Systems} % (fold)
 \label{sec:speech_recognition_systems}
@@ -78,9 +79,10 @@
 
 \section{Embedded Hardware and Speech Silicon} % (fold)
 \label{sec:embedded_hardware}
+% ... "In a real speaker independent, context-dependent system there could be thousands of these states, each requiring a large number of calculations, depending on how complex the models are."
 	A wide range of speech recognition software (commercial and open source) exists for desktop PCs or laptops.  However, speech recognition for embedded systems is less widespread.  Recently there has been increased research into the use of DSPs and FPGAs for speech recognition \cite{melnikoff2003speech}, \cite{schuster2006speech}, \cite{nedevschi2005hardware}.  Of particular interest is Stephen Melnikoff's PhD Thesis, and the Speech Silicon architecture.  The former investigates a variety of HMM based recognisers on an FPGA, using a PC to perform pre and post processing.  The latter details a flexible FPGA based system capable of performing recognition on medium-sized vocabularies.
 
-	Both Melnikoff and Speech Silicon perform an in-depth analysis of an entire speech recognition system based on programmable logic.  Both of them require relatively large FPGAs, and 
+	Both Melnikoff and Speech Silicon perform an in-depth analysis of an entire speech recognition system based on programmable logic.  As such, both of them require relatively large FPGAs
 
 	% TODO
 	% Both melnikoff and speech silicon deal with very large FPGAs and designs

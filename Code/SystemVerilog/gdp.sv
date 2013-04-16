@@ -15,6 +15,7 @@ parameter decimal_position = 11;  // Position of D.P. in my number sys
 logic [2:0] first_calc_r; // shift registers for first/last calc indicators
 logic [3:0] last_calc_r;
 
+// TODO: these probably don't need to be 32 bit...
 logic signed [31:0] square_out, scale_out, acc_sum, sub_out, result;
 num omega_r [1:0];
 num k_r [3:0];

@@ -3,124 +3,94 @@
 \chapter{Design Theory and Approach} % (fold)
 \label{cha:design_approach}
 
+% TODO: What does this chapter give the reader??
+%   All the main theory behind the approach
+%   A description of what will be done
 
 %TODO: restructure this.  Make hmm_model a subsection of hmm_tasks? and others?
 % High level system overview - what exactly was built, where each of the pieces fit, what I needed to learn to build each section.
 % Analyse my solution - what does it do, where does it fall short
 
-\section{The HMM tasks} % (fold)
-\label{sec:hmm_tasks}
-	For an HMM model, $\lambda$, there are usually three important problems: 
-	\begin{itemize}
-		\item Training the model to accurately represent real data
-		\item Finding the probability that an HMM produced a given observation sequence, $P(\lambda | O)$
-		\item Finding the `best' path through a trellis of HMMs to produce a given observation sequence !!TODOequation!!
-	\end{itemize}
-	For this project, the first problem is solved by using Voxforge (\ref{sec:the_htk}).  The second problem is potentially very computationally expensive, as the speech model may be complex or large.  In particular, this step requires scoring the senones of each HMM for every new observation frame, which is particularly time consuming if the HMMs have continuous output distributions. !!TODO: Speech silicon has refs to confirm this is most expensive!!
-
-	In all literature encountered, the Viterbi algorithm is the preferred method for solving problem 3.  It is an iterative approach to solving the optimisation problem, and has the added bonus that not much data needs to be stored during the calculation \cite{schuster2006speech}.  This problem is beyond the scope of the current project, but a full explanation of the Viterbi decoding process is available from \cite{rabiner1989tutorial},\cite{melnikoff2003speech},\cite{saeed2008advanced}.
-% section hmm_tasks (end)
+This chapter provides details of the relevant theory behind HMM based speech recognition systems, as well as a description of the development environements used during the project.
 
 \section{The HMM based model} % (fold)
 \label{sec:the_hmm_based_model}
 	Due to the flexibility of HMMs, and the complexity of speech, there have been several different approaches to building speech models (the sheer size of the HTK book indicates how much flexibility exists).  However, at this stage the author is more interested in the implementation of the algorithms, rather than devising the best way of modelling speech.  Therefore, it was decided to use the pre-designed models from Voxforge for this project, and build the hardware to work with these models.  Thus, various parameters were fixed from the start, including:
 
 	\begin{itemize}
-		\item Sampling rate of audio: 8kHz (Low Pass Filter with $\omega_0 = 4kHz$ required).
+		\item Sampling rate of audio: 8kHz. %(Low Pass Filter with $\omega_0 = 4kHz$ required).
 		\item Window size: 25ms (duration of observation frames).
 		\item Frame period: 10ms (time between observation frames).
-		\item Pre-processing output: 12 MFCCs, 12 MFCC derivatives, 1 Energy.
-		\item Output probabilities: Single Gaussian distribution, 25-element mean and variance vectors.
+		\item Pre-processing output: 12 MFCCs, 12 MFCC derivatives, 1 Energy measure.
+		\item Output probabilities of HMM states: Single Gaussian distribution, 25-element mean and variance vectors.
 		\item Number of monophones: 51 (Includes a monophone for silence.  This is also the number of transition matrices).
 		\item Number of senones: ~7000.
-		\item Number of HMMs: ~8300\footnote{There are more HMMs than senones because some senones are used in more than one HMM}.
+		\item Number of HMMs: ~8300\footnote{There are more HMMs than senones because some senones are used in more than one HMM} (each with 3 outputting states).
 	\end{itemize}
 
 	The only modification made to the Voxforge models was that they were adapted for the author's voice, primarily to gain confidence with using the HTK and HMMs.  Please see Appendix !!TODO!! for the scripts and HTK configuration files used to generate these models.
 
-	The senones are context dependent, that is, there are many different senones for each monophone, each with different predecessor and successor monophones.  Most of the HMMs have 3 emitting states, and 2 states used to model entering and leaving a certain sequence. The number of transition matrices is equal to the number of monophones because...
+	The term `outputting states' refers to states that produce an observation -- most of the HMMs have 5 states in total, but the first and last are non-emitting.  The transition probability from the fourth to last state is the probability of exiting that particular HMM, which is useful for decoding purposes. The senones are context dependent, that is, there are many different senones for each monophone, each with different predecessor and successor monophones.  The number of transition matrices is equal to the number of monophones because...
 	% TODO: tidy up the description of my models.  Maybe this needs a whole section??
+
+	\subsection{The HMM tasks} % (fold)
+	\label{sub:the_hmm_tasks}
+		For an HMM model, denoted as $\lambda$, there are usually three important problems: 
+		\begin{itemize}
+			\item Design and train the model to accurately represent real data
+			\item Finding the probability that an HMM produced a given observation sequence, $P(\lambda | O)$.
+			\item Finding the `best' path through a trellis of HMMs to produce a given observation sequence !!TODOequation!!
+		\end{itemize}
+		For this project, the first problem is solved by using Voxforge (\ref{sec:the_htk}).  The second problem is potentially very computationally expensive, as the speech model may be complex or large.  In particular, this step requires scoring the senones of each HMM for every new observation frame, which is particularly time consuming if the HMMs have continuous output distributions. !!TODO: Speech silicon has refs to confirm this is most expensive!!  This is the step that the project focusses on.
+
+		In all literature encountered, the Viterbi algorithm is the preferred method for solving problem 3.  It is an iterative approach to solving the optimisation problem, and has the added bonus that not much data needs to be stored during the calculation \cite{schuster2006speech}.  This problem is beyond the scope of the current project, but a full explanation of the Viterbi decoding process is available from \cite{rabiner1989tutorial},\cite{melnikoff2003speech},\cite{saeed2008advanced}.
+	% subsection the_hmm_tasks (end)
+
+	\subsection{Senone scoring} % (fold)
+	\label{sub:senone_scoring}
+		As described in previous sections, the FPGA is intended to be used for scoring every senone in the model, for every observation vector.  In this system the new vectors arrive once every 10ms, and there are about 7000 senones that must be evaluated.  The mathematical operations required to do this are now outlined. % !!TODO!! some kind of 'this is x calculations'?
+
+		Each senone $j$ has an $N$-element vector of means, $\mu_j$, and a $N\times N$ matrix of covariances, $\sigma_j$.  However, since MFCCs are uncorrelated, the covariance matrix is diagonal, and $\sigma_j$ is taken as an $N$-element vector.  If the observation vector at time $t$ is denoted as $\mathbf{O}_t = {O_{t1}, O_{t2}, ..., O_{tN}}$, then the score of senone $j$ is given in Equation~\ref{eq:score1}.  However, the hardware complexity may be greatly reduced by taking the logarithms of both sides, removing the requirement to evaluate $N$ exponentials for each senone.  In addition, several parts of the equation may be precomputed, thus reducing the necessary sequence of operations to subtract, square, multiply, and accumulate.  This derivation is shown in Equations \ref{eq:score_ln}--\ref{eq:score_final}, with the final result being the one most suited to hardware implementation.
+
+		\meq{score1}{
+			b_j(O_t) = N(O_t; \mu_j,\sigma_j) = product...
+		}
+		\meq{score_ln}{
+			ln of both
+		}
+		\meq{score_final}{
+			final
+		}
+	% subsection senone_scoring (end)
 % section the_hmm_based_model (end)
 
-\section{Detailed Goal Specification} % (fold)
-\label{sec:goal_specification}
-	As described in previous sections, the FPGA is intended to be used for scoring every senone in the model, for every observation vector.  In this system the new vectors arrive once every 10ms, and there are about 7000 senones that must be evaluated.  The mathematical operations required to do this are now outlined. % !!TODO!! some kind of 'this is x calculations'?
 
-	Each senone $j$ has an $N$-element vector of means, $\mu_j$, and a $N\times N$ matrix of covariances, $\sigma_j$.  However, since MFCCs are uncorrelated, the covariance matrix is diagonal, and $\sigma_j$ is taken as an $N$-element vector.  If the observation vector at time $t$ is denoted as $\mathbf{O}_t = {O_{t1}, O_{t2}, ..., O_{tN}}$, then the score of senone $j$ is given in Equation~\ref{eq:score1}.  However, the hardware complexity may be greatly reduced by taking the logarithms of both sides, removing the requirement to evaluate $N$ exponentials for each senone.  In addition, several parts of the equation may be precomputed, thus reducing the necessary sequence of operations to subtract, square, multiply, and accumulate.  This derivation is shown in Equations \ref{eq:score_ln}--\ref{eq:score_final}, with the final result being the one most suited to hardware implementation.
+\section{Hardware environment} % (fold)
+\label{sec:hardware_dev_env}
+	% Detail the compilation environment etc, which SD card does what...
+	As the Micro Arcana is still under active development, part of the project involved setting up and testing the two boards that the project used.
 
-	\begin{equation}
-	\label{eq:score1}
-		b_j(O_t) = N(O_t; \mu_j,\sigma_j) = product...
-	\end{equation}
-	\begin{equation}
-	\label{eq:score_ln}
-		ln of both sides
-	\end{equation}
-	\begin{equation}
-	\label{eq:score_final}
-		final equation with subs (TODO)
-	\end{equation}
+	\subsection{L'Imperatrice} % (fold)
+	\label{sub:l_imperatrice_env}
+		The ARM-based L'Imperatrice board is still under active development, and several important features on it are very untested.  It is based on a Freescale iMX23 ARMv5 applications processor.  To be used for the project, the following items were required (in order of importance):
+		\begin{itemize}
+			\item Native or cross compiler set-up
+			\item Application UART functionality
+			\item GPIO functionality
+		\end{itemize}
 
-	The hardware related goals outlined in Chapters 1 and 2 can be summarised as:
-	\begin{itemize}
-		\item Design a system in programmable logic that can efficiently evaluate Equation~!!!.
-		\item Design a C program to pre-process speech data according to the required form described in Section~\ref{sec:the_hmm_based_model}.
-	\end{itemize}
-% section goal_specification (end)
+		An Linux Target Image Builder (LTIB) \nomenclature{LTIB}{Linux Target Image Builder} environment, which is primarily used for setting up board support packages (BSP), was installed on an Ubuntu virtual machine.  It has been used to build and test various kernel configurations, and also includes full cross-compiler support for the board.  It essentially provides a platform on which software for L'Imperatrice may be developed and deployed.
+		In addition to LTIB, the ArchLinux build system (ABS) was investigated as a potential alternative to LTIB.  The primary advantage of the ABS is that only a small number of files need to be distributed, which, when run, will download and compile all dependencies of the build.  An ABS configuration exists for the Olinuxino, a linux board also based on the Freescale iMX23, which may be tweaked to suit the L'Imperatrice.  However, due to lack of time and the relative ease of the LTIB set-up, this was not done.
+	% subsection l_imperatrice_env (end)
 
+	\subsection{La Papessa} % (fold)
+	\label{sub:la_papessa_dev}
+		The Xilinx FPGA-based La Papessa board is also actively being developed, and some of its features have not been tested.  In order to facilitate the development of code on the La Papessa board, several combinations of software environments were explored.  The FPGA is a Xilinx Spartan XC3S50AN, which is compatible with the Xilinx ISE Webpack design software package.  However, one drawback to the ISE Webpack is its lack of support for synthesis in SystemVerilog. Besides being syntatically more powerful, SystemVerilog is the HDL that is currently taught to all new undergraduates at the University of Southampton. Having some documentation of a proven way to use SystemVerilog with this board would improve its reception and usage. In addition, SystemVerilog has advantages over Verilog for verification and simulation, which will be used to improve the design.
 
-\section{FPGAs} % (fold)
-\label{sec:fpgas}
-% Write about what FPGAs have to offer for speech recognition
-% ... "In a real speaker independent, context-dependent system there could be thousands of these states, each requiring a large number of calculations, depending on how complex the models are."
-	
-% section fpgas (end)
+		Synplify Pro/Premier is an alternative HDL synthesis tool, which is compatible with the Xilinx software toolchain and also supports SystemVerilog. For this reason, and because the author is more familiar with the Synplify design flow, it was decided that Synplify Premier would be used for synthesis during the project.  The other design tasks (port mapping, programming file generation) are accomplished with ISE Webpack (See Appendix !!! for detailed description of this process).
+	% subsection la_papessa_dev (end)
 
-
-\section{System Overview} % (fold)
-\label{sec:system_overview}
-	The overall system layout, shown in Figure~\ref{fig:hlsystem} is comprised of two primary blocks -- L'Imperatrice and La Papessa (referred to from now on as ``The processor'' and ``The FPGA'' respectively). The entire system is powered from a single supply connected to the processor board's battery connector, and the FPGA is powered through ribbon cable connecting the two boards.  This was done in order to minimise the amount of external circuitry needed, and to show that the two devices are able to work together fairly easily.
-
-	The two boards communicate over UART at approximately !!!11.5kbps!!! (115200 baud rate).
-
-	% How to display which tasks are accomplished by which parts?
-
-	% TODO:
-	% Diagram of the ribbon cable connections (ie which pins do what)
-	% Write about the software side (Lisp, parsing hmms etc)
-	% There's both hardware, and support software
-
-	\begin{figure}[tb]
-		\begin{center}
-			\includegraphics[width=\textwidth]{high-level-system-overview.png}
-		\end{center}
-		\caption{High level system layout overview}
-		\label{fig:hlsystem}
-	\end{figure}
-% section system_overview (end)
-
-
-\section{Analysis of Solution} % (fold)
-\label{sec:analysis_of_solution}
-
-	\subsection{The FPGA} % (fold)
-	\label{sub:the_fpga}
-		The FPGA used was very small, and the full required design could not fit on it.  In particular, the size of the model had to be reduced, so that each Senone had fewer than 25 components, and not all 7000 senones were processed.  This is mainly due to the small amount of onboard RAM on the FPGA, so the design would greatly benefit from having more RAM available.
-	% subsection the_fpga (end)
-
-	% The fixed point accuracy? 16 bit?
-
-	% The communication method (UART) is extremely slow and is the weakest point of the system.  It was used primarily for the ease of implementation, and because at this stage real-time operations are not required.  However, for this system to be realistically useful, a better communication method needs to be developed -- either a faster serial bus or some form of parallel connection.
-
-	\subsection{The processor} % (fold)
-	\label{sub:the_processor}
-		% Weak points
-		% The MFCC calculation has several problems.  The library used is slow and inefficient, and doesn't match the results given by HTK.
-		% Do real sampling, not just reading wav files
-
-	% subsection the_processor (end)
-
-% section analysis_of_solution (end)
+% section hardware_dev_env (end)
 
 
 % chapter design_approach (end)

@@ -1,5 +1,7 @@
 /**
- * GPIO things
+ * GPIO control
+ * Mostly from the Olinuxino open-source project, hosted on github at:
+ * https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/iMX233/gpio-mmap.h
  */
 
 #include <string.h>

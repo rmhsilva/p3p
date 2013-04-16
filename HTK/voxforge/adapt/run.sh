@@ -2,7 +2,7 @@
 # Script to adapt the Voxforge Models. Make sure that these dirs exist
 #   - mfcc, hmm16, hmmAdapt
 # See http://www.voxforge.org/home/dev/acousticmodels/linux/adapt/htkjulius/
-# Ricardo da Silva
+# Ricardo da Silva, 2013
 
 # Path to HTK binaries
 HTK=/Users/ric/Documents/University/Part3/Part-3-Project/HTK/htk-bin-3.2.1

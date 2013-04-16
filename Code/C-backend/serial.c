@@ -1,6 +1,7 @@
 /**
- * Serial comms stuff
-*/
+ * Serial communications
+ * See http://pubs.opengroup.org/onlinepubs/007908775/xsh/termios.h.html
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,7 +24,7 @@ int serial_init (int fd, speed_t baud, int timeout) {
 	cfsetospeed(&stty, baud);	// Set input and output baud rates
 	cfsetispeed(&stty, baud);
 
-	// TODO : confirm this method of setting up the timeout is correct
+	// Optionally set a read timeout
 	if (timeout < 0) {
 		stty.c_cc[VMIN] = 1;	// blocking read (until 1 byte rec'd)
 	}
@@ -32,14 +33,15 @@ int serial_init (int fd, speed_t baud, int timeout) {
 		stty.c_cc[VTIME] = timeout; // Max time to wait for data
 	}
 	
+	// Set important parameters
 	stty.c_cflag = (stty.c_cflag & ~CSIZE) | CS8;	// 8 bit chars
-	stty.c_iflag &= ~IGNBRK;
+	stty.c_iflag &= ~IGNBRK;						// Ignore break commands
 	stty.c_lflag = 0;
 	stty.c_oflag = 0;
 	stty.c_iflag &= ~(IXON | IXOFF | IXANY);	// No flow ctrl
-	stty.c_cflag |= (CLOCAL | CREAD);
+	stty.c_cflag |= (CLOCAL | CREAD);			// enable receiver
 	stty.c_cflag &= ~(PARENB | PARODD);			// No parity
-	stty.c_cflag &= ~CSTOPB;
+	stty.c_cflag &= ~CSTOPB;					// Send 1 stop bit
 	stty.c_cflag &= ~CRTSCTS;
 	
 	if (tcsetattr(fd, TCSANOW, &stty) != 0) {

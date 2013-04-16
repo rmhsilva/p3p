@@ -4,7 +4,7 @@
 typedef logic signed [15:0] num; // My number format
 
 module test_gdp_controller();
-  
+
 parameter n_components=5, n_senones=10;
 
 // Signals
@@ -26,8 +26,13 @@ initial begin
   forever #5ns clk = ~clk;
 end
 
-// Properties to be fullfilled
-
+// TODO: better testbench
+// create a function which takes two numbers, counts the number
+// of different bits in them, and where the first difference occurs.
+// On each new score, use this function.
+// Record the number of differences etc, so that a distribution can
+// be created, thus giving a measure of how `good' the number format is.
+// ie 1 bit difference: x scores. 2 bit difference: y scores. etc...
 
 // Set signals
 initial begin

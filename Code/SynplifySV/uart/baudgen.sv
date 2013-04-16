@@ -10,7 +10,9 @@ module baudgen(
 // 65536 / 151 = 434.013 which is VERY close to 434.027
 // Thus use this as the baud tick generator!
 
-// Use 151 * 4 if using slowed clock 
+// TODO: Investigate this.  Why not just baud_fast = baud_acc[13] ??
+
+// Use 151 * 4 if using slowed clock
 parameter add = 'd151;
 //parameter add = 'd151*8;
 

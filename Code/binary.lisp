@@ -1,7 +1,10 @@
 ;;;; Helpful binary utilities
-;;;; s+ and makebins need to be compiled first
+;;;; Note: s+ and makebins need to be compiled first
+;;;; These utilities have been incredibly useful during development
+;;;; and testing of the system, and they saved plenty of time that
+;;;; would have been wasted typing numbers into a calculator.
 
-;;; Utilities
+;;; General Utilities ------------------------------------------------
 
 (defun s+ (&rest strings)
   "Because it's shorter"
@@ -27,7 +30,7 @@
 	(flip (cdr x))))))
 
 
-;;; Binary repr stuff
+;;; Binary Repr. Stuff -----------------------------------------------
 (defparameter +bins+ (makebins 15 11) "My binary format!")
 (defparameter +bigbins+ (makebins 32 11) "Large numbers!")
 
@@ -116,7 +119,7 @@
   (>> (bin2dec x) scale))
 
 
-;;; System Models
+;;; System Models ----------------------------------------------------
 
 (defvar *k-shift* 3)
 (defvar *result-shift* 3)
@@ -175,7 +178,8 @@
 ;		(dec2bin (shift score -3)))))
     (reverse result)))
 
-;;; Testbench things
+
+;;; Testbench things -------------------------------------------------
 
 (defmacro printl (stream prepend append &rest lines)
   "Make the printlines look nicer below :)"
