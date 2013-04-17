@@ -51,7 +51,6 @@
 	% Controller
 	% Normaliser pipeline
 	% Communications
-	% TODO: say how much of the FPGA was taken up :D
 
 	The system on La Papessa performs these main tasks:
 	\begin{itemize}
@@ -87,6 +86,7 @@
 	\subsection{Gaussian Distance Pipeline} % (fold)
 	\label{sub:gaussian_distance_pipeline}
 		The Gaussian Distance Pipeline (GDP) is the core component of the system, and computes Equation~\ref{eq:score_final}.  It is a relatively simple 4-stage pipeline, with one stage for every step in the equation (subtract, square, scale, accumulate).  Although the gains from using a pipeline in this case are relatively small, it would be very useful if more complex models were used.  The Speech Silicon \cite{schuster2006speech} project had a substantially more complex GDP, as their senones have several Gaussian distributions that must be mixed to produce the final output distribution.  A block diagram of the GDP module is shown in Figure~\ref{fig:gdp_block}.  %TODO: describe the inputs etc...
+		% TODO: maybe a dataflow graph is more appropriate? Or a block diagram of operations?
 
 		\begin{figure}[tb]
 			\begin{center}
@@ -95,6 +95,8 @@
 			\caption{Gaussian Distance Pipeline block diagram}
 			\label{fig:gdp_block}
 		\end{figure}
+
+		`\texttt{n\_senones}' and `\texttt{n\_components}' are both parameter inputs to the module, which determine the number of senones and the number of components per mean and variance in the model.  This allowed the design to be scaled down as size constraints became restrictive.
 
 		The pipeline itself is a static object with not much control logic, and thus requires a controller which sequentially uses it to score each senone in the model.  This controller is a simple state machine of only two states (\texttt{IDLE} and \texttt{LOAD\_GDP}), which begins feeding the pipe when a `\texttt{new\_vector\_available}' input flag is asserted.  This module is shown in Figure~\ref{fig:gdp_ctrl_block}.  A `\texttt{last\_senone}' output flag is asserted when the GDP has finished processing the last senone.  When the controller is in the \texttt{LOAD\_GDP} state, it essentially loops through the senones in the model, extracting their parameters and sending them to the GDP.  
 
@@ -120,11 +122,6 @@ typedef struct packed {
 		\end{figure}
 	% subsection gaussian_distance_pipeline (end)
 
-	\subsection{Normaliser} % (fold)
-	\label{sub:normaliser}
-		The Speech Silicon architecture included a module which normalised the senones before they were used for decoding.  A very similar module is implemented here to perform the same normalisation.  The highest score is found while senones are being evaluated, and then this score is subtracted from all the final scores.  This causes the senone with the highest score to have a score of 0, which corresponds to a probablity of 1 (the scores are log probabilities, see Section \ref{sub:senone_scoring}).
-	% subsection normaliser (end)
-
 	\subsection{SRAM} % (fold)
 	\label{sub:onboard_sram}
 		In order for the normaliser to access the senone scores, they must be stored somewhere as they are processed through the GDP.  One option would be to store them on the FPGA itself, where they would be accessible by all the modules.  However, this is impractical due to the potential size of an HMM model, and thus the large amount of RAM that would be required.  A better alternative would be to use external SRAM with low latency that is made accessible to whichever modules need it.  In the future, this could also allow the full speech recognition decoder to be implemented on the FPGA, as it needs access to the normalised scores.
@@ -146,8 +143,15 @@ typedef struct packed {
 
 		The Baudticker module generates clock signals for the transmit and receive modules.  The transmit module requires a signal at approximately 115200Hz, but the receive module requires a signal at 8 times that frequency.  The receiver oversamples the input rx signal at this higher frequency, which enables it to detect and ignore signal glitches.  % TODO: finish this
 	% subsection fpga_communications (end)
+
+	\subsection{Normaling and Sending Scores} % (fold)
+	\label{sub:normaliser}
+		The Speech Silicon architecture included a module which normalised the senones before they were used for decoding.  A very similar module is implemented here to perform the same normalisation.  The highest score is found while senones are being evaluated, and then this score is subtracted from all the final scores.  This causes the senone with the highest score to have a score of 0, which corresponds to a probablity of 1 (the scores are log probabilities, see Section \ref{sub:senone_scoring}).
+
+		The Sender module is fairly simple in its operation -- it loops through all the senone scores stored in external SRAM and sends them over UART to the processor.
+	% subsection normaliser (end)
 	
-	% TODO: Sender module??
+	% TODO synthesis? Describe how the design didn't fit?
 % section la_papessa_fpga (end)
 
 

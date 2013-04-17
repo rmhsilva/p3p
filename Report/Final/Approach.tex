@@ -84,11 +84,11 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 	% subsection l_imperatrice_env (end)
 
 	\subsection{La Papessa} % (fold)
-	\label{sub:la_papessa_dev}
+	\label{sub:la_papessa_env}
 		The Xilinx FPGA-based La Papessa board is also actively being developed, and some of its features have not been tested.  In order to facilitate the development of code on the La Papessa board, several combinations of software environments were explored.  The FPGA is a Xilinx Spartan XC3S50AN, which is compatible with the Xilinx ISE Webpack design software package.  However, one drawback to the ISE Webpack is its lack of support for synthesis in SystemVerilog. Besides being syntatically more powerful, SystemVerilog is the HDL that is currently taught to all new undergraduates at the University of Southampton. Having some documentation of a proven way to use SystemVerilog with this board would improve its reception and usage. In addition, SystemVerilog has advantages over Verilog for verification and simulation, which will be used to improve the design.
 
 		Synplify Pro/Premier is an alternative HDL synthesis tool, which is compatible with the Xilinx software toolchain and also supports SystemVerilog. For this reason, and because the author is more familiar with the Synplify design flow, it was decided that Synplify Premier would be used for synthesis during the project.  The other design tasks (port mapping, programming file generation) are accomplished with ISE Webpack (See Appendix !!! for detailed description of this process).
-	% subsection la_papessa_dev (end)
+	% subsection la_papessa_env (end)
 
 % section hardware_dev_env (end)
 
