@@ -54,8 +54,8 @@
 \examiner   {Dr Nick Harris}
 \degree     {Electronic Engineering with M.S.S.}
 \maketitle
-\begin{abstract}  %TODO Improve / finish this. Another 40 words...? Results?
-This report presents a proof of concept system that is aimed at investigating methods of performing speech recognition in embedded systems.  It makes use of two new electronic boards that are currently under development at the University of Southampton, and implements one part of a modern speech recognition system using a Spartan 3 FPGA and an ARMv5 Linux applications processor.
+\begin{abstract}  %TODO Improve / finish this. Results?
+This report presents a proof of concept system that is aimed at investigating methods of performing speech recognition in embedded hardware.  It makes use of two new electronic boards, based on a Spartan 3 FPGA and an ARMv5 Linux applications processor, that are currently under development at the University of Southampton.  Speech data is pre-processed in Linux, and the FPGA performs the most computationally intensive part of a modern speech recognition system -- evaluating the large number of continuous probability distributions.  It is shown that the FPGA is capable of vastly reducing the time required to perform these operations.
 \end{abstract}
 \tableofcontents
 %\listoffigures
@@ -72,13 +72,13 @@ This report presents a proof of concept system that is aimed at investigating me
 % See https://cs.uwaterloo.ca/~brecht/thesis-hints.html
 \mainmatter
 
-\include{Introduction}	% Mostly done
-\include{Background}		% Partially.  Needs expansion on FPGA stuff
-\include{Approach}			% Needs tidying up
-\include{System}				% Need: support software, build process, others
-\include{Testing}				% Needs LOTS
-\include{Management}		% Empty
-\include{Conclusions}		% Empty
+\include{Introduction}    % Mostly done
+\include{Background}      % Partially.  Needs expansion on FPGA stuff
+\include{Approach}        % Needs tidying up
+\include{Implementation}  % Need: support software, build process, others
+\include{Testing}         % Mostly done, needs expansion
+\include{Analysis}        % Fairly empty
+\include{Conclusions}     % Mostly done
 
 %% ---------------------------------------------------------------------------%
 %\appendix
