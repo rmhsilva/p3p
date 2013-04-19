@@ -139,7 +139,7 @@
 	      ("<GCONST> (.*)$" gconst))
        (setf senones
 	     (cons (make-senone :sname sname
-				:gconst (/ (read-from-string gconst) 2)
+				:gconst (/ (read-from-string gconst) -2)
 				:means
 				(mapcar #'(lambda (x) ; to read 1023e-01 etc
 					    (read-from-string x))
