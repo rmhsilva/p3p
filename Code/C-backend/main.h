@@ -12,8 +12,8 @@
 
 /*****[ Other Defines ]**************************************************/
 
-#define NUM_COMPS     4					// Number of components per vector
-#define NUM_SENONES   3					// Number of senones to be scored
+#define NUM_COMPS     6					// Number of components per vector
+#define NUM_SENONES   5					// Number of senones to be scored
 #define CFG_WAIT      100000			// 0.1s delay for uart h.w. config
 #define NEW_VEC_GPIO  GPIO_TO_PIN(92)	// new vector flag: bank,pin
 #define TTY_SER       "/dev/ttySP1"		// The serial port file
@@ -22,7 +22,7 @@
 #define PRE_EM		0.97 	// Pre-emphasis to apply to data. Same as HTK
 //#define N 			200	// Sample number = 25ms window * 8kHz sampling rate
 #define N 			80 		// In this case, it's a 10ms window
-#define N_CEPS	12 			// Number of MFCC coefficients to compute
+#define N_CEPS		12		// Number of MFCC coefficients to compute
 //#define N_CEPS	NUM_COMPS
 #define N_CHANS 	26 		// Number of channels for MFCC comp. See HTK p77
 #define CEP_LIFT 	22.0 	// Liftering (scaling) for MFCCs. See HTK p75
