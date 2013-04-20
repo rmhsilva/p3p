@@ -18,8 +18,8 @@
 \renewcommand{\nomname}{Nomenclature and Abbreviations}
 
 \newcommand{\meq}[2] {							% Equation macro. \meq{label}{math}
-	\begin{equation} \label{eq:#1} #2
-	\end{equation}
+	\begin{align} \label{eq:#1} #2
+	\end{align}
 }
 
 \lstdefinestyle{customc}{						% Custom C listing style
@@ -81,8 +81,8 @@ This report presents a proof of concept system that is aimed at investigating me
 \include{Conclusions}     % Mostly done
 
 %% ---------------------------------------------------------------------------%
-%\appendix
-\include{Appendices/AppendixA}
+\appendix
+\include{Appendices/Index}
 \backmatter
 \bibliographystyle{plainnat}  % TODO: fix ecs bib style...
 \bibliography{../citations-ALL}

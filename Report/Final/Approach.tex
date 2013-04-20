@@ -7,10 +7,6 @@
 %   All the main theory behind the approach
 %   A description of what will be done
 
-%TODO: restructure this.  Make hmm_model a subsection of hmm_tasks? and others?
-% High level system overview - what exactly was built, where each of the pieces fit, what I needed to learn to build each section.
-% Analyse my solution - what does it do, where does it fall short
-
 This chapter provides details of the relevant theory behind HMM based speech recognition systems, as well as a description of the development environments used during the project.
 
 \section{The HMM based model} % (fold)
@@ -37,11 +33,11 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 	\label{sub:the_hmm_tasks}
 		For an HMM model, denoted as $\lambda$, there are usually three important problems: 
 		\begin{itemize}
-			\item Design and train the model to accurately represent real data
-			\item Finding the probability that an HMM produced a given observation sequence, $P(\lambda | O)$.
-			\item Finding the `best' path through a trellis of HMMs to produce a given observation sequence !!TODOequation!!
+			\item Design and train the model to accurately represent real data -- adjusting $\lambda$ to maximise $P(O | \lambda)$.
+			\item Finding the probability that an HMM produced a given observation sequence, $P(O | \lambda)$.
+			\item Finding the `best' path through a trellis of HMMs and states to produce a given observation sequence.
 		\end{itemize}
-		For this project, the first problem is solved by using Voxforge (\ref{sec:the_htk}).  The second problem is potentially very computationally expensive, as the speech model may be complex or large.  In particular, this step requires scoring the senones of each HMM for every new observation frame, which is particularly time consuming if the HMMs have continuous output distributions. !!TODO: Speech silicon has refs to confirm this is most expensive!!  This is the step that the project focusses on.
+		For this project, the first problem is solved by using Voxforge (\ref{sec:the_htk}).  The second problem is potentially very computationally expensive, as the speech model may be complex or large.  In particular, this step requires scoring the senones of each HMM for every new observation frame, which is particularly time consuming if the HMMs have continuous output distributions.  In modern speech recognition systems, this step regularly accounts for up to 70\% of the total processing time \cite{lai2002performance}.  This is the step that the project focusses on.
 
 		In all literature encountered, the Viterbi algorithm is the preferred method for solving problem 3.  It is an iterative approach to solving the optimisation problem, and has the added bonus that not much data needs to be stored during the calculation \cite{schuster2006speech}.  This problem is beyond the scope of the current project, but a full explanation of the Viterbi decoding process is available from \cite{rabiner1989tutorial},\cite{melnikoff2003speech},\cite{saeed2008advanced}.
 	% subsection the_hmm_tasks (end)
@@ -50,17 +46,35 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 	\label{sub:senone_scoring}
 		As described in previous sections, the FPGA is intended to be used for scoring every senone in the model, for every observation vector.  In this system the new vectors arrive once every 10ms, and there are about 7000 senones that must be evaluated.  The mathematical operations required to do this are now outlined. % !!TODO!! some kind of 'this is x calculations'?
 
-		Each senone $j$ has an $N$-element vector of means, $\mu_j$, and a $N\times N$ matrix of covariances, $\sigma_j$.  However, since MFCCs are uncorrelated, the covariance matrix is diagonal, and $\sigma_j$ is taken as an $N$-element vector.  If the observation vector at time $t$ is denoted as $\mathbf{O}_t = {O_{t1}, O_{t2}, ..., O_{tN}}$, then the score of senone $j$ is given in Equation~\ref{eq:score1}.  However, the hardware complexity may be greatly reduced by taking the logarithms of both sides, removing the requirement to evaluate $N$ exponentials for each senone.  In addition, several parts of the equation may be precomputed, thus reducing the necessary sequence of operations to subtract, square, multiply, and accumulate.  This derivation is shown in Equations \ref{eq:score_ln}--\ref{eq:score_final}, with the final result being the one most suited to hardware implementation.
-
+		If the observation vector at time $t$ is denoted as $\textbf{O}_t = {O_{t1}, O_{t2}, ..., O_{tN}}$, then the score of senone $j$ is $b_j(\textbf{O}_t)$ -- the probability of that senone producing $\textbf{O}_t$.  The output probability of each senone is an $N$-dimensional multivariate Normal distribution, represented by an $N$-element vector of means $\mu_j$ and standard deviations $\sigma_j$.  Usually an $N\times N$ covariance matrix  would be required, but due to the statistical nature of Mel Frequency Cepstral Coefficients, this matrix is diagonal, and thus can be represented with $N$ elements.  Thus the score is given by:
 		\meq{score1}{
-			b_j(O_t) = N(O_t; \mu_j,\sigma_j) = product...
+			b_j(\textbf{O}_t)
+			&= \mathcal{N}_N(\textbf{O}_t; \boldsymbol{\mu}_j,\boldsymbol{\sigma}_j^2) \\
+			&= \prod_{n=1}^{N} \frac{1}{\sigma_{jn} \sqrt{2\pi}} 
+					\exp\left(- \frac{(O_{tn} - \mu_{jn})^2}{2\sigma_{jn}^2} \right)
 		}
+
+		However, hardware computation of this equation may be greatly simplified by taking logarithms of both sides, removing the need to evaluate exponentials:
+		\[
+		-\ln(\mathcal{N}(\textbf{O}_t; \boldsymbol{\mu}_j,\boldsymbol{\sigma}_j^2)) =
+		\]
 		\meq{score_ln}{
-			ln of both
+			\left[ \frac{N}{2} \ln(2\pi) + \sum_{n=1}^N \ln(\sigma_{jn}) \right] +
+			\sum_{n=1}^N
+				(O_{tn} - \mu_{jn})^2
+				\left[ \frac{1}{2\sigma_{jn}^2} \right]
 		}
+
+		Furthermore, the square bracketed terms in Equation~\ref{eq:score_ln} do not depend on the observation, and thus may be pre-computed.  The final equation is reduced to subtract, square, multiply, and accumulate:
 		\meq{score_final}{
-			final
+			\ln(\mathcal{N}(\textbf{O}_t; \boldsymbol{\mu}_j,\boldsymbol{\sigma}_j)) =
+			K_j - \sum_{n=1}^N (O_{tn} - \mu_{jn})^2 \Omega_{jn}
 		}
+
+		Where
+		\[ K_j = - \frac{N}{2} \ln(2\pi) - \sum_{n=1}^N \ln(\sigma_{jn}) \]
+		\[ \Omega_{jn} = \frac{1}{2\sigma_{jn}^2} \]
+
 	% subsection senone_scoring (end)
 % section the_hmm_based_model (end)
 
