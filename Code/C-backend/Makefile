@@ -1,8 +1,9 @@
 # Hello make
 # Ricardo da Silva, 2013
 
-# Final ELF name
+# Final ELF name and target location (on SD card)
 TARGET = main
+ROOTFS = /media/disk/root/
 
 # Source files
 # Automatically create header dependencies from the source files
@@ -39,6 +40,7 @@ LDFLAGS += $(LIBS)
 # Use the cross compiler GCC
 CC = /opt/freescale/usr/local/gcc-4.1.2-glibc-2.5-nptl-3/arm-none-linux-gnueabi/arm-none-linux-gnueabi/bin/gcc
 RM = rm -f
+CP = sudo cp
 
 
 # Default (first) target
@@ -65,6 +67,8 @@ $(OBJDIR)/%.o : %.c $(DEPS)
 	@echo + Creating Object file from $<
 	$(CC) -o $@ -c $< $(CFLAGS)
 
+copy: $(TARGET)
+	$(CP) $(TARGET) $(ROOTFS)
 
 clean: begin clean_all end
 
@@ -75,4 +79,4 @@ clean_all:
 	$(RM) $(TARGET)
 
 # List of targets that.. aren't really targets.
-.PHONY : all begin end build clean clean_all
+.PHONY : all begin end copy clean clean_all
