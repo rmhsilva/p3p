@@ -228,10 +228,9 @@
 ;;; Decoding
 
 (defun probability (observation state)
-  "Calcs probability that observation came from state"
+  "Calcs probability that observation came from state: K - dist(x)"
   (let ((dist (senone-gconst state)))
-    ;(* -1 (exp  ; Get the negative prob
-	   (+ dist
+	   (- dist
 	       (loop for mean in (senone-means state)
 		  and omega in (senone-omegas state)
 		  and ocomp in (oframe-components observation)
@@ -420,34 +419,40 @@
 
 
 ;; Global vars yay
-(defvar statistics (multiple-value-list (parse-hmmdefs "hmmdefs")))
+(defvar statistics)
+(defvar hmms)
+(defvar senones)
+(defvar t-mats)
+(defvar oframes)
 
-(defvar hmms (first statistics))
-(defvar senones (second statistics))
-(defvar t-mats (third statistics))
+(setf statistics (multiple-value-list (parse-hmmdefs "hmmdefs")))
+(setf hmms (first statistics))
+(setf senones (second statistics))
+(setf t-mats (third statistics))
 
-(defvar oframes (parse-input "sample1data.txt"))
+(setf oframes (parse-input "sample1data.txt"))
 
 ;; Find some max values
-(let ((smax (list 0)) (omax 0) (omin 0) (smin (list 0)))
-      (dolist (o oframes omax)
-	(dolist (comp (oframe-components o))
-	  (if (> (abs comp) (abs omax))
-	      (setf omax comp))
-	  (if (< (abs comp) (abs omin))
-	      (setf omin comp))))
-      (format t "Max observation component: ~a ~%" omax)
-      (format t "Min observation component: ~a ~%" omin)
-      
-      (dolist (s senones smax)
-	(dolist (x (append (senone-means s) (senone-omegas s) (list (senone-gconst s))))
-	  (if (> (abs x) (abs (car smax)))
-	      (setf smax (list x s)))
-	  (if (< (abs x) (abs (car smin)))
-	      (setf smin (list x s)))))
-      (format t "Max senone value: ~a (from ~a) ~%"
-	      (car smax)
-	      (senone-sname (second smax)))
-      (format t "Min senone value: ~a (from ~a) ~%"
-	      (car smin)
-	      (senone-sname (second smin))))
+(unless nil
+  (let ((smax (list 0)) (omax 0) (omin 0) (smin (list 0)))
+    (dolist (o oframes omax)
+      (dolist (comp (oframe-components o))
+	(if (> (abs comp) (abs omax))
+	    (setf omax comp))
+	(if (< (abs comp) (abs omin))
+	    (setf omin comp))))
+    (format t "Max observation component: ~a ~%" omax)
+    (format t "Min observation component: ~a ~%" omin)
+    
+    (dolist (s senones smax)
+      (dolist (x (append (senone-means s) (senone-omegas s) (list (senone-gconst s))))
+	(if (> (abs x) (abs (car smax)))
+	    (setf smax (list x s)))
+	(if (< (abs x) (abs (car smin)))
+	    (setf smin (list x s)))))
+    (format t "Max senone value: ~a (from ~a) ~%"
+	    (car smax)
+	    (senone-sname (second smax)))
+    (format t "Min senone value: ~a (from ~a) ~%"
+	    (car smin)
+	    (senone-sname (second smin)))))
