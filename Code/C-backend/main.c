@@ -67,11 +67,8 @@ void disp(int dlvl, const char *format, ...) {
 	if (dlvl > 0) {
 		va_start(args, format);
 		vfprintf(stderr, format, args);
-		fprintf(stderr, "\n");
-		if (dlvl > 1 && tty0_open > 0) {
+		if (dlvl > 1 && tty0_open > 0)
 			vfprintf(tty_fd, format, args);
-			fprintf(tty_fd, "\n");
-		}
 		va_end(args);
 	}
 }
@@ -111,12 +108,13 @@ void pre_process(double *samples, uint16_t *mfccs) {
 #ifdef DEBUG
 	// Debug - check the output of the MFCC calculation
 	for(i=0; i<N_CEPS; i++)
-		disp(1, "mfcc[%d]: %lf", i, mfccs_d[i]);
+		disp(1, "mfcc[%d]: %lf\n", i, mfccs_d[i]);
 #endif
 
 	// Convert them to the correct binary format
+	// Note: mfccs[0] is the Energy component -- ignored for now.
 	for (i=0; i<NUM_COMPS; i++)
-		mfccs[i] = D_TO_U16( mfccs_d[i] );
+		mfccs[i] = D_TO_U16( mfccs_d[1+i] );
 }
 
 /**
@@ -150,14 +148,19 @@ void get_scores(uint16_t *observation, uint16_t *scores) {
 	static int obs_cnt = 0;
 	uint32_t rec = 0;
 
-	if (!uart_ready) die(-1, "Initialise UART before trying to use it :)");
-	
+	if (!uart_ready)
+		die(-1, "Initialise UART before trying to use it :)");
+
+#ifdef DEBUG
+	int i;
+	for(i=0; i<NUM_COMPS; i++)
+		disp(1, "oframe[%d] = 0x%04x\n", i, observation[i]);
+#endif
+
 	// Send a vector
 	obs_cnt++;
-	if (send_vector(observation) != NUM_COMPS*2) {
+	if (send_vector(observation) != NUM_COMPS*2)
 		die(-1, "Error sending observation %d", obs_cnt);
-	}
-	printf("Sent observation vector number %d\n", obs_cnt);
 
 	// Receive scores
 	while (rec < NUM_SENONES) {
@@ -175,7 +178,7 @@ void get_scores(uint16_t *observation, uint16_t *scores) {
  * main_init: Does all initialisation and setup for main
  */
 void main_init() {
-	disp(2,"[ ] Initialising UART, GPIO, MEM, FFTW");
+	disp(2,"[ ] Initialising UART, GPIO, MEM, FFTW\n");
 
 	// Initialise serial
 	uart = open(TTY_SER, O_RDWR | O_NOCTTY | O_SYNC);
@@ -203,7 +206,7 @@ void main_init() {
 	fft_p        = fftw_plan_dft_r2c_1d(N, fft_in, fft_out, FFTW_MEASURE);
 
 	usleep(CFG_WAIT);  // 100ms delay to allow hardware to finish config
-	disp(2,"[+] Init complete.");
+	disp(2,"[+] Init complete.\n");
 }
 
 
@@ -211,7 +214,8 @@ int main(int argc, char const *argv[])
 {
 	int i, j, do_vectors=1;
 	uint16_t scores[NUM_SENONES];
-	uint16_t mfccs[NUM_COMPS] = {0xdabe, 0x00c1, 0xfd3c, 0xfeda};
+	uint16_t mfccs[NUM_COMPS];
+	//uint16_t mfccs[NUM_COMPS]; // = {0xdabe, 0x00c1, 0xfd3c, 0xfeda};
 	FILE *wav;
 
 	main_init();    // Initialise things
@@ -236,11 +240,12 @@ int main(int argc, char const *argv[])
 		pre_process(fft_in, mfccs);
 		get_scores(mfccs, scores);
 		
+		disp(2, "--- Observation Frame %d ---\n", i+1);
 		for(j=0; j<NUM_SENONES; j++)
-			disp(2, "Senone %d score: 0x%x", j, scores[j]);
+			disp(2, "Senone %d score: 0x%04x\n", j, scores[j]);
 	}
 
-	disp(2,"[+] Done.");
+	disp(2,"[+] Done.\n");
 	close(uart);
 	fclose(wav);
 	usleep(100000);

@@ -7,13 +7,14 @@
 #define DISP(msg) ({ printf("%s\n",msg); system("echo "msg" > /dev/tty0"); })
 
 // Convert a double to an unsigned 16 bit int, shifted 10 bits left
-#define D_TO_U16(x) ((uint16_t)( (x) * 1024 ))
+#define D_TO_U16(x) ((uint16_t)((int)( (x)*1024.0 )))
 
 
 /*****[ Other Defines ]**************************************************/
 
 #define NUM_COMPS     6					// Number of components per vector
 #define NUM_SENONES   5					// Number of senones to be scored
+#define RESULT_SHIFT  3
 #define CFG_WAIT      100000			// 0.1s delay for uart h.w. config
 #define NEW_VEC_GPIO  GPIO_TO_PIN(92)	// new vector flag: bank,pin
 #define TTY_SER       "/dev/ttySP1"		// The serial port file
