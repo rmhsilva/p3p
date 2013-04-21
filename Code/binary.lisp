@@ -192,7 +192,7 @@
 ;		score
 ;		(dec2bin (>> score *result-shift*)))))
     (reverse (if normalise
-		 (mapcar (lambda (x) (- x best-score)) result)
+		 (mapcar (lambda (x) (- best-score x)) result)
 		 result))))
 
 
