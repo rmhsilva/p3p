@@ -8,6 +8,7 @@
 #define N_SENONES   7094// Number of states (senones)
 #define MAX_COMPS   6 	// Max number of components to process
 #define MAX_SENONES 5 	// Max number of senones to process
+#define K_SHIFT		2 	// Scaling down factor for K
 
 typedef union {
 	struct {
@@ -22,6 +23,13 @@ typedef struct {
 	double mean[N_COMPS];
 	double omega[N_COMPS];	// = 0.5/variance^2
 } Senone;
+
+// Fixed Point Senone:
+typedef struct {
+	int k;
+	int mean[N_COMPS];
+	int omega[N_COMPS];	// = 0.5/variance^2
+} Senone_FP;
 
 
 // First two samples of sample1.mfcc (12xMFCC, 12xDel, DelC0)
@@ -59,21 +67,37 @@ Senone senones[] = {
       omega: { 0.011902586, 0.015589801, 0.017152535, 0.01642813, 0.020314805, 0.042014197 } },
 };
 
-
-// calc the prob of a certain observation for a set of means and std devs (sigma)
-// There are 7094 states (senones) in my model.
-// K: first precomputed term in eq 2.19
-// omega: second precomputed term
-double score(OVector *o, Senone *s) {
-	double dist;
+/**
+ * Convert a standard senone to a Fixed Point representation senone
+ * @param s   : The original senone struct
+ * @param sfp : The destination (FP) struct
+ */
+void to_FP(Senone *s, Senone_FP *sfp) {
 	int i;
 
-	// Eq 2.19
-	dist = s->k;
+	sfp->k = (s->k * 1024) >> K_SHIFT;
+	for (i = 0; i < N_C; i++) {
+		sfp->mean[i]  = s->mean[i] * 1024;
+		sfp->omega[i] = s->omega[i] * 1024;
+	}
+}
+
+
+/**
+ * Calc the prob of a certain observation for a set of probabilities
+ * @param  o : Observation
+ * @param  s : Senone
+ * @return   : The score
+ */
+double score(OVector *o, Senone *s) {
+	double dist = 0;
+	int i;
+
+	// Eq 3.4
 	for (i = 0; i < MAX_COMPS; i++)
 		dist += pow((o->comp[i] - s->mean[i]),2) * s->omega[i];
 
-	return -1 * exp(dist);
+	return s->k - dist;
 }
 
 
@@ -81,10 +105,9 @@ int main(int argc, char const *argv[])
 {
 	int i, j;
 	clock_t tic, toc;
-	double scores[MAX_SENONES] = {0, 0, 0};
+	double scores[MAX_SENONES];
 	unsigned int limit = 2000000;
-	// Test: 
-	//printf("%f\n", sample1[1][2]);	// => -4.339
+
 	printf("--- Starting ---\n");
 
 	if (argc > 1)
