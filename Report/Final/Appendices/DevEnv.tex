@@ -1,2 +1,23 @@
 %!TEX root = ../Main.tex
 % Development Environement
+\chapter{Development Environment} % (fold)
+\label{apdx:development_environment}
+
+
+FPGA design cycle
+Using Synplify and Webpack together
+
+
+\section{LTIB usage} % (fold)
+\label{apdx:ltib_usage}
+
+	\subsection{Compiling FFTW for LTIB} % (fold)
+	\label{apdx:compiling_fftw_for_ltib}
+		FFTW can be downloaded from ...
+		To use FFTW in a C program, it must be installed on the compiler host system.  In order to use it with LTIB, it must be compiled with the LTIB cross compiler, and installed into the target rootfs.  The best (easiest) way to do this is simply install FFTW as a `package' into LTIB, as described in the manual !!!!.  A custom ..... created... installed as usual.
+		When compiling a C program that uses FFTW, the relevant library and include paths must be added.  In this project, a Makefile was used to automate the build process.
+	% subsection compiling_fftw_for_ltib (end)
+% section ltib_usage (end)
+
+
+% chapter development_environment (end)
