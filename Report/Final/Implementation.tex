@@ -11,7 +11,7 @@
 		\item Design a C program to pre-process speech data according to the required form described in Section~\ref{sec:the_hmm_based_model}.
 	\end{enumerate}
 
-	The overall system layout, shown in Figure~\ref{fig:hlsystem}, is comprised of two primary blocks -- L'Imperatrice and La Papessa (referred to from now on as ``The processor'' and ``The FPGA'' respectively).  
+	The overall system layout, shown in Figure~\ref{fig:hlsystem}, is comprised of two primary blocks -- L'Imperatrice and La Papessa (referred to as ``The processor'' and ``The FPGA'' respectively).  
 	The entire system is powered from a single supply connected to the processor board's battery connector, and the FPGA is powered through ribbon cable connecting the two boards.  This was done in order to minimise the amount of external circuitry needed, and to show that the two devices are able to work together fairly easily.
 
 	From the list above, the first task is implemented on the FPGA, and the second on the processor.  These two blocks will now be examined in greater detail.
@@ -35,11 +35,11 @@
 \label{sec:number_format}
 	% 16 bit numbers, scaling up and down
 	% How were these chosen?
-	Before beginning implementation of any part of the project, a number representation which would be appropriate for the FPGA had to be decided upon.  Firstly, it was recognised that using floating-point arithmetic on the FPGA would not be worth the effort, and therefore some form of fixed-point system was needed.  Further, the number magnitudes vary greatly between stages and parameters in the system.  In order to solve this problem, different scaling factors were used to being most of the parameters to a similar magnitude.  
+	Before beginning implementation of any part of the project, a number representation which would be appropriate for the FPGA had to be decided upon.  Firstly, it was recognised that using floating-point arithmetic on the FPGA would not be worth the effort, and therefore some form of fixed-point system was needed.  Further, the number magnitudes vary greatly between stages and parameters in the system.  In order to solve this problem, different scaling factors were used to bring most of the parameters to a similar magnitude.  
 
 	The inputs and outputs of the Gaussian Distance Pipe, the module that performs the core calculation, are all signed 16-bit fixed point numbers, with varying scaling factors.  In particular, the $k$ parameter was generally larger than $x$, $mean$, and $omega$, and thus was scaled down.  The scaling factors were decided primarily by analysing the HMM models, to determine the largest and smallest numbers used.
 
-	These decisions were influenced by \cite{melnikoff2003speech}, and the HTK, as they both use scaled 16-bit numbers to represent the parameters and scores.
+	These decisions were influenced by Melkinoff (\cite{melnikoff2003speech}), and the HTK, as they both use scaled 16-bit numbers to represent the parameters and scores.
 % section number_format (end)
 
 
@@ -55,7 +55,7 @@
 	The system on La Papessa performs these main tasks:
 	\begin{itemize}
 		\item Receives observation vectors from the processor.
-		\item Calculates Equation~\ref{eq:score_final} for every senone in the model, with the given observation.
+		\item Computes the score (Equation~\ref{eq:score_final}) of every senone in the model, with the given observation.
 		\item Normalises the senone scores.
 		\item Sends the scores back to the processor.
 	\end{itemize}
@@ -96,9 +96,9 @@
 			\label{fig:gdp_block}
 		\end{figure}
 
-		`\texttt{n\_senones}' and `\texttt{n\_components}' are both parameter inputs to the module, which determine the number of senones and the number of components per mean and variance in the model.  This allowed the design to be scaled down as size constraints became restrictive.
+		In this module, `\texttt{n\_senones}' and `\texttt{n\_components}' are both parameter inputs, which determine the number of senones and the number of components per mean and variance in the model.  This allowed the design to be scaled down as size constraints became restrictive.
 
-		The pipeline itself is a static object with not much control logic, and thus requires a controller which sequentially uses it to score each senone in the model.  This controller is a simple state machine of only two states (\texttt{IDLE} and \texttt{LOAD\_GDP}), which begins feeding the pipe when a `\texttt{new\_vector\_available}' input flag is asserted.  This module is shown in Figure~\ref{fig:gdp_ctrl_block}.  A `\texttt{last\_senone}' output flag is asserted when the GDP has finished processing the last senone.  When the controller is in the \texttt{LOAD\_GDP} state, it essentially loops through the senones in the model, extracting their parameters and sending them to the GDP.  
+		The pipeline itself is a static object with not much control logic, and thus requires a controller which sequentially uses it to score each senone in the model.  This controller is a simple state machine of only two states (\texttt{IDLE} and \texttt{LOAD\_GDP}), which begins feeding the pipe when a `\texttt{new\_vector\_available}' input flag is asserted.  This module is shown in Figure~\ref{fig:gdp_ctrl_block}.  A `\texttt{last\_senone}' output flag is asserted when the GDP produces the last senone score.  When the controller is in the \texttt{LOAD\_GDP} state, it essentially loops through the senones in the model, extracting their parameters and sending them to the GDP.  
 
 		In order to facilitate the extraction and manipulation of senone parameters, a SystemVerilog structure was created, shown in Listing~\ref{lst:senonestr} below. A SystemVerilog ROM module, connected to the controller, was populated with the senone parameters, stored in this structure.  Thus, when `\texttt{new\_vector\_available}' is asserted, the controller simply counts from 0 up to \texttt{n\_senones} (the number of senones in the model), and pulls the required parameters out of the ROM.
 
@@ -122,9 +122,14 @@ typedef struct packed {
 		\end{figure}
 	% subsection gaussian_distance_pipeline (end)
 
+	\subsection{Normalising Scores} % (fold)
+	\label{sub:normaliser}
+		The Speech Silicon architecture included a module which normalised the senones before they were used for decoding.  A very similar module is implemented here to perform the same normalisation.  The highest score is found while senones are being evaluated, and then this score is subtracted from all the final scores.  This causes the senone with the highest score to have a score of 0, which corresponds to a probablity of 1 (the scores are log probabilities, see Section \ref{sub:senone_scoring}).
+	% subsection normaliser (end)
+
 	\subsection{SRAM} % (fold)
 	\label{sub:onboard_sram}
-		In order for the normaliser to access the senone scores, they must be stored somewhere as they are processed through the GDP.  One option would be to store them on the FPGA itself, where they would be accessible by all the modules.  However, this is impractical due to the potential size of an HMM model, and thus the large amount of RAM that would be required.  A better alternative would be to use external SRAM with low latency that is made accessible to whichever modules need it.  In the future, this could also allow the full speech recognition decoder to be implemented on the FPGA, as it needs access to the normalised scores.
+		In order for the normaliser to access the senone scores, they must be stored somewhere as they are processed through the GDP.  One option would be to store them on the FPGA itself, where they would be accessible to all the modules.  However, this is impractical due to the potential size of an HMM model, and thus the large amount of RAM that would be required.  A better alternative would be to use external SRAM with low latency that is made accessible to whichever modules need it.
 
 		Revision C of La Papessa board includes an onboard SRAM chip, which has an 8 bit data bus and 21 bit address bus, and was completely untested before this work.  As with the UART module, an SRAM module was created primarily to interface the 8 bit data bus with the 16 bit number system used.  It's only operations are to write and read 16 bit values to the SRAM, and signal when it is ready or idle.  This is accomplished with the state machine shown in Figure~\ref{fig:sram_asm}.
 
@@ -142,14 +147,10 @@ typedef struct packed {
 		The primary method of communication between the FPGA and processor is a standard UART bus, running at 115200 baud.  The communications module on the FPGA is essentially comprised of standard UART receive/transmit modules and a module that is wrapped around them to provide a higher level of data abstraction.  Because numbers are all 16 bits long in this system, and UART words are normally 8 bits, one of the wrapper functions is to receive and transmit 16 bit numbers.  In addition, it is known beforehand that the FPGA should receive a certain number of bytes per observation vector.  This allows the UART module to wait until a 'packet' with that number of bytes has arrived, before signalling to the main controller that a new vector has arrived.  In this implementation, a buffer is simply filled up as new bytes arrive, and then is passed to the main controller when full.  However, it may happen that the UART module erroneously receives a byte, causing the buffer to be one byte fuller than it should be, and therefore causing the last byte of a new observation to be dropped.  In order to work around this, a `\texttt{new\_vector\_incoming}' flag is added, which will empty the buffer when asserted by the processor.  Another (possibly better way) of avoiding errors would be to automatically empty the buffer if new data is not received for a time-out period.
 
 		The Baudticker module generates clock signals for the transmit and receive modules.  The transmit module requires a signal at approximately 115200Hz, but the receive module requires a signal at 8 times that frequency.  The receiver oversamples the input \texttt{rx} signal at this higher frequency, which enables it to detect and ignore signal glitches.  % TODO: finish this
-	% subsection fpga_communications (end)
-
-	\subsection{Normalising and Sending Scores} % (fold)
-	\label{sub:normaliser}
-		The Speech Silicon architecture included a module which normalised the senones before they were used for decoding.  A very similar module is implemented here to perform the same normalisation.  The highest score is found while senones are being evaluated, and then this score is subtracted from all the final scores.  This causes the senone with the highest score to have a score of 0, which corresponds to a probablity of 1 (the scores are log probabilities, see Section \ref{sub:senone_scoring}).
 
 		The Sender module is fairly simple in its operation -- it loops through all the senone scores stored in external SRAM and sends them over UART to the processor.
-	% subsection normaliser (end)
+	% subsection fpga_communications (end)
+
 % section la_papessa_fpga (end)
 
 
@@ -207,7 +208,7 @@ stty.c_cflag &= ~CSTOPB;                      // Send 1 stop bit
 stty.c_cflag &= ~CRTSCTS;
 \end{lstlisting}
 
-		The GPIO is accessible in more than one way -- either through sysfs or via direct register access.  The kernel is configured to include the sysfs GPIO interface, which creates an entry under \texttt{/sys/class/gpio} that allows GPIO pins to be written and read as standard files.  Alternatively, the `Olinuxino' board project (which uses the same processor as L'Imperatrice) includes C code to directly write and read the GPIO registers as mapped memory\footnote{Accessible on the Olinuxino Github repository at \href{https://github.com/OLIMEX/OLINUXINO/}{https://github.com/OLIMEX/OLINUXINO/}}.  The project uses the second method, as it was straightforward to adapt the existing code for the purposes of the project.  In addition, direct memory access is far faster than the sysfs gpio interface, capable of frequencies up to 2MHz while the sysfs interface only manages about 200Hz.
+		The GPIO is accessible in more than one way -- either through sysfs or via direct register access.  The kernel is configured to include the sysfs GPIO interface, which creates an entry under \texttt{/sys/class/gpio} that allows GPIO pins to be written and read as standard files.  Alternatively, the `Olinuxino' board project (which uses the same processor as L'Imperatrice) includes C code to directly write and read the GPIO registers as mapped memory\footnote{Accessible on the Olinuxino Github repository at \href{https://github.com/OLIMEX/OLINUXINO/}{https://github.com/OLIMEX/OLINUXINO/}}.  The project uses the second method, as it was straightforward to adapt the existing code for the purposes of the project.  In addition, direct memory access is far faster than the sysfs gpio interface; in tests, it was capable of frequencies up to 2MHz while the sysfs interface only managed about 200Hz.
 
 	% subsection gpio_application_uart (end)
 

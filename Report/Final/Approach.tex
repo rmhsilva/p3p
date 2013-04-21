@@ -46,7 +46,7 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 	\label{sub:senone_scoring}
 		As described in previous sections, the FPGA is intended to be used for scoring every senone in the model, for every observation vector.  In this system the new vectors arrive once every 10ms, and there are about 7000 senones that must be evaluated.  The mathematical operations required to do this are now outlined. % !!TODO!! some kind of 'this is x calculations'?
 
-		If the observation vector at time $t$ is denoted as $\textbf{O}_t = {O_{t1}, O_{t2}, ..., O_{tN}}$, then the score of senone $j$ is $b_j(\textbf{O}_t)$ -- the probability of that senone producing $\textbf{O}_t$.  The output probability of each senone is an $N$-dimensional multivariate Normal distribution, represented by an $N$-element vector of means $\mu_j$ and standard deviations $\sigma_j$.  Usually an $N\times N$ covariance matrix  would be required, but due to the statistical nature of Mel Frequency Cepstral Coefficients, this matrix is diagonal, and thus can be represented with $N$ elements.  Thus the score is given by:
+		If the observation vector at time $t$ is denoted as $\textbf{O}_t = {O_{t1}, O_{t2}, ..., O_{tN}}$, then the score of senone $j$ is $b_j(\textbf{O}_t)$ -- the probability of that senone producing $\textbf{O}_t$.  The output probability of each senone is an $N$-dimensional multivariate Normal distribution, represented by $N$-element vectors of means $\mu_j$ and standard deviations $\sigma_j$.  Usually an $N\times N$ covariance matrix  would be required, but due to the statistical nature of Mel Frequency Cepstral Coefficients, this matrix is diagonal, and thus can be represented with $N$ elements.  Therefore the score is given by:
 		\meq{score1}{
 			b_j(\textbf{O}_t)
 			&= \mathcal{N}_N(\textbf{O}_t; \boldsymbol{\mu}_j,\boldsymbol{\sigma}_j^2) \\
@@ -71,7 +71,7 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 			K_j - \sum_{n=1}^N (O_{tn} - \mu_{jn})^2 \Omega_{jn}
 		}
 
-		Where
+		Where the precomputed values are:
 		\[ K_j = - \frac{N}{2} \ln(2\pi) - \sum_{n=1}^N \ln(\sigma_{jn}) \]
 		\[ \Omega_{jn} = \frac{1}{2\sigma_{jn}^2} \]
 
@@ -82,11 +82,11 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 \section{Hardware environment} % (fold)
 \label{sec:hardware_dev_env}
 	% Detail the compilation environment etc, which SD card does what...
-	As the Micro Arcana is still under active development, part of the project involved setting up and testing the two boards that the project used.
+	As the Micro Arcana is still under active development, part of the project involved setting up and testing the two boards that were used.
 
 	\subsection{L'Imperatrice} % (fold)
 	\label{sub:l_imperatrice_env}
-		The ARM-based L'Imperatrice board is still under active development, and several important features on it are very untested.  It is based on a Freescale iMX23 ARMv5 applications processor.  To be used for the project, the following items were required (in order of importance):
+		The ARM-based `L'Imperatrice' board is still under active development, and several important features on it are very untested.  It is based on a Freescale iMX23 ARMv5 applications processor.  To be used for the project, the following items were required (in order of importance):
 		\begin{itemize}
 			\item Native or cross compiler set-up
 			\item Application UART functionality
@@ -94,12 +94,12 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 		\end{itemize}
 
 		An Linux Target Image Builder (LTIB) \nomenclature{LTIB}{Linux Target Image Builder} environment, which is primarily used for setting up board support packages (BSP), was installed on an Ubuntu virtual machine.  It has been used to build and test various kernel configurations, and also includes full cross-compiler support for the board.  It essentially provides a platform on which software for L'Imperatrice may be developed and deployed.
-		In addition to LTIB, the ArchLinux build system (ABS) was investigated as a potential alternative to LTIB.  The primary advantage of the ABS is that only a small number of files need to be distributed, which, when run, will download and compile all dependencies of the build.  An ABS configuration exists for the Olinuxino, a Linux board also based on the Freescale iMX23, which may be tweaked to suit the L'Imperatrice.  However, due to lack of time and the relative ease of the LTIB set-up, this was not done.
+		In addition to LTIB, the ArchLinux build system (ABS) was investigated as a potential alternative to LTIB.  The primary advantage of the ABS is that only a small number of files need to be distributed, which, when run, will download and compile all dependencies of the build.  An ABS configuration exists for the Olinuxino, a Linux board also based on the Freescale iMX23, which may be tweaked to suit the L'Imperatrice.  However, due to lack of time and the relative ease of the LTIB set-up, this was not explored.
 	% subsection l_imperatrice_env (end)
 
 	\subsection{La Papessa} % (fold)
 	\label{sub:la_papessa_env}
-		The Xilinx FPGA-based La Papessa board is also actively being developed, and some of its features have not been tested.  In order to facilitate the development of code on the La Papessa board, several combinations of software environments were explored.  The FPGA is a Xilinx Spartan XC3S50AN, which is compatible with the Xilinx ISE Webpack design software package.  However, one drawback to the ISE Webpack is its lack of support for synthesis in SystemVerilog. Besides being syntactically more powerful, SystemVerilog is the HDL that is currently taught to all new undergraduates at the University of Southampton. Having some documentation of a proven way to use SystemVerilog with this board would improve its reception and usage. In addition, SystemVerilog has advantages over Verilog for verification and simulation, which will be used to improve the design.
+		The Xilinx FPGA-based `La Papessa' board is also actively being developed, and some of its features have not been tested.  In order to facilitate the development of code on the La Papessa board, several combinations of software environments were explored.  The FPGA is a Xilinx Spartan XC3S50AN, which is compatible with the Xilinx ISE Webpack design software package.  However, one drawback to the ISE Webpack is its lack of support for synthesis in SystemVerilog. Besides being syntactically more powerful, SystemVerilog is the HDL that is currently taught to all new undergraduates at the University of Southampton. Having some documentation of a proven way to use SystemVerilog with this board would improve its reception and usage. In addition, SystemVerilog has advantages over Verilog for verification and simulation, which will be used to improve the design.
 
 		Synplify Pro/Premier is an alternative HDL synthesis tool, which is compatible with the Xilinx software toolchain and also supports SystemVerilog. For this reason, and because the author is more familiar with the Synplify design flow, it was decided that Synplify Premier would be used for synthesis during the project.  The other design tasks (port mapping, programming file generation) are accomplished with ISE Webpack (See Appendix !!! for detailed description of this process).
 	% subsection la_papessa_env (end)

@@ -1,6 +1,6 @@
 %!TEX root = Main.tex
 % Conclusions: 800 words
-\chapter{Conclusions} % (fold)
+\chapter{Conclusions and Further Work} % (fold)
 \label{cha:conclusions_and_future_work}
 
 % Conclude....
@@ -8,30 +8,30 @@
 % Personal gains - learnt loads, got to be the first doing something large with micro arcana, 
 % Usefulness of result - someone interested in speech recognition, or 
 
-This report presented a proof of concept system for performing speech recognition related operations on embedded hardware.  The system was built on two boards from the Micro Arcana family of development boards, and performed speech pre-processing and Gaussian distance calculations.  A background of the relevant speech recognition theory was given, along with examples of various other techniques and approaches.  Descriptions and analyses of the completed design were presented, along with information on how it was tested.  In addition to the hardware based system, a multi-purpose software tool-kit was built that greatly helped during the design and testing stages of the project.
+This report presented a proof of concept system for carrying out speech recognition related operations on embedded hardware.  The system was built on two boards from the Micro Arcana family of development boards, and performed speech pre-processing and Gaussian distance calculations.  A background of the relevant speech recognition theory was given, along with evaluations of various other techniques and approaches.  Descriptions and analyses of the completed design were presented, along with information on how it was tested.  In addition to the hardware based system, a multi-purpose software tool-kit was built that greatly helped during the design and testing stages of the project.
 
 The principle goal was to design and implement part of an HMM based speech recognition system in embedded hardware, in order to evaluate and learn about such a system.  It was not intended to be used as a real recogniser, but rather to broaden the author's knowledge and experience, and provide a platform on which embedded speech recognition may be researched further.  The conclusions are given below.
 
 
 \section{Usefulness of Results} % (fold)
 \label{sec:usefulness}
-	Due to size limitations of the FPGA, it was not possible to use a complete speech model with the implemented system.  However, the intention was never to build something that was usable with such a model, but rather to attempt to judge the usefulness of an FPGA in this situation.  With the results achieved it was possible to estimate the relationship between the system speed and model size, and thus show that the FPGA was capable of processing the data faster than a traditional processor.
+	Due to size limitations of the FPGA, it was not possible to use a complete speech model with the implemented system.  However, the intention was never to build something that was usable with such a model, but rather to attempt to judge the usefulness of an FPGA in this situation.  With the results achieved it was possible to estimate the relationship between the system speed and model size, and thus show that the FPGA was capable of producing results faster than a traditional processor.
 
 	Furthermore, this project is a valuable example of how two of the Micro Arcana family may be connected and used in a practical setting.  Some of the problems encountered are certainly not unique to this design, and therefore the solutions presented may be helpful in other projects.
 
-	As a development platform, there is a large potential for further investigation into embedded speech recognition using the two systems built here.  Indeed, there are several different aspects of the design that may be expanded upon or improved, as described in the further work section.  This is not a failing of the current project -- speech recognition is such a large and complex area that only a small part of it could possibly be implemented in the time frame given.
+	As a development platform, there is potential for further investigation into embedded speech recognition using the two systems built here.  Indeed, there are several different aspects of the design that may be expanded upon or improved, as described in the further work section.  This is not a failing of the current project -- speech recognition is such a large and complex area that only a small part of it could possibly be implemented in the time frame set.
 % section usefulness (end)
 
 
 \section{Future Work} % (fold)
 \label{sec:future_work}
-	There are many possibilities for developing this project further -- either improving the system already built, or implementing other speech recognition tasks such as decoding.  With the system already built, there are a few areas that may be interesting to investigate.
+	There are many possibilities for developing this project further -- either by improving the system already built, or implementing other speech recognition tasks such as decoding.  With the system in its current state, there are a few areas that may be interesting to investigate.
 
 	Mel Frequency Cepstral Coefficients were computed using an existing library (LibMFCC) for the purposes of this project.  However, LibMFCC is extremely slow, and should definitely be optimised.  In addition, it would be very beneficial if the pre-processing generated the same MFCCs as those generated by the HTK.  This would require an in-depth analysis of the HTK system in order to determine the exact sequence of operations that are performed.
 
-	The communications method needs further work before it can be considered realistically usable.  A better system would need to be far faster, and possibly include features such as error-checking, hand-shaking, and control sequences.  Designing a better communications method between two of the Micro Arcana boards would be an interesting project, due to the size and speed constraints of the family.
+	Communications between the boards needs improvement before the system can be considered realistically usable.  Better communications would need to be far faster, and possibly include features such as error-checking, hand-shaking, and control sequences.  Designing a better communications method between two of the Micro Arcana boards would be an interesting project, due to the size and speed constraints of the family.
 
-	This project only implemented the first stages of a speech recognition, and did not at all focus on tasks such as decoding or language modelling.  However, it provides an environment where these systems may be implemented and used.  There is huge potential for further work that could focus on any one of these areas.
+	This project only implemented the first stages of a speech recognition engine, and did not at all focus on tasks such as decoding or language modelling.  However, it provides an environment where these systems may be implemented and used.  There is huge potential for further work that could focus on any one of these areas.
 % section future_work (end)
 
 
