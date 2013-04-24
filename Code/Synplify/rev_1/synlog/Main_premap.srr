@@ -1,0 +1,55 @@
+Synopsys Xilinx Technology Pre-mapping, Version maprc, Build 1081R, Built May 30 2012 15:29:16
+Copyright (C) 1994-2012, Synopsys, Inc. This software the associated documentation are confidential and proprietary to Synopsys, Inc. Your use or disclosure of this software subject to the terms and conditions of a written license agreement between you, or your company, and Synopsys, Inc.
+Product Version F-2012.03-SP2 
+
+Mapper Startup Complete (Time elapsed 0h:00m:00s; Memory used current: 91MB peak: 92MB)
+
+@L: H:\work\Part3\P3-Project\Code\Synplify\rev_1\Main_scck.rpt 
+Printing clock  summary report in "H:\work\Part3\P3-Project\Code\Synplify\rev_1\Main_scck.rpt" file 
+@N: MF248 |Running in 64-bit mode.
+@N: MF257 |Gated clock conversion enabled 
+@N: MF546 |Generated clock conversion enabled 
+
+Design Input Complete (Time elapsed 0h:00m:00s; Memory used current: 93MB peak: 94MB)
+
+
+Mapper Initialization Complete (Time elapsed 0h:00m:00s; Memory used current: 93MB peak: 94MB)
+
+
+Start loading timing files (Time elapsed 0h:00m:00s; Memory used current: 93MB peak: 94MB)
+
+
+Finished loading timing files (Time elapsed 0h:00m:00s; Memory used current: 94MB peak: 96MB)
+
+Reading Xilinx I/O pad type table from file <C:\Synopsys\fpga_F201203SP2\lib\xilinx\x_io_tbl.txt> 
+Reading Xilinx Rocket I/O parameter type table from file <C:\Synopsys\fpga_F201203SP2\lib\xilinx\gttype.txt> 
+@W: FX474 |User-specified initial value defined for some sequential elements which can prevent optimum synthesis results from being achieved. 
+@W: MT462 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":71:2:71:5|Net ram_access.svbl_105\.sram_we14 appears to be an unidentified clock source. Assuming default frequency. 
+@W: MT462 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":9:16:9:35|Net gdp_c.next_0_sqmuxa appears to be an unidentified clock source. Assuming default frequency. 
+
+
+Clock Summary
+**************
+
+Start             Requested     Requested     Clock        Clock              
+Clock             Frequency     Period        Type         Group              
+------------------------------------------------------------------------------
+System            1.0 MHz       1000.000      system       system_clkgroup    
+top_level|clk     50.0 MHz      20.000        inferred     Inferred_clkgroup_0
+==============================================================================
+
+@W: MT529 :"h:\work\part3\p3-project\code\synplify\modules\uart\baudgen.sv":21:0:21:8|Found inferred clock top_level|clk which controls 592 sequential elements including data_uart/ticker/baud_acc[16:0]. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
+
+syn_allowed_resources : blockrams=3,dsps=3  set on top level netlist top_level
+
+Finished Pre Mapping Phase. (Time elapsed 0h:00m:00s; Memory used current: 119MB peak: 122MB)
+
+@N: BN225 |Writing default property annotation file H:\work\Part3\P3-Project\Code\Synplify\rev_1\Main.sap.
+Pre-mapping successful!
+
+At Mapper Exit (Time elapsed 0h:00m:00s; Memory used current: 57MB peak: 122MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Tue Apr 23 14:04:03 2013
+
+###########################################################]

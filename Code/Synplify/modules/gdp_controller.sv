@@ -1,0 +1,137 @@
+// Uncomment the typedef for Modelsim compilation
+//typedef logic signed [15:0] num;
+
+module gdp_controller #(parameter n_components=5, n_senones=10)
+    (
+    input logic clk, reset,
+
+    input num x [n_components-1:0],
+    input logic new_vector_available, // flag. data on x is new and valid
+
+    output logic [7:0] senone_idx, // index of senone currently scoring
+    output num senone_score,
+    output logic score_ready, // flag. data on senone_score is valid
+    output logic last_senone, // flag. this is the final senone
+
+    output logic gdp_idle // High when done processing
+    );
+
+
+// Basic purpose of this module: update the probabilities of ALL senones, given a new observation vector
+// possible future extension - split this into two or more modules, ie have more than 1 GDP active.
+
+// Include the senone data file (contains senone_data struct too)
+//`include "all_s_data.sv";
+// Senone struct
+typedef struct packed {
+  num k;
+  num [n_components-1:0] omegas;
+  num [n_components-1:0] means;
+} senone_data;
+
+senone_data senone;
+
+// GDP connections
+logic first_calc, last_calc;
+num x_component, mean, omega, k;
+
+// Other internals
+num x_buf [n_components-1:0];
+logic [4:0] comp_index;
+logic [4:0] senone_index;             // Index of currently processed senone and component
+logic [4:0] senone_idx_buffer [4:0];  // The score arrives after the index has changed. Use shift
+
+// State machine setup
+typedef enum {IDLE, WAITNEW, LOADGDP} state_t;
+state_t state, next;
+
+
+always_ff@(posedge clk or posedge reset) begin : proc_main
+    if(reset) begin
+        state <= IDLE;
+        comp_index <= 'b0;
+        senone_index <= 'b0;
+        //senone_idx_buffer <= 'b0;
+    end
+    else begin
+        state <= next;
+        senone_idx_buffer <= {senone_index, senone_idx_buffer[4:1]};
+
+        // Do the counter logic
+        if (state == IDLE) begin
+          comp_index <= 0;
+          senone_index <= 0;
+        end
+        else if (state == LOADGDP) begin
+          if (comp_index == n_components-1) begin
+            comp_index <= 0;
+            if (senone_index == n_senones-1)
+              senone_index <= 0;
+            else senone_index <= senone_index + 1;
+          end
+          else comp_index <= comp_index + 1;
+        end
+
+        //if (state == LOADGDP) $display(all_s_data[senone_index].omegas[comp_index]);
+    end
+end : proc_main
+
+always_comb begin : proc_maincomb
+	// Defaults
+	last_calc = 0;
+	first_calc = 0;
+	k = 'b0;
+	omega = 'b0;
+	mean = 'b0;
+	x_component = 'b0;
+	next = IDLE;
+	gdp_idle = 0;
+	
+	senone_idx = senone_idx_buffer[0];
+	last_senone = (score_ready && (senone_idx == n_senones-1));
+	
+    case (state)
+        IDLE: begin
+            last_calc = 0;
+            first_calc = 0;
+            k = 0;
+            omega = 0;
+            mean = 0;
+            x_component = 0;
+            gdp_idle = 1'b1;
+            
+            next = (new_vector_available)? LOADGDP : IDLE;
+          end
+
+        LOADGDP: begin
+            // Various signals
+            first_calc = (comp_index==0)? 'b1 : 'b0;
+            last_calc  = (comp_index==n_components-1)? 'b1 : 'b0;
+
+            // Assign data
+			k     = senone.k;
+			omega = senone.omegas[comp_index];
+			mean  = senone.means[comp_index];
+            x_component = x_buf[comp_index];
+            
+            next = ((comp_index == n_components-1) && (senone_index == n_senones-1))? IDLE : LOADGDP;
+        end
+
+        default: next = state;
+    endcase
+end : proc_maincomb
+
+// Latch the x input data
+always_latch
+	if ((state===IDLE) && new_vector_available)
+		x_buf <= x;
+
+
+// Instantiate modules
+gdp gdpipe(.clk, .reset, .first_calc, .last_calc,
+          .x(x_component), .k, .omega, .mean, .ln_p(senone_score), .data_ready(score_ready));
+
+// Senone ROM
+s_data_rom #(.n_components(n_components)) data_source (.*);
+
+endmodule

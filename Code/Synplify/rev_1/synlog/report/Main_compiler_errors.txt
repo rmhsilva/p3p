@@ -1,0 +1,14 @@
+@E: CG919 :"H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv":2:28:2:30|Typedef num multiply defined in this scope.
+@E: CG919 :"H:\work\Part3\P3-Project\Code\Synplify\modules\max.sv":2:28:2:30|Typedef num multiply defined in this scope.
+@E: CG919 :"H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv":2:28:2:30|Typedef num multiply defined in this scope.
+@E: CG919 :"H:\work\Part3\P3-Project\Code\Synplify\modules\send.sv":2:28:2:30|Typedef num multiply defined in this scope.
+@E: CG919 :"H:\work\Part3\P3-Project\Code\Synplify\modules\sram.sv":2:28:2:30|Typedef num multiply defined in this scope.
+@E: CG919 :"H:\work\Part3\P3-Project\Code\Synplify\modules\top_level.sv":2:28:2:30|Typedef num multiply defined in this scope.
+@E: CG919 :"H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv":2:28:2:30|Typedef num multiply defined in this scope.
+@E: CG376 :"H:\work\Part3\P3-Project\Code\Synplify\modules\uart\baudgen.sv":22:11:22:11|Expecting variable name
+@E: CS187 :"H:\work\Part3\P3-Project\Code\Synplify\modules\uart\baudgen.sv":29:0:29:8|Expecting endmodule
+@E: CG376 :"H:\work\Part3\P3-Project\Code\Synplify\modules\uart\uart_rx.sv":78:14:78:14|Expecting variable name
+@E: CS187 :"H:\work\Part3\P3-Project\Code\Synplify\modules\uart\uart_rx.sv":88:0:88:8|Expecting endmodule
+@E: CG376 :"H:\work\Part3\P3-Project\Code\Synplify\modules\uart\uart_tx.sv":3:24:3:24|Expecting variable name
+@E: CG919 :"H:\work\Part3\P3-Project\Code\Synplify\modules\all_s_data.sv":2:28:2:30|Typedef num multiply defined in this scope.
+

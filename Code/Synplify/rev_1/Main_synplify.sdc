@@ -1,0 +1,1 @@
+#1000 define_clock {p:clk} -name {top_level|clk} -ref_rise {0.000000} -ref_fall {10.000000} -uncertainty {0.000000} -period {20.000000} -clockgroup {Inferred_clkgroup_0} -rise {0.000000} -fall {10.000000}

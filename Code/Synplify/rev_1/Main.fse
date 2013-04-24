@@ -1,0 +1,98 @@
+
+fsm_encoding {12930931} sequential
+
+fsm_state_encoding {12930931} IDLE {00}
+
+fsm_state_encoding {12930931} PROC {01}
+
+fsm_state_encoding {12930931} NORM {10}
+
+fsm_state_encoding {12930931} SEND {11}
+
+fsm_registers {12930931} {state[1]}  {state[0]} 
+
+fsm_encoding {16200206} onehot
+
+fsm_state_encoding {16200206} 0000 {000000000001}
+
+fsm_state_encoding {16200206} 0001 {000000000010}
+
+fsm_state_encoding {16200206} 0010 {000000000100}
+
+fsm_state_encoding {16200206} 0100 {000000001000}
+
+fsm_state_encoding {16200206} 1000 {000000010000}
+
+fsm_state_encoding {16200206} 1001 {000000100000}
+
+fsm_state_encoding {16200206} 1010 {000001000000}
+
+fsm_state_encoding {16200206} 1011 {000010000000}
+
+fsm_state_encoding {16200206} 1100 {000100000000}
+
+fsm_state_encoding {16200206} 1101 {001000000000}
+
+fsm_state_encoding {16200206} 1110 {010000000000}
+
+fsm_state_encoding {16200206} 1111 {100000000000}
+
+fsm_registers {16200206} {state[11]}  {state[10]}  {state[9]}  {state[8]}  {state[7]}  {state[6]}  {state[5]}  {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {15400405} onehot
+
+fsm_state_encoding {15400405} 0000 {0000000001}
+
+fsm_state_encoding {15400405} 0001 {0000000010}
+
+fsm_state_encoding {15400405} 1000 {0000000100}
+
+fsm_state_encoding {15400405} 1001 {0000001000}
+
+fsm_state_encoding {15400405} 1010 {0000010000}
+
+fsm_state_encoding {15400405} 1011 {0000100000}
+
+fsm_state_encoding {15400405} 1100 {0001000000}
+
+fsm_state_encoding {15400405} 1101 {0010000000}
+
+fsm_state_encoding {15400405} 1110 {0100000000}
+
+fsm_state_encoding {15400405} 1111 {1000000000}
+
+fsm_registers {15400405} {state[9]}  {state[8]}  {state[7]}  {state[6]}  {state[5]}  {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {7490494} sequential
+
+fsm_state_encoding {7490494} IDLE {0}
+
+fsm_state_encoding {7490494} LOADGDP {1}
+
+fsm_registers {7490494} {state[0]} 
+
+fsm_encoding {10300303} sequential
+
+fsm_state_encoding {10300303} IDLE {00}
+
+fsm_state_encoding {10300303} WAITING {01}
+
+fsm_state_encoding {10300303} READING {10}
+
+fsm_state_encoding {10300303} SENDING {11}
+
+fsm_registers {10300303} {state[1]}  {state[0]} 
+
+fsm_encoding {11320322} sequential
+
+fsm_state_encoding {11320322} IDLE {000}
+
+fsm_state_encoding {11320322} WRITE1 {001}
+
+fsm_state_encoding {11320322} WRITE2 {010}
+
+fsm_state_encoding {11320322} READ1 {011}
+
+fsm_state_encoding {11320322} READ2 {100}
+
+fsm_registers {11320322} {state[2]}  {state[1]}  {state[0]} 

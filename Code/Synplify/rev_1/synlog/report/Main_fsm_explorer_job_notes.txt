@@ -1,0 +1,47 @@
+@N: MF248 |Running in 64-bit mode.
+@N: MF257 |Gated clock conversion enabled 
+@N: MF546 |Generated clock conversion enabled 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\max.sv":12:0:12:8|Removing sequential instance maximiser.max_done of view:PrimLib.dffe(prim) in hierarchy view:work.top_level(verilog) because there are no references to its outputs 
+@N: FX493 |Applying initial value "00" on instance norm.state[1:0] 
+@N: FX404 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":51:20:51:73|Found addmux in view:work.gdp_controller_4s_3s(verilog) inst gdpipe.proc_main\.acc_sum_2[31:0] from gdpipe.un6_acc_sum[31:0] 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_0_[1] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_1_[1] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_2_[1] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_3_[1] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_0_[13] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_1_[13] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_2_[13] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_3_[13] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_0_[14] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_1_[14] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_2_[14] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_3_[14] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_0_[15] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_1_[15] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_2_[15] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing sequential instance gdpipe.k_r_3_[15] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_4s_3s(verilog) because there are no references to its outputs 
+@N: FX404 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":70:2:70:5|Found addmux in view:work.sram(verilog) inst sram_addr[20:0] from un1_address[20:0] 
+@N: BN362 :"h:\work\part3\p3-project\code\synplify\modules\uart\uart_rx.sv":90:0:90:8|Removing sequential instance data_uart.deserialiser.gap_cnt[4:0] of view:PrimLib.scounter(prim) in hierarchy view:work.top_level(verilog) because there are no references to its outputs 
+@N: FA113 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":50:22:50:45|Pipelining module proc_main\.svbl_69\.un1_scale_out[31:0]
+@N: MF169 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Register scale_out[21:0] pushed in.
+@N: MF169 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Register square_out[21:0] pushed in.
+@N: MF169 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Register omega_r\[1\] pushed in.
+@N: MF169 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Register omega_r\[0\] pushed in.
+@N: MF169 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Register acc_sum[31:0] pushed in.
+@N: MF169 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Register sub_out[31:0] pushed in.
+@N: MF169 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Register first_calc_r[2:0] pushed in.
+@N: MF169 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Register result[14:0] pushed in.
+@N: MF169 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Register result[31] pushed in.
+@N: MF169 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Register k_r\[3\] pushed in.
+@N: FX271 :|Instance "gdp_c.gdpipe.square_out_pipe_39" with 20 loads replicated 2 times to improve timing 
+@N: FX271 :|Instance "gdp_c.gdpipe.square_out_pipe_40" with 14 loads replicated 2 times to improve timing 
+@N: FX271 :|Instance "gdp_c.gdpipe.square_out_pipe_41" with 13 loads replicated 1 times to improve timing 
+@N: FX271 :|Instance "gdp_c.gdpipe.square_out_pipe_38" with 19 loads replicated 2 times to improve timing 
+@N: FX271 :|Instance "gdp_c.gdpipe.square_out_pipe_42" with 14 loads replicated 1 times to improve timing 
+@N: FX271 :|Instance "gdp_c.gdpipe.square_out_pipe_43" with 20 loads replicated 2 times to improve timing 
+@N: FX271 :|Instance "gdp_c.gdpipe.square_out_pipe_44" with 14 loads replicated 1 times to improve timing 
+@N: FX271 :|Instance "gdp_c.gdpipe.square_out_pipe_45" with 13 loads replicated 2 times to improve timing 
+@N: FX271 :|Instance "gdp_c.gdpipe.square_out_pipe_46" with 14 loads replicated 1 times to improve timing 
+@N: FX271 :|Instance "gdp_c.gdpipe.square_out_pipe_47" with 20 loads replicated 2 times to improve timing 
+@N: MO163 |Limiting the number of iterations in NLVOptIsland
+@N: FX164 |The option to pack flops in the IOB has not been specified 

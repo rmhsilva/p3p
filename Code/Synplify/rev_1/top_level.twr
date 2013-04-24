@@ -1,0 +1,500 @@
+--------------------------------------------------------------------------------
+Release 14.1 Trace  (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx\14.1\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
+-n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf
+-ucf synplicity.ucf
+
+Design file:              top_level.ncd
+Physical constraint file: top_level.pcf
+Device,package,speed:     xc3s50an,tqg144,-4 (PRODUCTION 1.42 2012-04-23)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+INFO:Timing:3390 - This architecture does not support a default System Jitter 
+   value, please add SYSTEM_JITTER constraint to the UCF to modify the Clock 
+   Uncertainty calculation.
+INFO:Timing:3389 - This architecture does not support 'Discrete Jitter' and 
+   'Phase Error' calculations, these terms will be zero in the Clock 
+   Uncertainty calculation.  Please make appropriate modification to 
+   SYSTEM_JITTER to account for the unsupported Discrete Jitter and Phase 
+   Error.
+
+================================================================================
+Timing constraint: TS_clk = PERIOD TIMEGRP "clk" 20 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 30913 paths analyzed, 1593 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is  11.042ns.
+--------------------------------------------------------------------------------
+
+Paths for end point gdp_c/gdpipe/acc_sum_pipe_51 (SLICE_X15Y7.CIN), 560 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     8.958ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/scale_out_pipe_27 (FF)
+  Destination:          gdp_c/gdpipe/acc_sum_pipe_51 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      11.015ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.027ns (0.297 - 0.324)
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/scale_out_pipe_27 to gdp_c/gdpipe/acc_sum_pipe_51
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X12Y9.YQ       Tcko                  0.676   gdp_c/gdpipe/omega_r_1_f[3]
+                                                       gdp_c/gdpipe/scale_out_pipe_27
+    MULT18X18_X0Y1.B2    net (fanout=2)        1.174   gdp_c/gdpipe/omega_r_1_f[2]
+    MULT18X18_X0Y1.P24   Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+    SLICE_X15Y6.F1       net (fanout=5)        2.154   gdp_c/gdpipe/un1_scale_out_1[24]
+    SLICE_X15Y6.COUT     Topcyf                1.195   gdp_c/gdpipe/scale_outf[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_axb_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9
+    SLICE_X15Y7.CIN      net (fanout=1)        0.000   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9/O
+    SLICE_X15Y7.CLK      Tcinck                0.943   gdp_c/gdpipe/scale_outf[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_10
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_s_11
+                                                       gdp_c/gdpipe/acc_sum_pipe_51
+    -------------------------------------------------  ---------------------------
+    Total                                     11.015ns (7.687ns logic, 3.328ns route)
+                                                       (69.8% logic, 30.2% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     9.099ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/scale_out_pipe_42 (FF)
+  Destination:          gdp_c/gdpipe/acc_sum_pipe_51 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      10.860ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.041ns (0.491 - 0.532)
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/scale_out_pipe_42 to gdp_c/gdpipe/acc_sum_pipe_51
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X16Y13.XQ      Tcko                  0.631   gdp_c/gdpipe/square_outf[11]
+                                                       gdp_c/gdpipe/scale_out_pipe_42
+    MULT18X18_X0Y1.A11   net (fanout=1)        1.064   gdp_c/gdpipe/square_outf[11]
+    MULT18X18_X0Y1.P24   Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+    SLICE_X15Y6.F1       net (fanout=5)        2.154   gdp_c/gdpipe/un1_scale_out_1[24]
+    SLICE_X15Y6.COUT     Topcyf                1.195   gdp_c/gdpipe/scale_outf[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_axb_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9
+    SLICE_X15Y7.CIN      net (fanout=1)        0.000   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9/O
+    SLICE_X15Y7.CLK      Tcinck                0.943   gdp_c/gdpipe/scale_outf[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_10
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_s_11
+                                                       gdp_c/gdpipe/acc_sum_pipe_51
+    -------------------------------------------------  ---------------------------
+    Total                                     10.860ns (7.642ns logic, 3.218ns route)
+                                                       (70.4% logic, 29.6% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     9.196ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/scale_out_pipe_32 (FF)
+  Destination:          gdp_c/gdpipe/acc_sum_pipe_51 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      10.787ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.017ns (0.491 - 0.508)
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/scale_out_pipe_32 to gdp_c/gdpipe/acc_sum_pipe_51
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X16Y15.XQ      Tcko                  0.631   gdp_c/gdpipe/square_outf[1]
+                                                       gdp_c/gdpipe/scale_out_pipe_32
+    MULT18X18_X0Y1.A1    net (fanout=1)        0.991   gdp_c/gdpipe/square_outf[1]
+    MULT18X18_X0Y1.P24   Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+    SLICE_X15Y6.F1       net (fanout=5)        2.154   gdp_c/gdpipe/un1_scale_out_1[24]
+    SLICE_X15Y6.COUT     Topcyf                1.195   gdp_c/gdpipe/scale_outf[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_axb_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9
+    SLICE_X15Y7.CIN      net (fanout=1)        0.000   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9/O
+    SLICE_X15Y7.CLK      Tcinck                0.943   gdp_c/gdpipe/scale_outf[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_10
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_s_11
+                                                       gdp_c/gdpipe/acc_sum_pipe_51
+    -------------------------------------------------  ---------------------------
+    Total                                     10.787ns (7.642ns logic, 3.145ns route)
+                                                       (70.8% logic, 29.2% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point gdp_c/gdpipe/acc_sum_pipe_49 (SLICE_X15Y6.F1), 46 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     9.164ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/scale_out_pipe_27 (FF)
+  Destination:          gdp_c/gdpipe/acc_sum_pipe_49 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      10.809ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.027ns (0.297 - 0.324)
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/scale_out_pipe_27 to gdp_c/gdpipe/acc_sum_pipe_49
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X12Y9.YQ       Tcko                  0.676   gdp_c/gdpipe/omega_r_1_f[3]
+                                                       gdp_c/gdpipe/scale_out_pipe_27
+    MULT18X18_X0Y1.B2    net (fanout=2)        1.174   gdp_c/gdpipe/omega_r_1_f[2]
+    MULT18X18_X0Y1.P24   Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+    SLICE_X15Y6.F1       net (fanout=5)        2.154   gdp_c/gdpipe/un1_scale_out_1[24]
+    SLICE_X15Y6.CLK      Tfck                  1.932   gdp_c/gdpipe/scale_outf[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_axb_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_s_9
+                                                       gdp_c/gdpipe/acc_sum_pipe_49
+    -------------------------------------------------  ---------------------------
+    Total                                     10.809ns (7.481ns logic, 3.328ns route)
+                                                       (69.2% logic, 30.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     9.305ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/scale_out_pipe_42 (FF)
+  Destination:          gdp_c/gdpipe/acc_sum_pipe_49 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      10.654ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.041ns (0.491 - 0.532)
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/scale_out_pipe_42 to gdp_c/gdpipe/acc_sum_pipe_49
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X16Y13.XQ      Tcko                  0.631   gdp_c/gdpipe/square_outf[11]
+                                                       gdp_c/gdpipe/scale_out_pipe_42
+    MULT18X18_X0Y1.A11   net (fanout=1)        1.064   gdp_c/gdpipe/square_outf[11]
+    MULT18X18_X0Y1.P24   Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+    SLICE_X15Y6.F1       net (fanout=5)        2.154   gdp_c/gdpipe/un1_scale_out_1[24]
+    SLICE_X15Y6.CLK      Tfck                  1.932   gdp_c/gdpipe/scale_outf[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_axb_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_s_9
+                                                       gdp_c/gdpipe/acc_sum_pipe_49
+    -------------------------------------------------  ---------------------------
+    Total                                     10.654ns (7.436ns logic, 3.218ns route)
+                                                       (69.8% logic, 30.2% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     9.402ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/scale_out_pipe_32 (FF)
+  Destination:          gdp_c/gdpipe/acc_sum_pipe_49 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      10.581ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.017ns (0.491 - 0.508)
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/scale_out_pipe_32 to gdp_c/gdpipe/acc_sum_pipe_49
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X16Y15.XQ      Tcko                  0.631   gdp_c/gdpipe/square_outf[1]
+                                                       gdp_c/gdpipe/scale_out_pipe_32
+    MULT18X18_X0Y1.A1    net (fanout=1)        0.991   gdp_c/gdpipe/square_outf[1]
+    MULT18X18_X0Y1.P24   Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+    SLICE_X15Y6.F1       net (fanout=5)        2.154   gdp_c/gdpipe/un1_scale_out_1[24]
+    SLICE_X15Y6.CLK      Tfck                  1.932   gdp_c/gdpipe/scale_outf[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_axb_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_s_9
+                                                       gdp_c/gdpipe/acc_sum_pipe_49
+    -------------------------------------------------  ---------------------------
+    Total                                     10.581ns (7.436ns logic, 3.145ns route)
+                                                       (70.3% logic, 29.7% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point gdp_c/gdpipe/acc_sum_pipe_50 (SLICE_X15Y7.CIN), 560 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     9.218ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/scale_out_pipe_27 (FF)
+  Destination:          gdp_c/gdpipe/acc_sum_pipe_50 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      10.755ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.027ns (0.297 - 0.324)
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/scale_out_pipe_27 to gdp_c/gdpipe/acc_sum_pipe_50
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X12Y9.YQ       Tcko                  0.676   gdp_c/gdpipe/omega_r_1_f[3]
+                                                       gdp_c/gdpipe/scale_out_pipe_27
+    MULT18X18_X0Y1.B2    net (fanout=2)        1.174   gdp_c/gdpipe/omega_r_1_f[2]
+    MULT18X18_X0Y1.P24   Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+    SLICE_X15Y6.F1       net (fanout=5)        2.154   gdp_c/gdpipe/un1_scale_out_1[24]
+    SLICE_X15Y6.COUT     Topcyf                1.195   gdp_c/gdpipe/scale_outf[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_axb_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9
+    SLICE_X15Y7.CIN      net (fanout=1)        0.000   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9/O
+    SLICE_X15Y7.CLK      Tcinck                0.683   gdp_c/gdpipe/scale_outf[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_s_10
+                                                       gdp_c/gdpipe/acc_sum_pipe_50
+    -------------------------------------------------  ---------------------------
+    Total                                     10.755ns (7.427ns logic, 3.328ns route)
+                                                       (69.1% logic, 30.9% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     9.359ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/scale_out_pipe_42 (FF)
+  Destination:          gdp_c/gdpipe/acc_sum_pipe_50 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      10.600ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.041ns (0.491 - 0.532)
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/scale_out_pipe_42 to gdp_c/gdpipe/acc_sum_pipe_50
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X16Y13.XQ      Tcko                  0.631   gdp_c/gdpipe/square_outf[11]
+                                                       gdp_c/gdpipe/scale_out_pipe_42
+    MULT18X18_X0Y1.A11   net (fanout=1)        1.064   gdp_c/gdpipe/square_outf[11]
+    MULT18X18_X0Y1.P24   Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+    SLICE_X15Y6.F1       net (fanout=5)        2.154   gdp_c/gdpipe/un1_scale_out_1[24]
+    SLICE_X15Y6.COUT     Topcyf                1.195   gdp_c/gdpipe/scale_outf[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_axb_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9
+    SLICE_X15Y7.CIN      net (fanout=1)        0.000   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9/O
+    SLICE_X15Y7.CLK      Tcinck                0.683   gdp_c/gdpipe/scale_outf[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_s_10
+                                                       gdp_c/gdpipe/acc_sum_pipe_50
+    -------------------------------------------------  ---------------------------
+    Total                                     10.600ns (7.382ns logic, 3.218ns route)
+                                                       (69.6% logic, 30.4% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     9.456ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/scale_out_pipe_32 (FF)
+  Destination:          gdp_c/gdpipe/acc_sum_pipe_50 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      10.527ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.017ns (0.491 - 0.508)
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/scale_out_pipe_32 to gdp_c/gdpipe/acc_sum_pipe_50
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X16Y15.XQ      Tcko                  0.631   gdp_c/gdpipe/square_outf[1]
+                                                       gdp_c/gdpipe/scale_out_pipe_32
+    MULT18X18_X0Y1.A1    net (fanout=1)        0.991   gdp_c/gdpipe/square_outf[1]
+    MULT18X18_X0Y1.P24   Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+    SLICE_X15Y6.F1       net (fanout=5)        2.154   gdp_c/gdpipe/un1_scale_out_1[24]
+    SLICE_X15Y6.COUT     Topcyf                1.195   gdp_c/gdpipe/scale_outf[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_axb_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9
+    SLICE_X15Y7.CIN      net (fanout=1)        0.000   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9/O
+    SLICE_X15Y7.CLK      Tcinck                0.683   gdp_c/gdpipe/scale_outf[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_s_10
+                                                       gdp_c/gdpipe/acc_sum_pipe_50
+    -------------------------------------------------  ---------------------------
+    Total                                     10.527ns (7.382ns logic, 3.145ns route)
+                                                       (70.1% logic, 29.9% route)
+
+--------------------------------------------------------------------------------
+
+Hold Paths: TS_clk = PERIOD TIMEGRP "clk" 20 ns HIGH 50%;
+--------------------------------------------------------------------------------
+
+Paths for end point data_uart/tx_buffer_1_[5] (SLICE_X3Y5.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.847ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               sender/tx_value[13] (FF)
+  Destination:          data_uart/tx_buffer_1_[5] (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.951ns (Levels of Logic = 0)
+  Clock Path Skew:      0.104ns (0.402 - 0.298)
+  Source Clock:         clk_c rising at 20.000ns
+  Destination Clock:    clk_c rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: sender/tx_value[13] to data_uart/tx_buffer_1_[5]
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y5.XQ        Tcko                  0.505   tx_buffer_0_[13]
+                                                       sender/tx_value[13]
+    SLICE_X3Y5.BX        net (fanout=1)        0.357   tx_buffer_0_[13]
+    SLICE_X3Y5.CLK       Tckdi       (-Th)    -0.089   data_uart/tx_buffer_1_[5]
+                                                       data_uart/tx_buffer_1_[5]
+    -------------------------------------------------  ---------------------------
+    Total                                      0.951ns (0.594ns logic, 0.357ns route)
+                                                       (62.5% logic, 37.5% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point data_uart/serialiser/tx_data_reg[3] (SLICE_X2Y2.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.858ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               data_uart/tx_byte[3] (FF)
+  Destination:          data_uart/serialiser/tx_data_reg[3] (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.954ns (Levels of Logic = 0)
+  Clock Path Skew:      0.096ns (0.416 - 0.320)
+  Source Clock:         clk_c rising at 20.000ns
+  Destination Clock:    clk_c rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: data_uart/tx_byte[3] to data_uart/serialiser/tx_data_reg[3]
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X1Y2.XQ        Tcko                  0.473   data_uart/tx_byte[3]
+                                                       data_uart/tx_byte[3]
+    SLICE_X2Y2.BX        net (fanout=1)        0.343   data_uart/tx_byte[3]
+    SLICE_X2Y2.CLK       Tckdi       (-Th)    -0.138   data_uart/serialiser/tx_data_reg[3]
+                                                       data_uart/serialiser/tx_data_reg[3]
+    -------------------------------------------------  ---------------------------
+    Total                                      0.954ns (0.611ns logic, 0.343ns route)
+                                                       (64.0% logic, 36.0% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point data_uart/tx_buffer_1_[1] (SLICE_X5Y0.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.892ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               sender/tx_value[9] (FF)
+  Destination:          data_uart/tx_buffer_1_[1] (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.911ns (Levels of Logic = 0)
+  Clock Path Skew:      0.019ns (0.098 - 0.079)
+  Source Clock:         clk_c rising at 20.000ns
+  Destination Clock:    clk_c rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: sender/tx_value[9] to data_uart/tx_buffer_1_[1]
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X5Y2.XQ        Tcko                  0.473   tx_buffer_0_[9]
+                                                       sender/tx_value[9]
+    SLICE_X5Y0.BX        net (fanout=1)        0.349   tx_buffer_0_[9]
+    SLICE_X5Y0.CLK       Tckdi       (-Th)    -0.089   data_uart/tx_buffer_1_[1]
+                                                       data_uart/tx_buffer_1_[1]
+    -------------------------------------------------  ---------------------------
+    Total                                      0.911ns (0.562ns logic, 0.349ns route)
+                                                       (61.7% logic, 38.3% route)
+
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: TS_clk = PERIOD TIMEGRP "clk" 20 ns HIGH 50%;
+--------------------------------------------------------------------------------
+Slack: 16.796ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 20.000ns
+  Low pulse: 10.000ns
+  Low pulse limit: 1.602ns (Trpw)
+  Physical resource: gdp_c/sub_out_pipe_5/SR
+  Logical resource: gdp_c/sub_out_pipe_5/SR
+  Location pin: SLICE_X16Y25.SR
+  Clock network: reset_c
+--------------------------------------------------------------------------------
+Slack: 16.796ns (period - (min high pulse limit / (high pulse / period)))
+  Period: 20.000ns
+  High pulse: 10.000ns
+  High pulse limit: 1.602ns (Trpw)
+  Physical resource: gdp_c/sub_out_pipe_5/SR
+  Logical resource: gdp_c/sub_out_pipe_5/SR
+  Location pin: SLICE_X16Y25.SR
+  Clock network: reset_c
+--------------------------------------------------------------------------------
+Slack: 16.796ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 20.000ns
+  Low pulse: 10.000ns
+  Low pulse limit: 1.602ns (Trpw)
+  Physical resource: gdp_c/sub_out_pipe_3/SR
+  Logical resource: gdp_c/sub_out_pipe_3/SR
+  Location pin: SLICE_X18Y27.SR
+  Clock network: reset_c
+--------------------------------------------------------------------------------
+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |   11.042|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+
+Constraints cover 30913 paths, 0 nets, and 3158 connections
+
+Design statistics:
+   Minimum period:  11.042ns{1}   (Maximum frequency:  90.563MHz)
+
+
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Tue Apr 23 14:28:10 2013 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 187 MB
+
+
+

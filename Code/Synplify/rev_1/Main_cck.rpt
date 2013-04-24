@@ -1,0 +1,116 @@
+# Synopsys Constraint Checker, version maprc, Build 1081R, built May 30 2012
+# Copyright (C) 1994-2012, Synopsys, Inc. This software the associated documentation are confidential and proprietary to Synopsys, Inc. Your use or disclosure of this software subject to the terms and conditions of a written license agreement between you, or your company, and Synopsys, Inc.
+
+# Written on Tue Mar 12 13:32:44 2013
+
+
+##### DESIGN INFO #######################################################
+
+Top View:                "top_level"
+Constraint File(s):      (none)
+
+
+
+
+##### SUMMARY ############################################################
+
+Found 0 issues in 0 out of 0 constraints
+
+
+##### DETAILS ############################################################
+
+
+
+Clock Relationships
+*******************
+
+Starting                        Ending                          |     rise to rise     |     fall to fall     |     rise to fall     |     fall to rise                     
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+System                          System                          |     1.586            |     No paths         |     1.586            |     No paths                         
+System                          top_level|clk                   |     15.694           |     No paths         |     No paths         |     No paths                         
+top_level|clk                   System                          |     15.694           |     No paths         |     15.694           |     No paths                         
+top_level|clk                   top_level|clk                   |     15.694           |     No paths         |     No paths         |     No paths                         
+top_level|clk                   sram|sram_ce_inferred_clock     |     Diff grp         |     No paths         |     Diff grp         |     No paths                         
+top_level|clk                   sram|N_388_i_inferred_clock     |     Diff grp         |     No paths         |     Diff grp         |     No paths                         
+sram|N_388_i_inferred_clock     top_level|clk                   |     No paths         |     No paths         |     No paths         |     Diff grp                         
+sram|N_388_i_inferred_clock     sram|N_388_i_inferred_clock     |     No paths         |     1.586            |     No paths         |     0.793                            
+===========================================================================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+Unconstrained Start/End Points
+******************************
+
+p:duart_rx_in
+p:duart_rx_out
+p:duart_tx_in
+p:duart_tx_out
+p:new_vector_incoming
+p:reset
+p:sram_addr[0]
+p:sram_addr[1]
+p:sram_addr[2]
+p:sram_addr[3]
+p:sram_addr[4]
+p:sram_addr[5]
+p:sram_addr[6]
+p:sram_addr[7]
+p:sram_addr[8]
+p:sram_addr[9]
+p:sram_addr[10]
+p:sram_addr[11]
+p:sram_addr[12]
+p:sram_addr[13]
+p:sram_addr[14]
+p:sram_addr[15]
+p:sram_addr[16]
+p:sram_addr[17]
+p:sram_addr[18]
+p:sram_addr[19]
+p:sram_addr[20]
+p:sram_data[0] (bidir end point)
+p:sram_data[0] (bidir start point)
+p:sram_data[1] (bidir end point)
+p:sram_data[1] (bidir start point)
+p:sram_data[2] (bidir end point)
+p:sram_data[2] (bidir start point)
+p:sram_data[3] (bidir end point)
+p:sram_data[3] (bidir start point)
+p:sram_data[4] (bidir end point)
+p:sram_data[4] (bidir start point)
+p:sram_data[5] (bidir end point)
+p:sram_data[5] (bidir start point)
+p:sram_data[6] (bidir end point)
+p:sram_data[6] (bidir start point)
+p:sram_data[7] (bidir end point)
+p:sram_data[7] (bidir start point)
+p:sram_oe
+p:status_led
+p:uart_rx
+p:uart_tx
+
+
+Inapplicable constraints
+************************
+
+(none)
+
+
+Applicable constraints with issues
+**********************************
+
+(none)
+
+
+Constraints with matching wildcard expressions
+**********************************************
+
+(none)
+
+
+Library Report
+**************
+
+
+# End of Constraint Checker Report

@@ -1,0 +1,210 @@
+
+
+##### START OF TIMING REPORT #####[
+# Timing Report written on Tue Apr 23 14:04:14 2013
+#
+
+
+Top view:               top_level
+Requested Frequency:    50.0 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+
+
+
+Performance Summary 
+*******************
+
+
+Worst slack in design: 0.437
+
+                   Requested     Estimated     Requested     Estimated               Clock        Clock              
+Starting Clock     Frequency     Frequency     Period        Period        Slack     Type         Group              
+---------------------------------------------------------------------------------------------------------------------
+top_level|clk      50.0 MHz      98.3 MHz      20.000        10.174        9.826     inferred     Inferred_clkgroup_0
+System             50.0 MHz      52.4 MHz      20.000        19.078        0.922     system       system_clkgroup    
+=====================================================================================================================
+
+
+
+Clock Relationships
+*******************
+
+Clocks                        |    rise  to  rise   |    fall  to  fall   |    rise  to  fall   |    fall  to  rise 
+--------------------------------------------------------------------------------------------------------------------
+Starting       Ending         |  constraint  slack  |  constraint  slack  |  constraint  slack  |  constraint  slack
+--------------------------------------------------------------------------------------------------------------------
+System         top_level|clk  |  0.000       0.922  |  No paths    -      |  No paths    -      |  0.000       1.979
+top_level|clk  System         |  0.000       0.797  |  No paths    -      |  0.000       0.859  |  No paths    -    
+top_level|clk  top_level|clk  |  0.000       0.437  |  No paths    -      |  No paths    -      |  No paths    -    
+====================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+Interface Information 
+*********************
+
+No IO constraint found
+
+
+
+====================================
+Detailed Report for Clock: top_level|clk
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                                      Starting                                              Arrival          
+Instance                              Reference         Type     Pin     Net                Time        Slack
+                                      Clock                                                                  
+-------------------------------------------------------------------------------------------------------------
+data_uart.deserialiser.rx_bit_inv     top_level|clk     FDE      Q       rx_bit_inv         0.504       0.716
+data_uart.deserialiser.state[0]       top_level|clk     FDPE     Q       state[0]           0.504       0.786
+gdp_c.gdpipe.data_ready_278           top_level|clk     FDC      Q       data_ready_278     0.504       1.072
+gdp_c.gdpipe.k_r_3__286               top_level|clk     FDC      Q       k_r_3__286         0.504       1.072
+gdp_c.gdpipe.omega_r_0_[0]            top_level|clk     FDC      Q       omega_r_0_[0]      0.504       1.072
+gdp_c.gdpipe.omega_r_0_[1]            top_level|clk     FDC      Q       omega_r_0_[1]      0.504       1.072
+gdp_c.gdpipe.omega_r_0_[2]            top_level|clk     FDC      Q       omega_r_0_[2]      0.504       1.072
+gdp_c.gdpipe.omega_r_0_[3]            top_level|clk     FDC      Q       omega_r_0_[3]      0.504       1.072
+gdp_c.gdpipe.omega_r_0_[4]            top_level|clk     FDC      Q       omega_r_0_[4]      0.504       1.072
+gdp_c.gdpipe.omega_r_0_[5]            top_level|clk     FDC      Q       omega_r_0_[5]      0.504       1.072
+=============================================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                                        Starting                                           Required          
+Instance                                Reference         Type      Pin     Net            Time         Slack
+                                        Clock                                                                
+-------------------------------------------------------------------------------------------------------------
+data_uart.deserialiser.rx_available     top_level|clk     FDR       R       rx_bit_inv     0.718        0.437
+data_uart.deserialiser.os_count[0]      top_level|clk     FDRE      R       state[0]       0.718        0.486
+data_uart.deserialiser.os_count[1]      top_level|clk     FDRE      R       state[0]       0.718        0.486
+data_uart.deserialiser.os_count[2]      top_level|clk     FDRE      R       state[0]       0.718        0.486
+data_uart.deserialiser.os_count[3]      top_level|clk     FDRE      R       state[0]       0.718        0.486
+ram_access.data_out[8]                  top_level|clk     LDE_1     GE      state[2]       0.421        0.797
+ram_access.data_out[9]                  top_level|clk     LDE_1     GE      state[2]       0.421        0.797
+ram_access.data_out[10]                 top_level|clk     LDE_1     GE      state[2]       0.421        0.797
+ram_access.data_out[11]                 top_level|clk     LDE_1     GE      state[2]       0.421        0.797
+ram_access.data_out[12]                 top_level|clk     LDE_1     GE      state[2]       0.421        0.797
+=============================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+    Propagation time:                        1.155
+    + Clock delay at starting point:         0.000 (ideal)
+    - Requested Period:                      0.000
+    - Hold time:                             0.718
+    - Clock delay at ending point:           0.000 (ideal)
+    = Slack (critical) :                     0.437
+
+    Number of logic level(s):                0
+    Starting point:                          data_uart.deserialiser.rx_bit_inv / Q
+    Ending point:                            data_uart.deserialiser.rx_available / R
+    The start point is clocked by            top_level|clk [rising] on pin C
+    The end   point is clocked by            top_level|clk [rising] on pin C
+
+Instance / Net                                   Pin      Pin               Arrival     No. of    
+Name                                    Type     Name     Dir     Delay     Time        Fan Out(s)
+--------------------------------------------------------------------------------------------------
+data_uart.deserialiser.rx_bit_inv       FDE      Q        Out     0.504     0.504       -         
+rx_bit_inv                              Net      -        -       0.651     -           4         
+data_uart.deserialiser.rx_available     FDR      R        In      -         1.155       -         
+==================================================================================================
+
+
+
+
+====================================
+Detailed Report for Clock: System
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                           Starting                                             Arrival          
+Instance                   Reference     Type      Pin     Net                  Time        Slack
+                           Clock                                                                 
+-------------------------------------------------------------------------------------------------
+ram_access.data_out[0]     System        LDE_1     Q       sram_data_out[0]     0.504       1.162
+ram_access.data_out[1]     System        LDE_1     Q       sram_data_out[1]     0.504       1.162
+ram_access.data_out[2]     System        LDE_1     Q       sram_data_out[2]     0.504       1.162
+ram_access.data_out[3]     System        LDE_1     Q       sram_data_out[3]     0.504       1.162
+ram_access.data_out[4]     System        LDE_1     Q       sram_data_out[4]     0.504       1.162
+ram_access.data_out[5]     System        LDE_1     Q       sram_data_out[5]     0.504       1.162
+ram_access.data_out[6]     System        LDE_1     Q       sram_data_out[6]     0.504       1.162
+ram_access.data_out[7]     System        LDE_1     Q       sram_data_out[7]     0.504       1.162
+ram_access.data_out[8]     System        LDE_1     Q       sram_data_out[8]     0.504       1.162
+ram_access.data_out[9]     System        LDE_1     Q       sram_data_out[9]     0.504       1.162
+=================================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                          Starting                                            Required          
+Instance                  Reference     Type     Pin     Net                  Time         Slack
+                          Clock                                                                 
+------------------------------------------------------------------------------------------------
+norm.current_score[0]     System        FDE      D       sram_data_out[0]     0.142        0.922
+norm.current_score[1]     System        FDE      D       sram_data_out[1]     0.142        0.922
+norm.current_score[2]     System        FDE      D       sram_data_out[2]     0.142        0.922
+norm.current_score[3]     System        FDE      D       sram_data_out[3]     0.142        0.922
+norm.current_score[4]     System        FDE      D       sram_data_out[4]     0.142        0.922
+norm.current_score[5]     System        FDE      D       sram_data_out[5]     0.142        0.922
+norm.current_score[6]     System        FDE      D       sram_data_out[6]     0.142        0.922
+norm.current_score[7]     System        FDE      D       sram_data_out[7]     0.142        0.922
+norm.current_score[8]     System        FDE      D       sram_data_out[8]     0.142        0.922
+norm.current_score[9]     System        FDE      D       sram_data_out[9]     0.142        0.922
+================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+    Propagation time:                        1.064
+    + Clock delay at starting point:         0.000 (ideal)
+-0.000
+    - Requested Period:                      0.000
+    - Hold time:                             0.142
+    - Clock delay at ending point:           0.000 (ideal)
+    = Slack (non-critical) :                 0.922
+
+    Number of logic level(s):                0
+    Starting point:                          ram_access.data_out[0] / Q
+    Ending point:                            norm.current_score[0] / D
+    The start point is clocked by            System [rising] on pin G
+    The end   point is clocked by            top_level|clk [rising] on pin C
+
+Instance / Net                       Pin      Pin               Arrival     No. of    
+Name                       Type      Name     Dir     Delay     Time        Fan Out(s)
+--------------------------------------------------------------------------------------
+ram_access.data_out[0]     LDE_1     Q        Out     0.504     0.504       -         
+sram_data_out[0]           Net       -        -       0.560     -           2         
+norm.current_score[0]      FDE       D        In      -         1.064       -         
+======================================================================================
+
+
+
+##### END OF TIMING REPORT #####]
+

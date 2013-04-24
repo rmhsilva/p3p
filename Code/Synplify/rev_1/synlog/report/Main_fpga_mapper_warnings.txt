@@ -1,0 +1,81 @@
+@W: MT462 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":71:2:71:5|Net ram_access.svbl_105\.sram_we14 appears to be an unidentified clock source. Assuming default frequency. 
+@W: MT462 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":9:16:9:35|Net gdp_c.next_0_sqmuxa appears to be an unidentified clock source. Assuming default frequency. 
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing instance gdp_c.gdpipe.scale_out[21],  because it is equivalent to instance gdp_c.gdpipe.scale_out[20]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing instance gdp_c.gdpipe.scale_out[20],  because it is equivalent to instance gdp_c.gdpipe.scale_out[19]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing instance gdp_c.gdpipe.scale_out[19],  because it is equivalent to instance gdp_c.gdpipe.scale_out[18]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing instance gdp_c.gdpipe.k_r_0_[15],  because it is equivalent to instance gdp_c.gdpipe.k_r_0_[14]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing instance gdp_c.gdpipe.k_r_1_[15],  because it is equivalent to instance gdp_c.gdpipe.k_r_1_[14]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing instance gdp_c.gdpipe.k_r_2_[15],  because it is equivalent to instance gdp_c.gdpipe.k_r_2_[14]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing instance gdp_c.gdpipe.k_r_3_[15],  because it is equivalent to instance gdp_c.gdpipe.k_r_3_[14]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":32:0:32:8|Removing instance ram_access.address[20],  because it is equivalent to instance ram_access.address[19]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":32:0:32:8|Removing instance ram_access.address[19],  because it is equivalent to instance ram_access.address[18]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":32:0:32:8|Removing instance ram_access.address[18],  because it is equivalent to instance ram_access.address[17]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":32:0:32:8|Removing instance ram_access.address[17],  because it is equivalent to instance ram_access.address[16]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":32:0:32:8|Removing instance ram_access.address[16],  because it is equivalent to instance ram_access.address[15]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":32:0:32:8|Removing instance ram_access.address[15],  because it is equivalent to instance ram_access.address[14]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":32:0:32:8|Removing instance ram_access.address[14],  because it is equivalent to instance ram_access.address[13]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":32:0:32:8|Removing instance ram_access.address[13],  because it is equivalent to instance ram_access.address[12]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":32:0:32:8|Removing instance ram_access.address[12],  because it is equivalent to instance ram_access.address[11]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":32:0:32:8|Removing instance ram_access.address[11],  because it is equivalent to instance ram_access.address[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":32:0:32:8|Removing instance ram_access.address[9],  because it is equivalent to instance ram_access.address[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":32:0:32:8|Removing instance ram_access.address[10],  because it is equivalent to instance ram_access.address[0]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__363,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__357,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__351,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__345,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__339,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__333,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__327,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__321,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__315,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__309,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__303,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__297,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__291,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__285,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.first_calc_r_369,  because it is equivalent to instance gdp_c.gdpipe.data_ready_278
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__292,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__298,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__304,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__310,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__316,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__322,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__328,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__334,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__340,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__346,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__352,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__358,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__364,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.first_calc_r_370,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.data_ready_279,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.first_calc_r_371,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__365,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__359,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__353,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__347,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__341,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__335,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__329,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__323,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__317,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__311,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__305,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__299,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__293,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__287,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__294,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__300,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__306,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__312,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__318,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__324,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__330,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__336,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__342,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__348,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__354,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__360,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.k_r_3__366,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":27:0:27:8|Removing sequential instance gdp_c.gdpipe.data_ready_281,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288
+@W: MT420 |Found inferred clock top_level|clk with period 20.00ns. Please declare a user-defined clock on object "p:clk"

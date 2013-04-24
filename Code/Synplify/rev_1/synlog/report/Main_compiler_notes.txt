@@ -1,0 +1,25 @@
+@N|Running in 64-bit mode
+@N:: Running Verilog Compiler in System Verilog mode
+@N:: Running Verilog Compiler in Multiple File Compilation Unit mode
+@N: CG364 :"H:\work\Part3\P3-Project\Code\Synplify\modules\gdp.sv":1:0:1:6|Synthesizing module H:\work\Part3\P3-Project\Code\Synplify\modules\gdp.sv_unit
+@N: CG364 :"H:\work\Part3\P3-Project\Code\Synplify\modules\uart\baudgen.sv":1:7:1:13|Synthesizing module baudgen
+@N: CG364 :"H:\work\Part3\P3-Project\Code\Synplify\modules\uart\uart_tx.sv":1:7:1:13|Synthesizing module uart_tx
+@N: CG364 :"H:\work\Part3\P3-Project\Code\Synplify\modules\uart\uart_rx.sv":1:7:1:13|Synthesizing module uart_rx
+@N: CG364 :"H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv":4:7:4:10|Synthesizing module uart
+@N: CG364 :"H:\work\Part3\P3-Project\Code\Synplify\modules\gdp.sv":3:7:3:9|Synthesizing module gdp
+@N: CG364 :"H:\work\Part3\P3-Project\Code\Synplify\modules\all_s_data.sv":4:7:4:16|Synthesizing module s_data_rom
+@N: CG364 :"H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv":4:7:4:20|Synthesizing module gdp_controller
+@N: CG364 :"H:\work\Part3\P3-Project\Code\Synplify\modules\max.sv":4:7:4:9|Synthesizing module max
+@N: CG364 :"H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv":4:7:4:16|Synthesizing module normaliser
+@N: CG364 :"H:\work\Part3\P3-Project\Code\Synplify\modules\send.sv":4:7:4:10|Synthesizing module send
+@N: CG364 :"H:\work\Part3\P3-Project\Code\Synplify\modules\sram.sv":4:7:4:10|Synthesizing module sram
+@N: CG364 :"H:\work\Part3\P3-Project\Code\Synplify\modules\top_level.sv":4:7:4:15|Synthesizing module top_level
+@N: CL201 :"H:\work\Part3\P3-Project\Code\Synplify\modules\top_level.sv":93:0:93:8|Trying to extract state machine for register state
+@N: CL201 :"H:\work\Part3\P3-Project\Code\Synplify\modules\sram.sv":32:0:32:8|Trying to extract state machine for register state
+@N: CL201 :"H:\work\Part3\P3-Project\Code\Synplify\modules\send.sv":30:0:30:8|Trying to extract state machine for register state
+@N: CL201 :"H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv":30:0:30:8|Trying to extract state machine for register state
+@N: CL201 :"H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv":49:0:49:8|Trying to extract state machine for register state
+@N: CL135 :"H:\work\Part3\P3-Project\Code\Synplify\modules\gdp.sv":27:0:27:8|Found seqShift k_r, depth=4, width=16
+@N: CL201 :"H:\work\Part3\P3-Project\Code\Synplify\modules\uart\uart_rx.sv":40:0:40:8|Trying to extract state machine for register state
+@N: CL201 :"H:\work\Part3\P3-Project\Code\Synplify\modules\uart\uart_tx.sv":20:0:20:8|Trying to extract state machine for register state
+

@@ -1,0 +1,776 @@
+#### START OF AREA REPORT #####[
+
+Part:			XC3S50ANTQG144-4 (Xilinx)
+
+-------------------------------------------------------------------------
+########   Utilization report for  Top level view:   top_level   ########
+=========================================================================
+
+SEQUENTIAL ELEMENTS
+*******************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+REGISTERS     568                100 %                
+LATCHES       112                100 %                
+======================================================
+Total SEQUENTIAL ELEMENTS in the block top_level:	680 (33.01 % Utilization)
+
+
+COMBINATIONAL LOGIC
+*******************
+
+Name                     Total elements     Utilization     Notes
+-----------------------------------------------------------------
+LUTS                     817                100 %                
+MUXCY                    210                100 %                
+XORCY                    183                100 %                
+MULT18x18/MULT18x18S     0                  0.0 %                
+SRL16                    21                 100 %                
+=================================================================
+Total COMBINATIONAL LOGIC in the block top_level:	1231 (59.76 % Utilization)
+
+
+MEMORY ELEMENTS
+***************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+SYNC RAMS     0                  0.0 %                
+======================================================
+Total MEMORY ELEMENTS in the block top_level:	0 (0.00 % Utilization)
+
+
+
+
+
+Name     Total elements     Number of bits     Utilization     Notes
+--------------------------------------------------------------------
+                                                                    
+ROMS     0                  0                  0.0 %                
+====================================================================
+Total  in the block top_level:	0 (0.00 % Utilization)
+
+
+Distributed RAM
+***************
+
+Name                Total elements     Number of LUTs     Utilization     Notes
+-------------------------------------------------------------------------------
+DISTRIBUTED RAM     0                  0                  0.0 %                
+===============================================================================
+Total Distributed RAM in the block top_level:	0 (0.00 % Utilization)
+
+
+IO PADS
+*******
+
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     43                 100 %                
+=================================================
+Total IO PADS in the block top_level:	43 (2.09 % Utilization)
+
+---------------------------------------------------------------------------
+########   Utilization report for  cell:   gdp_controller_6s_12s   ########
+Instance path:   top_level.gdp_controller_6s_12s                           
+===========================================================================
+
+SEQUENTIAL ELEMENTS
+*******************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+REGISTERS     193                34. %                
+LATCHES       96                 85.7 %               
+======================================================
+Total SEQUENTIAL ELEMENTS in the block top_level.gdp_controller_6s_12s:	289 (14.03 % Utilization)
+
+
+COMBINATIONAL LOGIC
+*******************
+
+Name                     Total elements     Utilization     Notes
+-----------------------------------------------------------------
+LUTS                     488                59.7 %               
+MUXCY                    97                 46.2 %               
+XORCY                    84                 45.9 %               
+MULT18x18/MULT18x18S     0                  0.0 %                
+SRL16                    21                 100 %                
+=================================================================
+Total COMBINATIONAL LOGIC in the block top_level.gdp_controller_6s_12s:	690 (33.50 % Utilization)
+
+
+MEMORY ELEMENTS
+***************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+SYNC RAMS     0                  0.0 %                
+======================================================
+Total MEMORY ELEMENTS in the block top_level.gdp_controller_6s_12s:	0 (0.00 % Utilization)
+
+
+
+
+
+Name     Total elements     Number of bits     Utilization     Notes
+--------------------------------------------------------------------
+                                                                    
+ROMS     0                  0                  0.0 %                
+====================================================================
+Total  in the block top_level.gdp_controller_6s_12s:	0 (0.00 % Utilization)
+
+
+Distributed RAM
+***************
+
+Name                Total elements     Number of LUTs     Utilization     Notes
+-------------------------------------------------------------------------------
+DISTRIBUTED RAM     0                  0                  0.0 %                
+===============================================================================
+Total Distributed RAM in the block top_level.gdp_controller_6s_12s:	0 (0.00 % Utilization)
+
+
+IO PADS
+*******
+
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     0                  0.0 %                
+=================================================
+Total IO PADS in the block top_level.gdp_controller_6s_12s:	0 (0.00 % Utilization)
+
+---------------------------------------------------------
+########   Utilization report for  cell:   gdp   ########
+Instance path:   gdp_controller_6s_12s.gdp               
+=========================================================
+
+SEQUENTIAL ELEMENTS
+*******************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+REGISTERS     159                28. %                
+LATCHES       0                  0.0 %                
+======================================================
+Total SEQUENTIAL ELEMENTS in the block gdp_controller_6s_12s.gdp:	159 (7.72 % Utilization)
+
+
+COMBINATIONAL LOGIC
+*******************
+
+Name                     Total elements     Utilization     Notes
+-----------------------------------------------------------------
+LUTS                     134                16.4 %               
+MUXCY                    89                 42.4 %               
+XORCY                    74                 40.4 %               
+MULT18x18/MULT18x18S     0                  0.0 %                
+SRL16                    16                 76.2 %               
+=================================================================
+Total COMBINATIONAL LOGIC in the block gdp_controller_6s_12s.gdp:	313 (15.19 % Utilization)
+
+
+MEMORY ELEMENTS
+***************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+SYNC RAMS     0                  0.0 %                
+======================================================
+Total MEMORY ELEMENTS in the block gdp_controller_6s_12s.gdp:	0 (0.00 % Utilization)
+
+
+
+
+
+Name     Total elements     Number of bits     Utilization     Notes
+--------------------------------------------------------------------
+                                                                    
+ROMS     0                  0                  0.0 %                
+====================================================================
+Total  in the block gdp_controller_6s_12s.gdp:	0 (0.00 % Utilization)
+
+
+Distributed RAM
+***************
+
+Name                Total elements     Number of LUTs     Utilization     Notes
+-------------------------------------------------------------------------------
+DISTRIBUTED RAM     0                  0                  0.0 %                
+===============================================================================
+Total Distributed RAM in the block gdp_controller_6s_12s.gdp:	0 (0.00 % Utilization)
+
+
+IO PADS
+*******
+
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     0                  0.0 %                
+=================================================
+Total IO PADS in the block gdp_controller_6s_12s.gdp:	0 (0.00 % Utilization)
+
+---------------------------------------------------------
+########   Utilization report for  cell:   max   ########
+Instance path:   top_level.max                           
+=========================================================
+
+SEQUENTIAL ELEMENTS
+*******************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+REGISTERS     18                 3.17 %               
+LATCHES       0                  0.0 %                
+======================================================
+Total SEQUENTIAL ELEMENTS in the block top_level.max:	18 (0.87 % Utilization)
+
+
+COMBINATIONAL LOGIC
+*******************
+
+Name                     Total elements     Utilization     Notes
+-----------------------------------------------------------------
+LUTS                     35                 4.28 %               
+MUXCY                    16                 7.62 %               
+XORCY                    0                  0.0 %                
+MULT18x18/MULT18x18S     0                  0.0 %                
+SRL16                    0                  0.0 %                
+=================================================================
+Total COMBINATIONAL LOGIC in the block top_level.max:	51 (2.48 % Utilization)
+
+
+MEMORY ELEMENTS
+***************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+SYNC RAMS     0                  0.0 %                
+======================================================
+Total MEMORY ELEMENTS in the block top_level.max:	0 (0.00 % Utilization)
+
+
+
+
+
+Name     Total elements     Number of bits     Utilization     Notes
+--------------------------------------------------------------------
+                                                                    
+ROMS     0                  0                  0.0 %                
+====================================================================
+Total  in the block top_level.max:	0 (0.00 % Utilization)
+
+
+Distributed RAM
+***************
+
+Name                Total elements     Number of LUTs     Utilization     Notes
+-------------------------------------------------------------------------------
+DISTRIBUTED RAM     0                  0                  0.0 %                
+===============================================================================
+Total Distributed RAM in the block top_level.max:	0 (0.00 % Utilization)
+
+
+IO PADS
+*******
+
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     0                  0.0 %                
+=================================================
+Total IO PADS in the block top_level.max:	0 (0.00 % Utilization)
+
+--------------------------------------------------------------------
+########   Utilization report for  cell:   normaliser_12s   ########
+Instance path:   top_level.normaliser_12s                           
+====================================================================
+
+SEQUENTIAL ELEMENTS
+*******************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+REGISTERS     43                 7.57 %               
+LATCHES       0                  0.0 %                
+======================================================
+Total SEQUENTIAL ELEMENTS in the block top_level.normaliser_12s:	43 (2.09 % Utilization)
+
+
+COMBINATIONAL LOGIC
+*******************
+
+Name                     Total elements     Utilization     Notes
+-----------------------------------------------------------------
+LUTS                     41                 5.02 %               
+MUXCY                    22                 10.5 %               
+XORCY                    23                 12.6 %               
+MULT18x18/MULT18x18S     0                  0.0 %                
+SRL16                    0                  0.0 %                
+=================================================================
+Total COMBINATIONAL LOGIC in the block top_level.normaliser_12s:	86 (4.17 % Utilization)
+
+
+MEMORY ELEMENTS
+***************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+SYNC RAMS     0                  0.0 %                
+======================================================
+Total MEMORY ELEMENTS in the block top_level.normaliser_12s:	0 (0.00 % Utilization)
+
+
+
+
+
+Name     Total elements     Number of bits     Utilization     Notes
+--------------------------------------------------------------------
+                                                                    
+ROMS     0                  0                  0.0 %                
+====================================================================
+Total  in the block top_level.normaliser_12s:	0 (0.00 % Utilization)
+
+
+Distributed RAM
+***************
+
+Name                Total elements     Number of LUTs     Utilization     Notes
+-------------------------------------------------------------------------------
+DISTRIBUTED RAM     0                  0                  0.0 %                
+===============================================================================
+Total Distributed RAM in the block top_level.normaliser_12s:	0 (0.00 % Utilization)
+
+
+IO PADS
+*******
+
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     0                  0.0 %                
+=================================================
+Total IO PADS in the block top_level.normaliser_12s:	0 (0.00 % Utilization)
+
+--------------------------------------------------------------
+########   Utilization report for  cell:   send_12s   ########
+Instance path:   top_level.send_12s                           
+==============================================================
+
+SEQUENTIAL ELEMENTS
+*******************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+REGISTERS     28                 4.93 %               
+LATCHES       0                  0.0 %                
+======================================================
+Total SEQUENTIAL ELEMENTS in the block top_level.send_12s:	28 (1.36 % Utilization)
+
+
+COMBINATIONAL LOGIC
+*******************
+
+Name                     Total elements     Utilization     Notes
+-----------------------------------------------------------------
+LUTS                     27                 3.3 %                
+MUXCY                    7                  3.33 %               
+XORCY                    8                  4.37 %               
+MULT18x18/MULT18x18S     0                  0.0 %                
+SRL16                    0                  0.0 %                
+=================================================================
+Total COMBINATIONAL LOGIC in the block top_level.send_12s:	42 (2.04 % Utilization)
+
+
+MEMORY ELEMENTS
+***************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+SYNC RAMS     0                  0.0 %                
+======================================================
+Total MEMORY ELEMENTS in the block top_level.send_12s:	0 (0.00 % Utilization)
+
+
+
+
+
+Name     Total elements     Number of bits     Utilization     Notes
+--------------------------------------------------------------------
+                                                                    
+ROMS     0                  0                  0.0 %                
+====================================================================
+Total  in the block top_level.send_12s:	0 (0.00 % Utilization)
+
+
+Distributed RAM
+***************
+
+Name                Total elements     Number of LUTs     Utilization     Notes
+-------------------------------------------------------------------------------
+DISTRIBUTED RAM     0                  0                  0.0 %                
+===============================================================================
+Total Distributed RAM in the block top_level.send_12s:	0 (0.00 % Utilization)
+
+
+IO PADS
+*******
+
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     0                  0.0 %                
+=================================================
+Total IO PADS in the block top_level.send_12s:	0 (0.00 % Utilization)
+
+----------------------------------------------------------
+########   Utilization report for  cell:   sram   ########
+Instance path:   top_level.sram                           
+==========================================================
+
+SEQUENTIAL ELEMENTS
+*******************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+REGISTERS     31                 5.46 %               
+LATCHES       16                 14.3 %               
+======================================================
+Total SEQUENTIAL ELEMENTS in the block top_level.sram:	47 (2.28 % Utilization)
+
+
+COMBINATIONAL LOGIC
+*******************
+
+Name                     Total elements     Utilization     Notes
+-----------------------------------------------------------------
+LUTS                     63                 7.71 %               
+MUXCY                    0                  0.0 %                
+XORCY                    0                  0.0 %                
+MULT18x18/MULT18x18S     0                  0.0 %                
+SRL16                    0                  0.0 %                
+=================================================================
+Total COMBINATIONAL LOGIC in the block top_level.sram:	63 (3.06 % Utilization)
+
+
+MEMORY ELEMENTS
+***************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+SYNC RAMS     0                  0.0 %                
+======================================================
+Total MEMORY ELEMENTS in the block top_level.sram:	0 (0.00 % Utilization)
+
+
+
+
+
+Name     Total elements     Number of bits     Utilization     Notes
+--------------------------------------------------------------------
+                                                                    
+ROMS     0                  0                  0.0 %                
+====================================================================
+Total  in the block top_level.sram:	0 (0.00 % Utilization)
+
+
+Distributed RAM
+***************
+
+Name                Total elements     Number of LUTs     Utilization     Notes
+-------------------------------------------------------------------------------
+DISTRIBUTED RAM     0                  0                  0.0 %                
+===============================================================================
+Total Distributed RAM in the block top_level.sram:	0 (0.00 % Utilization)
+
+
+IO PADS
+*******
+
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     0                  0.0 %                
+=================================================
+Total IO PADS in the block top_level.sram:	0 (0.00 % Utilization)
+
+----------------------------------------------------------------
+########   Utilization report for  cell:   uart_1s_6s   ########
+Instance path:   top_level.uart_1s_6s                           
+================================================================
+
+SEQUENTIAL ELEMENTS
+*******************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+REGISTERS     225                39.6 %               
+LATCHES       0                  0.0 %                
+======================================================
+Total SEQUENTIAL ELEMENTS in the block top_level.uart_1s_6s:	225 (10.92 % Utilization)
+
+
+COMBINATIONAL LOGIC
+*******************
+
+Name                     Total elements     Utilization     Notes
+-----------------------------------------------------------------
+LUTS                     127                15.5 %               
+MUXCY                    44                 21. %                
+XORCY                    43                 23.5 %               
+MULT18x18/MULT18x18S     0                  0.0 %                
+SRL16                    0                  0.0 %                
+=================================================================
+Total COMBINATIONAL LOGIC in the block top_level.uart_1s_6s:	214 (10.39 % Utilization)
+
+
+MEMORY ELEMENTS
+***************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+SYNC RAMS     0                  0.0 %                
+======================================================
+Total MEMORY ELEMENTS in the block top_level.uart_1s_6s:	0 (0.00 % Utilization)
+
+
+
+
+
+Name     Total elements     Number of bits     Utilization     Notes
+--------------------------------------------------------------------
+                                                                    
+ROMS     0                  0                  0.0 %                
+====================================================================
+Total  in the block top_level.uart_1s_6s:	0 (0.00 % Utilization)
+
+
+Distributed RAM
+***************
+
+Name                Total elements     Number of LUTs     Utilization     Notes
+-------------------------------------------------------------------------------
+DISTRIBUTED RAM     0                  0                  0.0 %                
+===============================================================================
+Total Distributed RAM in the block top_level.uart_1s_6s:	0 (0.00 % Utilization)
+
+
+IO PADS
+*******
+
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     0                  0.0 %                
+=================================================
+Total IO PADS in the block top_level.uart_1s_6s:	0 (0.00 % Utilization)
+
+-------------------------------------------------------------
+########   Utilization report for  cell:   baudgen   ########
+Instance path:   uart_1s_6s.baudgen                          
+=============================================================
+
+SEQUENTIAL ELEMENTS
+*******************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+REGISTERS     31                 5.46 %               
+LATCHES       0                  0.0 %                
+======================================================
+Total SEQUENTIAL ELEMENTS in the block uart_1s_6s.baudgen:	31 (1.50 % Utilization)
+
+
+COMBINATIONAL LOGIC
+*******************
+
+Name                     Total elements     Utilization     Notes
+-----------------------------------------------------------------
+LUTS                     29                 3.55 %               
+MUXCY                    29                 13.8 %               
+XORCY                    27                 14.8 %               
+MULT18x18/MULT18x18S     0                  0.0 %                
+SRL16                    0                  0.0 %                
+=================================================================
+Total COMBINATIONAL LOGIC in the block uart_1s_6s.baudgen:	85 (4.13 % Utilization)
+
+
+MEMORY ELEMENTS
+***************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+SYNC RAMS     0                  0.0 %                
+======================================================
+Total MEMORY ELEMENTS in the block uart_1s_6s.baudgen:	0 (0.00 % Utilization)
+
+
+
+
+
+Name     Total elements     Number of bits     Utilization     Notes
+--------------------------------------------------------------------
+                                                                    
+ROMS     0                  0                  0.0 %                
+====================================================================
+Total  in the block uart_1s_6s.baudgen:	0 (0.00 % Utilization)
+
+
+Distributed RAM
+***************
+
+Name                Total elements     Number of LUTs     Utilization     Notes
+-------------------------------------------------------------------------------
+DISTRIBUTED RAM     0                  0                  0.0 %                
+===============================================================================
+Total Distributed RAM in the block uart_1s_6s.baudgen:	0 (0.00 % Utilization)
+
+
+IO PADS
+*******
+
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     0                  0.0 %                
+=================================================
+Total IO PADS in the block uart_1s_6s.baudgen:	0 (0.00 % Utilization)
+
+-------------------------------------------------------------
+########   Utilization report for  cell:   uart_rx   ########
+Instance path:   uart_1s_6s.uart_rx                          
+=============================================================
+
+SEQUENTIAL ELEMENTS
+*******************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+REGISTERS     28                 4.93 %               
+LATCHES       0                  0.0 %                
+======================================================
+Total SEQUENTIAL ELEMENTS in the block uart_1s_6s.uart_rx:	28 (1.36 % Utilization)
+
+
+COMBINATIONAL LOGIC
+*******************
+
+Name                     Total elements     Utilization     Notes
+-----------------------------------------------------------------
+LUTS                     15                 1.84 %               
+MUXCY                    0                  0.0 %                
+XORCY                    0                  0.0 %                
+MULT18x18/MULT18x18S     0                  0.0 %                
+SRL16                    0                  0.0 %                
+=================================================================
+Total COMBINATIONAL LOGIC in the block uart_1s_6s.uart_rx:	15 (0.73 % Utilization)
+
+
+MEMORY ELEMENTS
+***************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+SYNC RAMS     0                  0.0 %                
+======================================================
+Total MEMORY ELEMENTS in the block uart_1s_6s.uart_rx:	0 (0.00 % Utilization)
+
+
+
+
+
+Name     Total elements     Number of bits     Utilization     Notes
+--------------------------------------------------------------------
+                                                                    
+ROMS     0                  0                  0.0 %                
+====================================================================
+Total  in the block uart_1s_6s.uart_rx:	0 (0.00 % Utilization)
+
+
+Distributed RAM
+***************
+
+Name                Total elements     Number of LUTs     Utilization     Notes
+-------------------------------------------------------------------------------
+DISTRIBUTED RAM     0                  0                  0.0 %                
+===============================================================================
+Total Distributed RAM in the block uart_1s_6s.uart_rx:	0 (0.00 % Utilization)
+
+
+IO PADS
+*******
+
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     0                  0.0 %                
+=================================================
+Total IO PADS in the block uart_1s_6s.uart_rx:	0 (0.00 % Utilization)
+
+-------------------------------------------------------------
+########   Utilization report for  cell:   uart_tx   ########
+Instance path:   uart_1s_6s.uart_tx                          
+=============================================================
+
+SEQUENTIAL ELEMENTS
+*******************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+REGISTERS     21                 3.7 %                
+LATCHES       0                  0.0 %                
+======================================================
+Total SEQUENTIAL ELEMENTS in the block uart_1s_6s.uart_tx:	21 (1.02 % Utilization)
+
+
+COMBINATIONAL LOGIC
+*******************
+
+Name                     Total elements     Utilization     Notes
+-----------------------------------------------------------------
+LUTS                     14                 1.71 %               
+MUXCY                    0                  0.0 %                
+XORCY                    0                  0.0 %                
+MULT18x18/MULT18x18S     0                  0.0 %                
+SRL16                    0                  0.0 %                
+=================================================================
+Total COMBINATIONAL LOGIC in the block uart_1s_6s.uart_tx:	14 (0.68 % Utilization)
+
+
+MEMORY ELEMENTS
+***************
+
+Name          Total elements     Utilization     Notes
+------------------------------------------------------
+SYNC RAMS     0                  0.0 %                
+======================================================
+Total MEMORY ELEMENTS in the block uart_1s_6s.uart_tx:	0 (0.00 % Utilization)
+
+
+
+
+
+Name     Total elements     Number of bits     Utilization     Notes
+--------------------------------------------------------------------
+                                                                    
+ROMS     0                  0                  0.0 %                
+====================================================================
+Total  in the block uart_1s_6s.uart_tx:	0 (0.00 % Utilization)
+
+
+Distributed RAM
+***************
+
+Name                Total elements     Number of LUTs     Utilization     Notes
+-------------------------------------------------------------------------------
+DISTRIBUTED RAM     0                  0                  0.0 %                
+===============================================================================
+Total Distributed RAM in the block uart_1s_6s.uart_tx:	0 (0.00 % Utilization)
+
+
+IO PADS
+*******
+
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     0                  0.0 %                
+=================================================
+Total IO PADS in the block uart_1s_6s.uart_tx:	0 (0.00 % Utilization)
+
+
+##### END OF AREA REPORT #####]
+

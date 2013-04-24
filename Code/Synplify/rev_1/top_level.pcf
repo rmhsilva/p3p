@@ -1,0 +1,397 @@
+//! **************************************************************************
+// Written by: Map P.15xf on Tue Apr 23 14:27:36 2013
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "clk" LOCATE = SITE "P57" LEVEL 1;
+COMP "duart_rx_out" LOCATE = SITE "P64" LEVEL 1;
+COMP "duart_tx_out" LOCATE = SITE "P11" LEVEL 1;
+COMP "reset" LOCATE = SITE "P33" LEVEL 1;
+COMP "new_vector_incoming" LOCATE = SITE "P69" LEVEL 1;
+COMP "uart_rx" LOCATE = SITE "P67" LEVEL 1;
+COMP "uart_tx" LOCATE = SITE "P68" LEVEL 1;
+COMP "sram_ce" LOCATE = SITE "P51" LEVEL 1;
+COMP "sram_oe" LOCATE = SITE "P19" LEVEL 1;
+COMP "sram_addr[0]" LOCATE = SITE "P60" LEVEL 1;
+COMP "sram_we" LOCATE = SITE "P43" LEVEL 1;
+COMP "sram_addr[1]" LOCATE = SITE "P59" LEVEL 1;
+COMP "sram_addr[2]" LOCATE = SITE "P58" LEVEL 1;
+COMP "sram_addr[3]" LOCATE = SITE "P55" LEVEL 1;
+COMP "sram_addr[4]" LOCATE = SITE "P54" LEVEL 1;
+COMP "sram_addr[5]" LOCATE = SITE "P44" LEVEL 1;
+COMP "sram_addr[6]" LOCATE = SITE "P48" LEVEL 1;
+COMP "sram_addr[7]" LOCATE = SITE "P47" LEVEL 1;
+COMP "sram_addr[8]" LOCATE = SITE "P46" LEVEL 1;
+COMP "sram_addr[9]" LOCATE = SITE "P45" LEVEL 1;
+COMP "sram_data[0]" LOCATE = SITE "P50" LEVEL 1;
+COMP "sram_data[1]" LOCATE = SITE "P49" LEVEL 1;
+COMP "sram_data[2]" LOCATE = SITE "P41" LEVEL 1;
+COMP "sram_data[3]" LOCATE = SITE "P42" LEVEL 1;
+COMP "sram_data[4]" LOCATE = SITE "P31" LEVEL 1;
+COMP "sram_data[5]" LOCATE = SITE "P32" LEVEL 1;
+COMP "sram_data[6]" LOCATE = SITE "P21" LEVEL 1;
+COMP "sram_data[7]" LOCATE = SITE "P20" LEVEL 1;
+COMP "status_led" LOCATE = SITE "P62" LEVEL 1;
+COMP "duart_rx_in" LOCATE = SITE "P10" LEVEL 1;
+COMP "duart_tx_in" LOCATE = SITE "P63" LEVEL 1;
+COMP "LRADC0_fix" LOCATE = SITE "P71" LEVEL 1;
+COMP "sram_addr[10]" LOCATE = SITE "P27" LEVEL 1;
+COMP "sram_addr[11]" LOCATE = SITE "P25" LEVEL 1;
+COMP "sram_addr[20]" LOCATE = SITE "P12" LEVEL 1;
+COMP "sram_addr[12]" LOCATE = SITE "P24" LEVEL 1;
+COMP "sram_addr[13]" LOCATE = SITE "P29" LEVEL 1;
+COMP "sram_addr[14]" LOCATE = SITE "P30" LEVEL 1;
+COMP "sram_addr[15]" LOCATE = SITE "P18" LEVEL 1;
+COMP "sram_addr[16]" LOCATE = SITE "P16" LEVEL 1;
+COMP "sram_addr[17]" LOCATE = SITE "P15" LEVEL 1;
+COMP "sram_addr[18]" LOCATE = SITE "P13" LEVEL 1;
+COMP "sram_addr[19]" LOCATE = SITE "P28" LEVEL 1;
+PIN gdp_c/rx_index_ret_1_cb.GCLKMUX_pin<1> = BEL
+        "gdp_c/rx_index_ret_1_cb.GCLKMUX" PINNAME OUT;
+PIN "gdp_c/rx_index_ret_1_cb.GCLKMUX_pin<1>" CLOCK_DEDICATED_ROUTE = FALSE;
+PIN gdp_c/rx_index_ret_1_cb_pin<0> = BEL "gdp_c/rx_index_ret_1_cb" PINNAME IN;
+PIN "gdp_c/rx_index_ret_1_cb_pin<0>" CLOCK_DEDICATED_ROUTE = FALSE;
+TIMEGRP clk = BEL "start_send" BEL "start_norm" BEL "state[1]" BEL "state[0]"
+        BEL "status_cnt[0]" BEL "status_cnt[1]" BEL "status_cnt[2]" BEL
+        "status_cnt[3]" BEL "status_cnt[4]" BEL "status_cnt[5]" BEL
+        "status_cnt[6]" BEL "status_cnt[7]" BEL "status_cnt[8]" BEL
+        "status_cnt[9]" BEL "status_cnt[10]" BEL "status_cnt[11]" BEL
+        "status_cnt[12]" BEL "status_cnt[13]" BEL "status_cnt[14]" BEL
+        "status_cnt[15]" BEL "status_cnt[16]" BEL "status_cnt[17]" BEL
+        "status_cnt[18]" BEL "status_cnt[19]" BEL "status_cnt[20]" BEL
+        "status_cnt[21]" BEL "status_cnt[22]" BEL "status_cnt[23]" BEL
+        "status_cnt[24]" BEL "status_cnt[25]" BEL "data_uart/rx_buffer_11_[0]"
+        BEL "data_uart/rx_buffer_11_[1]" BEL "data_uart/rx_buffer_11_[2]" BEL
+        "data_uart/rx_buffer_11_[3]" BEL "data_uart/rx_buffer_11_[4]" BEL
+        "data_uart/rx_buffer_11_[5]" BEL "data_uart/rx_buffer_11_[6]" BEL
+        "data_uart/rx_buffer_11_[7]" BEL "data_uart/rx_buffer_10_[0]" BEL
+        "data_uart/rx_buffer_10_[1]" BEL "data_uart/rx_buffer_10_[2]" BEL
+        "data_uart/rx_buffer_10_[3]" BEL "data_uart/rx_buffer_10_[4]" BEL
+        "data_uart/rx_buffer_10_[5]" BEL "data_uart/rx_buffer_10_[6]" BEL
+        "data_uart/rx_buffer_10_[7]" BEL "data_uart/rx_buffer_9_[0]" BEL
+        "data_uart/rx_buffer_9_[1]" BEL "data_uart/rx_buffer_9_[2]" BEL
+        "data_uart/rx_buffer_9_[3]" BEL "data_uart/rx_buffer_9_[4]" BEL
+        "data_uart/rx_buffer_9_[5]" BEL "data_uart/rx_buffer_9_[6]" BEL
+        "data_uart/rx_buffer_9_[7]" BEL "data_uart/rx_buffer_8_[0]" BEL
+        "data_uart/rx_buffer_8_[1]" BEL "data_uart/rx_buffer_8_[2]" BEL
+        "data_uart/rx_buffer_8_[3]" BEL "data_uart/rx_buffer_8_[4]" BEL
+        "data_uart/rx_buffer_8_[5]" BEL "data_uart/rx_buffer_8_[6]" BEL
+        "data_uart/rx_buffer_8_[7]" BEL "data_uart/rx_buffer_7_[0]" BEL
+        "data_uart/rx_buffer_7_[1]" BEL "data_uart/rx_buffer_7_[2]" BEL
+        "data_uart/rx_buffer_7_[3]" BEL "data_uart/rx_buffer_7_[4]" BEL
+        "data_uart/rx_buffer_7_[5]" BEL "data_uart/rx_buffer_7_[6]" BEL
+        "data_uart/rx_buffer_7_[7]" BEL "data_uart/rx_buffer_6_[0]" BEL
+        "data_uart/rx_buffer_6_[1]" BEL "data_uart/rx_buffer_6_[2]" BEL
+        "data_uart/rx_buffer_6_[3]" BEL "data_uart/rx_buffer_6_[4]" BEL
+        "data_uart/rx_buffer_6_[5]" BEL "data_uart/rx_buffer_6_[6]" BEL
+        "data_uart/rx_buffer_6_[7]" BEL "data_uart/rx_buffer_5_[0]" BEL
+        "data_uart/rx_buffer_5_[1]" BEL "data_uart/rx_buffer_5_[2]" BEL
+        "data_uart/rx_buffer_5_[3]" BEL "data_uart/rx_buffer_5_[4]" BEL
+        "data_uart/rx_buffer_5_[5]" BEL "data_uart/rx_buffer_5_[6]" BEL
+        "data_uart/rx_buffer_5_[7]" BEL "data_uart/rx_buffer_4_[0]" BEL
+        "data_uart/rx_buffer_4_[1]" BEL "data_uart/rx_buffer_4_[2]" BEL
+        "data_uart/rx_buffer_4_[3]" BEL "data_uart/rx_buffer_4_[4]" BEL
+        "data_uart/rx_buffer_4_[5]" BEL "data_uart/rx_buffer_4_[6]" BEL
+        "data_uart/rx_buffer_4_[7]" BEL "data_uart/rx_buffer_3_[0]" BEL
+        "data_uart/rx_buffer_3_[1]" BEL "data_uart/rx_buffer_3_[2]" BEL
+        "data_uart/rx_buffer_3_[3]" BEL "data_uart/rx_buffer_3_[4]" BEL
+        "data_uart/rx_buffer_3_[5]" BEL "data_uart/rx_buffer_3_[6]" BEL
+        "data_uart/rx_buffer_3_[7]" BEL "data_uart/rx_buffer_2_[0]" BEL
+        "data_uart/rx_buffer_2_[1]" BEL "data_uart/rx_buffer_2_[2]" BEL
+        "data_uart/rx_buffer_2_[3]" BEL "data_uart/rx_buffer_2_[4]" BEL
+        "data_uart/rx_buffer_2_[5]" BEL "data_uart/rx_buffer_2_[6]" BEL
+        "data_uart/rx_buffer_2_[7]" BEL "data_uart/rx_buffer_1_[0]" BEL
+        "data_uart/rx_buffer_1_[1]" BEL "data_uart/rx_buffer_1_[2]" BEL
+        "data_uart/rx_buffer_1_[3]" BEL "data_uart/rx_buffer_1_[4]" BEL
+        "data_uart/rx_buffer_1_[5]" BEL "data_uart/rx_buffer_1_[6]" BEL
+        "data_uart/rx_buffer_1_[7]" BEL "data_uart/rx_buffer_0_[0]" BEL
+        "data_uart/rx_buffer_0_[1]" BEL "data_uart/rx_buffer_0_[2]" BEL
+        "data_uart/rx_buffer_0_[3]" BEL "data_uart/rx_buffer_0_[4]" BEL
+        "data_uart/rx_buffer_0_[5]" BEL "data_uart/rx_buffer_0_[6]" BEL
+        "data_uart/rx_buffer_0_[7]" BEL "data_uart/sending" BEL
+        "data_uart/tx_byte[0]" BEL "data_uart/tx_byte[1]" BEL
+        "data_uart/tx_byte[2]" BEL "data_uart/tx_byte[3]" BEL
+        "data_uart/tx_byte[4]" BEL "data_uart/tx_byte[5]" BEL
+        "data_uart/tx_byte[6]" BEL "data_uart/tx_byte[7]" BEL
+        "data_uart/tx_buffer_1_[0]" BEL "data_uart/tx_buffer_1_[1]" BEL
+        "data_uart/tx_buffer_1_[2]" BEL "data_uart/tx_buffer_1_[3]" BEL
+        "data_uart/tx_buffer_1_[4]" BEL "data_uart/tx_buffer_1_[5]" BEL
+        "data_uart/tx_buffer_1_[6]" BEL "data_uart/tx_buffer_1_[7]" BEL
+        "data_uart/tx_buffer_0_[0]" BEL "data_uart/tx_buffer_0_[1]" BEL
+        "data_uart/tx_buffer_0_[2]" BEL "data_uart/tx_buffer_0_[3]" BEL
+        "data_uart/tx_buffer_0_[4]" BEL "data_uart/tx_buffer_0_[5]" BEL
+        "data_uart/tx_buffer_0_[6]" BEL "data_uart/tx_buffer_0_[7]" BEL
+        "data_uart/rx_index_0[3]" BEL "data_uart/rx_index_0[2]" BEL
+        "data_uart/rx_index_0[1]" BEL "data_uart/rx_index_0[0]" BEL
+        "data_uart/rx_index_ret" BEL "data_uart/rx_index_ret_1" BEL
+        "data_uart/rx_index_ret_2" BEL "data_uart/rx_index_ret_3" BEL
+        "data_uart/tx_index[0]" BEL "data_uart/tx_index[1]" BEL
+        "data_uart/tx_index[2]" BEL "data_uart/tx_index[3]" BEL
+        "data_uart/tx_index[4]" BEL "data_uart/tx_index[5]" BEL
+        "data_uart/tx_index[6]" BEL "data_uart/tx_index[7]" BEL
+        "data_uart/tx_index[8]" BEL "data_uart/tx_index[9]" BEL
+        "data_uart/tx_index[10]" BEL "data_uart/tx_index[11]" BEL
+        "data_uart/tx_index[12]" BEL "data_uart/tx_index[13]" BEL
+        "data_uart/tx_index[14]" BEL "data_uart/tx_index[15]" BEL
+        "data_uart/ticker/baud_acc[5]" BEL "data_uart/ticker/baud_acc[6]" BEL
+        "data_uart/ticker/baud_acc[7]" BEL "data_uart/ticker/baud_acc[8]" BEL
+        "data_uart/ticker/baud_acc[9]" BEL "data_uart/ticker/baud_acc[10]" BEL
+        "data_uart/ticker/baud_acc[11]" BEL "data_uart/ticker/baud_acc[12]"
+        BEL "data_uart/ticker/baud_acc[13]" BEL
+        "data_uart/ticker/baud_acc[14]" BEL "data_uart/ticker/baud_acc[15]"
+        BEL "data_uart/ticker/baud_acc[16]" BEL
+        "data_uart/ticker/baud_acc_fast[4]" BEL
+        "data_uart/ticker/baud_acc_fast[5]" BEL
+        "data_uart/ticker/baud_acc_fast[6]" BEL
+        "data_uart/ticker/baud_acc_fast[7]" BEL
+        "data_uart/ticker/baud_acc_fast[8]" BEL
+        "data_uart/ticker/baud_acc_fast[9]" BEL
+        "data_uart/ticker/baud_acc_fast[10]" BEL
+        "data_uart/ticker/baud_acc_fast[11]" BEL
+        "data_uart/ticker/baud_acc_fast[12]" BEL
+        "data_uart/ticker/baud_acc_fast[13]" BEL
+        "data_uart/ticker/baud_acc[0]" BEL "data_uart/ticker/baud_acc[1]" BEL
+        "data_uart/ticker/baud_acc[2]" BEL "data_uart/ticker/baud_acc[3]" BEL
+        "data_uart/ticker/baud_acc[4]" BEL "data_uart/ticker/baud_acc_fast[0]"
+        BEL "data_uart/ticker/baud_acc_fast[1]" BEL
+        "data_uart/ticker/baud_acc_fast[2]" BEL
+        "data_uart/ticker/baud_acc_fast[3]" BEL
+        "data_uart/serialiser/tx_data_reg[0]" BEL
+        "data_uart/serialiser/tx_data_reg[1]" BEL
+        "data_uart/serialiser/tx_data_reg[2]" BEL
+        "data_uart/serialiser/tx_data_reg[3]" BEL
+        "data_uart/serialiser/tx_data_reg[4]" BEL
+        "data_uart/serialiser/tx_data_reg[5]" BEL
+        "data_uart/serialiser/tx_data_reg[6]" BEL
+        "data_uart/serialiser/tx_data_reg[7]" BEL "data_uart/serialiser/tx"
+        BEL "data_uart/serialiser/state[8]" BEL
+        "data_uart/serialiser/state[7]" BEL "data_uart/serialiser/state[6]"
+        BEL "data_uart/serialiser/state[5]" BEL
+        "data_uart/serialiser/state[4]" BEL "data_uart/serialiser/state[3]"
+        BEL "data_uart/serialiser/state[2]" BEL
+        "data_uart/serialiser/state[11]" BEL "data_uart/serialiser/state[10]"
+        BEL "data_uart/serialiser/state[9]" BEL
+        "data_uart/serialiser/state[0]" BEL "data_uart/serialiser/state[1]"
+        BEL "data_uart/deserialiser/state[2]" BEL
+        "data_uart/deserialiser/state[0]" BEL
+        "data_uart/deserialiser/rx_bit_inv" BEL
+        "data_uart/deserialiser/rx_data[0]" BEL
+        "data_uart/deserialiser/rx_data[1]" BEL
+        "data_uart/deserialiser/rx_data[2]" BEL
+        "data_uart/deserialiser/rx_data[3]" BEL
+        "data_uart/deserialiser/rx_data[4]" BEL
+        "data_uart/deserialiser/rx_data[5]" BEL
+        "data_uart/deserialiser/rx_data[6]" BEL
+        "data_uart/deserialiser/rx_data[7]" BEL
+        "data_uart/deserialiser/rx_sync_inv[0]" BEL
+        "data_uart/deserialiser/rx_sync_inv[1]" BEL
+        "data_uart/deserialiser/rx_count[0]" BEL
+        "data_uart/deserialiser/rx_count[1]" BEL
+        "data_uart/deserialiser/state[3]" BEL
+        "data_uart/deserialiser/state[4]" BEL
+        "data_uart/deserialiser/state[5]" BEL
+        "data_uart/deserialiser/state[6]" BEL
+        "data_uart/deserialiser/state[7]" BEL
+        "data_uart/deserialiser/state[8]" BEL
+        "data_uart/deserialiser/state[9]" BEL
+        "data_uart/deserialiser/state_0[1]" BEL
+        "data_uart/deserialiser/rx_available" BEL
+        "data_uart/deserialiser/os_count[3]" BEL
+        "data_uart/deserialiser/os_count[2]" BEL
+        "data_uart/deserialiser/os_count[1]" BEL
+        "data_uart/deserialiser/os_count[0]" BEL "gdp_c/state_0[0]" BEL
+        "gdp_c/rx_index_ret_2" BEL "gdp_c/rx_index_ret_1" BEL
+        "gdp_c/sub_out_pipe" BEL "gdp_c/sub_out_pipe_1" BEL
+        "gdp_c/sub_out_pipe_2" BEL "gdp_c/sub_out_pipe_3" BEL
+        "gdp_c/sub_out_pipe_4" BEL "gdp_c/sub_out_pipe_5" BEL
+        "gdp_c/sub_out_pipe_6" BEL "gdp_c/sub_out_pipe_7" BEL
+        "gdp_c/sub_out_pipe_8" BEL "gdp_c/sub_out_pipe_9" BEL
+        "gdp_c/sub_out_pipe_10" BEL "gdp_c/sub_out_pipe_11" BEL
+        "gdp_c/sub_out_pipe_12" BEL "gdp_c/sub_out_pipe_13" BEL
+        "gdp_c/sub_out_pipe_14" BEL "gdp_c/sub_out_pipe_15" BEL
+        "gdp_c/senone_index[0]" BEL "gdp_c/senone_index[1]" BEL
+        "gdp_c/senone_index[2]" BEL "gdp_c/senone_index[3]" BEL
+        "gdp_c/senone_index[4]" BEL "gdp_c/comp_index[0]" BEL
+        "gdp_c/comp_index[1]" BEL "gdp_c/comp_index[2]" BEL
+        "gdp_c/comp_index[3]" BEL "gdp_c/comp_index[4]" BEL
+        "gdp_c/senone_idx_buffer[0]_DOUT[0]" BEL
+        "gdp_c/senone_idx_buffer[0]_0_DOUT[0]" BEL
+        "gdp_c/senone_idx_buffer[0]_1_DOUT[0]" BEL
+        "gdp_c/senone_idx_buffer[0]_2_DOUT[0]" BEL
+        "gdp_c/senone_idx_buffer[0]_3_DOUT[0]" BEL
+        "gdp_c/senone_idx_buffer[0]_3_gdp_c.senone_idx_buffer[0]_1" BEL
+        "gdp_c/senone_idx_buffer[0]_2_gdp_c.senone_idx_buffer[0]_1" BEL
+        "gdp_c/senone_idx_buffer[0]_1_gdp_c.senone_idx_buffer[0]_1" BEL
+        "gdp_c/senone_idx_buffer[0]_0_gdp_c.senone_idx_buffer[0]_1" BEL
+        "gdp_c/senone_idx_buffer[0]_gdp_c.senone_idx_buffer[0]_1" BEL
+        "gdp_c/gdpipe/data_ready_0_gdp_c.senone_idx_buffer[0]_1/SRL16E" BEL
+        "gdp_c/gdpipe/k_r_3__gdp_c.gdpipe.k_r_3__1/SRL16E" BEL
+        "gdp_c/gdpipe/k_r_3__0_gdp_c.gdpipe.k_r_3__1/SRL16E" BEL
+        "gdp_c/gdpipe/k_r_3__1_gdp_c.gdpipe.k_r_3__1/SRL16E" BEL
+        "gdp_c/gdpipe/k_r_3__2_gdp_c.gdpipe.k_r_3__1/SRL16E" BEL
+        "gdp_c/gdpipe/k_r_3__3_gdp_c.gdpipe.k_r_3__1/SRL16E" BEL
+        "gdp_c/gdpipe/k_r_3__4_gdp_c.gdpipe.k_r_3__1/SRL16E" BEL
+        "gdp_c/gdpipe/k_r_3__5_gdp_c.gdpipe.k_r_3__1/SRL16E" BEL
+        "gdp_c/gdpipe/k_r_3__6_gdp_c.gdpipe.k_r_3__1/SRL16E" BEL
+        "gdp_c/gdpipe/k_r_3__7_gdp_c.gdpipe.k_r_3__1/SRL16E" BEL
+        "gdp_c/gdpipe/k_r_3__8_gdp_c.gdpipe.k_r_3__1/SRL16E" BEL
+        "gdp_c/gdpipe/k_r_3__9_gdp_c.gdpipe.k_r_3__1/SRL16E" BEL
+        "gdp_c/gdpipe/k_r_3__10_gdp_c.gdpipe.k_r_3__1/SRL16E" BEL
+        "gdp_c/gdpipe/k_r_3__11_gdp_c.gdpipe.k_r_3__1/SRL16E" BEL
+        "gdp_c/gdpipe/k_r_3__12_gdp_c.gdpipe.k_r_3__1/SRL16E" BEL
+        "gdp_c/gdpipe/first_calc_r_gdp_c.gdpipe.first_calc_r_1/SRL16E" BEL
+        "gdp_c/gdpipe/omega_r_0_[5]" BEL "gdp_c/gdpipe/omega_r_0_[4]" BEL
+        "gdp_c/gdpipe/omega_r_0_[3]" BEL "gdp_c/gdpipe/omega_r_0_[2]" BEL
+        "gdp_c/gdpipe/omega_r_0_[1]" BEL "gdp_c/gdpipe/omega_r_0_[0]" BEL
+        "gdp_c/gdpipe/omega_r_1_[5]" BEL "gdp_c/gdpipe/omega_r_1_[4]" BEL
+        "gdp_c/gdpipe/omega_r_1_[3]" BEL "gdp_c/gdpipe/omega_r_1_[2]" BEL
+        "gdp_c/gdpipe/omega_r_1_[1]" BEL "gdp_c/gdpipe/omega_r_1_[0]" BEL
+        "gdp_c/gdpipe/scale_out_pipe_20" BEL "gdp_c/gdpipe/scale_out_pipe_21"
+        BEL "gdp_c/gdpipe/scale_out_pipe_22" BEL
+        "gdp_c/gdpipe/scale_out_pipe_23" BEL "gdp_c/gdpipe/scale_out_pipe_24"
+        BEL "gdp_c/gdpipe/scale_out_pipe_25" BEL
+        "gdp_c/gdpipe/scale_out_pipe_26" BEL "gdp_c/gdpipe/scale_out_pipe_27"
+        BEL "gdp_c/gdpipe/scale_out_pipe_28" BEL
+        "gdp_c/gdpipe/scale_out_pipe_29" BEL "gdp_c/gdpipe/scale_out_pipe_30"
+        BEL "gdp_c/gdpipe/scale_out_pipe_31" BEL
+        "gdp_c/gdpipe/scale_out_pipe_32" BEL "gdp_c/gdpipe/scale_out_pipe_33"
+        BEL "gdp_c/gdpipe/scale_out_pipe_34" BEL
+        "gdp_c/gdpipe/scale_out_pipe_35" BEL "gdp_c/gdpipe/scale_out_pipe_36"
+        BEL "gdp_c/gdpipe/scale_out_pipe_37" BEL
+        "gdp_c/gdpipe/scale_out_pipe_38" BEL "gdp_c/gdpipe/scale_out_pipe_39"
+        BEL "gdp_c/gdpipe/scale_out_pipe_40" BEL
+        "gdp_c/gdpipe/scale_out_pipe_41" BEL "gdp_c/gdpipe/scale_out_pipe_42"
+        BEL "gdp_c/gdpipe/scale_out_pipe_43" BEL
+        "gdp_c/gdpipe/scale_out_pipe_44" BEL "gdp_c/gdpipe/scale_out_pipe_45"
+        BEL "gdp_c/gdpipe/scale_out_pipe_46" BEL
+        "gdp_c/gdpipe/scale_out_pipe_47" BEL "gdp_c/gdpipe/square_out_pipe"
+        BEL "gdp_c/gdpipe/square_out_pipe_1" BEL
+        "gdp_c/gdpipe/square_out_pipe_2" BEL "gdp_c/gdpipe/square_out_pipe_3"
+        BEL "gdp_c/gdpipe/square_out_pipe_4" BEL
+        "gdp_c/gdpipe/square_out_pipe_5" BEL "gdp_c/gdpipe/square_out_pipe_6"
+        BEL "gdp_c/gdpipe/square_out_pipe_7" BEL
+        "gdp_c/gdpipe/square_out_pipe_8" BEL "gdp_c/gdpipe/square_out_pipe_9"
+        BEL "gdp_c/gdpipe/square_out_pipe_10" BEL
+        "gdp_c/gdpipe/square_out_pipe_11" BEL
+        "gdp_c/gdpipe/square_out_pipe_12" BEL
+        "gdp_c/gdpipe/square_out_pipe_13" BEL
+        "gdp_c/gdpipe/square_out_pipe_14" BEL
+        "gdp_c/gdpipe/square_out_pipe_15" BEL
+        "gdp_c/gdpipe/square_out_pipe_16" BEL "gdp_c/gdpipe/acc_sum_pipe" BEL
+        "gdp_c/gdpipe/acc_sum_pipe_1" BEL "gdp_c/gdpipe/acc_sum_pipe_2" BEL
+        "gdp_c/gdpipe/acc_sum_pipe_3" BEL "gdp_c/gdpipe/acc_sum_pipe_4" BEL
+        "gdp_c/gdpipe/acc_sum_pipe_5" BEL "gdp_c/gdpipe/acc_sum_pipe_6" BEL
+        "gdp_c/gdpipe/acc_sum_pipe_7" BEL "gdp_c/gdpipe/acc_sum_pipe_8" BEL
+        "gdp_c/gdpipe/acc_sum_pipe_9" BEL "gdp_c/gdpipe/acc_sum_pipe_33" BEL
+        "gdp_c/gdpipe/acc_sum_pipe_34" BEL "gdp_c/gdpipe/acc_sum_pipe_35" BEL
+        "gdp_c/gdpipe/acc_sum_pipe_36" BEL "gdp_c/gdpipe/acc_sum_pipe_37" BEL
+        "gdp_c/gdpipe/acc_sum_pipe_38" BEL "gdp_c/gdpipe/acc_sum_pipe_39" BEL
+        "gdp_c/gdpipe/acc_sum_pipe_40" BEL "gdp_c/gdpipe/acc_sum_pipe_41" BEL
+        "gdp_c/gdpipe/acc_sum_pipe_42" BEL "gdp_c/gdpipe/acc_sum_pipe_43" BEL
+        "gdp_c/gdpipe/acc_sum_pipe_44" BEL "gdp_c/gdpipe/acc_sum_pipe_45" BEL
+        "gdp_c/gdpipe/acc_sum_pipe_46" BEL "gdp_c/gdpipe/acc_sum_pipe_47" BEL
+        "gdp_c/gdpipe/acc_sum_pipe_48" BEL "gdp_c/gdpipe/acc_sum_pipe_49" BEL
+        "gdp_c/gdpipe/acc_sum_pipe_50" BEL "gdp_c/gdpipe/acc_sum_pipe_51" BEL
+        "gdp_c/gdpipe/sub_out_pipe" BEL "gdp_c/gdpipe/sub_out_pipe_1" BEL
+        "gdp_c/gdpipe/sub_out_pipe_2" BEL "gdp_c/gdpipe/sub_out_pipe_3" BEL
+        "gdp_c/gdpipe/sub_out_pipe_4" BEL "gdp_c/gdpipe/sub_out_pipe_5" BEL
+        "gdp_c/gdpipe/sub_out_pipe_6" BEL "gdp_c/gdpipe/sub_out_pipe_7" BEL
+        "gdp_c/gdpipe/sub_out_pipe_8" BEL "gdp_c/gdpipe/sub_out_pipe_9" BEL
+        "gdp_c/gdpipe/sub_out_pipe_10" BEL "gdp_c/gdpipe/sub_out_pipe_11" BEL
+        "gdp_c/gdpipe/sub_out_pipe_12" BEL "gdp_c/gdpipe/sub_out_pipe_13" BEL
+        "gdp_c/gdpipe/sub_out_pipe_14" BEL "gdp_c/gdpipe/result_pipe" BEL
+        "gdp_c/gdpipe/result_pipe_1" BEL "gdp_c/gdpipe/result_pipe_2" BEL
+        "gdp_c/gdpipe/result_pipe_3" BEL "gdp_c/gdpipe/result_pipe_4" BEL
+        "gdp_c/gdpipe/result_pipe_5" BEL "gdp_c/gdpipe/result_pipe_6" BEL
+        "gdp_c/gdpipe/result_pipe_7" BEL "gdp_c/gdpipe/result_pipe_8" BEL
+        "gdp_c/gdpipe/result_pipe_9" BEL "gdp_c/gdpipe/result_pipe_10" BEL
+        "gdp_c/gdpipe/result_pipe_11" BEL "gdp_c/gdpipe/result_pipe_12" BEL
+        "gdp_c/gdpipe/result_pipe_13" BEL "gdp_c/gdpipe/result_pipe_14" BEL
+        "gdp_c/gdpipe/result_pipe_15" BEL "gdp_c/gdpipe/result_pipe_16" BEL
+        "gdp_c/gdpipe/result_pipe_17" BEL "gdp_c/gdpipe/result_pipe_18" BEL
+        "gdp_c/gdpipe/result_pipe_19" BEL "gdp_c/gdpipe/result_pipe_20" BEL
+        "gdp_c/gdpipe/result_pipe_21" BEL "gdp_c/gdpipe/result_pipe_22" BEL
+        "gdp_c/gdpipe/result_pipe_32" BEL "gdp_c/gdpipe/result_pipe_33" BEL
+        "gdp_c/gdpipe/result_pipe_34" BEL "gdp_c/gdpipe/result_pipe_35" BEL
+        "gdp_c/gdpipe/result_pipe_36" BEL "gdp_c/gdpipe/result_pipe_37" BEL
+        "gdp_c/gdpipe/result_pipe_38" BEL "gdp_c/gdpipe/result_pipe_39" BEL
+        "gdp_c/gdpipe/result_pipe_40" BEL "gdp_c/gdpipe/result_pipe_41" BEL
+        "gdp_c/gdpipe/result_pipe_42" BEL "gdp_c/gdpipe/result_pipe_43" BEL
+        "gdp_c/gdpipe/result_pipe_44" BEL "gdp_c/gdpipe/result_pipe_45" BEL
+        "gdp_c/gdpipe/data_ready_0_DOUT[0]" BEL "gdp_c/gdpipe/k_r_3__DOUT[0]"
+        BEL "gdp_c/gdpipe/k_r_3__0_DOUT[0]" BEL
+        "gdp_c/gdpipe/k_r_3__1_DOUT[0]" BEL "gdp_c/gdpipe/k_r_3__2_DOUT[0]"
+        BEL "gdp_c/gdpipe/k_r_3__3_DOUT[0]" BEL
+        "gdp_c/gdpipe/k_r_3__4_DOUT[0]" BEL "gdp_c/gdpipe/k_r_3__5_DOUT[0]"
+        BEL "gdp_c/gdpipe/k_r_3__6_DOUT[0]" BEL
+        "gdp_c/gdpipe/k_r_3__7_DOUT[0]" BEL "gdp_c/gdpipe/k_r_3__8_DOUT[0]"
+        BEL "gdp_c/gdpipe/k_r_3__9_DOUT[0]" BEL
+        "gdp_c/gdpipe/k_r_3__10_DOUT[0]" BEL "gdp_c/gdpipe/k_r_3__11_DOUT[0]"
+        BEL "gdp_c/gdpipe/k_r_3__12_DOUT[0]" BEL
+        "gdp_c/gdpipe/first_calc_r_DOUT[0]" BEL "gdp_c/gdpipe/k_r_3__286" BEL
+        "gdp_c/gdpipe/k_r_3__288" BEL "gdp_c/gdpipe/data_ready_278" BEL
+        "gdp_c/gdpipe/data_ready_280" BEL "gdp_c/gdpipe/data_ready_282" BEL
+        "gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_0_0[31:0]" BEL
+        "gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]" BEL
+        "gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_2_0_0[11:0]" BEL
+        "maximiser/best_score[0]" BEL "maximiser/best_score[1]" BEL
+        "maximiser/best_score[2]" BEL "maximiser/best_score[3]" BEL
+        "maximiser/best_score[4]" BEL "maximiser/best_score[5]" BEL
+        "maximiser/best_score[6]" BEL "maximiser/best_score[7]" BEL
+        "maximiser/best_score[8]" BEL "maximiser/best_score[9]" BEL
+        "maximiser/best_score[10]" BEL "maximiser/best_score[11]" BEL
+        "maximiser/best_score[12]" BEL "maximiser/best_score[13]" BEL
+        "maximiser/best_score[14]" BEL "maximiser/best_score[15]" BEL
+        "maximiser/rx_index_ret_2" BEL "maximiser/rx_index_ret_1" BEL
+        "norm/state[1]" BEL "norm/state[0]" BEL "norm/norm_done" BEL
+        "norm/current_score[0]" BEL "norm/current_score[1]" BEL
+        "norm/current_score[2]" BEL "norm/current_score[3]" BEL
+        "norm/current_score[4]" BEL "norm/current_score[5]" BEL
+        "norm/current_score[6]" BEL "norm/current_score[7]" BEL
+        "norm/current_score[8]" BEL "norm/current_score[9]" BEL
+        "norm/current_score[10]" BEL "norm/current_score[11]" BEL
+        "norm/current_score[12]" BEL "norm/current_score[13]" BEL
+        "norm/current_score[14]" BEL "norm/current_score[15]" BEL
+        "norm/best_score_reg[0]" BEL "norm/best_score_reg[1]" BEL
+        "norm/best_score_reg[2]" BEL "norm/best_score_reg[3]" BEL
+        "norm/best_score_reg[4]" BEL "norm/best_score_reg[5]" BEL
+        "norm/best_score_reg[6]" BEL "norm/best_score_reg[7]" BEL
+        "norm/best_score_reg[8]" BEL "norm/best_score_reg[9]" BEL
+        "norm/best_score_reg[10]" BEL "norm/best_score_reg[11]" BEL
+        "norm/best_score_reg[12]" BEL "norm/best_score_reg[13]" BEL
+        "norm/best_score_reg[14]" BEL "norm/best_score_reg[15]" BEL
+        "norm/senone_index[0]" BEL "norm/senone_index[1]" BEL
+        "norm/senone_index[2]" BEL "norm/senone_index[3]" BEL
+        "norm/senone_index[4]" BEL "norm/senone_index[5]" BEL
+        "norm/senone_index[6]" BEL "norm/senone_index[7]" BEL
+        "sender/start_tx" BEL "sender/send_done" BEL "sender/tx_value[0]" BEL
+        "sender/tx_value[1]" BEL "sender/tx_value[2]" BEL "sender/tx_value[3]"
+        BEL "sender/tx_value[4]" BEL "sender/tx_value[5]" BEL
+        "sender/tx_value[6]" BEL "sender/tx_value[7]" BEL "sender/tx_value[8]"
+        BEL "sender/tx_value[9]" BEL "sender/tx_value[10]" BEL
+        "sender/tx_value[11]" BEL "sender/tx_value[12]" BEL
+        "sender/tx_value[13]" BEL "sender/tx_value[14]" BEL
+        "sender/tx_value[15]" BEL "sender/state[0]" BEL "sender/state[1]" BEL
+        "sender/senone_index[0]" BEL "sender/senone_index[1]" BEL
+        "sender/senone_index[2]" BEL "sender/senone_index[3]" BEL
+        "sender/senone_index[4]" BEL "sender/senone_index[5]" BEL
+        "sender/senone_index[6]" BEL "sender/senone_index[7]" BEL
+        "ram_access/address[1]" BEL "ram_access/address[2]" BEL
+        "ram_access/address[3]" BEL "ram_access/address[4]" BEL
+        "ram_access/address[5]" BEL "ram_access/address[6]" BEL
+        "ram_access/address[7]" BEL "ram_access/address[8]" BEL
+        "ram_access/buffer_in[0]" BEL "ram_access/buffer_in[1]" BEL
+        "ram_access/buffer_in[2]" BEL "ram_access/buffer_in[3]" BEL
+        "ram_access/buffer_in[4]" BEL "ram_access/buffer_in[5]" BEL
+        "ram_access/buffer_in[6]" BEL "ram_access/buffer_in[7]" BEL
+        "ram_access/buffer_in[8]" BEL "ram_access/buffer_in[9]" BEL
+        "ram_access/buffer_in[10]" BEL "ram_access/buffer_in[11]" BEL
+        "ram_access/buffer_in[12]" BEL "ram_access/buffer_in[13]" BEL
+        "ram_access/buffer_in[14]" BEL "ram_access/buffer_in[15]" BEL
+        "ram_access/state_0[0]" BEL "ram_access/state_0[2]" BEL
+        "ram_access/state_0[1]" BEL "ram_access/state_ret" BEL
+        "ram_access/state_ret_1" BEL "ram_access/state_ret_2" BEL
+        "ram_access/state_ret_3" BEL "clk_ibuf.GCLKMUX" BEL "clk_ibuf";
+TS_clk = PERIOD TIMEGRP "clk" 20 ns HIGH 50%;
+SCHEMATIC END;
+

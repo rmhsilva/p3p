@@ -1,0 +1,147 @@
+H:/work/Part3/P3-Project/Code/Synplify/modules/uart/uart_rx.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/Synplify/modules/uart/uart_rx.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module uart_rx
+
+Top level modules:
+	uart_rx
+
+} {} {}} H:/work/Part3/P3-Project/Code/Synplify/modules/uart/baudgen.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/Synplify/modules/uart/baudgen.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module baudgen
+
+Top level modules:
+	baudgen
+
+} {} {}} H:/work/Part3/P3-Project/Code/Synplify/modules/uart/uart_tx.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/Synplify/modules/uart/uart_tx.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module uart_tx
+
+Top level modules:
+	uart_tx
+
+} {} {}} H:/work/Part3/P3-Project/Code/Synplify/modules/gdp.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/Synplify/modules/gdp.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling package gdp_sv_unit
+-- Compiling module gdp
+
+Top level modules:
+	gdp
+
+} {} {}} H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_gdp.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_gdp.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module test_gdp
+
+Top level modules:
+	test_gdp
+
+} {} {}} H:/work/Part3/P3-Project/Code/Synplify/modules/sram.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/Synplify/modules/sram.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling package sram_sv_unit
+-- Compiling module sram
+
+Top level modules:
+	sram
+
+} {} {}} H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_baudgen.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_baudgen.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module test_baudgen
+
+Top level modules:
+	test_baudgen
+
+} {} {}} H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_top_level.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_top_level.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling package test_top_level_sv_unit
+-- Compiling module test_top_level
+
+Top level modules:
+	test_top_level
+
+} {} {}} H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_send.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_send.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling package test_send_sv_unit
+-- Compiling module test_send
+
+Top level modules:
+	test_send
+
+} {} {}} H:/work/Part3/P3-Project/Code/Synplify/modules/send.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/Synplify/modules/send.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling package send_sv_unit
+-- Compiling module send
+
+Top level modules:
+	send
+
+} {} {}} H:/work/Part3/P3-Project/Code/Synplify/modules/top_level.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/Synplify/modules/top_level.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling package top_level_sv_unit
+-- Compiling module top_level
+
+Top level modules:
+	top_level
+
+} {} {}} H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_uart.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_uart.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling package test_uart_sv_unit
+-- Compiling module test_uart
+
+Top level modules:
+	test_uart
+
+} {} {}} H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/sram_model.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/sram_model.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module sram_model
+
+Top level modules:
+	sram_model
+
+} {} {}} H:/work/Part3/P3-Project/Code/Synplify/modules/all_s_data.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/Synplify/modules/all_s_data.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling package all_s_data_sv_unit
+-- Compiling module s_data_rom
+
+Top level modules:
+	s_data_rom
+
+} {} {}} H:/work/Part3/P3-Project/Code/Synplify/modules/normaliser.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/Synplify/modules/normaliser.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling package normaliser_sv_unit
+-- Compiling module normaliser
+
+Top level modules:
+	normaliser
+
+} {} {}} H:/work/Part3/P3-Project/Code/Synplify/modules/uart.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/Synplify/modules/uart.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling package uart_sv_unit
+-- Compiling module uart
+
+Top level modules:
+	uart
+
+} {} {}} H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_gdp_controller.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_gdp_controller.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling package test_gdp_controller_sv_unit
+-- Compiling module test_gdp_controller
+
+Top level modules:
+	test_gdp_controller
+
+} {} {}} H:/work/Part3/P3-Project/Code/Synplify/modules/gdp_controller.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/Synplify/modules/gdp_controller.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling package gdp_controller_sv_unit
+-- Compiling module gdp_controller
+
+Top level modules:
+	gdp_controller
+
+} {} {}} H:/work/Part3/P3-Project/Code/Synplify/modules/max.sv {1 {vlog -work p3p -vopt -sv H:/work/Part3/P3-Project/Code/Synplify/modules/max.sv
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling package max_sv_unit
+-- Compiling module max
+
+Top level modules:
+	max
+
+} {} {}}

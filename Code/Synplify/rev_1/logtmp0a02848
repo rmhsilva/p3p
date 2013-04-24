@@ -1,0 +1,7 @@
+Synopsys VHDL Compiler, version comp201203rcp1, Build 070R, built May 29 2012
+@N|Running in 32-bit mode
+Copyright (C) 1994-2012 Synopsys, Inc. This software the associated documentation are confidential and proprietary to Synopsys, Inc. Your use or disclosure of this software subject to the terms and conditions of a written license agreement between you, or your company, and Synopsys, Inc.
+
+@N: CD720 :"C:\Synopsys\fpga_F201203SP2\lib\vhd\std.vhd":123:18:123:21|Setting time resolution to ns
+@I:: ".\genpkg0a02848"
+@I:: "syng0a02848"

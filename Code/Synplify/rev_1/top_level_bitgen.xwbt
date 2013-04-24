@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=H:\work\Part3\P3-Project\Code\Synplify\rev_1\top_level.ncd
+OUTFILE=H:\work\Part3\P3-Project\Code\Synplify\rev_1\top_level.bit
+FAMILY=Spartan3A and Spartan3AN
+PART=xc3s50an-4tqg144
+WORKINGDIR=H:\work\Part3\P3-Project\Code\Synplify\rev_1
+LICENSE=ISE
+USER_INFO=174677796_174111185_210552533_703

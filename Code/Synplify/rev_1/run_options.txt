@@ -1,0 +1,80 @@
+#--  Synopsys, Inc.
+#--  Version F-2012.03-SP2 
+#--  Project file H:\work\Part3\P3-Project\Code\Synplify\rev_1\run_options.txt
+
+#project files
+add_file -verilog -vlog_std sysv "./modules/gdp.sv"
+add_file -verilog -vlog_std sysv "./modules/gdp_controller.sv"
+add_file -verilog -vlog_std sysv "./modules/max.sv"
+add_file -verilog -vlog_std sysv "./modules/normaliser.sv"
+add_file -verilog -vlog_std sysv "./modules/send.sv"
+add_file -verilog -vlog_std sysv "./modules/sram.sv"
+add_file -verilog -vlog_std sysv "./modules/top_level.sv"
+add_file -verilog -vlog_std sysv "./modules/uart.sv"
+add_file -verilog -vlog_std sysv "./modules/uart/baudgen.sv"
+add_file -verilog -vlog_std sysv "./modules/uart/uart_rx.sv"
+add_file -verilog -vlog_std sysv "./modules/uart/uart_tx.sv"
+add_file -verilog -vlog_std sysv "./modules/all_s_data.sv"
+add_file -ucf "./rev_1/synplicity.ucf"
+
+
+#implementation: "rev_1"
+impl -add rev_1 -type fpga
+
+#
+#implementation attributes
+
+set_option -vlog_std sysv
+set_option -project_relative_includes 1
+
+#device options
+set_option -technology Spartan3A
+set_option -part XC3S50AN
+set_option -package TQG144
+set_option -speed_grade -4
+set_option -part_companion ""
+
+#compilation/mapping options
+set_option -use_fsm_explorer 0
+set_option -top_module "top_level"
+
+# mapper_options
+set_option -frequency 50.000000
+set_option -write_verilog 0
+set_option -write_vhdl 0
+
+# Xilinx Spartan3
+set_option -run_prop_extract 1
+set_option -maxfan 10000
+set_option -disable_io_insertion 0
+set_option -pipe 1
+set_option -retiming 0
+set_option -update_models_cp 0
+set_option -fixgatedclocks 3
+set_option -fixgeneratedclocks 3
+set_option -no_sequential_opt 0
+
+# NFilter
+set_option -popfeed 0
+set_option -constprop 0
+set_option -createhierarchy 0
+
+# sequential_optimization_options
+set_option -symbolic_fsm_compiler 1
+
+# Compiler Options
+set_option -compiler_compatible 0
+set_option -resource_sharing 1
+set_option -multi_file_compilation_unit 1
+
+#VIF options
+set_option -write_vif 0
+
+#automatic place and route (vendor) options
+set_option -write_apr_constraint 1
+
+#set result format/file last
+project -result_file "./rev_1/Main.edf"
+
+#design plan options
+impl -active "rev_1"

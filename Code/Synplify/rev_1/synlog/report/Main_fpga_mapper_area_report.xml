@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- *************************************************************************************
+FILE DESCRIPTION
+The file contains the area information from mapper to be displayed as part of the summary report.
+*******************************************************************************************-->
+<report_table display_priority="1" name="Area Summary">
+<report_link name="Detailed report">
+<data>H:\work\Part3\P3-Project\Code\Synplify\rev_1\synlog\report\Main_fpga_mapper_resourceusage.rpt</data>
+</report_link>
+<parameter tooltip="Total I/O ports used" name="I/O ports">
+<data>43</data>
+</parameter>
+<parameter tooltip="Total Non I/O Register bits used" name="Non I/O Register bits">
+<data>568 (40%)</data>
+</parameter>
+<parameter tooltip="Total I/O Register bits used" name="I/O Register bits">
+<data>0</data>
+</parameter>
+<parameter tooltip="Total Block Rams used" name="Block Rams">
+<data>0 (3)</data>
+</parameter>
+<parameter tooltip="Total Block Multipliers used" name="Block Multipliers">
+<data>0 (3)</data>
+</parameter>
+<parameter tooltip="Total LUTs used" name="LUTs">
+<data>838 (59%)</data>
+</parameter>
+</report_table>

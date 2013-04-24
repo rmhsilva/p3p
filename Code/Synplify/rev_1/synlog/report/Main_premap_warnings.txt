@@ -1,0 +1,4 @@
+@W: FX474 |User-specified initial value defined for some sequential elements which can prevent optimum synthesis results from being achieved. 
+@W: MT462 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":71:2:71:5|Net ram_access.svbl_105\.sram_we14 appears to be an unidentified clock source. Assuming default frequency. 
+@W: MT462 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":9:16:9:35|Net gdp_c.next_0_sqmuxa appears to be an unidentified clock source. Assuming default frequency. 
+@W: MT529 :"h:\work\part3\p3-project\code\synplify\modules\uart\baudgen.sv":21:0:21:8|Found inferred clock top_level|clk which controls 592 sequential elements including data_uart/ticker/baud_acc[16:0]. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 

@@ -1,0 +1,31 @@
+fsm_options -device {state[4:0]}
+
+define_state IDLE 00000000000000000000000000000000 {h:\work\part3\p3-project\code\synplify\modules\sram.sv} 38 5 38 8
+state_output IDLE {state[0]} 1
+
+define_state WRITE1 00000000000000000000000000000001 {h:\work\part3\p3-project\code\synplify\modules\sram.sv} 49 5 49 10
+state_output WRITE1 {state[1]} 1
+
+define_state WRITE2 00000000000000000000000000000010 {h:\work\part3\p3-project\code\synplify\modules\sram.sv} 50 5 50 10
+state_output WRITE2 {state[2]} 1
+
+define_state READ1 00000000000000000000000000000011 {h:\work\part3\p3-project\code\synplify\modules\sram.sv} 52 5 52 9
+state_output READ1 {state[3]} 1
+
+define_state READ2 00000000000000000000000000000100 {h:\work\part3\p3-project\code\synplify\modules\sram.sv} 56 5 56 9
+state_output READ2 {state[4]} 1
+
+fsm_options -resetState IDLE
+
+define_transition READ1 READ2 {read_data,write_data = --}
+define_transition IDLE READ1 {read_data,write_data = 10}
+define_transition WRITE1 WRITE2 {read_data,write_data = --}
+define_transition IDLE WRITE1 {read_data,write_data = -1}
+define_transition READ2 IDLE {read_data,write_data = --}
+define_transition WRITE2 IDLE {read_data,write_data = --}
+define_transition IDLE IDLE {read_data,write_data = 00}
+fsm_options -SRSPath {H:\work\Part3\P3-Project\Code\Synplify\rev_1\Main.srs}
+fsm_options -SRSTime 1366646489
+fsm_options -FSMPath {ram_access.state[4:0]}
+fsm_options -view {ScratchLib.cell12.netlist|i:state[4:0]}
+fsm_options -ID {11320322}

@@ -1,0 +1,117 @@
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":113:17:113:71|Found combinational loop during mapping at net proc_outputlogic\.start_send
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":112:48:112:70|Found combinational loop during mapping at net proc_outputlogic\.un5_start_norm
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[0]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[1]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[2]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[3]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[4]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[5]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[6]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[7]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[8]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[9]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[10]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[11]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[12]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[13]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[14]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[15]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[16]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[17]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[18]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[19]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[20]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[21]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[22]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[23]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[24]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[25]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[26]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[27]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[28]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[29]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[30]
+@W: BN137 :"h:\work\part3\p3-project\code\synplify\modules\top_level.sv":93:2:93:3|Found combinational loop during mapping at net proc_statecomb\.next_12[31]
+@W: MT462 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":62:9:62:12|Net ram_access.svbl_107\.sram_we9 appears to be an unidentified clock source. Assuming default frequency. 
+@W: MT462 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":3:7:3:20|Net gdp_c.gdp_idle appears to be an unidentified clock source. Assuming default frequency. 
+@W: MT462 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":96:8:96:14|Net gdp_c.proc_main\.svbl_71\.last_calc12 appears to be an unidentified clock source. Assuming default frequency. 
+@W: MT462 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":3:7:61:21|Net gdp_c.proc_main\.svbl_71\.un1_comp_index14 appears to be an unidentified clock source. Assuming default frequency. 
+@W: MO129 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Sequential instance gdp_c.proc_maincomb.omega[6] reduced to a combinational gate by constant propagation
+@W: MO129 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Sequential instance gdp_c.proc_maincomb.omega[7] reduced to a combinational gate by constant propagation
+@W: MO129 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Sequential instance gdp_c.proc_maincomb.omega[8] reduced to a combinational gate by constant propagation
+@W: MO129 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Sequential instance gdp_c.proc_maincomb.omega[9] reduced to a combinational gate by constant propagation
+@W: MO129 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Sequential instance gdp_c.proc_maincomb.omega[10] reduced to a combinational gate by constant propagation
+@W: MO129 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Sequential instance gdp_c.proc_maincomb.omega[11] reduced to a combinational gate by constant propagation
+@W: MO129 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Sequential instance gdp_c.proc_maincomb.omega[12] reduced to a combinational gate by constant propagation
+@W: MO129 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Sequential instance gdp_c.proc_maincomb.omega[13] reduced to a combinational gate by constant propagation
+@W: MO129 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Sequential instance gdp_c.proc_maincomb.omega[14] reduced to a combinational gate by constant propagation
+@W: MO129 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Sequential instance gdp_c.proc_maincomb.omega[15] reduced to a combinational gate by constant propagation
+@W: MO129 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Sequential instance gdp_c.proc_maincomb.k[1] reduced to a combinational gate by constant propagation
+@W: MO129 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Sequential instance gdp_c.proc_maincomb.k[13] reduced to a combinational gate by constant propagation
+@W: MO129 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Sequential instance gdp_c.proc_maincomb.k[14] reduced to a combinational gate by constant propagation
+@W: MO129 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Sequential instance gdp_c.proc_maincomb.k[15] reduced to a combinational gate by constant propagation
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.scale_out[21],  because it is equivalent to instance gdp_c.gdpipe.scale_out[20]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.scale_out[20],  because it is equivalent to instance gdp_c.gdpipe.scale_out[19]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.scale_out[19],  because it is equivalent to instance gdp_c.gdpipe.scale_out[18]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Removing sequential instance gdp_c.proc_maincomb.k[9],  because it is equivalent to instance gdp_c.proc_maincomb.k[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Removing sequential instance gdp_c.proc_maincomb.k[8],  because it is equivalent to instance gdp_c.proc_maincomb.k[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Removing sequential instance gdp_c.proc_maincomb.k[7],  because it is equivalent to instance gdp_c.proc_maincomb.k[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Removing sequential instance gdp_c.proc_maincomb.k[6],  because it is equivalent to instance gdp_c.proc_maincomb.k[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Removing sequential instance gdp_c.proc_maincomb.k[2],  because it is equivalent to instance gdp_c.proc_maincomb.k[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Removing sequential instance gdp_c.proc_maincomb.k[10],  because it is equivalent to instance gdp_c.proc_maincomb.k[0]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Removing sequential instance gdp_c.proc_maincomb.k[5],  because it is equivalent to instance gdp_c.proc_maincomb.k[11]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Removing sequential instance gdp_c.proc_maincomb.k[4],  because it is equivalent to instance gdp_c.proc_maincomb.k[11]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Removing sequential instance gdp_c.proc_maincomb.k[3],  because it is equivalent to instance gdp_c.proc_maincomb.k[11]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_0_[6],  because it is equivalent to instance gdp_c.gdpipe.k_r_0_[2]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_0_[7],  because it is equivalent to instance gdp_c.gdpipe.k_r_0_[2]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_0_[8],  because it is equivalent to instance gdp_c.gdpipe.k_r_0_[2]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_0_[9],  because it is equivalent to instance gdp_c.gdpipe.k_r_0_[2]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_0_[10],  because it is equivalent to instance gdp_c.gdpipe.k_r_0_[2]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_0_[2],  because it is equivalent to instance gdp_c.gdpipe.k_r_0_[0]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_0_[4],  because it is equivalent to instance gdp_c.gdpipe.k_r_0_[3]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_0_[5],  because it is equivalent to instance gdp_c.gdpipe.k_r_0_[3]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_0_[11],  because it is equivalent to instance gdp_c.gdpipe.k_r_0_[3]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_1_[9],  because it is equivalent to instance gdp_c.gdpipe.k_r_1_[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_1_[8],  because it is equivalent to instance gdp_c.gdpipe.k_r_1_[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_1_[7],  because it is equivalent to instance gdp_c.gdpipe.k_r_1_[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_1_[6],  because it is equivalent to instance gdp_c.gdpipe.k_r_1_[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_1_[2],  because it is equivalent to instance gdp_c.gdpipe.k_r_1_[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_1_[10],  because it is equivalent to instance gdp_c.gdpipe.k_r_1_[0]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_2_[6],  because it is equivalent to instance gdp_c.gdpipe.k_r_2_[2]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_2_[7],  because it is equivalent to instance gdp_c.gdpipe.k_r_2_[2]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_2_[8],  because it is equivalent to instance gdp_c.gdpipe.k_r_2_[2]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_2_[9],  because it is equivalent to instance gdp_c.gdpipe.k_r_2_[2]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_2_[10],  because it is equivalent to instance gdp_c.gdpipe.k_r_2_[2]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_2_[2],  because it is equivalent to instance gdp_c.gdpipe.k_r_2_[0]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_3_[9],  because it is equivalent to instance gdp_c.gdpipe.k_r_3_[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_3_[8],  because it is equivalent to instance gdp_c.gdpipe.k_r_3_[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_3_[7],  because it is equivalent to instance gdp_c.gdpipe.k_r_3_[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_3_[6],  because it is equivalent to instance gdp_c.gdpipe.k_r_3_[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_3_[2],  because it is equivalent to instance gdp_c.gdpipe.k_r_3_[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_3_[10],  because it is equivalent to instance gdp_c.gdpipe.k_r_3_[0]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_1_[5],  because it is equivalent to instance gdp_c.gdpipe.k_r_1_[11]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_1_[4],  because it is equivalent to instance gdp_c.gdpipe.k_r_1_[11]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_1_[3],  because it is equivalent to instance gdp_c.gdpipe.k_r_1_[11]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_2_[4],  because it is equivalent to instance gdp_c.gdpipe.k_r_2_[3]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_2_[5],  because it is equivalent to instance gdp_c.gdpipe.k_r_2_[3]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_2_[11],  because it is equivalent to instance gdp_c.gdpipe.k_r_2_[3]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Removing sequential instance gdp_c.proc_maincomb.mean[15],  because it is equivalent to instance gdp_c.proc_maincomb.mean[14]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv":80:4:80:7|Removing sequential instance gdp_c.proc_maincomb.mean[14],  because it is equivalent to instance gdp_c.proc_maincomb.mean[13]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_3_[5],  because it is equivalent to instance gdp_c.gdpipe.k_r_3_[11]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_3_[4],  because it is equivalent to instance gdp_c.gdpipe.k_r_3_[11]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\gdp.sv":24:0:24:8|Removing instance gdp_c.gdpipe.k_r_3_[3],  because it is equivalent to instance gdp_c.gdpipe.k_r_3_[11]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":30:0:30:8|Removing instance ram_access.address[20],  because it is equivalent to instance ram_access.address[19]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":30:0:30:8|Removing instance ram_access.address[19],  because it is equivalent to instance ram_access.address[18]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":30:0:30:8|Removing instance ram_access.address[18],  because it is equivalent to instance ram_access.address[17]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":30:0:30:8|Removing instance ram_access.address[17],  because it is equivalent to instance ram_access.address[16]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":30:0:30:8|Removing instance ram_access.address[16],  because it is equivalent to instance ram_access.address[15]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":30:0:30:8|Removing instance ram_access.address[15],  because it is equivalent to instance ram_access.address[14]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":30:0:30:8|Removing instance ram_access.address[14],  because it is equivalent to instance ram_access.address[13]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":30:0:30:8|Removing instance ram_access.address[13],  because it is equivalent to instance ram_access.address[12]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":30:0:30:8|Removing instance ram_access.address[12],  because it is equivalent to instance ram_access.address[11]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":30:0:30:8|Removing instance ram_access.address[11],  because it is equivalent to instance ram_access.address[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":30:0:30:8|Removing instance ram_access.address[9],  because it is equivalent to instance ram_access.address[10]
+@W: BN132 :"h:\work\part3\p3-project\code\synplify\modules\sram.sv":30:0:30:8|Removing instance ram_access.address[10],  because it is equivalent to instance ram_access.address[0]
+@W: MT462 :|Net N_805 appears to be an unidentified clock source. Assuming default frequency. 
+@W: MT462 :|Net gdp_c.proc_main\.svbl_71\.last_calc12 appears to be an unidentified clock source. Assuming default frequency. 
+@W: MT462 :|Net gdp_idle appears to be an unidentified clock source. Assuming default frequency. 

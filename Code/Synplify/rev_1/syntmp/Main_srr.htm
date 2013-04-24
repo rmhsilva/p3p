@@ -1,0 +1,1187 @@
+<html><body><samp><pre>
+<!@TC:1366722229>
+#Build: Synplify Premier F-2012.03-SP2 , Build 071R, May 29 2012
+#install: C:\Synopsys\fpga_F201203SP2
+#OS: Windows 7 6.1
+#Hostname: T2
+
+#Implementation: rev_1
+
+<a name=compilerReport53>$ Start of Compile</a>
+#Tue Apr 23 14:03:49 2013
+
+Synopsys Verilog Compiler, version comp201203rcp1, Build 070R, built May 29 2012
+@N: : <!@TM:1366722239> | Running in 64-bit mode 
+Copyright (C) 1994-2012 Synopsys, Inc. This software the associated documentation are confidential and proprietary to Synopsys, Inc. Your use or disclosure of this software subject to the terms and conditions of a written license agreement between you, or your company, and Synopsys, Inc.
+
+@N: : <!@TM:1366722239> | : Running Verilog Compiler in System Verilog mode 
+@N: : <!@TM:1366722239> | : Running Verilog Compiler in Multiple File Compilation Unit mode 
+@I::"C:\Synopsys\fpga_F201203SP2\lib\xilinx\unisim_m10i.v"
+@I::"C:\Synopsys\fpga_F201203SP2\lib\xilinx\unisim.v"
+@I::"C:\Synopsys\fpga_F201203SP2\lib\vlog\umr_capim.v"
+@I::"C:\Synopsys\fpga_F201203SP2\lib\vlog\scemi_objects.v"
+@I::"C:\Synopsys\fpga_F201203SP2\lib\vlog\scemi_pipes.svh"
+@I::"C:\Synopsys\fpga_F201203SP2\lib\vlog\hypermods.v"
+@I::"H:\work\Part3\P3-Project\Code\Synplify\modules\gdp.sv"
+@I::"H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv"
+@I::"H:\work\Part3\P3-Project\Code\Synplify\modules\max.sv"
+@I::"H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv"
+@I::"H:\work\Part3\P3-Project\Code\Synplify\modules\send.sv"
+@I::"H:\work\Part3\P3-Project\Code\Synplify\modules\sram.sv"
+@I::"H:\work\Part3\P3-Project\Code\Synplify\modules\top_level.sv"
+@I::"H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv"
+@I::"H:\work\Part3\P3-Project\Code\Synplify\modules\uart\baudgen.sv"
+@I::"H:\work\Part3\P3-Project\Code\Synplify\modules\uart\uart_rx.sv"
+@I::"H:\work\Part3\P3-Project\Code\Synplify\modules\uart\uart_tx.sv"
+@I::"H:\work\Part3\P3-Project\Code\Synplify\modules\all_s_data.sv"
+Verilog syntax check successful!
+File H:\work\Part3\P3-Project\Code\Synplify\modules\top_level.sv changed - recompiling
+File H:\work\Part3\P3-Project\Code\Synplify\modules\all_s_data.sv changed - recompiling
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp.sv:1:0:1:7:@N:CG364:@XP_MSG">gdp.sv(1)</a><!@TM:1366722239> | Synthesizing module H:\work\Part3\P3-Project\Code\Synplify\modules\gdp.sv_unit
+
+Selecting top level module top_level
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart\baudgen.sv:1:7:1:14:@N:CG364:@XP_MSG">baudgen.sv(1)</a><!@TM:1366722239> | Synthesizing module baudgen
+
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart\uart_tx.sv:1:7:1:14:@N:CG364:@XP_MSG">uart_tx.sv(1)</a><!@TM:1366722239> | Synthesizing module uart_tx
+
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart\uart_rx.sv:1:7:1:14:@N:CG364:@XP_MSG">uart_rx.sv(1)</a><!@TM:1366722239> | Synthesizing module uart_rx
+
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart\uart_rx.sv:21:0:21:9:@A:CL282:@XP_MSG">uart_rx.sv(21)</a><!@TM:1366722239> | Feedback mux created for signal rx_bit_inv -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:4:7:4:11:@N:CG364:@XP_MSG">uart.sv(4)</a><!@TM:1366722239> | Synthesizing module uart
+
+	n_tx_nums=32'b00000000000000000000000000000001
+	n_rx_nums=32'b00000000000000000000000000000110
+   Generated name = uart_1s_6s
+
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@A:CL282:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Feedback mux created for signal rx_buffer_11_[7:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@A:CL282:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Feedback mux created for signal rx_buffer_10_[7:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@A:CL282:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Feedback mux created for signal rx_buffer_9_[7:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@A:CL282:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Feedback mux created for signal rx_buffer_8_[7:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@A:CL282:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Feedback mux created for signal rx_buffer_7_[7:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@A:CL282:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Feedback mux created for signal rx_buffer_6_[7:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@A:CL282:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Feedback mux created for signal rx_buffer_5_[7:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@A:CL282:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Feedback mux created for signal rx_buffer_4_[7:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@A:CL282:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Feedback mux created for signal rx_buffer_3_[7:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@A:CL282:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Feedback mux created for signal rx_buffer_2_[7:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@A:CL282:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Feedback mux created for signal rx_buffer_1_[7:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@A:CL282:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Feedback mux created for signal rx_buffer_0_[7:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:29:0:29:9:@A:CL282:@XP_MSG">uart.sv(29)</a><!@TM:1366722239> | Feedback mux created for signal tx_buffer_1_[7:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:29:0:29:9:@A:CL282:@XP_MSG">uart.sv(29)</a><!@TM:1366722239> | Feedback mux created for signal tx_buffer_0_[7:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp.sv:3:7:3:10:@N:CG364:@XP_MSG">gdp.sv(3)</a><!@TM:1366722239> | Synthesizing module gdp
+
+<font color=#A52A2A>@W:<a href="@W:CL271:@XP_HELP">CL271</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp.sv:27:0:27:9:@W:CL271:@XP_MSG">gdp.sv(27)</a><!@TM:1366722239> | Pruning bits 30 to 15 of result[31:0] -- not in use ...</font>
+
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\all_s_data.sv:4:7:4:17:@N:CG364:@XP_MSG">all_s_data.sv(4)</a><!@TM:1366722239> | Synthesizing module s_data_rom
+
+	n_components=32'b00000000000000000000000000000110
+   Generated name = s_data_rom_6s
+
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:4:7:4:21:@N:CG364:@XP_MSG">gdp_controller.sv(4)</a><!@TM:1366722239> | Synthesizing module gdp_controller
+
+	n_components=32'b00000000000000000000000000000110
+	n_senones=32'b00000000000000000000000000001100
+   Generated name = gdp_controller_6s_12s
+
+@A:<a href="@A:CL110:@XP_HELP">CL110</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@A:CL110:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | Too many clocks (> 8) for set/reset analysis of x_buf_5_, try moving enabling expressions outside always block
+<font color=#A52A2A>@W:<a href="@W:CL118:@XP_HELP">CL118</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@W:CL118:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | Latch generated from always block for signal x_buf_5_[15:0]; possible missing assignment in an if or case statement.</font>
+@A:<a href="@A:CL110:@XP_HELP">CL110</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@A:CL110:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | Too many clocks (> 8) for set/reset analysis of x_buf_4_, try moving enabling expressions outside always block
+<font color=#A52A2A>@W:<a href="@W:CL118:@XP_HELP">CL118</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@W:CL118:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | Latch generated from always block for signal x_buf_4_[15:0]; possible missing assignment in an if or case statement.</font>
+@A:<a href="@A:CL110:@XP_HELP">CL110</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@A:CL110:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | Too many clocks (> 8) for set/reset analysis of x_buf_3_, try moving enabling expressions outside always block
+<font color=#A52A2A>@W:<a href="@W:CL118:@XP_HELP">CL118</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@W:CL118:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | Latch generated from always block for signal x_buf_3_[15:0]; possible missing assignment in an if or case statement.</font>
+@A:<a href="@A:CL110:@XP_HELP">CL110</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@A:CL110:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | Too many clocks (> 8) for set/reset analysis of x_buf_2_, try moving enabling expressions outside always block
+<font color=#A52A2A>@W:<a href="@W:CL118:@XP_HELP">CL118</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@W:CL118:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | Latch generated from always block for signal x_buf_2_[15:0]; possible missing assignment in an if or case statement.</font>
+@A:<a href="@A:CL110:@XP_HELP">CL110</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@A:CL110:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | Too many clocks (> 8) for set/reset analysis of x_buf_1_, try moving enabling expressions outside always block
+<font color=#A52A2A>@W:<a href="@W:CL118:@XP_HELP">CL118</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@W:CL118:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | Latch generated from always block for signal x_buf_1_[15:0]; possible missing assignment in an if or case statement.</font>
+@A:<a href="@A:CL110:@XP_HELP">CL110</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@A:CL110:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | Too many clocks (> 8) for set/reset analysis of x_buf_0_, try moving enabling expressions outside always block
+<font color=#A52A2A>@W:<a href="@W:CL118:@XP_HELP">CL118</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@W:CL118:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | Latch generated from always block for signal x_buf_0_[15:0]; possible missing assignment in an if or case statement.</font>
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:49:0:49:9:@A:CL282:@XP_MSG">gdp_controller.sv(49)</a><!@TM:1366722239> | Feedback mux created for signal senone_idx_buffer[4][4:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:49:0:49:9:@A:CL282:@XP_MSG">gdp_controller.sv(49)</a><!@TM:1366722239> | Feedback mux created for signal senone_idx_buffer[3][4:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:49:0:49:9:@A:CL282:@XP_MSG">gdp_controller.sv(49)</a><!@TM:1366722239> | Feedback mux created for signal senone_idx_buffer[2][4:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:49:0:49:9:@A:CL282:@XP_MSG">gdp_controller.sv(49)</a><!@TM:1366722239> | Feedback mux created for signal senone_idx_buffer[1][4:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:49:0:49:9:@A:CL282:@XP_MSG">gdp_controller.sv(49)</a><!@TM:1366722239> | Feedback mux created for signal senone_idx_buffer[0][4:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+<font color=#A52A2A>@W:<a href="@W:CL218:@XP_HELP">CL218</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@W:CL218:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | always_latch does not infer latch logic</font>
+<font color=#A52A2A>@W:<a href="@W:CL218:@XP_HELP">CL218</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@W:CL218:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | always_latch does not infer latch logic</font>
+<font color=#A52A2A>@W:<a href="@W:CL218:@XP_HELP">CL218</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@W:CL218:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | always_latch does not infer latch logic</font>
+<font color=#A52A2A>@W:<a href="@W:CL218:@XP_HELP">CL218</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@W:CL218:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | always_latch does not infer latch logic</font>
+<font color=#A52A2A>@W:<a href="@W:CL218:@XP_HELP">CL218</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@W:CL218:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | always_latch does not infer latch logic</font>
+<font color=#A52A2A>@W:<a href="@W:CL218:@XP_HELP">CL218</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:126:1:126:3:@W:CL218:@XP_MSG">gdp_controller.sv(126)</a><!@TM:1366722239> | always_latch does not infer latch logic</font>
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\max.sv:4:7:4:10:@N:CG364:@XP_MSG">max.sv(4)</a><!@TM:1366722239> | Synthesizing module max
+
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\max.sv:14:0:14:9:@A:CL282:@XP_MSG">max.sv(14)</a><!@TM:1366722239> | Feedback mux created for signal max_done -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:4:7:4:17:@N:CG364:@XP_MSG">normaliser.sv(4)</a><!@TM:1366722239> | Synthesizing module normaliser
+
+	n_senones=32'b00000000000000000000000000001100
+   Generated name = normaliser_12s
+
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@A:CL282:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Feedback mux created for signal state[31:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@A:CL282:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Feedback mux created for signal current_score[15:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@A:CL282:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Feedback mux created for signal best_score_reg[15:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\send.sv:4:7:4:11:@N:CG364:@XP_MSG">send.sv(4)</a><!@TM:1366722239> | Synthesizing module send
+
+	n_senones=32'b00000000000000000000000000001100
+   Generated name = send_12s
+
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\send.sv:30:0:30:9:@A:CL282:@XP_MSG">send.sv(30)</a><!@TM:1366722239> | Feedback mux created for signal tx_value[15:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\send.sv:30:0:30:9:@A:CL282:@XP_MSG">send.sv(30)</a><!@TM:1366722239> | Feedback mux created for signal start_tx -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\sram.sv:4:7:4:11:@N:CG364:@XP_MSG">sram.sv(4)</a><!@TM:1366722239> | Synthesizing module sram
+
+<font color=#A52A2A>@W:<a href="@W:CL254:@XP_HELP">CL254</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\sram.sv:71:2:71:6:@W:CL254:@XP_MSG">sram.sv(71)</a><!@TM:1366722239> | A possible syn_keep on a reg that results in sequential logic - assuming that a tristate can be transmitted through : signal name could change</font>
+@A:<a href="@A:CL110:@XP_HELP">CL110</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\sram.sv:71:2:71:6:@A:CL110:@XP_MSG">sram.sv(71)</a><!@TM:1366722239> | Too many clocks (> 8) for set/reset analysis of buffer, try moving enabling expressions outside always block
+<font color=#A52A2A>@W:<a href="@W:CL118:@XP_HELP">CL118</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\sram.sv:71:2:71:6:@W:CL118:@XP_MSG">sram.sv(71)</a><!@TM:1366722239> | Latch generated from always block for signal svbl_105.buffer[15:0]; possible missing assignment in an if or case statement.</font>
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\sram.sv:32:0:32:9:@A:CL282:@XP_MSG">sram.sv(32)</a><!@TM:1366722239> | Feedback mux created for signal buffer_in[15:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A:<a href="@A:CL282:@XP_HELP">CL282</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\sram.sv:32:0:32:9:@A:CL282:@XP_MSG">sram.sv(32)</a><!@TM:1366722239> | Feedback mux created for signal address[20:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\top_level.sv:4:7:4:16:@N:CG364:@XP_MSG">top_level.sv(4)</a><!@TM:1366722239> | Synthesizing module top_level
+
+@N:<a href="@N:CL201:@XP_HELP">CL201</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\top_level.sv:93:0:93:9:@N:CL201:@XP_MSG">top_level.sv(93)</a><!@TM:1366722239> | Trying to extract state machine for register state
+Extracted state machine for register state
+State machine has 4 reachable states with original encodings of:
+   00000000000000000000000000000000
+   00000000000000000000000000000001
+   00000000000000000000000000000010
+   00000000000000000000000000000011
+<font color=#A52A2A>@W:<a href="@W:CL249:@XP_HELP">CL249</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\top_level.sv:93:0:93:9:@W:CL249:@XP_MSG">top_level.sv(93)</a><!@TM:1366722239> | Initial value is not supported on state machine state</font>
+@N:<a href="@N:CL201:@XP_HELP">CL201</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\sram.sv:32:0:32:9:@N:CL201:@XP_MSG">sram.sv(32)</a><!@TM:1366722239> | Trying to extract state machine for register state
+Extracted state machine for register state
+State machine has 5 reachable states with original encodings of:
+   00000000000000000000000000000000
+   00000000000000000000000000000001
+   00000000000000000000000000000010
+   00000000000000000000000000000011
+   00000000000000000000000000000100
+<font color=#A52A2A>@W:<a href="@W:CL249:@XP_HELP">CL249</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\sram.sv:32:0:32:9:@W:CL249:@XP_MSG">sram.sv(32)</a><!@TM:1366722239> | Initial value is not supported on state machine state</font>
+@N:<a href="@N:CL201:@XP_HELP">CL201</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\send.sv:30:0:30:9:@N:CL201:@XP_MSG">send.sv(30)</a><!@TM:1366722239> | Trying to extract state machine for register state
+Extracted state machine for register state
+State machine has 4 reachable states with original encodings of:
+   00000000000000000000000000000000
+   00000000000000000000000000000001
+   00000000000000000000000000000010
+   00000000000000000000000000000011
+<font color=#A52A2A>@W:<a href="@W:CL249:@XP_HELP">CL249</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\send.sv:30:0:30:9:@W:CL249:@XP_MSG">send.sv(30)</a><!@TM:1366722239> | Initial value is not supported on state machine state</font>
+@N:<a href="@N:CL201:@XP_HELP">CL201</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@N:CL201:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Trying to extract state machine for register state
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[2] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[3] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[4] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[5] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[6] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[7] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[8] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[9] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[10] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[11] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[12] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[13] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[14] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[15] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[16] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[17] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[18] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[19] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[20] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[21] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[22] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[23] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[24] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[25] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[26] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[27] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[28] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[29] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[30] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL189:@XP_HELP">CL189</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL189:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Register bit state[31] is always 0, optimizing ...</font>
+<font color=#A52A2A>@W:<a href="@W:CL279:@XP_HELP">CL279</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\normaliser.sv:30:0:30:9:@W:CL279:@XP_MSG">normaliser.sv(30)</a><!@TM:1366722239> | Pruning register bits 31 to 2 of state[31:0] </font>
+
+@N:<a href="@N:CL201:@XP_HELP">CL201</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:49:0:49:9:@N:CL201:@XP_MSG">gdp_controller.sv(49)</a><!@TM:1366722239> | Trying to extract state machine for register state
+Extracted state machine for register state
+State machine has 2 reachable states with original encodings of:
+   00000000000000000000000000000000
+   00000000000000000000000000000010
+<font color=#A52A2A>@W:<a href="@W:CL249:@XP_HELP">CL249</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv:49:0:49:9:@W:CL249:@XP_MSG">gdp_controller.sv(49)</a><!@TM:1366722239> | Initial value is not supported on state machine state</font>
+@N:<a href="@N:CL135:@XP_HELP">CL135</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp.sv:27:0:27:9:@N:CL135:@XP_MSG">gdp.sv(27)</a><!@TM:1366722239> | Found seqShift k_r, depth=4, width=16
+<font color=#A52A2A>@W:<a href="@W:CL279:@XP_HELP">CL279</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp.sv:27:0:27:9:@W:CL279:@XP_MSG">gdp.sv(27)</a><!@TM:1366722239> | Pruning register bits 31 to 22 of square_out[31:0] </font>
+
+<font color=#A52A2A>@W:<a href="@W:CL279:@XP_HELP">CL279</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\gdp.sv:27:0:27:9:@W:CL279:@XP_MSG">gdp.sv(27)</a><!@TM:1366722239> | Pruning register bits 31 to 22 of scale_out[31:0] </font>
+
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@W:CL190:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Optimizing register bit rx_index[15] to a constant 0</font>
+<font color=#A52A2A>@W:<a href="@W:CL260:@XP_HELP">CL260</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@W:CL260:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Pruning register bit 15 of rx_index[15:0] </font>
+
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@W:CL190:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Optimizing register bit rx_index[4] to a constant 0</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@W:CL190:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Optimizing register bit rx_index[5] to a constant 0</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@W:CL190:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Optimizing register bit rx_index[6] to a constant 0</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@W:CL190:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Optimizing register bit rx_index[7] to a constant 0</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@W:CL190:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Optimizing register bit rx_index[8] to a constant 0</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@W:CL190:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Optimizing register bit rx_index[9] to a constant 0</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@W:CL190:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Optimizing register bit rx_index[10] to a constant 0</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@W:CL190:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Optimizing register bit rx_index[11] to a constant 0</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@W:CL190:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Optimizing register bit rx_index[12] to a constant 0</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@W:CL190:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Optimizing register bit rx_index[13] to a constant 0</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@W:CL190:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Optimizing register bit rx_index[14] to a constant 0</font>
+<font color=#A52A2A>@W:<a href="@W:CL279:@XP_HELP">CL279</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart.sv:59:0:59:9:@W:CL279:@XP_MSG">uart.sv(59)</a><!@TM:1366722239> | Pruning register bits 14 to 4 of rx_index[14:0] </font>
+
+@N:<a href="@N:CL201:@XP_HELP">CL201</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart\uart_rx.sv:40:0:40:9:@N:CL201:@XP_MSG">uart_rx.sv(40)</a><!@TM:1366722239> | Trying to extract state machine for register state
+Extracted state machine for register state
+State machine has 10 reachable states with original encodings of:
+   0000
+   0001
+   1000
+   1001
+   1010
+   1011
+   1100
+   1101
+   1110
+   1111
+@N:<a href="@N:CL201:@XP_HELP">CL201</a> : <a href="H:\work\Part3\P3-Project\Code\Synplify\modules\uart\uart_tx.sv:20:0:20:9:@N:CL201:@XP_MSG">uart_tx.sv(20)</a><!@TM:1366722239> | Trying to extract state machine for register state
+Extracted state machine for register state
+State machine has 12 reachable states with original encodings of:
+   0000
+   0001
+   0010
+   0100
+   1000
+   1001
+   1010
+   1011
+   1100
+   1101
+   1110
+   1111
+@END
+Process took 0h:00m:02s realtime, 0h:00m:01s cputime
+# Tue Apr 23 14:03:59 2013
+
+###########################################################]
+
+</pre></samp></body></html>
+Premap Report
+
+
+</pre></samp></body></html>
+<a name=mapperReport54>Synopsys Xilinx Technology Pre-mapping, Version maprc, Build 1081R, Built May 30 2012 15:29:16</a>
+Copyright (C) 1994-2012, Synopsys, Inc. This software the associated documentation are confidential and proprietary to Synopsys, Inc. Your use or disclosure of this software subject to the terms and conditions of a written license agreement between you, or your company, and Synopsys, Inc.
+Product Version F-2012.03-SP2 
+
+Mapper Startup Complete (Time elapsed 0h:00m:00s; Memory used current: 91MB peak: 92MB)
+
+Linked File: <a href="H:\work\Part3\P3-Project\Code\Synplify\rev_1\Main_scck.rpt:@XP_FILE">Main_scck.rpt</a>
+Printing clock  summary report in "H:\work\Part3\P3-Project\Code\Synplify\rev_1\Main_scck.rpt" file 
+@N:<a href="@N:MF248:@XP_HELP">MF248</a> : <!@TM:1366722244> | Running in 64-bit mode. 
+@N:<a href="@N:MF257:@XP_HELP">MF257</a> : <!@TM:1366722244> | Gated clock conversion enabled  
+@N:<a href="@N:MF546:@XP_HELP">MF546</a> : <!@TM:1366722244> | Generated clock conversion enabled  
+
+Design Input Complete (Time elapsed 0h:00m:00s; Memory used current: 93MB peak: 94MB)
+
+
+Mapper Initialization Complete (Time elapsed 0h:00m:00s; Memory used current: 93MB peak: 94MB)
+
+
+Start loading timing files (Time elapsed 0h:00m:00s; Memory used current: 93MB peak: 94MB)
+
+
+Finished loading timing files (Time elapsed 0h:00m:00s; Memory used current: 94MB peak: 96MB)
+
+Reading Xilinx I/O pad type table from file [C:\Synopsys\fpga_F201203SP2\lib\xilinx\x_io_tbl.txt] 
+Reading Xilinx Rocket I/O parameter type table from file [C:\Synopsys\fpga_F201203SP2\lib\xilinx\gttype.txt] 
+<font color=#A52A2A>@W:<a href="@W:FX474:@XP_HELP">FX474</a> : <!@TM:1366722244> | User-specified initial value defined for some sequential elements which can prevent optimum synthesis results from being achieved. </font> 
+<font color=#A52A2A>@W:<a href="@W:MT462:@XP_HELP">MT462</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:71:2:71:6:@W:MT462:@XP_MSG">sram.sv(71)</a><!@TM:1366722244> | Net ram_access.svbl_105\.sram_we14 appears to be an unidentified clock source. Assuming default frequency. </font>
+<font color=#A52A2A>@W:<a href="@W:MT462:@XP_HELP">MT462</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv:9:16:9:36:@W:MT462:@XP_MSG">gdp_controller.sv(9)</a><!@TM:1366722244> | Net gdp_c.next_0_sqmuxa appears to be an unidentified clock source. Assuming default frequency. </font>
+
+
+<a name=mapperReport55>Clock Summary</a>
+**************
+
+Start             Requested     Requested     Clock        Clock              
+Clock             Frequency     Period        Type         Group              
+------------------------------------------------------------------------------
+System            1.0 MHz       1000.000      system       system_clkgroup    
+top_level|clk     50.0 MHz      20.000        inferred     Inferred_clkgroup_0
+==============================================================================
+
+<font color=#A52A2A>@W:<a href="@W:MT529:@XP_HELP">MT529</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\uart\baudgen.sv:21:0:21:9:@W:MT529:@XP_MSG">baudgen.sv(21)</a><!@TM:1366722244> | Found inferred clock top_level|clk which controls 592 sequential elements including data_uart/ticker/baud_acc[16:0]. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. </font>
+
+syn_allowed_resources : blockrams=3,dsps=3  set on top level netlist top_level
+
+Finished Pre Mapping Phase. (Time elapsed 0h:00m:00s; Memory used current: 119MB peak: 122MB)
+
+@N:<a href="@N:BN225:@XP_HELP">BN225</a> : <!@TM:1366722244> | Writing default property annotation file H:\work\Part3\P3-Project\Code\Synplify\rev_1\Main.sap. 
+Pre-mapping successful!
+
+At Mapper Exit (Time elapsed 0h:00m:00s; Memory used current: 57MB peak: 122MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Tue Apr 23 14:04:03 2013
+
+###########################################################]
+
+</pre></samp></body></html>
+Map & Optimize Report
+
+
+</pre></samp></body></html>
+<a name=mapperReport56>Synopsys Xilinx Technology Mapper, Version maprc, Build 1081R, Built May 30 2012 15:29:16</a>
+Copyright (C) 1994-2012, Synopsys, Inc. This software the associated documentation are confidential and proprietary to Synopsys, Inc. Your use or disclosure of this software subject to the terms and conditions of a written license agreement between you, or your company, and Synopsys, Inc.
+Product Version F-2012.03-SP2 
+
+Mapper Startup Complete (Time elapsed 0h:00m:00s; Memory used current: 91MB peak: 92MB)
+
+@N:<a href="@N:MF248:@XP_HELP">MF248</a> : <!@TM:1366722254> | Running in 64-bit mode. 
+@N:<a href="@N:MF257:@XP_HELP">MF257</a> : <!@TM:1366722254> | Gated clock conversion enabled  
+@N:<a href="@N:MF546:@XP_HELP">MF546</a> : <!@TM:1366722254> | Generated clock conversion enabled  
+
+Design Input Complete (Time elapsed 0h:00m:00s; Memory used current: 91MB peak: 92MB)
+
+
+Mapper Initialization Complete (Time elapsed 0h:00m:00s; Memory used current: 91MB peak: 92MB)
+
+
+Start loading timing files (Time elapsed 0h:00m:00s; Memory used current: 92MB peak: 92MB)
+
+
+Finished loading timing files (Time elapsed 0h:00m:00s; Memory used current: 92MB peak: 94MB)
+
+Reading Xilinx I/O pad type table from file [C:\Synopsys\fpga_F201203SP2\lib\xilinx\x_io_tbl.txt] 
+Reading Xilinx Rocket I/O parameter type table from file [C:\Synopsys\fpga_F201203SP2\lib\xilinx\gttype.txt] 
+
+
+Starting Optimization and Mapping (Time elapsed 0h:00m:00s; Memory used current: 120MB peak: 122MB)
+
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\max.sv:14:0:14:9:@N:BN362:@XP_MSG">max.sv(14)</a><!@TM:1366722254> | Removing sequential instance maximiser.max_done of view:PrimLib.dffe(prim) in hierarchy view:work.top_level(verilog) because there are no references to its outputs 
+
+Available hyper_sources - for debug and ip models
+	None Found
+
+@N:<a href="@N:FX493:@XP_HELP">FX493</a> : <!@TM:1366722254> | Applying initial value "00" on instance norm.state[1:0]  
+<font color=#A52A2A>@W:<a href="@W:MT462:@XP_HELP">MT462</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:71:2:71:6:@W:MT462:@XP_MSG">sram.sv(71)</a><!@TM:1366722254> | Net ram_access.svbl_105\.sram_we14 appears to be an unidentified clock source. Assuming default frequency. </font>
+<font color=#A52A2A>@W:<a href="@W:MT462:@XP_HELP">MT462</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv:9:16:9:36:@W:MT462:@XP_MSG">gdp_controller.sv(9)</a><!@TM:1366722254> | Net gdp_c.next_0_sqmuxa appears to be an unidentified clock source. Assuming default frequency. </font>
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[2\][14:0] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[1\][14:0] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[0\][14:0] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[5\][13:0] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[4\][13:12] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[3\][13:0] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.k[12:0] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[4\][10:6] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.omegas\[0\][5:0] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.omegas\[5\][4:0] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.omegas\[4\][4:0] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.omegas\[3\][4:0] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.omegas\[2\][4:0] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.omegas\[1\][4:0] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[4\][4:0] mapped in logic.
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[2\][14:0] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.means\[2\][14:0]', 12 words by 15 bits 
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[1\][14:0] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.means\[1\][14:0]', 12 words by 15 bits 
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[0\][14:0] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.means\[0\][14:0]', 12 words by 15 bits 
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[5\][13:0] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.means\[5\][13:0]', 12 words by 14 bits 
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[4\][13:12] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.means\[4\][13:12]', 12 words by 2 bits 
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[3\][13:0] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.means\[3\][13:0]', 12 words by 14 bits 
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.k[12:0] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.k[12:0]', 12 words by 13 bits 
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[4\][10:6] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.means\[4\][10:6]', 12 words by 5 bits 
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.omegas\[0\][5:0] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.omegas\[0\][5:0]', 12 words by 6 bits 
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.omegas\[5\][4:0] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.omegas\[5\][4:0]', 12 words by 5 bits 
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.omegas\[4\][4:0] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.omegas\[4\][4:0]', 12 words by 5 bits 
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.omegas\[3\][4:0] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.omegas\[3\][4:0]', 12 words by 5 bits 
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.omegas\[2\][4:0] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.omegas\[2\][4:0]', 12 words by 5 bits 
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.omegas\[1\][4:0] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.omegas\[1\][4:0]', 12 words by 5 bits 
+@N:<a href="@N:FA239:@XP_HELP">FA239</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:FA239:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | ROM senone\.means\[4\][4:0] mapped in logic.
+@N:<a href="@N:MO106:@XP_HELP">MO106</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\all_s_data.sv:17:2:17:6:@N:MO106:@XP_MSG">all_s_data.sv(17)</a><!@TM:1366722254> | Found ROM, 'senone\.means\[4\][4:0]', 12 words by 5 bits 
+
+Finished RTL optimizations (Time elapsed 0h:00m:00s; Memory used current: 121MB peak: 122MB)
+
+Encoding state machine state[3:0] (netlist:statemachine)
+original code -> new code
+   00000000000000000000000000000000 -> 00
+   00000000000000000000000000000001 -> 01
+   00000000000000000000000000000010 -> 10
+   00000000000000000000000000000011 -> 11
+@N: : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:162:0:162:6:@N::@XP_MSG">top_level.sv(162)</a><!@TM:1366722254> | Found counter in view:work.top_level(verilog) inst status_cnt[25:0]
+@N: : <a href="h:\work\part3\p3-project\code\synplify\modules\normaliser.sv:30:0:30:9:@N::@XP_MSG">normaliser.sv(30)</a><!@TM:1366722254> | Found counter in view:work.top_level(verilog) inst norm.senone_index[7:0]
+@N: : <a href="h:\work\part3\p3-project\code\synplify\modules\uart.sv:29:0:29:9:@N::@XP_MSG">uart.sv(29)</a><!@TM:1366722254> | Found counter in view:work.uart_1s_6s(verilog) inst tx_index[15:0]
+Encoding state machine state[11:0] (netlist:statemachine)
+original code -> new code
+   0000 -> 000000000001
+   0001 -> 000000000010
+   0010 -> 000000000100
+   0100 -> 000000001000
+   1000 -> 000000010000
+   1001 -> 000000100000
+   1010 -> 000001000000
+   1011 -> 000010000000
+   1100 -> 000100000000
+   1101 -> 001000000000
+   1110 -> 010000000000
+   1111 -> 100000000000
+Encoding state machine state[9:0] (netlist:statemachine)
+original code -> new code
+   0000 -> 0000000001
+   0001 -> 0000000010
+   1000 -> 0000000100
+   1001 -> 0000001000
+   1010 -> 0000010000
+   1011 -> 0000100000
+   1100 -> 0001000000
+   1101 -> 0010000000
+   1110 -> 0100000000
+   1111 -> 1000000000
+@N: : <a href="h:\work\part3\p3-project\code\synplify\modules\uart\uart_rx.sv:84:0:84:9:@N::@XP_MSG">uart_rx.sv(84)</a><!@TM:1366722254> | Found counter in view:work.uart_rx(verilog) inst gap_cnt[4:0]
+Encoding state machine state[1:0] (netlist:statemachine)
+original code -> new code
+   00000000000000000000000000000000 -> 0
+   00000000000000000000000000000010 -> 1
+@N: : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv:49:0:49:9:@N::@XP_MSG">gdp_controller.sv(49)</a><!@TM:1366722254> | Found counter in view:work.gdp_controller_6s_12s(verilog) inst senone_index[4:0]
+@N: : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv:49:0:49:9:@N::@XP_MSG">gdp_controller.sv(49)</a><!@TM:1366722254> | Found counter in view:work.gdp_controller_6s_12s(verilog) inst comp_index[4:0]
+@N:<a href="@N:FX404:@XP_HELP">FX404</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:54:20:54:74:@N:FX404:@XP_MSG">gdp.sv(54)</a><!@TM:1366722254> | Found addmux in view:work.gdp_controller_6s_12s(verilog) inst gdpipe.proc_main\.acc_sum_2[31:0] from gdpipe.un6_acc_sum[31:0] 
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@N:BN362:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdpipe.k_r_0_[13] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_6s_12s(verilog) because there are no references to its outputs 
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@N:BN362:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdpipe.k_r_1_[13] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_6s_12s(verilog) because there are no references to its outputs 
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@N:BN362:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdpipe.k_r_2_[13] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_6s_12s(verilog) because there are no references to its outputs 
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@N:BN362:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdpipe.k_r_3_[13] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.gdp_controller_6s_12s(verilog) because there are no references to its outputs 
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing instance gdp_c.gdpipe.scale_out[21],  because it is equivalent to instance gdp_c.gdpipe.scale_out[20]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing instance gdp_c.gdpipe.scale_out[20],  because it is equivalent to instance gdp_c.gdpipe.scale_out[19]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing instance gdp_c.gdpipe.scale_out[19],  because it is equivalent to instance gdp_c.gdpipe.scale_out[18]</font>
+Encoding state machine state[3:0] (netlist:statemachine)
+original code -> new code
+   00000000000000000000000000000000 -> 00
+   00000000000000000000000000000001 -> 01
+   00000000000000000000000000000010 -> 10
+   00000000000000000000000000000011 -> 11
+@N: : <a href="h:\work\part3\p3-project\code\synplify\modules\send.sv:30:0:30:9:@N::@XP_MSG">send.sv(30)</a><!@TM:1366722254> | Found counter in view:work.send_12s(verilog) inst senone_index[7:0]
+Encoding state machine state[4:0] (netlist:statemachine)
+original code -> new code
+   00000000000000000000000000000000 -> 000
+   00000000000000000000000000000001 -> 001
+   00000000000000000000000000000010 -> 010
+   00000000000000000000000000000011 -> 011
+   00000000000000000000000000000100 -> 100
+@N:<a href="@N:FX404:@XP_HELP">FX404</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:71:2:71:6:@N:FX404:@XP_MSG">sram.sv(71)</a><!@TM:1366722254> | Found addmux in view:work.sram(verilog) inst sram_addr[20:0] from un1_address[20:0] 
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing instance gdp_c.gdpipe.k_r_0_[15],  because it is equivalent to instance gdp_c.gdpipe.k_r_0_[14]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing instance gdp_c.gdpipe.k_r_1_[15],  because it is equivalent to instance gdp_c.gdpipe.k_r_1_[14]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing instance gdp_c.gdpipe.k_r_2_[15],  because it is equivalent to instance gdp_c.gdpipe.k_r_2_[14]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing instance gdp_c.gdpipe.k_r_3_[15],  because it is equivalent to instance gdp_c.gdpipe.k_r_3_[14]</font>
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\uart\uart_rx.sv:84:0:84:9:@N:BN362:@XP_MSG">uart_rx.sv(84)</a><!@TM:1366722254> | Removing sequential instance data_uart.deserialiser.gap_cnt[4:0] of view:PrimLib.scounter(prim) in hierarchy view:work.top_level(verilog) because there are no references to its outputs 
+
+Finished factoring (Time elapsed 0h:00m:01s; Memory used current: 135MB peak: 136MB)
+
+@N:<a href="@N:MF578:@XP_HELP">MF578</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:71:2:71:6:@N:MF578:@XP_MSG">sram.sv(71)</a><!@TM:1366722254> | Incompatible asynchronous control logic preventing generated clock conversion of ram_access.data_out[15] (netlist:lat). Check "Force Generated Clock Conversion with Asynchronous Signals" in "GCC & Prototyping Tools" tab or set force_async_genclk_conv option to 1 in project file to enable.
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@N:BN362:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing sequential instance ram_access.state[2] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.top_level(verilog) because there are no references to its outputs 
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@N:BN362:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing sequential instance ram_access.state[1] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.top_level(verilog) because there are no references to its outputs 
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@N:BN362:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing sequential instance ram_access.state[0] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.top_level(verilog) because there are no references to its outputs 
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv:49:0:49:9:@N:BN362:@XP_MSG">gdp_controller.sv(49)</a><!@TM:1366722254> | Removing sequential instance gdp_c.state[0] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.top_level(verilog) because there are no references to its outputs 
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\uart.sv:59:0:59:9:@N:BN362:@XP_MSG">uart.sv(59)</a><!@TM:1366722254> | Removing sequential instance data_uart.rx_index[3] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.top_level(verilog) because there are no references to its outputs 
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\uart.sv:59:0:59:9:@N:BN362:@XP_MSG">uart.sv(59)</a><!@TM:1366722254> | Removing sequential instance data_uart.rx_index[2] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.top_level(verilog) because there are no references to its outputs 
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\uart.sv:59:0:59:9:@N:BN362:@XP_MSG">uart.sv(59)</a><!@TM:1366722254> | Removing sequential instance data_uart.rx_index[1] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.top_level(verilog) because there are no references to its outputs 
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\uart.sv:59:0:59:9:@N:BN362:@XP_MSG">uart.sv(59)</a><!@TM:1366722254> | Removing sequential instance data_uart.rx_index[0] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.top_level(verilog) because there are no references to its outputs 
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@W:BN132:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing instance ram_access.address[20],  because it is equivalent to instance ram_access.address[19]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@W:BN132:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing instance ram_access.address[19],  because it is equivalent to instance ram_access.address[18]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@W:BN132:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing instance ram_access.address[18],  because it is equivalent to instance ram_access.address[17]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@W:BN132:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing instance ram_access.address[17],  because it is equivalent to instance ram_access.address[16]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@W:BN132:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing instance ram_access.address[16],  because it is equivalent to instance ram_access.address[15]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@W:BN132:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing instance ram_access.address[15],  because it is equivalent to instance ram_access.address[14]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@W:BN132:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing instance ram_access.address[14],  because it is equivalent to instance ram_access.address[13]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@W:BN132:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing instance ram_access.address[13],  because it is equivalent to instance ram_access.address[12]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@W:BN132:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing instance ram_access.address[12],  because it is equivalent to instance ram_access.address[11]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@W:BN132:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing instance ram_access.address[11],  because it is equivalent to instance ram_access.address[10]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@W:BN132:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing instance ram_access.address[9],  because it is equivalent to instance ram_access.address[10]</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@W:BN132:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing instance ram_access.address[10],  because it is equivalent to instance ram_access.address[0]</font>
+
+
+#################### START OF GENERATED CLOCK OPTIMIZATION REPORT ####################[
+
+======================================================================================
+                                Instance:Pin        Generated Clock Optimization Status
+======================================================================================
+                 ram_access.data_out[15]:C              Not Done
+                 ram_access.data_out[14]:C              Not Done
+                 ram_access.data_out[13]:C              Not Done
+                 ram_access.data_out[12]:C              Not Done
+                 ram_access.data_out[11]:C              Not Done
+                 ram_access.data_out[10]:C              Not Done
+                  ram_access.data_out[9]:C              Not Done
+                  ram_access.data_out[8]:C              Not Done
+                  ram_access.data_out[7]:C              Not Done
+                  ram_access.data_out[6]:C              Not Done
+                  ram_access.data_out[5]:C              Not Done
+                  ram_access.data_out[4]:C              Not Done
+                  ram_access.data_out[3]:C              Not Done
+                  ram_access.data_out[2]:C              Not Done
+                  ram_access.data_out[1]:C              Not Done
+                  ram_access.data_out[0]:C              Not Done
+                      gdp_c.x_buf_5_[15]:C              Not Done
+                      gdp_c.x_buf_5_[14]:C              Not Done
+                      gdp_c.x_buf_5_[13]:C              Not Done
+                      gdp_c.x_buf_5_[12]:C              Not Done
+                      gdp_c.x_buf_5_[11]:C              Not Done
+                      gdp_c.x_buf_5_[10]:C              Not Done
+                       gdp_c.x_buf_5_[9]:C              Not Done
+                       gdp_c.x_buf_5_[8]:C              Not Done
+                       gdp_c.x_buf_5_[7]:C              Not Done
+                       gdp_c.x_buf_5_[6]:C              Not Done
+                       gdp_c.x_buf_5_[5]:C              Not Done
+                       gdp_c.x_buf_5_[4]:C              Not Done
+                       gdp_c.x_buf_5_[3]:C              Not Done
+                       gdp_c.x_buf_5_[2]:C              Not Done
+                       gdp_c.x_buf_5_[1]:C              Not Done
+                       gdp_c.x_buf_5_[0]:C              Not Done
+                      gdp_c.x_buf_4_[15]:C              Not Done
+                      gdp_c.x_buf_4_[14]:C              Not Done
+                      gdp_c.x_buf_4_[13]:C              Not Done
+                      gdp_c.x_buf_4_[12]:C              Not Done
+                      gdp_c.x_buf_4_[11]:C              Not Done
+                      gdp_c.x_buf_4_[10]:C              Not Done
+                       gdp_c.x_buf_4_[9]:C              Not Done
+                       gdp_c.x_buf_4_[8]:C              Not Done
+                       gdp_c.x_buf_4_[7]:C              Not Done
+                       gdp_c.x_buf_4_[6]:C              Not Done
+                       gdp_c.x_buf_4_[5]:C              Not Done
+                       gdp_c.x_buf_4_[4]:C              Not Done
+                       gdp_c.x_buf_4_[3]:C              Not Done
+                       gdp_c.x_buf_4_[2]:C              Not Done
+                       gdp_c.x_buf_4_[1]:C              Not Done
+                       gdp_c.x_buf_4_[0]:C              Not Done
+                      gdp_c.x_buf_3_[15]:C              Not Done
+                      gdp_c.x_buf_3_[14]:C              Not Done
+                      gdp_c.x_buf_3_[13]:C              Not Done
+                      gdp_c.x_buf_3_[12]:C              Not Done
+                      gdp_c.x_buf_3_[11]:C              Not Done
+                      gdp_c.x_buf_3_[10]:C              Not Done
+                       gdp_c.x_buf_3_[9]:C              Not Done
+                       gdp_c.x_buf_3_[8]:C              Not Done
+                       gdp_c.x_buf_3_[7]:C              Not Done
+                       gdp_c.x_buf_3_[6]:C              Not Done
+                       gdp_c.x_buf_3_[5]:C              Not Done
+                       gdp_c.x_buf_3_[4]:C              Not Done
+                       gdp_c.x_buf_3_[3]:C              Not Done
+                       gdp_c.x_buf_3_[2]:C              Not Done
+                       gdp_c.x_buf_3_[1]:C              Not Done
+                       gdp_c.x_buf_3_[0]:C              Not Done
+                      gdp_c.x_buf_2_[15]:C              Not Done
+                      gdp_c.x_buf_2_[14]:C              Not Done
+                      gdp_c.x_buf_2_[13]:C              Not Done
+                      gdp_c.x_buf_2_[12]:C              Not Done
+                      gdp_c.x_buf_2_[11]:C              Not Done
+                      gdp_c.x_buf_2_[10]:C              Not Done
+                       gdp_c.x_buf_2_[9]:C              Not Done
+                       gdp_c.x_buf_2_[8]:C              Not Done
+                       gdp_c.x_buf_2_[7]:C              Not Done
+                       gdp_c.x_buf_2_[6]:C              Not Done
+                       gdp_c.x_buf_2_[5]:C              Not Done
+                       gdp_c.x_buf_2_[4]:C              Not Done
+                       gdp_c.x_buf_2_[3]:C              Not Done
+                       gdp_c.x_buf_2_[2]:C              Not Done
+                       gdp_c.x_buf_2_[1]:C              Not Done
+                       gdp_c.x_buf_2_[0]:C              Not Done
+                      gdp_c.x_buf_1_[15]:C              Not Done
+                      gdp_c.x_buf_1_[14]:C              Not Done
+                      gdp_c.x_buf_1_[13]:C              Not Done
+                      gdp_c.x_buf_1_[12]:C              Not Done
+                      gdp_c.x_buf_1_[11]:C              Not Done
+                      gdp_c.x_buf_1_[10]:C              Not Done
+                       gdp_c.x_buf_1_[9]:C              Not Done
+                       gdp_c.x_buf_1_[8]:C              Not Done
+                       gdp_c.x_buf_1_[7]:C              Not Done
+                       gdp_c.x_buf_1_[6]:C              Not Done
+                       gdp_c.x_buf_1_[5]:C              Not Done
+                       gdp_c.x_buf_1_[4]:C              Not Done
+                       gdp_c.x_buf_1_[3]:C              Not Done
+                       gdp_c.x_buf_1_[2]:C              Not Done
+                       gdp_c.x_buf_1_[1]:C              Not Done
+                       gdp_c.x_buf_1_[0]:C              Not Done
+                      gdp_c.x_buf_0_[15]:C              Not Done
+                      gdp_c.x_buf_0_[14]:C              Not Done
+                      gdp_c.x_buf_0_[13]:C              Not Done
+                      gdp_c.x_buf_0_[12]:C              Not Done
+                      gdp_c.x_buf_0_[11]:C              Not Done
+                      gdp_c.x_buf_0_[10]:C              Not Done
+                       gdp_c.x_buf_0_[9]:C              Not Done
+                       gdp_c.x_buf_0_[8]:C              Not Done
+                       gdp_c.x_buf_0_[7]:C              Not Done
+                       gdp_c.x_buf_0_[6]:C              Not Done
+                       gdp_c.x_buf_0_[5]:C              Not Done
+                       gdp_c.x_buf_0_[4]:C              Not Done
+                       gdp_c.x_buf_0_[3]:C              Not Done
+                       gdp_c.x_buf_0_[2]:C              Not Done
+                       gdp_c.x_buf_0_[1]:C              Not Done
+                       gdp_c.x_buf_0_[0]:C              Not Done
+
+
+##################### END OF GENERATED CLOCK OPTIMIZATION REPORT #####################]
+
+
+Finished gated-clock and generated-clock conversion (Time elapsed 0h:00m:01s; Memory used current: 127MB peak: 136MB)
+
+
+Clock Buffers:
+  Inserting Clock buffer for port clk,
+  Inserting Clock buffer on net gdp_c.next_0_sqmuxa,
+
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@N:BN362:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Removing sequential instance ram_access.address[0] of view:UNILIB.FDCPE(PRIM) in hierarchy view:work.top_level(verilog) because there are no references to its outputs 
+@A:<a href="@A:BN291:@XP_HELP">BN291</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:32:0:32:9:@A:BN291:@XP_MSG">sram.sv(32)</a><!@TM:1366722254> | Boundary register ram_access.address[0] packed into a complex cell. To disable register packing, set syn_keep=1 on net between register and complex cell. 
+
+Finished generic timing optimizations - Pass 1 (Time elapsed 0h:00m:01s; Memory used current: 127MB peak: 136MB)
+
+@N:<a href="@N:FA113:@XP_HELP">FA113</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:53:22:53:46:@N:FA113:@XP_MSG">gdp.sv(53)</a><!@TM:1366722254> | Pipelining module proc_main\.svbl_69\.un1_scale_out[31:0]
+@N:<a href="@N:MF169:@XP_HELP">MF169</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@N:MF169:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Register square_out[21:0] pushed in.
+@N:<a href="@N:MF169:@XP_HELP">MF169</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@N:MF169:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Register omega_r\[1\] pushed in.
+@N:<a href="@N:MF169:@XP_HELP">MF169</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@N:MF169:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Register scale_out[21:0] pushed in.
+@N:<a href="@N:MF169:@XP_HELP">MF169</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@N:MF169:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Register omega_r\[0\] pushed in.
+@N:<a href="@N:MF169:@XP_HELP">MF169</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@N:MF169:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Register sub_out[16:0] pushed in.
+@N:<a href="@N:MF169:@XP_HELP">MF169</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@N:MF169:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Register acc_sum[31:0] pushed in.
+@N:<a href="@N:MF169:@XP_HELP">MF169</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@N:MF169:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Register first_calc_r[2:0] pushed in.
+@N:<a href="@N:MF169:@XP_HELP">MF169</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@N:MF169:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Register result[14:0] pushed in.
+@N:<a href="@N:MF169:@XP_HELP">MF169</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@N:MF169:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Register result[31] pushed in.
+@N:<a href="@N:MF169:@XP_HELP">MF169</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@N:MF169:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Register k_r\[3\] pushed in.
+
+Starting Early Timing Optimization (Time elapsed 0h:00m:01s; Memory used current: 127MB peak: 136MB)
+
+
+Finished Early Timing Optimization (Time elapsed 0h:00m:01s; Memory used current: 127MB peak: 136MB)
+
+
+Finished generic timing optimizations - Pass 2 (Time elapsed 0h:00m:01s; Memory used current: 127MB peak: 136MB)
+
+
+Finished preparing to map (Time elapsed 0h:00m:02s; Memory used current: 128MB peak: 136MB)
+
+
+Finished technology mapping (Time elapsed 0h:00m:02s; Memory used current: 171MB peak: 173MB)
+
+Pass		 CPU time		Worst Slack		Luts / Registers
+------------------------------------------------------------
+Pass		 CPU time		Worst Slack		Luts / Registers
+------------------------------------------------------------
+------------------------------------------------------------
+
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__363,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__357,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__351,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__345,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__339,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__333,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__327,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__321,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__315,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__309,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__303,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__297,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__291,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__285,  because it is equivalent to instance gdp_c.gdpipe.first_calc_r_369</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.first_calc_r_369,  because it is equivalent to instance gdp_c.gdpipe.data_ready_278</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__292,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__298,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__304,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__310,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__316,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__322,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__328,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__334,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__340,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__346,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__352,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__358,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__364,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.first_calc_r_370,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.data_ready_279,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__286</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.first_calc_r_371,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__365,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__359,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__353,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__347,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__341,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__335,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__329,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__323,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__317,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__311,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__305,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__299,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__293,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__287,  because it is equivalent to instance gdp_c.gdpipe.data_ready_280</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__294,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__300,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__306,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__312,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__318,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__324,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__330,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__336,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__342,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__348,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__354,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__360,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.k_r_3__366,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288</font>
+<font color=#A52A2A>@W:<a href="@W:BN132:@XP_HELP">BN132</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp.sv:27:0:27:9:@W:BN132:@XP_MSG">gdp.sv(27)</a><!@TM:1366722254> | Removing sequential instance gdp_c.gdpipe.data_ready_281,  because it is equivalent to instance gdp_c.gdpipe.k_r_3__288</font>
+@N:<a href="@N:MF322:@XP_HELP">MF322</a> : <!@TM:1366722254> | Retiming summary: 0 registers retimed to 12  
+
+		#####  BEGIN RETIMING REPORT  #####
+
+Retiming summary : 0 registers retimed to 12
+
+Original and Pipelined registers replaced by retiming :
+		None
+
+New registers created by retiming :
+		data_uart.rx_index_ret
+		data_uart.rx_index_ret_1
+		data_uart.rx_index_ret_2
+		data_uart.rx_index_ret_3
+		gdp_c.rx_index_ret_1
+		gdp_c.rx_index_ret_2
+		maximiser.rx_index_ret_1
+		maximiser.rx_index_ret_2
+		ram_access.state_ret
+		ram_access.state_ret_1
+		ram_access.state_ret_2
+		ram_access.state_ret_3
+
+
+		#####   END RETIMING REPORT  #####
+
+
+Finished technology timing optimizations and critical path resynthesis (Time elapsed 0h:00m:05s; Memory used current: 136MB peak: 173MB)
+
+@N:<a href="@N:FX164:@XP_HELP">FX164</a> : <!@TM:1366722254> | The option to pack flops in the IOB has not been specified  
+
+Finished restoring hierarchy (Time elapsed 0h:00m:05s; Memory used current: 137MB peak: 173MB)
+
+Writing Analyst data base H:\work\Part3\P3-Project\Code\Synplify\rev_1\Main.srm
+
+Finished Writing Netlist Databases (Time elapsed 0h:00m:06s; Memory used current: 136MB peak: 173MB)
+
+Writing EDIF Netlist and constraint files
+F-2012.03-SP2 
+
+Finished Writing EDIF Netlist and constraint files (Time elapsed 0h:00m:06s; Memory used current: 137MB peak: 173MB)
+
+
+Starting Writing Gated Clock Conversion Report (Time elapsed 0h:00m:06s; Memory used current: 135MB peak: 173MB)
+
+@N:<a href="@N:MF276:@XP_HELP">MF276</a> : <!@TM:1366722254> | Gated clock conversion enabled, but no gated clocks found in design  
+
+Finished Writing Gated Clock Conversion Report (Time elapsed 0h:00m:06s; Memory used current: 135MB peak: 173MB)
+
+
+Starting Writing Generated Clock Conversion Report (Time elapsed 0h:00m:06s; Memory used current: 135MB peak: 173MB)
+
+@N:<a href="@N:MF333:@XP_HELP">MF333</a> : <!@TM:1366722254> | Generated clock conversion enabled, but no generated clocks found in design  
+
+Finished Writing Generated Clock Conversion Report (Time elapsed 0h:00m:06s; Memory used current: 135MB peak: 173MB)
+
+<font color=#A52A2A>@W:<a href="@W:MT420:@XP_HELP">MT420</a> : <!@TM:1366722254> | Found inferred clock top_level|clk with period 20.00ns. Please declare a user-defined clock on object "p:clk"</font> 
+
+
+
+<a name=timingReport57>##### START OF TIMING REPORT #####[</a>
+# Timing Report written on Tue Apr 23 14:04:14 2013
+#
+
+
+Top view:               top_level
+Requested Frequency:    50.0 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    
+@N:<a href="@N:MT320:@XP_HELP">MT320</a> : <!@TM:1366722254> | Timing report estimates place and route data. Please look at the place and route timing report for final timing. 
+
+@N:<a href="@N:MT322:@XP_HELP">MT322</a> : <!@TM:1366722254> | Clock constraints cover only FF-to-FF paths associated with the clock. 
+
+
+
+<a name=performanceSummary58>Performance Summary </a>
+*******************
+
+
+Worst slack in design: 9.826
+
+                   Requested     Estimated     Requested     Estimated                Clock        Clock              
+Starting Clock     Frequency     Frequency     Period        Period        Slack      Type         Group              
+----------------------------------------------------------------------------------------------------------------------
+top_level|clk      50.0 MHz      98.3 MHz      20.000        10.174        9.826      inferred     Inferred_clkgroup_0
+System             50.0 MHz      263.3 MHz     20.000        3.798         16.202     system       system_clkgroup    
+======================================================================================================================
+
+
+
+
+
+<a name=clockRelationships59>Clock Relationships</a>
+*******************
+
+Clocks                        |    rise  to  rise    |    fall  to  fall   |    rise  to  fall    |    fall  to  rise  
+-----------------------------------------------------------------------------------------------------------------------
+Starting       Ending         |  constraint  slack   |  constraint  slack  |  constraint  slack   |  constraint  slack 
+-----------------------------------------------------------------------------------------------------------------------
+System         top_level|clk  |  20.000      18.277  |  No paths    -      |  No paths    -       |  20.000      16.202
+top_level|clk  System         |  20.000      17.578  |  No paths    -      |  20.000      18.367  |  No paths    -     
+top_level|clk  top_level|clk  |  20.000      9.827   |  No paths    -      |  No paths    -       |  No paths    -     
+=======================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+<a name=interfaceInfo60>Interface Information </a>
+*********************
+
+No IO constraint found
+
+
+
+====================================
+<a name=clockReport61>Detailed Report for Clock: top_level|clk</a>
+====================================
+
+
+
+<a name=startingSlack62>Starting Points with Worst Slack</a>
+********************************
+
+                                Starting                                           Arrival           
+Instance                        Reference         Type     Pin     Net             Time        Slack 
+                                Clock                                                                
+-----------------------------------------------------------------------------------------------------
+gdp_c.gdpipe.acc_sum_pipe_1     top_level|clk     FDC      Q       acc_sumf[0]     0.720       9.826 
+gdp_c.gdpipe.acc_sum_pipe_2     top_level|clk     FDC      Q       acc_sumf[1]     0.720       9.886 
+gdp_c.gdpipe.acc_sum_pipe_3     top_level|clk     FDC      Q       acc_sumf[2]     0.720       9.947 
+gdp_c.gdpipe.result_pipe_32     top_level|clk     FDC      Q       k_rf[0]         0.720       9.947 
+gdp_c.gdpipe.acc_sum_pipe_4     top_level|clk     FDC      Q       acc_sumf[3]     0.720       10.007
+gdp_c.gdpipe.result_pipe_33     top_level|clk     FDC      Q       k_rf[1]         0.720       10.007
+gdp_c.gdpipe.acc_sum_pipe_5     top_level|clk     FDC      Q       acc_sumf[4]     0.720       10.067
+gdp_c.gdpipe.result_pipe_34     top_level|clk     FDC      Q       k_rf[2]         0.720       10.067
+gdp_c.gdpipe.acc_sum_pipe_6     top_level|clk     FDC      Q       acc_sumf[5]     0.720       10.127
+gdp_c.gdpipe.result_pipe_35     top_level|clk     FDC      Q       k_rf[3]         0.720       10.127
+=====================================================================================================
+
+
+<a name=endingSlack63>Ending Points with Worst Slack</a>
+******************************
+
+                            Starting                                    Required          
+Instance                    Reference         Type     Pin     Net      Time         Slack
+                            Clock                                                         
+------------------------------------------------------------------------------------------
+maximiser.best_score[0]     top_level|clk     FDCE     CE      N_12     19.398       9.826
+maximiser.best_score[1]     top_level|clk     FDCE     CE      N_12     19.398       9.826
+maximiser.best_score[2]     top_level|clk     FDCE     CE      N_12     19.398       9.826
+maximiser.best_score[3]     top_level|clk     FDCE     CE      N_12     19.398       9.826
+maximiser.best_score[4]     top_level|clk     FDCE     CE      N_12     19.398       9.826
+maximiser.best_score[5]     top_level|clk     FDCE     CE      N_12     19.398       9.826
+maximiser.best_score[6]     top_level|clk     FDCE     CE      N_12     19.398       9.826
+maximiser.best_score[7]     top_level|clk     FDCE     CE      N_12     19.398       9.826
+maximiser.best_score[8]     top_level|clk     FDCE     CE      N_12     19.398       9.826
+maximiser.best_score[9]     top_level|clk     FDCE     CE      N_12     19.398       9.826
+==========================================================================================
+
+
+
+<a name=worstPaths64>Worst Path Information</a>
+<a href="H:\work\Part3\P3-Project\Code\Synplify\rev_1\Main.srr:srsfH:\work\Part3\P3-Project\Code\Synplify\rev_1\Main.srs:fp:77692:90568:@XP_NAMES_GATE">View Worst Path in Analyst</a>
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      20.000
+    - Setup time:                            0.602
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         19.398
+
+    - Propagation time:                      9.572
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     9.826
+
+    Number of logic level(s):                36
+    Starting point:                          gdp_c.gdpipe.acc_sum_pipe_1 / Q
+    Ending point:                            maximiser.best_score[0] / CE
+    The start point is clocked by            top_level|clk [rising] on pin C
+    The end   point is clocked by            top_level|clk [rising] on pin C
+
+Instance / Net                                                   Pin      Pin               Arrival     No. of    
+Name                                                 Type        Name     Dir     Delay     Time        Fan Out(s)
+------------------------------------------------------------------------------------------------------------------
+gdp_c.gdpipe.acc_sum_pipe_1                          FDC         Q        Out     0.720     0.720       -         
+acc_sumf[0]                                          Net         -        -       0.800     -           2         
+gdp_c.gdpipe.un1_result_cry_0_RNO                    LUT1        I0       In      -         1.520       -         
+gdp_c.gdpipe.un1_result_cry_0_RNO                    LUT1        O        Out     0.579     2.099       -         
+un1_result_cry_0_sf                                  Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_0                        MUXCY_L     S        In      -         2.099       -         
+gdp_c.gdpipe.un1_result_cry_0                        MUXCY_L     LO       Out     0.480     2.579       -         
+un1_result_cry_0                                     Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_1                        MUXCY_L     CI       In      -         2.579       -         
+gdp_c.gdpipe.un1_result_cry_1                        MUXCY_L     LO       Out     0.060     2.640       -         
+un1_result_cry_1                                     Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_2                        MUXCY_L     CI       In      -         2.640       -         
+gdp_c.gdpipe.un1_result_cry_2                        MUXCY_L     LO       Out     0.060     2.700       -         
+un1_result_cry_2                                     Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_3                        MUXCY_L     CI       In      -         2.700       -         
+gdp_c.gdpipe.un1_result_cry_3                        MUXCY_L     LO       Out     0.060     2.760       -         
+un1_result_cry_3                                     Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_4                        MUXCY_L     CI       In      -         2.760       -         
+gdp_c.gdpipe.un1_result_cry_4                        MUXCY_L     LO       Out     0.060     2.820       -         
+un1_result_cry_4                                     Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_5                        MUXCY_L     CI       In      -         2.820       -         
+gdp_c.gdpipe.un1_result_cry_5                        MUXCY_L     LO       Out     0.060     2.880       -         
+un1_result_cry_5                                     Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_6                        MUXCY_L     CI       In      -         2.880       -         
+gdp_c.gdpipe.un1_result_cry_6                        MUXCY_L     LO       Out     0.060     2.939       -         
+un1_result_cry_6                                     Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_7                        MUXCY_L     CI       In      -         2.939       -         
+gdp_c.gdpipe.un1_result_cry_7                        MUXCY_L     LO       Out     0.060     2.999       -         
+un1_result_cry_7                                     Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_8                        MUXCY_L     CI       In      -         2.999       -         
+gdp_c.gdpipe.un1_result_cry_8                        MUXCY_L     LO       Out     0.060     3.059       -         
+un1_result_cry_8                                     Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_9                        MUXCY_L     CI       In      -         3.059       -         
+gdp_c.gdpipe.un1_result_cry_9                        MUXCY_L     LO       Out     0.060     3.119       -         
+un1_result_cry_9                                     Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_10                       MUXCY_L     CI       In      -         3.119       -         
+gdp_c.gdpipe.un1_result_cry_10                       MUXCY_L     LO       Out     0.060     3.180       -         
+un1_result_cry_10                                    Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_11                       MUXCY_L     CI       In      -         3.180       -         
+gdp_c.gdpipe.un1_result_cry_11                       MUXCY_L     LO       Out     0.060     3.240       -         
+un1_result_cry_11                                    Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_12                       MUXCY_L     CI       In      -         3.240       -         
+gdp_c.gdpipe.un1_result_cry_12                       MUXCY_L     LO       Out     0.060     3.300       -         
+un1_result_cry_12                                    Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_13                       MUXCY_L     CI       In      -         3.300       -         
+gdp_c.gdpipe.un1_result_cry_13                       MUXCY_L     LO       Out     0.060     3.360       -         
+un1_result_cry_13                                    Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_14                       MUXCY_L     CI       In      -         3.360       -         
+gdp_c.gdpipe.un1_result_cry_14                       MUXCY_L     LO       Out     0.060     3.420       -         
+un1_result_cry_14                                    Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_15                       MUXCY_L     CI       In      -         3.420       -         
+gdp_c.gdpipe.un1_result_cry_15                       MUXCY_L     LO       Out     0.060     3.479       -         
+un1_result_cry_15                                    Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_16                       MUXCY_L     CI       In      -         3.479       -         
+gdp_c.gdpipe.un1_result_cry_16                       MUXCY_L     LO       Out     0.060     3.539       -         
+un1_result_cry_16                                    Net         -        -       0.000     -           2         
+gdp_c.gdpipe.un1_result_cry_17                       MUXCY_L     CI       In      -         3.539       -         
+gdp_c.gdpipe.un1_result_cry_17                       MUXCY_L     LO       Out     0.060     3.599       -         
+un1_result_cry_17                                    Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_18                       MUXCY_L     CI       In      -         3.599       -         
+gdp_c.gdpipe.un1_result_cry_18                       MUXCY_L     LO       Out     0.060     3.660       -         
+un1_result_cry_18                                    Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_19                       MUXCY_L     CI       In      -         3.660       -         
+gdp_c.gdpipe.un1_result_cry_19                       MUXCY_L     LO       Out     0.060     3.720       -         
+un1_result_cry_19                                    Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_20                       MUXCY_L     CI       In      -         3.720       -         
+gdp_c.gdpipe.un1_result_cry_20                       MUXCY_L     LO       Out     0.060     3.780       -         
+un1_result_cry_20                                    Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_21                       MUXCY_L     CI       In      -         3.780       -         
+gdp_c.gdpipe.un1_result_cry_21                       MUXCY_L     LO       Out     0.060     3.840       -         
+un1_result_cry_21                                    Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_22                       MUXCY_L     CI       In      -         3.840       -         
+gdp_c.gdpipe.un1_result_cry_22                       MUXCY_L     LO       Out     0.060     3.900       -         
+un1_result_cry_22                                    Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_23                       MUXCY_L     CI       In      -         3.900       -         
+gdp_c.gdpipe.un1_result_cry_23                       MUXCY_L     LO       Out     0.060     3.959       -         
+un1_result_cry_23                                    Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_24                       MUXCY_L     CI       In      -         3.959       -         
+gdp_c.gdpipe.un1_result_cry_24                       MUXCY_L     LO       Out     0.060     4.019       -         
+un1_result_cry_24                                    Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_25                       MUXCY_L     CI       In      -         4.019       -         
+gdp_c.gdpipe.un1_result_cry_25                       MUXCY_L     LO       Out     0.060     4.080       -         
+un1_result_cry_25                                    Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_26                       MUXCY_L     CI       In      -         4.080       -         
+gdp_c.gdpipe.un1_result_cry_26                       MUXCY_L     LO       Out     0.060     4.140       -         
+un1_result_cry_26                                    Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_27                       MUXCY_L     CI       In      -         4.140       -         
+gdp_c.gdpipe.un1_result_cry_27                       MUXCY_L     LO       Out     0.060     4.199       -         
+un1_result_cry_27                                    Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_28                       MUXCY_L     CI       In      -         4.199       -         
+gdp_c.gdpipe.un1_result_cry_28                       MUXCY_L     LO       Out     0.060     4.260       -         
+un1_result_cry_28                                    Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_29                       MUXCY_L     CI       In      -         4.260       -         
+gdp_c.gdpipe.un1_result_cry_29                       MUXCY_L     LO       Out     0.060     4.319       -         
+un1_result_cry_29                                    Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_cry_30                       MUXCY_L     CI       In      -         4.319       -         
+gdp_c.gdpipe.un1_result_cry_30                       MUXCY_L     LO       Out     0.060     4.380       -         
+un1_result_cry_30                                    Net         -        -       0.000     -           1         
+gdp_c.gdpipe.un1_result_s_31                         XORCY       CI       In      -         4.380       -         
+gdp_c.gdpipe.un1_result_s_31                         XORCY       O        Out     0.883     5.263       -         
+senone_score[15]                                     Net         -        -       0.880     -           3         
+maximiser.proc_main\.svbl_78\.best_score5_axb_15     LUT2        I1       In      -         6.143       -         
+maximiser.proc_main\.svbl_78\.best_score5_axb_15     LUT2        O        Out     0.579     6.722       -         
+best_score5_axb_15                                   Net         -        -       0.000     -           1         
+maximiser.proc_main\.svbl_78\.best_score5_cry_15     MUXCY       S        In      -         6.722       -         
+maximiser.proc_main\.svbl_78\.best_score5_cry_15     MUXCY       O        Out     0.480     7.202       -         
+best_score5                                          Net         -        -       0.710     -           1         
+maximiser.un1_best_score12_i_s_0                     LUT4        I1       In      -         7.912       -         
+maximiser.un1_best_score12_i_s_0                     LUT4        O        Out     0.579     8.492       -         
+N_12                                                 Net         -        -       1.080     -           16        
+maximiser.best_score[0]                              FDCE        CE       In      -         9.572       -         
+==================================================================================================================
+Total path delay (propagation time + setup) of 10.174 is 6.704(65.9%) logic and 3.470(34.1%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+
+
+====================================
+<a name=clockReport65>Detailed Report for Clock: System</a>
+====================================
+
+
+
+<a name=startingSlack66>Starting Points with Worst Slack</a>
+********************************
+
+                      Starting                                       Arrival           
+Instance              Reference     Type     Pin     Net             Time        Slack 
+                      Clock                                                            
+---------------------------------------------------------------------------------------
+gdp_c.x_buf_0_[0]     System        LD       Q       x_buf_0_[0]     0.720       16.202
+gdp_c.x_buf_0_[1]     System        LD       Q       x_buf_0_[1]     0.720       16.202
+gdp_c.x_buf_0_[2]     System        LD       Q       x_buf_0_[2]     0.720       16.202
+gdp_c.x_buf_0_[3]     System        LD       Q       x_buf_0_[3]     0.720       16.202
+gdp_c.x_buf_0_[4]     System        LD       Q       x_buf_0_[4]     0.720       16.202
+gdp_c.x_buf_0_[5]     System        LD       Q       x_buf_0_[5]     0.720       16.202
+gdp_c.x_buf_0_[6]     System        LD       Q       x_buf_0_[6]     0.720       16.202
+gdp_c.x_buf_0_[7]     System        LD       Q       x_buf_0_[7]     0.720       16.202
+gdp_c.x_buf_0_[8]     System        LD       Q       x_buf_0_[8]     0.720       16.202
+gdp_c.x_buf_0_[9]     System        LD       Q       x_buf_0_[9]     0.720       16.202
+=======================================================================================
+
+
+<a name=endingSlack67>Ending Points with Worst Slack</a>
+******************************
+
+                         Starting                                                      Required           
+Instance                 Reference     Type     Pin     Net                            Time         Slack 
+                         Clock                                                                            
+----------------------------------------------------------------------------------------------------------
+gdp_c.sub_out_pipe       System        FDC      D       N_830                          19.889       16.202
+gdp_c.sub_out_pipe_1     System        FDC      D       N_821                          19.889       16.202
+gdp_c.sub_out_pipe_2     System        FDC      D       N_819                          19.889       16.202
+gdp_c.sub_out_pipe_3     System        FDC      D       x_component_3_i_i_a2_i[12]     19.889       16.202
+gdp_c.sub_out_pipe_4     System        FDC      D       x_component_3_i_i_a2_i[11]     19.889       16.202
+gdp_c.sub_out_pipe_5     System        FDC      D       x_component_3_i_i_a2_i[10]     19.889       16.202
+gdp_c.sub_out_pipe_6     System        FDC      D       x_component_3_i_i_a2_i[9]      19.889       16.202
+gdp_c.sub_out_pipe_7     System        FDC      D       x_component_3_i_i_a2_i[8]      19.889       16.202
+gdp_c.sub_out_pipe_8     System        FDC      D       x_component_3_i_i_a2_i[7]      19.889       16.202
+gdp_c.sub_out_pipe_9     System        FDC      D       x_component_3_i_i_a2_i[6]      19.889       16.202
+==========================================================================================================
+
+
+
+<a name=worstPaths68>Worst Path Information</a>
+<a href="H:\work\Part3\P3-Project\Code\Synplify\rev_1\Main.srr:srsfH:\work\Part3\P3-Project\Code\Synplify\rev_1\Main.srs:fp:95362:96790:@XP_NAMES_GATE">View Worst Path in Analyst</a>
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      20.000
+    - Setup time:                            0.111
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         19.889
+
+    - Propagation time:                      3.687
+    - Clock delay at starting point:         0.000 (ideal)
+    - Estimated clock delay at start point:  -0.000
+    = Slack (non-critical) :                 16.202
+
+    Number of logic level(s):                3
+    Starting point:                          gdp_c.x_buf_0_[0] / Q
+    Ending point:                            gdp_c.sub_out_pipe_15 / D
+    The start point is clocked by            System [falling] on pin G
+    The end   point is clocked by            top_level|clk [rising] on pin C
+
+Instance / Net                                                      Pin      Pin               Arrival     No. of    
+Name                                                     Type       Name     Dir     Delay     Time        Fan Out(s)
+---------------------------------------------------------------------------------------------------------------------
+gdp_c.x_buf_0_[0]                                        LD         Q        Out     0.720     0.720       -         
+x_buf_0_[0]                                              Net        -        -       0.710     -           1         
+gdp_c.proc_maincomb\.x_component_2_3_i_m2_i_m2_am[0]     LUT3       I1       In      -         1.430       -         
+gdp_c.proc_maincomb\.x_component_2_3_i_m2_i_m2_am[0]     LUT3       O        Out     0.579     2.009       -         
+x_component_2_3_i_m2_i_m2_am[0]                          Net        -        -       0.000     -           1         
+gdp_c.proc_maincomb\.x_component_2_3_i_m2_i_m2[0]        MUXF5      I0       In      -         2.009       -         
+gdp_c.proc_maincomb\.x_component_2_3_i_m2_i_m2[0]        MUXF5      O        Out     0.389     2.398       -         
+N_1488                                                   Net        -        -       0.710     -           1         
+gdp_c.proc_maincomb\.x_component_3_i_i_a2_i[0]           LUT4_L     I1       In      -         3.108       -         
+gdp_c.proc_maincomb\.x_component_3_i_i_a2_i[0]           LUT4_L     LO       Out     0.579     3.687       -         
+x_component_3_i_i_a2_i[0]                                Net        -        -       0.000     -           1         
+gdp_c.sub_out_pipe_15                                    FDC        D        In      -         3.687       -         
+=====================================================================================================================
+Total path delay (propagation time + setup) of 3.798 is 2.378(62.6%) logic and 1.420(37.4%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+
+##### END OF TIMING REPORT #####]
+
+---------------------------------------
+<a name=resourceUsage69>Resource Usage Report for top_level </a>
+
+Mapping to part: xc3s50antqg144-4
+Cell usage:
+FD              48 uses
+FDC             208 uses
+FDCE            74 uses
+FDE             211 uses
+FDP             8 uses
+FDPE            2 uses
+FDR             2 uses
+FDRE            14 uses
+FDS             1 use
+GND             11 uses
+LD              96 uses
+LDE_1           16 uses
+MULT18X18SIO    3 uses
+MULT_AND        31 uses
+MUXCY           3 uses
+MUXCY_L         207 uses
+MUXF5           16 uses
+VCC             11 uses
+XORCY           183 uses
+LUT1            69 uses
+LUT2            262 uses
+LUT3            198 uses
+LUT4            288 uses
+
+I/O ports: 43
+I/O primitives: 43
+IBUF           5 uses
+IBUFG          1 use
+IOBUF          8 uses
+OBUF           29 uses
+
+BUFG           2 uses
+
+SRL primitives:
+SRL16          16 uses
+SRL16E         5 uses
+
+I/O Register bits:                  0
+Register bits not including I/Os:   568 (40%)
+Latch bits not including I/Os:      112 (7%)
+
+Global Clock Buffers: 2 of 24 (8%)
+
+Total load per clock:
+   top_level|clk: 592
+
+Mapping Summary:
+Total  LUTs: 838 (59%)
+
+Distribution of All Consumed LUTs = SRL + LUT1 + LUT2 + LUT3 + LUT4 
+Distribution of All Consumed Luts 838 = 21 + 69 + 262 + 198 + 288 
+
+Mapper successful!
+
+At Mapper Exit (Time elapsed 0h:00m:06s; Memory used current: 40MB peak: 173MB)
+
+Process took 0h:00m:09s realtime, 0h:00m:06s cputime
+# Tue Apr 23 14:04:14 2013
+
+###########################################################]
+
+</pre></samp></body></html>

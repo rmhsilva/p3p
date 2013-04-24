@@ -1,0 +1,210 @@
+Release 14.1 Map P.15xf (nt64)
+Xilinx Mapping Report File for Design 'top_level'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off
+-c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+Target Device  : xc3s50an
+Target Package : tqg144
+Target Speed   : -4
+Mapper Version : spartan3a -- $Revision: 1.55 $
+Mapped Date    : Tue Apr 23 14:27:32 2013
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:    0
+Logic Utilization:
+  Total Number Slice Registers:         680 out of   1,408   48%
+    Number used as Flip Flops:          568
+    Number used as Latches:             112
+  Number of 4 input LUTs:               782 out of   1,408   55%
+Logic Distribution:
+  Number of occupied Slices:            623 out of     704   88%
+    Number of Slices containing only related logic:     623 out of     623 100%
+    Number of Slices containing unrelated logic:          0 out of     623   0%
+      *See NOTES below for an explanation of the effects of unrelated logic.
+  Total Number of 4 input LUTs:         827 out of   1,408   58%
+    Number used as logic:               761
+    Number used as a route-thru:         45
+    Number used as Shift registers:      21
+
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+
+  Number of bonded IOBs:                 43 out of     108   39%
+  Number of BUFGMUXs:                     2 out of      24    8%
+  Number of MULT18X18SIOs:                3 out of       3  100%
+
+Average Fanout of Non-Clock Nets:                2.75
+
+Peak Memory Usage:  296 MB
+Total REAL time to MAP completion:  5 secs 
+Total CPU time to MAP completion:   3 secs 
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Timing Report
+Section 11 - Configuration String Information
+Section 12 - Control Set Information
+Section 13 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+
+Section 3 - Informational
+-------------------------
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:LIT:244 - All of the single ended outputs in this design are using slew
+   rate limited output drivers. The delay on speed critical single ended outputs
+   can be dramatically reduced by designating them as fast outputs.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+  30 block(s) optimized away
+
+Section 5 - Removed Logic
+-------------------------
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		GND
+VCC 		VCC
+GND 		data_uart/GND
+VCC 		data_uart/deserialiser/VCC
+GND 		data_uart/ticker/GND
+VCC 		data_uart/ticker/VCC
+GND 		gdp_c/GND
+VCC 		gdp_c/VCC
+GND 		gdp_c/gdpipe/GND
+VCC 		gdp_c/gdpipe/VCC
+GND 		maximiser/GND
+GND 		norm/GND
+VCC 		norm/VCC
+GND 		sender/GND
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
+
+Section 6 - IOB Properties
+--------------------------
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew    | Reg (s)      | Resistor | IBUF/IFD | SUSPEND          |
+|                                    |                  |           |                      | Term  | Strength | Rate    |              |          | Delay    |                  |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| LRADC0_fix                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| clk                                | IBUF             | INPUT     | LVCMOS25             |       |          |         |              |          | 0 / 0    |                  |
+| duart_rx_in                        | IBUF             | INPUT     | LVCMOS25             |       |          |         |              |          | 0 / 0    |                  |
+| duart_rx_out                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| duart_tx_in                        | IBUF             | INPUT     | LVCMOS25             |       |          |         |              |          | 0 / 0    |                  |
+| duart_tx_out                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| new_vector_incoming                | IBUF             | INPUT     | LVCMOS25             |       |          |         |              |          | 0 / 0    |                  |
+| reset                              | IBUF             | INPUT     | LVCMOS25             |       |          |         |              |          | 0 / 0    |                  |
+| sram_addr[0]                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[1]                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[2]                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[3]                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[4]                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[5]                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[6]                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[7]                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[8]                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[9]                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[10]                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[11]                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[12]                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[13]                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[14]                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[15]                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[16]                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[17]                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[18]                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[19]                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_addr[20]                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_ce                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_data[0]                       | IOB              | BIDIR     | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_data[1]                       | IOB              | BIDIR     | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_data[2]                       | IOB              | BIDIR     | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_data[3]                       | IOB              | BIDIR     | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_data[4]                       | IOB              | BIDIR     | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_data[5]                       | IOB              | BIDIR     | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_data[6]                       | IOB              | BIDIR     | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_data[7]                       | IOB              | BIDIR     | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_oe                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| sram_we                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| status_led                         | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
+| uart_rx                            | IBUF             | INPUT     | LVCMOS25             |       |          |         |              |          | 0 / 0    |                  |
+| uart_tx                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW    |              |          | 0 / 0    | 3STATE           |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Timing Report
+--------------------------
+This design was not run using timing mode.
+
+Section 11 - Configuration String Details
+-----------------------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 12 - Control Set Information
+------------------------------------
+No control set information for this architecture.
+
+Section 13 - Utilization by Hierarchy
+-------------------------------------
+Use the "-detail" map option to print out the Utilization by Hierarchy section.

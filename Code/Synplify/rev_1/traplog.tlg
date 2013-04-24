@@ -1,0 +1,15 @@
+@N: CD630 :".\gentmp0a06216":4:7:4:9|Synthesizing work.top.gen 
+@N: CD630 :"syng0a06216":10:7:10:13|Synthesizing work.seq_srl.static_srl 
+@N: CD630 :"C:\Synopsys\fpga_F201203SP2\lib\xilinx\unisim.vhd":29710:10:29710:15|Synthesizing unisim.srl16e.syn_black_box 
+Post processing for unisim.srl16e.syn_black_box
+@W: CD638 :"syng0a06216":107:7:107:15|Signal tmp_array_1 is undriven 
+@W: CD638 :"syng0a06216":108:7:108:17|Signal tmp_d_array_1 is undriven 
+@W: CD638 :"syng0a06216":109:7:109:14|Signal tmp_addr is undriven 
+@W: CD638 :"syng0a06216":110:7:110:18|Signal tmp_out_addr is undriven 
+Post processing for work.seq_srl.static_srl
+@W: CL240 :"syng0a06216":108:7:108:17|tmp_d_array_1 is not assigned a value (floating) -- simulation mismatch possible. 
+@W: CL240 :"syng0a06216":107:7:107:15|tmp_array_1 is not assigned a value (floating) -- simulation mismatch possible. 
+Post processing for work.top.gen
+@W: CL159 :"syng0a06216":18:6:18:10|Input RADDR is unused
+@W: CL159 :"syng0a06216":22:6:22:10|Input A_RST is unused
+@W: CL159 :"syng0a06216":23:6:23:10|Input S_RST is unused

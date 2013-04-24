@@ -1,0 +1,42 @@
+// Senone storage
+
+module s_data_rom #(parameter n_components = 25)
+  (senone, senone_index);
+
+typedef struct packed {
+  num k;
+  num [n_components-1:0] omegas;
+  num [n_components-1:0] means;
+} senone_data;
+
+output senone_data senone;
+input logic [4:0] senone_index;
+
+always @(senone_index) begin
+  case (senone_index)
+    /* Senone 4 (ST_ax_3_22): */
+    4: senone = '{ 16'hCB4C, // K
+        {16'h000B, 16'h000B, 16'h0008, 16'h0011, 16'h000E, 16'h001C},  // omegas
+        {16'hFDB4, 16'hE422, 16'hEED2, 16'hFCD3, 16'h0671, 16'h0E8E}}; // means
+    /* Senone 3 (ST_v_2_28): */
+    3: senone = '{ 16'hCF78, // K
+        {16'h0011, 16'h0012, 16'h000D, 16'h001A, 16'h0016, 16'h002A},  // omegas
+        {16'hE574, 16'hF111, 16'hF971, 16'h0956, 16'h0AE2, 16'h1E8A}}; // means
+    /* Senone 2 (ST_ae_4_18): */
+    2: senone = '{ 16'hD5D5, // K
+        {16'h000A, 16'h000D, 16'h000B, 16'h0011, 16'h0011, 16'h001E},  // omegas
+        {16'hF9CB, 16'h013B, 16'hFAC1, 16'h051F, 16'hF006, 16'hFFE9}}; // means
+    /* Senone 1 (ST_r_4_108): */
+    1: senone = '{ 16'hCF90, // K
+        {16'h0008, 16'h0009, 16'h000E, 16'h001B, 16'h000F, 16'h0025},  // omegas
+        {16'h0F35, 16'hF655, 16'hF859, 16'h0766, 16'hFC93, 16'h10FC}}; // means
+    /* Senone 0 (ST_ey_4_47): */
+    0: senone = '{ 16'hD075, // K
+        {16'h000C, 16'h000F, 16'h0011, 16'h0010, 16'h0014, 16'h002B},  // omegas
+        {16'hEBCB, 16'hFA2D, 16'hFADD, 16'hF9E4, 16'h0EF7, 16'h17A3}}; // means
+
+    default: senone = 'b0;
+  endcase
+end
+
+endmodule

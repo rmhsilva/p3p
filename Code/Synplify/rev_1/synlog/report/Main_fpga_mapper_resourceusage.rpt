@@ -1,0 +1,55 @@
+---------------------------------------
+Resource Usage Report for top_level 
+
+Mapping to part: xc3s50antqg144-4
+Cell usage:
+FD              48 uses
+FDC             208 uses
+FDCE            74 uses
+FDE             211 uses
+FDP             8 uses
+FDPE            2 uses
+FDR             2 uses
+FDRE            14 uses
+FDS             1 use
+GND             11 uses
+LD              96 uses
+LDE_1           16 uses
+MULT18X18SIO    3 uses
+MULT_AND        31 uses
+MUXCY           3 uses
+MUXCY_L         207 uses
+MUXF5           16 uses
+VCC             11 uses
+XORCY           183 uses
+LUT1            69 uses
+LUT2            262 uses
+LUT3            198 uses
+LUT4            288 uses
+
+I/O ports: 43
+I/O primitives: 43
+IBUF           5 uses
+IBUFG          1 use
+IOBUF          8 uses
+OBUF           29 uses
+
+BUFG           2 uses
+
+SRL primitives:
+SRL16          16 uses
+SRL16E         5 uses
+
+I/O Register bits:                  0
+Register bits not including I/Os:   568 (40%)
+Latch bits not including I/Os:      112 (7%)
+
+Global Clock Buffers: 2 of 24 (8%)
+
+
+Mapping Summary:
+Total  LUTs: 838 (59%)
+
+Distribution of All Consumed LUTs = SRL + LUT1 + LUT2 + LUT3 + LUT4 
+Distribution of All Consumed Luts 838 = 21 + 69 + 262 + 198 + 288 
+

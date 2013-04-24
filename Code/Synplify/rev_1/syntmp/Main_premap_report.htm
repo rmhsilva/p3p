@@ -1,0 +1,311 @@
+<html><body><samp><pre>
+<!@TC:0>
+<a name=mapperReport201>Synopsys Xilinx Technology Pre-mapping, Version maprc, Build 1081R, Built May 30 2012 15:29:16</a>
+Copyright (C) 1994-2012, Synopsys, Inc. This software the associated documentation are confidential and proprietary to Synopsys, Inc. Your use or disclosure of this software subject to the terms and conditions of a written license agreement between you, or your company, and Synopsys, Inc.
+Product Version F-2012.03-SP2 
+
+Mapper Startup Complete (Time elapsed 0h:00m:00s; Memory used current: 91MB peak: 92MB)
+
+Linked File: <a href="H:\work\Part3\P3-Project\Code\Synplify\rev_1\Main_scck.rpt:@XP_FILE">Main_scck.rpt</a>
+Printing clock  summary report in "H:\work\Part3\P3-Project\Code\Synplify\rev_1\Main_scck.rpt" file 
+@N:<a href="@N:MF248:@XP_HELP">MF248</a> : <!@TM:0> | Running in 64-bit mode. 
+@N:<a href="@N:MF257:@XP_HELP">MF257</a> : <!@TM:0> | Gated clock conversion enabled  
+@N:<a href="@N:MF546:@XP_HELP">MF546</a> : <!@TM:0> | Generated clock conversion enabled  
+
+Design Input Complete (Time elapsed 0h:00m:00s; Memory used current: 93MB peak: 94MB)
+
+
+Mapper Initialization Complete (Time elapsed 0h:00m:00s; Memory used current: 93MB peak: 94MB)
+
+
+Start loading timing files (Time elapsed 0h:00m:00s; Memory used current: 94MB peak: 94MB)
+
+
+Finished loading timing files (Time elapsed 0h:00m:00s; Memory used current: 94MB peak: 96MB)
+
+Reading Xilinx I/O pad type table from file [C:\Synopsys\fpga_F201203SP2\lib\xilinx\x_io_tbl.txt] 
+Reading Xilinx Rocket I/O parameter type table from file [C:\Synopsys\fpga_F201203SP2\lib\xilinx\gttype.txt] 
+<font color=#A52A2A>@W:<a href="@W:FX474:@XP_HELP">FX474</a> : <!@TM:0> | User-specified initial value defined for some sequential elements which can prevent optimum synthesis results from being achieved. </font> 
+Warning: Found 34 combinational loops!
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:112:17:112:72:@W:BN137:@XP_MSG">top_level.sv(112)</a><!@TM:0> | Found combinational loop during mapping at net proc_outputlogic\.start_norm</font>
+1) instance proc_outputlogic\.start_norm (netlist:and), output net "proc_outputlogic\.start_norm" in work.top_level(verilog)
+    net        proc_outputlogic\.start_norm
+    input  pin proc_outputlogic\.un5_start_norm/I[0]
+    instance   proc_outputlogic\.un5_start_norm (cell or)
+    output pin proc_outputlogic\.un5_start_norm/OUT
+    net        proc_outputlogic\.un5_start_norm
+    input  pin proc_outputlogic\.start_norm/I[1]
+    instance   proc_outputlogic\.start_norm (cell and)
+    output pin proc_outputlogic\.start_norm/OUT
+    net        proc_outputlogic\.start_norm
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:113:17:113:72:@W:BN137:@XP_MSG">top_level.sv(113)</a><!@TM:0> | Found combinational loop during mapping at net proc_outputlogic\.start_send</font>
+2) instance proc_outputlogic\.start_send (netlist:and), output net "proc_outputlogic\.start_send" in work.top_level(verilog)
+    net        proc_outputlogic\.start_send
+    input  pin proc_outputlogic\.un5_start_send/I[0]
+    instance   proc_outputlogic\.un5_start_send (cell or)
+    output pin proc_outputlogic\.un5_start_send/OUT
+    net        proc_outputlogic\.un5_start_send
+    input  pin proc_outputlogic\.start_send/I[1]
+    instance   proc_outputlogic\.start_send (cell and)
+    output pin proc_outputlogic\.start_send/OUT
+    net        proc_outputlogic\.start_send
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[0]</font>
+3) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[0]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[0]
+    input  pin proc_statecomb\.next_12[31:0]/D0[1]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[0]
+    net        proc_statecomb\.next_12[0]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[1]</font>
+4) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[1]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[1]
+    input  pin proc_statecomb\.next_12[31:0]/D0[2]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[1]
+    net        proc_statecomb\.next_12[1]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[2]</font>
+5) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[2]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[2]
+    input  pin proc_statecomb\.next_12[31:0]/D0[3]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[2]
+    net        proc_statecomb\.next_12[2]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[3]</font>
+6) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[3]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[3]
+    input  pin proc_statecomb\.next_12[31:0]/D0[4]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[3]
+    net        proc_statecomb\.next_12[3]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[4]</font>
+7) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[4]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[4]
+    input  pin proc_statecomb\.next_12[31:0]/D0[5]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[4]
+    net        proc_statecomb\.next_12[4]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[5]</font>
+8) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[5]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[5]
+    input  pin proc_statecomb\.next_12[31:0]/D0[6]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[5]
+    net        proc_statecomb\.next_12[5]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[6]</font>
+9) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[6]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[6]
+    input  pin proc_statecomb\.next_12[31:0]/D0[7]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[6]
+    net        proc_statecomb\.next_12[6]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[7]</font>
+10) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[7]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[7]
+    input  pin proc_statecomb\.next_12[31:0]/D0[8]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[7]
+    net        proc_statecomb\.next_12[7]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[8]</font>
+11) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[8]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[8]
+    input  pin proc_statecomb\.next_12[31:0]/D0[9]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[8]
+    net        proc_statecomb\.next_12[8]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[9]</font>
+12) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[9]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[9]
+    input  pin proc_statecomb\.next_12[31:0]/D0[10]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[9]
+    net        proc_statecomb\.next_12[9]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[10]</font>
+13) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[10]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[10]
+    input  pin proc_statecomb\.next_12[31:0]/D0[11]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[10]
+    net        proc_statecomb\.next_12[10]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[11]</font>
+14) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[11]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[11]
+    input  pin proc_statecomb\.next_12[31:0]/D0[12]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[11]
+    net        proc_statecomb\.next_12[11]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[12]</font>
+15) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[12]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[12]
+    input  pin proc_statecomb\.next_12[31:0]/D0[13]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[12]
+    net        proc_statecomb\.next_12[12]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[13]</font>
+16) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[13]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[13]
+    input  pin proc_statecomb\.next_12[31:0]/D0[14]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[13]
+    net        proc_statecomb\.next_12[13]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[14]</font>
+17) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[14]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[14]
+    input  pin proc_statecomb\.next_12[31:0]/D0[15]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[14]
+    net        proc_statecomb\.next_12[14]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[15]</font>
+18) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[15]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[15]
+    input  pin proc_statecomb\.next_12[31:0]/D0[16]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[15]
+    net        proc_statecomb\.next_12[15]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[16]</font>
+19) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[16]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[16]
+    input  pin proc_statecomb\.next_12[31:0]/D0[17]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[16]
+    net        proc_statecomb\.next_12[16]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[17]</font>
+20) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[17]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[17]
+    input  pin proc_statecomb\.next_12[31:0]/D0[18]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[17]
+    net        proc_statecomb\.next_12[17]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[18]</font>
+21) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[18]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[18]
+    input  pin proc_statecomb\.next_12[31:0]/D0[19]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[18]
+    net        proc_statecomb\.next_12[18]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[19]</font>
+22) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[19]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[19]
+    input  pin proc_statecomb\.next_12[31:0]/D0[20]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[19]
+    net        proc_statecomb\.next_12[19]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[20]</font>
+23) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[20]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[20]
+    input  pin proc_statecomb\.next_12[31:0]/D0[21]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[20]
+    net        proc_statecomb\.next_12[20]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[21]</font>
+24) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[21]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[21]
+    input  pin proc_statecomb\.next_12[31:0]/D0[22]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[21]
+    net        proc_statecomb\.next_12[21]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[22]</font>
+25) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[22]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[22]
+    input  pin proc_statecomb\.next_12[31:0]/D0[23]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[22]
+    net        proc_statecomb\.next_12[22]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[23]</font>
+26) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[23]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[23]
+    input  pin proc_statecomb\.next_12[31:0]/D0[24]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[23]
+    net        proc_statecomb\.next_12[23]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[24]</font>
+27) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[24]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[24]
+    input  pin proc_statecomb\.next_12[31:0]/D0[25]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[24]
+    net        proc_statecomb\.next_12[24]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[25]</font>
+28) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[25]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[25]
+    input  pin proc_statecomb\.next_12[31:0]/D0[26]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[25]
+    net        proc_statecomb\.next_12[25]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[26]</font>
+29) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[26]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[26]
+    input  pin proc_statecomb\.next_12[31:0]/D0[27]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[26]
+    net        proc_statecomb\.next_12[26]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[27]</font>
+30) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[27]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[27]
+    input  pin proc_statecomb\.next_12[31:0]/D0[28]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[27]
+    net        proc_statecomb\.next_12[27]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[28]</font>
+31) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[28]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[28]
+    input  pin proc_statecomb\.next_12[31:0]/D0[29]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[28]
+    net        proc_statecomb\.next_12[28]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[29]</font>
+32) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[29]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[29]
+    input  pin proc_statecomb\.next_12[31:0]/D0[30]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[29]
+    net        proc_statecomb\.next_12[29]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[30]</font>
+33) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[30]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[30]
+    input  pin proc_statecomb\.next_12[31:0]/D0[31]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[30]
+    net        proc_statecomb\.next_12[30]
+<font color=#A52A2A>@W:<a href="@W:BN137:@XP_HELP">BN137</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\top_level.sv:93:2:93:4:@W:BN137:@XP_MSG">top_level.sv(93)</a><!@TM:0> | Found combinational loop during mapping at net proc_statecomb\.next_12[31]</font>
+34) instance proc_statecomb\.next_12[31:0] (netlist:pmux), output net "proc_statecomb\.next_12[31]" in work.top_level(verilog)
+    net        proc_statecomb\.next_12[31]
+    input  pin proc_statecomb\.next_12[31:0]/D0[32]
+    instance   proc_statecomb\.next_12[31:0] (cell pmux)
+    output pin proc_statecomb\.next_12[31:0]/OUT[31]
+    net        proc_statecomb\.next_12[31]
+End of loops
+<font color=#A52A2A>@W:<a href="@W:MT462:@XP_HELP">MT462</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:62:9:62:13:@W:MT462:@XP_MSG">sram.sv(62)</a><!@TM:0> | Net ram_access.svbl_107\.sram_we9 appears to be an unidentified clock source. Assuming default frequency. </font>
+<font color=#A52A2A>@W:<a href="@W:MT462:@XP_HELP">MT462</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv:3:7:3:21:@W:MT462:@XP_MSG">gdp_controller.sv(3)</a><!@TM:0> | Net gdp_c.gdp_idle appears to be an unidentified clock source. Assuming default frequency. </font>
+<font color=#A52A2A>@W:<a href="@W:MT462:@XP_HELP">MT462</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv:96:8:96:15:@W:MT462:@XP_MSG">gdp_controller.sv(96)</a><!@TM:0> | Net gdp_c.proc_main\.svbl_71\.last_calc12 appears to be an unidentified clock source. Assuming default frequency. </font>
+<font color=#A52A2A>@W:<a href="@W:MT462:@XP_HELP">MT462</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\gdp_controller.sv:3:7:61:22:@W:MT462:@XP_MSG">gdp_controller.sv(3)</a><!@TM:0> | Net gdp_c.proc_main\.svbl_71\.un1_comp_index14 appears to be an unidentified clock source. Assuming default frequency. </font>
+
+
+<a name=mapperReport202>Clock Summary</a>
+**************
+
+Start                           Requested     Requested     Clock        Clock                
+Clock                           Frequency     Period        Type         Group                
+----------------------------------------------------------------------------------------------
+System                          1.0 MHz       1000.000      system       system_clkgroup      
+top_level|clk                   1.0 MHz       1000.000      inferred     Autoconstr_clkgroup_0
+sram|sram_ce_inferred_clock     1.0 MHz       1000.000      inferred     Autoconstr_clkgroup_1
+==============================================================================================
+
+<font color=#A52A2A>@W:<a href="@W:MT529:@XP_HELP">MT529</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\uart\baudgen.sv:18:0:18:9:@W:MT529:@XP_MSG">baudgen.sv(18)</a><!@TM:0> | Found inferred clock top_level|clk which controls 698 sequential elements including data_uart/ticker/baud_acc[16:0]. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. </font>
+<font color=#A52A2A>@W:<a href="@W:MT529:@XP_HELP">MT529</a> : <a href="h:\work\part3\p3-project\code\synplify\modules\sram.sv:62:9:62:13:@W:MT529:@XP_MSG">sram.sv(62)</a><!@TM:0> | Found inferred clock sram|sram_ce_inferred_clock which controls 42 sequential elements including ram_access/sram_addr[20:0]. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. </font>
+
+syn_allowed_resources : blockrams=3,dsps=3  set on top level netlist top_level
+
+Finished Pre Mapping Phase. (Time elapsed 0h:00m:00s; Memory used current: 120MB peak: 123MB)
+
+@N:<a href="@N:BN225:@XP_HELP">BN225</a> : <!@TM:0> | Writing default property annotation file H:\work\Part3\P3-Project\Code\Synplify\rev_1\Main.sap. 
+Pre-mapping successful!
+
+At Mapper Exit (Time elapsed 0h:00m:00s; Memory used current: 58MB peak: 123MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Tue Mar 12 13:45:01 2013
+
+###########################################################]
+
+</pre></samp></body></html>

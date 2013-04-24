@@ -1,0 +1,206 @@
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level_preroute.twx top_level_map.ncd -o top_level_preroute.twr top_level.pcf -ucf synplicity.ucf 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc synplicity.ucf -p xc3s50an-tqg144-4 Main.edf top_level.ngd  
+map -intstyle ise -p xc3s50an-tqg144-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf synplicity.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 

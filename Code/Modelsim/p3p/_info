@@ -1,0 +1,690 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\modeltech64_10.1c\examples
+Xall_s_data_sv_unit
+Z1 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+Z2 VFFDMUO?KNDFhVP3J6_cP12
+r1
+31
+Z3 IFFDMUO?KNDFhVP3J6_cP12
+S1
+Z4 dH:\work\Part3\P3-Project\Code\ModelsimNotMultisim
+Z5 w1366634929
+Z6 8H:/work/Part3/P3-Project/Code/Synplify/modules/all_s_data.sv
+Z7 FH:/work/Part3/P3-Project/Code/Synplify/modules/all_s_data.sv
+L0 2
+Z8 OL;L;10.1c;51
+Z9 !s108 1366635043.801000
+Z10 !s107 H:/work/Part3/P3-Project/Code/Synplify/modules/all_s_data.sv|
+Z11 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/Synplify/modules/all_s_data.sv|
+Z12 o-work p3p -sv -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+Z13 !s100 bSnFYKMWX]M^<6=9f_`kJ1
+!s85 0
+!i10b 1
+!i103 1
+vbaudgen
+R1
+Z14 VgSBF>G=IE6XB=A;8<^_5k2
+r1
+31
+Z15 INZ;bjGk`ZAV[bA@i9C=^?0
+S1
+R4
+Z16 w1366388398
+Z17 8H:/work/Part3/P3-Project/Code/Synplify/modules/uart/baudgen.sv
+Z18 FH:/work/Part3/P3-Project/Code/Synplify/modules/uart/baudgen.sv
+L0 1
+R8
+R12
+Z19 !s100 Rg4<`NHc3h6FUg;jEBNF:0
+Z20 !s105 baudgen_sv_unit
+Z21 !s108 1366635050.066000
+Z22 !s107 H:/work/Part3/P3-Project/Code/Synplify/modules/uart/baudgen.sv|
+Z23 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/Synplify/modules/uart/baudgen.sv|
+!s85 0
+!i10b 1
+vgdp
+R1
+DXx4 work 11 gdp_sv_unit 0 22 MAX4NbGniKD6;_V:XL7PR1
+Z24 VECc^n2PG=o30n5=DdJ8VR0
+r1
+!s85 0
+31
+!i10b 1
+!s100 za_Y5<Ng?_zXIEO07nnkf0
+I>f4<0nYcSOVh3ChCklUNS1
+Z25 !s105 gdp_sv_unit
+S1
+R4
+Z26 w1366638897
+Z27 8H:/work/Part3/P3-Project/Code/Synplify/modules/gdp.sv
+Z28 FH:/work/Part3/P3-Project/Code/Synplify/modules/gdp.sv
+L0 3
+R8
+Z29 !s108 1366638899.779000
+Z30 !s107 H:/work/Part3/P3-Project/Code/Synplify/modules/gdp.sv|
+Z31 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/Synplify/modules/gdp.sv|
+R12
+vgdp_controller
+R1
+Z32 DXx4 work 22 gdp_controller_sv_unit 0 22 Yhb4d4gB8^3CoU2NjMXi72
+Z33 VgB59:<KFzX2C]Z]13n^ol1
+r1
+31
+Z34 IE[BmA@h]i4VzjCTcaElTM2
+S1
+R4
+Z35 w1366634934
+Z36 8H:/work/Part3/P3-Project/Code/Synplify/modules/gdp_controller.sv
+Z37 FH:/work/Part3/P3-Project/Code/Synplify/modules/gdp_controller.sv
+L0 4
+R8
+Z38 !s108 1366635044.361000
+Z39 !s107 H:/work/Part3/P3-Project/Code/Synplify/modules/gdp_controller.sv|
+Z40 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/Synplify/modules/gdp_controller.sv|
+R12
+Z41 !s100 UWa@VnCoL3JPZ>KhVGlME3
+Z42 !s105 gdp_controller_sv_unit
+!s85 0
+!i10b 1
+Xgdp_controller_sv_unit
+R1
+Z43 VYhb4d4gB8^3CoU2NjMXi72
+r1
+31
+Z44 IYhb4d4gB8^3CoU2NjMXi72
+S1
+R4
+R35
+R36
+R37
+L0 2
+R8
+R38
+R39
+R40
+R12
+Z45 !s100 2[:5^P34a0D>BFT5lID550
+!s85 0
+!i10b 1
+!i103 1
+Xgdp_sv_unit
+R1
+VMAX4NbGniKD6;_V:XL7PR1
+r1
+!s85 0
+31
+!i10b 1
+!s100 E8AY:<E=XjPn>5OZP41gS1
+IMAX4NbGniKD6;_V:XL7PR1
+!i103 1
+S1
+R4
+R26
+R27
+R28
+L0 1
+R8
+R29
+R30
+R31
+R12
+vmax
+R1
+Z46 DXx4 work 11 max_sv_unit 0 22 ZOz?]76l=I`No^5YUNiBP1
+Z47 VoCREegdmO]>TklGH?bfRf3
+r1
+31
+Z48 INHdc;SPR^ihNlDkcOo2fX0
+S1
+R4
+Z49 w1366634936
+Z50 8H:/work/Part3/P3-Project/Code/Synplify/modules/max.sv
+Z51 FH:/work/Part3/P3-Project/Code/Synplify/modules/max.sv
+L0 4
+R8
+Z52 !s108 1366635044.985000
+Z53 !s107 H:/work/Part3/P3-Project/Code/Synplify/modules/max.sv|
+Z54 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/Synplify/modules/max.sv|
+R12
+Z55 !s100 ZL5]_a]MKZh`]OhWUJ>^N0
+Z56 !s105 max_sv_unit
+!s85 0
+!i10b 1
+Xmax_sv_unit
+R1
+Z57 VZOz?]76l=I`No^5YUNiBP1
+r1
+31
+Z58 IZOz?]76l=I`No^5YUNiBP1
+S1
+R4
+R49
+R50
+R51
+L0 2
+R8
+R52
+R53
+R54
+R12
+Z59 !s100 D8:Pb;ILQ8i0;ET;Sne=n3
+!s85 0
+!i10b 1
+!i103 1
+vnormaliser
+R1
+Z60 DXx4 work 18 normaliser_sv_unit 0 22 GWBjWD@1U9mCHAbb>PbC42
+Z61 V`nRQQ@>C<7;XMN_RA3F1z1
+r1
+31
+Z62 IYH?]diOe`mB3b5J6l@kUP3
+S1
+R4
+Z63 w1366634931
+Z64 8H:/work/Part3/P3-Project/Code/Synplify/modules/normaliser.sv
+Z65 FH:/work/Part3/P3-Project/Code/Synplify/modules/normaliser.sv
+L0 4
+R8
+Z66 !s108 1366635045.627000
+Z67 !s107 H:/work/Part3/P3-Project/Code/Synplify/modules/normaliser.sv|
+Z68 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/Synplify/modules/normaliser.sv|
+R12
+Z69 !s100 fo_HhgHL??7H0Y4zK_mHl3
+Z70 !s105 normaliser_sv_unit
+!s85 0
+!i10b 1
+Xnormaliser_sv_unit
+R1
+Z71 VGWBjWD@1U9mCHAbb>PbC42
+r1
+31
+Z72 IGWBjWD@1U9mCHAbb>PbC42
+S1
+R4
+R63
+R64
+R65
+L0 2
+R8
+R66
+R67
+R68
+R12
+Z73 !s100 ^m;e8n[;DPBTPlR1QI0Th0
+!s85 0
+!i10b 1
+!i103 1
+vs_data_rom
+R1
+Z74 DXx4 work 18 all_s_data_sv_unit 0 22 FFDMUO?KNDFhVP3J6_cP12
+Z75 V^]aT`OgE_aMf6V_VPAKH93
+r1
+31
+Z76 I9l2OYenQ:EEQ6l[SU35e>2
+S1
+R4
+R5
+R6
+R7
+L0 4
+R8
+R9
+R10
+R11
+R12
+Z77 !s100 az135jW7;0A=BQi]]aU?m2
+Z78 !s105 all_s_data_sv_unit
+!s85 0
+!i10b 1
+vsend
+R1
+Z79 DXx4 work 12 send_sv_unit 0 22 zSlXgnoE`jd;hK@72[:kC3
+Z80 Ve9VBF;;cl[UNXJ^L>HHXM3
+r1
+31
+Z81 IhDfhz57QzkJ5HNJklYIRW3
+S1
+R4
+Z82 w1366634913
+Z83 8H:/work/Part3/P3-Project/Code/Synplify/modules/send.sv
+Z84 FH:/work/Part3/P3-Project/Code/Synplify/modules/send.sv
+L0 4
+R8
+Z85 !s108 1366635046.196000
+Z86 !s107 H:/work/Part3/P3-Project/Code/Synplify/modules/send.sv|
+Z87 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/Synplify/modules/send.sv|
+R12
+Z88 !s100 Lk4kMEeV9dV<1LKOXD`iC2
+Z89 !s105 send_sv_unit
+!s85 0
+!i10b 1
+Xsend_sv_unit
+R1
+Z90 VzSlXgnoE`jd;hK@72[:kC3
+r1
+31
+Z91 IzSlXgnoE`jd;hK@72[:kC3
+S1
+R4
+R82
+R83
+R84
+L0 2
+R8
+R85
+R86
+R87
+R12
+Z92 !s100 >XIkiNeXKSR:PA4@X=Y3i3
+!s85 0
+!i10b 1
+!i103 1
+vsram
+R1
+Z93 DXx4 work 12 sram_sv_unit 0 22 GLIKfboS^4IN5gKG8h9c91
+Z94 VVS2mSgPDmIV>l:e44H`>R2
+r1
+31
+Z95 IH0;_^0bQnJb^k[_6eQ>X`3
+S1
+R4
+Z96 w1366634917
+Z97 8H:/work/Part3/P3-Project/Code/Synplify/modules/sram.sv
+Z98 FH:/work/Part3/P3-Project/Code/Synplify/modules/sram.sv
+L0 4
+R8
+Z99 !s108 1366635038.990000
+Z100 !s107 H:/work/Part3/P3-Project/Code/Synplify/modules/sram.sv|
+Z101 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/Synplify/modules/sram.sv|
+R12
+Z102 !s100 oGdgB66;oBZ>m1h48>e7E2
+Z103 !s105 sram_sv_unit
+!s85 0
+!i10b 1
+vsram_model
+R1
+Z104 V9XBfG<IB4feeEQWm?Bk<31
+r1
+31
+Z105 Ig]F]@E>J_j28mFUzbACXT3
+S1
+R4
+Z106 w1366635082
+Z107 8H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/sram_model.sv
+Z108 FH:/work/Part3/P3-Project/Code/ModelsimNotMultisim/sram_model.sv
+L0 2
+R8
+R12
+Z109 !s100 JCOSih?m@[5PTeK`0zL`70
+Z110 !s105 sram_model_sv_unit
+Z111 !s108 1366635085.452000
+Z112 !s107 H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/sram_model.sv|
+Z113 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/sram_model.sv|
+!s85 0
+!i10b 1
+Xsram_sv_unit
+R1
+Z114 VGLIKfboS^4IN5gKG8h9c91
+r1
+31
+Z115 IGLIKfboS^4IN5gKG8h9c91
+S1
+R4
+R96
+R97
+R98
+L0 2
+R8
+R99
+R100
+R101
+R12
+Z116 !s100 =zk7L6Y<ggcQHImMUO`9^1
+!s85 0
+!i10b 1
+!i103 1
+vtest_baudgen
+R1
+Z117 ITJ;:`IIjdg9[?1`=JFSjF0
+Z118 V>kN:cjQZh7k?ccXk^5EVL0
+S1
+R4
+Z119 w1362861057
+Z120 8H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_baudgen.sv
+Z121 FH:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_baudgen.sv
+L0 3
+R8
+r1
+31
+R12
+Z122 !s100 ;P;h_HcWmkB>9@@=MHEUa3
+Z123 !s105 test_baudgen_sv_unit
+Z124 !s108 1366635092.083000
+Z125 !s107 H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_baudgen.sv|
+Z126 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_baudgen.sv|
+!i10b 1
+!s85 0
+vtest_gdp
+R1
+Z127 I5VJP7OWb=87:MIh5@K^5K2
+Z128 V5[ISWU9KgnJ4A38QaZ[R>3
+S1
+R4
+Z129 w1366635303
+Z130 8H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_gdp.sv
+Z131 FH:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_gdp.sv
+L0 1
+R8
+r1
+31
+R12
+Z132 !s105 test_gdp_sv_unit
+Z133 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_gdp.sv|
+Z134 !s100 `YNUka[Iz`]eiRV3R>Ib>0
+Z135 !s108 1366635341.204000
+Z136 !s107 H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_gdp.sv|
+!i10b 1
+!s85 0
+vtest_gdp_controller
+R1
+Z137 DXx4 work 27 test_gdp_controller_sv_unit 0 22 AUGAj_]3G`>Od@]V^:CKP0
+Z138 VS`PhHX:HDlNG[DlPmboFH0
+r1
+31
+Z139 Ig?PJ0:0`o^ZDIa8b?a2o80
+S1
+R4
+Z140 w1366635328
+Z141 8H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_gdp_controller.sv
+Z142 FH:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_gdp_controller.sv
+L0 3
+R8
+Z143 !s108 1366635341.816000
+Z144 !s107 H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_gdp_controller.sv|
+Z145 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_gdp_controller.sv|
+R12
+Z146 !s105 test_gdp_controller_sv_unit
+Z147 !s100 TaE4geAC9S=d:XU4XS^862
+!s85 0
+!i10b 1
+Xtest_gdp_controller_sv_unit
+R1
+Z148 VAUGAj_]3G`>Od@]V^:CKP0
+r1
+31
+Z149 IAUGAj_]3G`>Od@]V^:CKP0
+S1
+R4
+R140
+R141
+R142
+L0 1
+R8
+R143
+R144
+R145
+R12
+Z150 !s100 kfoYEbo0I9`TAaO0^W?900
+!s85 0
+!i10b 1
+!i103 1
+vtest_send
+R1
+Z151 DXx4 work 17 test_send_sv_unit 0 22 ILJkgT7EWidTHBOMY`Dd?0
+Z152 VnomVf@ZibA?=9;JIBYf3m2
+r1
+31
+Z153 Ii_M9DS>DaRGzZeK;gi<;H3
+S1
+R4
+Z154 w1366635313
+Z155 8H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_send.sv
+Z156 FH:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_send.sv
+L0 3
+R8
+Z157 !s108 1366635342.408000
+Z158 !s107 H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_send.sv|
+Z159 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_send.sv|
+R12
+Z160 !s105 test_send_sv_unit
+Z161 !s100 <4>3mLWP=ZQ<bz88Y:8Vo2
+!s85 0
+!i10b 1
+Xtest_send_sv_unit
+R1
+Z162 VILJkgT7EWidTHBOMY`Dd?0
+r1
+31
+Z163 IILJkgT7EWidTHBOMY`Dd?0
+S1
+R4
+R154
+R155
+R156
+L0 1
+R8
+R157
+R158
+R159
+R12
+Z164 !s100 FmC`9D6I1eC]eD5jQ6F@92
+!s85 0
+!i10b 1
+!i103 1
+vtest_top_level
+R1
+Z165 DXx4 work 22 test_top_level_sv_unit 0 22 QEj^ZndE86z]G^993ckXH1
+Z166 Ved9?de5Mo99<jKCe_F:>h0
+r1
+31
+Z167 IM;NPc_DM;eHz0_^9lLW0C1
+S1
+R4
+Z168 w1366636025
+Z169 8H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_top_level.sv
+Z170 FH:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_top_level.sv
+L0 3
+R8
+Z171 !s108 1366636030.414000
+Z172 !s107 H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_top_level.sv|
+Z173 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_top_level.sv|
+R12
+Z174 !s105 test_top_level_sv_unit
+Z175 !s100 <Coc`TBOzbDFhL5>JX^Id2
+!s85 0
+!i10b 1
+Xtest_top_level_sv_unit
+R1
+Z176 VQEj^ZndE86z]G^993ckXH1
+r1
+31
+Z177 IQEj^ZndE86z]G^993ckXH1
+S1
+R4
+R168
+R169
+R170
+L0 1
+R8
+R171
+R172
+R173
+R12
+Z178 !s100 n;E]Kj80f<7T_g3JVDC<D3
+!s85 0
+!i10b 1
+!i103 1
+vtest_uart
+R1
+Z179 DXx4 work 17 test_uart_sv_unit 0 22 ij`DbAONX5l7>;QILZPUl1
+Z180 VgGGRe;HDzI86Z`UF^71XG0
+r1
+31
+Z181 I2?VPg89Lj@cTL6F:UE2253
+S1
+R4
+Z182 w1366635317
+Z183 8H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_uart.sv
+Z184 FH:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_uart.sv
+L0 3
+R8
+Z185 !s108 1366635343.672000
+Z186 !s107 H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_uart.sv|
+Z187 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/ModelsimNotMultisim/test_uart.sv|
+R12
+Z188 !s105 test_uart_sv_unit
+Z189 !s100 enPRL^l18OMf62<@h35iz3
+!s85 0
+!i10b 1
+Xtest_uart_sv_unit
+R1
+Z190 Vij`DbAONX5l7>;QILZPUl1
+r1
+31
+Z191 Iij`DbAONX5l7>;QILZPUl1
+S1
+R4
+R182
+R183
+R184
+L0 1
+R8
+R185
+R186
+R187
+R12
+Z192 !s100 Jzl?SXFVmkBT2]a:HC;h>3
+!s85 0
+!i10b 1
+!i103 1
+vtop_level
+R1
+Z193 DXx4 work 17 top_level_sv_unit 0 22 ^^WzgZLWjiWKG=l<gSIU53
+Z194 VWebhS_X<XR;HKl^351O<a1
+r1
+31
+Z195 Ii=4RkQ<^2GN[ZF`F7P2Mf3
+S1
+R4
+Z196 w1366634921
+Z197 8H:/work/Part3/P3-Project/Code/Synplify/modules/top_level.sv
+Z198 FH:/work/Part3/P3-Project/Code/Synplify/modules/top_level.sv
+L0 4
+R8
+Z199 !s108 1366635046.817000
+Z200 !s107 H:/work/Part3/P3-Project/Code/Synplify/modules/top_level.sv|
+Z201 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/Synplify/modules/top_level.sv|
+R12
+Z202 !s100 QETX5765RlViE[9>F>GoL0
+Z203 !s105 top_level_sv_unit
+!s85 0
+!i10b 1
+Xtop_level_sv_unit
+R1
+Z204 V^^WzgZLWjiWKG=l<gSIU53
+r1
+31
+Z205 I^^WzgZLWjiWKG=l<gSIU53
+S1
+R4
+R196
+R197
+R198
+L0 2
+R8
+R199
+R200
+R201
+R12
+Z206 !s100 ce^M=5MD;NkdhX;2>=KcU0
+!s85 0
+!i10b 1
+!i103 1
+vuart
+R1
+Z207 DXx4 work 12 uart_sv_unit 0 22 ZH?41KMmQdJcSIm;`kK6]1
+Z208 VMz9X[7?:d@[zGT_DM`L6J3
+r1
+31
+Z209 IB0k;Obl3ULE6LzN`hdkM>1
+S1
+R4
+Z210 w1366634961
+Z211 8H:/work/Part3/P3-Project/Code/Synplify/modules/uart.sv
+Z212 FH:/work/Part3/P3-Project/Code/Synplify/modules/uart.sv
+L0 4
+R8
+Z213 !s108 1366635051.469000
+Z214 !s107 H:/work/Part3/P3-Project/Code/Synplify/modules/uart.sv|
+Z215 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/Synplify/modules/uart.sv|
+R12
+Z216 !s100 o[Yh:RK`nUA;A1m;ZbOk=2
+Z217 !s105 uart_sv_unit
+!s85 0
+!i10b 1
+vuart_rx
+R1
+Z218 VaIYn9LaX^?ZB<cceD=<Il1
+r1
+31
+Z219 I`g8UCaceITLiN<fCAOTY<3
+S1
+R4
+Z220 w1366388414
+Z221 8H:/work/Part3/P3-Project/Code/Synplify/modules/uart/uart_rx.sv
+Z222 FH:/work/Part3/P3-Project/Code/Synplify/modules/uart/uart_rx.sv
+L0 1
+R8
+R12
+Z223 !s100 gNzV0eK:iTe_O[CJbZI^o0
+Z224 !s105 uart_rx_sv_unit
+Z225 !s108 1366635050.483000
+Z226 !s107 H:/work/Part3/P3-Project/Code/Synplify/modules/uart/uart_rx.sv|
+Z227 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/Synplify/modules/uart/uart_rx.sv|
+!s85 0
+!i10b 1
+Xuart_sv_unit
+R1
+Z228 VZH?41KMmQdJcSIm;`kK6]1
+r1
+31
+Z229 IZH?41KMmQdJcSIm;`kK6]1
+S1
+R4
+R210
+R211
+R212
+L0 2
+R8
+R213
+R214
+R215
+R12
+Z230 !s100 UEP2C5QcGje0:3cCE5lKa0
+!s85 0
+!i10b 1
+!i103 1
+vuart_tx
+R1
+Z231 V2Ga28f<2RR814PHiAL`XN1
+r1
+31
+Z232 I6n?X0kZ0189PaVOd^6jSA1
+S1
+R4
+Z233 w1366388425
+Z234 8H:/work/Part3/P3-Project/Code/Synplify/modules/uart/uart_tx.sv
+Z235 FH:/work/Part3/P3-Project/Code/Synplify/modules/uart/uart_tx.sv
+L0 1
+R8
+R12
+Z236 !s100 RmE[h1P:nklX7Bee2FCk>2
+Z237 !s105 uart_tx_sv_unit
+Z238 !s108 1366635051.019000
+Z239 !s107 H:/work/Part3/P3-Project/Code/Synplify/modules/uart/uart_tx.sv|
+Z240 !s90 -reportprogress|300|-work|p3p|-vopt|-sv|H:/work/Part3/P3-Project/Code/Synplify/modules/uart/uart_tx.sv|
+!s85 0
+!i10b 1

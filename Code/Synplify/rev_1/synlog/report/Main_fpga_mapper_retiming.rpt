@@ -1,0 +1,25 @@
+
+		#####  BEGIN RETIMING REPORT  #####
+
+Retiming summary : 0 registers retimed to 12
+
+Original and Pipelined registers replaced by retiming :
+		None
+
+New registers created by retiming :
+		data_uart.rx_index_ret
+		data_uart.rx_index_ret_1
+		data_uart.rx_index_ret_2
+		data_uart.rx_index_ret_3
+		gdp_c.rx_index_ret_1
+		gdp_c.rx_index_ret_2
+		maximiser.rx_index_ret_1
+		maximiser.rx_index_ret_2
+		ram_access.state_ret
+		ram_access.state_ret_1
+		ram_access.state_ret_2
+		ram_access.state_ret_3
+
+
+		#####   END RETIMING REPORT  #####
+

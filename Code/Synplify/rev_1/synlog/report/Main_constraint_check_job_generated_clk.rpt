@@ -1,0 +1,60 @@
+
+
+#################### START OF GENERATED CLOCK OPTIMIZATION REPORT ####################[
+
+======================================================================================
+                                Instance:Pin        Generated Clock Optimization Status
+======================================================================================
+                ram_access.sram_addr[20]:C              Not Done
+                ram_access.sram_addr[19]:C              Not Done
+                ram_access.sram_addr[18]:C              Not Done
+                ram_access.sram_addr[17]:C              Not Done
+                ram_access.sram_addr[16]:C              Not Done
+                ram_access.sram_addr[15]:C              Not Done
+                ram_access.sram_addr[14]:C              Not Done
+                ram_access.sram_addr[13]:C              Not Done
+                ram_access.sram_addr[12]:C              Not Done
+                ram_access.sram_addr[11]:C              Not Done
+                ram_access.sram_addr[10]:C              Not Done
+                 ram_access.sram_addr[9]:C              Not Done
+                 ram_access.sram_addr[8]:C              Not Done
+                 ram_access.sram_addr[7]:C              Not Done
+                 ram_access.sram_addr[6]:C              Not Done
+                 ram_access.sram_addr[5]:C              Not Done
+                 ram_access.sram_addr[4]:C              Not Done
+                 ram_access.sram_addr[3]:C              Not Done
+                 ram_access.sram_addr[2]:C              Not Done
+                 ram_access.sram_addr[1]:C              Not Done
+                 ram_access.sram_addr[0]:C              Not Done
+                 ram_access.data_out[15]:C              Not Done
+                 ram_access.data_out[14]:C              Not Done
+                 ram_access.data_out[13]:C              Not Done
+                 ram_access.data_out[12]:C              Not Done
+                 ram_access.data_out[11]:C              Not Done
+                 ram_access.data_out[10]:C              Not Done
+                  ram_access.data_out[9]:C              Not Done
+                  ram_access.data_out[8]:C              Not Done
+                  ram_access.data_out[7]:C              Not Done
+                  ram_access.data_out[6]:C              Not Done
+                  ram_access.data_out[5]:C              Not Done
+                  ram_access.data_out[4]:C              Not Done
+                  ram_access.data_out[3]:C              Not Done
+                  ram_access.data_out[2]:C              Not Done
+                  ram_access.data_out[1]:C              Not Done
+                  ram_access.data_out[0]:C              Not Done
+             ram_access.sram_data_reg[7]:C              Not Done
+             ram_access.sram_data_reg[6]:C              Not Done
+             ram_access.sram_data_reg[5]:C              Not Done
+             ram_access.sram_data_reg[4]:C              Not Done
+             ram_access.sram_data_reg[3]:C              Not Done
+             ram_access.sram_data_reg[2]:C              Not Done
+             ram_access.sram_data_reg[1]:C              Not Done
+             ram_access.sram_data_reg[0]:C              Not Done
+     gdp_c.proc_maincomb.x_component[15]:C              Not Done
+        gdp_c.proc_maincomb.x_buf_4_[15]:C              Not Done
+            gdp_c.proc_maincomb.next[31]:C              Not Done
+                         gdp_c.last_calc:C              Not Done
+
+
+##################### END OF GENERATED CLOCK OPTIMIZATION REPORT #####################]
+

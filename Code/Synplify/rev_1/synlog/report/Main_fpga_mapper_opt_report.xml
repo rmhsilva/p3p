@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- *************************************************************************************
+FILE DESCRIPTION
+The file contains the optimization information from mapper to be displayed as part of the summary report.
+*******************************************************************************************-->
+<report_table display_priority="3" name="Optimizations Summary">
+<parameter tooltip="Total instances that are optimized / not-optimized" name="Generated Clock Optimization">
+<data>0 / 112</data>
+<report_link name="more">
+<data>H:\work\Part3\P3-Project\Code\Synplify\rev_1\synlog\report\Main_fpga_mapper_generated_clk.rpt</data>
+</report_link>
+</parameter>
+<parameter tooltip="Retiming summary: Registers Before / After retiming" name="Retiming">
+<data>0 / 12</data>
+<report_link name="more">
+<data>H:\work\Part3\P3-Project\Code\Synplify\rev_1\synlog\report\Main_fpga_mapper_retiming.rpt</data>
+</report_link>
+</parameter>
+</report_table>

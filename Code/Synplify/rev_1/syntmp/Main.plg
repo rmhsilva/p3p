@@ -1,0 +1,28 @@
+@P:  Worst Slack : 9.826
+@P:  top_level|clk - Estimated Frequency : 98.3 MHz
+@P:  top_level|clk - Requested Frequency : 50.0 MHz
+@P:  top_level|clk - Estimated Period : 10.174
+@P:  top_level|clk - Requested Period : 20.000
+@P:  top_level|clk - Slack : 9.826
+@P:  System - Estimated Frequency : 263.3 MHz
+@P:  System - Requested Frequency : 50.0 MHz
+@P:  System - Estimated Period : 3.798
+@P:  System - Requested Period : 20.000
+@P:  System - Slack : 16.202
+@P:  Worst Slack(min analysis) : 0.437
+@P:  top_level|clk - Estimated Frequency(min analysis) : 98.3 MHz
+@P:  top_level|clk - Requested Frequency(min analysis) : 50.0 MHz
+@P:  top_level|clk - Estimated Period(min analysis) : 10.174
+@P:  top_level|clk - Requested Period(min analysis) : 20.000
+@P:  top_level|clk - Slack(min analysis) : 9.826
+@P:  System - Estimated Frequency(min analysis) : 52.4 MHz
+@P:  System - Requested Frequency(min analysis) : 50.0 MHz
+@P:  System - Estimated Period(min analysis) : 19.078
+@P:  System - Requested Period(min analysis) : 20.000
+@P:  System - Slack(min analysis) : 0.922
+@P: top_level Part : xc3s50antqg144-4
+@P: top_level I/O primitives : 43
+@P: top_level I/O Register bits : 0
+@P: top_level Register bits (Non I/O) : 568 (40%)
+@P: top_level Total Luts : 838 (59%)
+@P:  CPU Time : 0h:00m:06s

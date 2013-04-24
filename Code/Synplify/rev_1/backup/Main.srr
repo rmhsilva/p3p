@@ -1,0 +1,31 @@
+#Build: Synplify Premier F-2012.03-SP2 , Build 071R, May 29 2012
+#install: C:\Synopsys\fpga_F201203SP2
+#OS: Windows 7 6.1
+#Hostname: T6
+
+#Implementation: rev_1
+
+$ Start of Compile
+#Tue Mar 12 11:31:14 2013
+
+Synopsys Verilog Compiler, version comp201203rcp1, Build 070R, built May 29 2012
+@N|Running in 64-bit mode
+Copyright (C) 1994-2012 Synopsys, Inc. This software the associated documentation are confidential and proprietary to Synopsys, Inc. Your use or disclosure of this software subject to the terms and conditions of a written license agreement between you, or your company, and Synopsys, Inc.
+
+@N:: Running Verilog Compiler in System Verilog mode
+@N:: Running Verilog Compiler in Multiple File Compilation Unit mode
+@I::"C:\Synopsys\fpga_F201203SP2\lib\xilinx\unisim_m10i.v"
+@I::"C:\Synopsys\fpga_F201203SP2\lib\xilinx\unisim.v"
+@I::"C:\Synopsys\fpga_F201203SP2\lib\vlog\umr_capim.v"
+@I::"C:\Synopsys\fpga_F201203SP2\lib\vlog\scemi_objects.v"
+@I::"C:\Synopsys\fpga_F201203SP2\lib\vlog\scemi_pipes.svh"
+@I::"C:\Synopsys\fpga_F201203SP2\lib\vlog\hypermods.v"
+@I::"H:\work\Part3\P3-Project\Code\Synplify\modules\gdp.sv"
+@I::"H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv"
+@E: CG919 :"H:\work\Part3\P3-Project\Code\Synplify\modules\gdp_controller.sv":1:28:1:30|Typedef num multiply defined in this scope.
+@E|Can't open file all_s_data.sv
+@END
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Tue Mar 12 11:31:22 2013
+
+###########################################################]

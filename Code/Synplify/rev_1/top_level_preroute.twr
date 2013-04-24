@@ -1,0 +1,745 @@
+--------------------------------------------------------------------------------
+Release 14.1 Trace  (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx\14.1\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
+-n 3 -fastpaths -xml top_level_preroute.twx top_level_map.ncd -o
+top_level_preroute.twr top_level.pcf -ucf synplicity.ucf
+
+Design file:              top_level_map.ncd
+Physical constraint file: top_level.pcf
+Device,package,speed:     xc3s50an,tqg144,-4 (PRODUCTION 1.42 2012-04-23)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3284 - This timing report was generated using estimated delay 
+   information.  For accurate numbers, please refer to the post Place and Route 
+   timing report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+INFO:Timing:3390 - This architecture does not support a default System Jitter 
+   value, please add SYSTEM_JITTER constraint to the UCF to modify the Clock 
+   Uncertainty calculation.
+INFO:Timing:3389 - This architecture does not support 'Discrete Jitter' and 
+   'Phase Error' calculations, these terms will be zero in the Clock 
+   Uncertainty calculation.  Please make appropriate modification to 
+   SYSTEM_JITTER to account for the unsupported Discrete Jitter and Phase 
+   Error.
+34 logic loops found and disabled.
+
+  ----------------------------------------------------------------------
+ ! Warning: The following connections close logic loops, and some paths !
+ !          through these connections may not be analyzed. To better    !
+ !          understand the logic associated with these loops, run a     !
+ !          Analyze Against User-Defined End-Point Analysis inside      !
+ !          Timing Analyzer (timingan) with the listed signal as a      !
+ !          source NET (*signal_name). The Timing Report will display   !
+ !          all the paths associated with this signal and the logic     !
+ !          loop will be reported.                                      !
+ !                                                                      !
+ ! Signal                            Driver            Load             !
+ ! --------------------------------  ----------------  ---------------- !
+ ! proc_outputlogic.start_norm       SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[0]         SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[1]         SLICEL.X          SLICEL.F1        !
+ ! proc_outputlogic.start_send       SLICEL.Y          SLICEL.G2        !
+ ! proc_statecomb.next_12[11]        SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[10]        SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[21]        SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[20]        SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[13]        SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[12]        SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[31]        SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[30]        SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[23]        SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[22]        SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[15]        SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[14]        SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[25]        SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[24]        SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[17]        SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[16]        SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[27]        SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[26]        SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[19]        SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[18]        SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[29]        SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[28]        SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[3]         SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[2]         SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[5]         SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[4]         SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[7]         SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[6]         SLICEL.Y          SLICEL.G1        !
+ ! proc_statecomb.next_12[9]         SLICEL.X          SLICEL.F1        !
+ ! proc_statecomb.next_12[8]         SLICEL.Y          SLICEL.G1        !
+  ---------------------------------------------------------------------- 
+
+
+================================================================================
+Timing constraint: TS_clk = PERIOD TIMEGRP "clk" 8.922 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 49410 paths analyzed, 1647 endpoints analyzed, 2 failing endpoints
+ 2 timing errors detected. (2 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   9.052ns.
+--------------------------------------------------------------------------------
+
+Paths for end point gdp_c/gdpipe/square_out[20] (SLICEL.CIN), 852 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     -0.130ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/sub_out[10] (FF)
+  Destination:          gdp_c/gdpipe/square_out[20] (FF)
+  Requirement:          8.922ns
+  Data Path Delay:      9.052ns (Levels of Logic = 8)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 8.922ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/sub_out[10] to gdp_c/gdpipe/square_out[20]
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICEL.XQ            Tcko                  0.591   gdp_c/gdpipe/sub_out[10]
+                                                       gdp_c/gdpipe/sub_out[10]
+    MULT18X18SIO.A10     net (fanout=2)     e  0.100   gdp_c/gdpipe/sub_out[10]
+    MULT18X18SIO.P17     Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_1_0_0[33:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_1_0_0[33:0]
+    SLICEL.F2            net (fanout=1)     e  0.100   gdp_c/gdpipe/un1_square_out_1[17]
+    SLICEL.COUT          Topcyf                1.195   gdp_c/gdpipe/square_out[7]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_axb_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_1
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_1/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[9]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_2
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_3
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_3/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[11]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_4
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_5
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_5/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[13]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_6
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_7
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_7/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_9
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_9/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_10
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_11
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_11/O
+    SLICEL.CLK           Tcinck                0.943   gdp_c/gdpipe/square_out[19]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_12
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_s_13
+                                                       gdp_c/gdpipe/square_out[20]
+    -------------------------------------------------  ---------------------------
+    Total                                      9.052ns (8.252ns logic, 0.800ns route)
+                                                       (91.2% logic, 8.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     -0.130ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/sub_out[8] (FF)
+  Destination:          gdp_c/gdpipe/square_out[20] (FF)
+  Requirement:          8.922ns
+  Data Path Delay:      9.052ns (Levels of Logic = 8)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 8.922ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/sub_out[8] to gdp_c/gdpipe/square_out[20]
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICEL.XQ            Tcko                  0.591   gdp_c/gdpipe/sub_out[8]
+                                                       gdp_c/gdpipe/sub_out[8]
+    MULT18X18SIO.B8      net (fanout=2)     e  0.100   gdp_c/gdpipe/sub_out[8]
+    MULT18X18SIO.P17     Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_1_0_0[33:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_1_0_0[33:0]
+    SLICEL.F2            net (fanout=1)     e  0.100   gdp_c/gdpipe/un1_square_out_1[17]
+    SLICEL.COUT          Topcyf                1.195   gdp_c/gdpipe/square_out[7]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_axb_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_1
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_1/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[9]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_2
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_3
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_3/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[11]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_4
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_5
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_5/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[13]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_6
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_7
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_7/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_9
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_9/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_10
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_11
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_11/O
+    SLICEL.CLK           Tcinck                0.943   gdp_c/gdpipe/square_out[19]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_12
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_s_13
+                                                       gdp_c/gdpipe/square_out[20]
+    -------------------------------------------------  ---------------------------
+    Total                                      9.052ns (8.252ns logic, 0.800ns route)
+                                                       (91.2% logic, 8.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     -0.130ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/sub_out[12] (FF)
+  Destination:          gdp_c/gdpipe/square_out[20] (FF)
+  Requirement:          8.922ns
+  Data Path Delay:      9.052ns (Levels of Logic = 8)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 8.922ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/sub_out[12] to gdp_c/gdpipe/square_out[20]
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICEL.XQ            Tcko                  0.591   gdp_c/gdpipe/sub_out[12]
+                                                       gdp_c/gdpipe/sub_out[12]
+    MULT18X18SIO.A12     net (fanout=2)     e  0.100   gdp_c/gdpipe/sub_out[12]
+    MULT18X18SIO.P17     Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_1_0_0[33:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_1_0_0[33:0]
+    SLICEL.F2            net (fanout=1)     e  0.100   gdp_c/gdpipe/un1_square_out_1[17]
+    SLICEL.COUT          Topcyf                1.195   gdp_c/gdpipe/square_out[7]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_axb_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_1
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_1/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[9]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_2
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_3
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_3/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[11]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_4
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_5
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_5/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[13]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_6
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_7
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_7/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_9
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_9/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_10
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_11
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_11/O
+    SLICEL.CLK           Tcinck                0.943   gdp_c/gdpipe/square_out[19]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_12
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_s_13
+                                                       gdp_c/gdpipe/square_out[20]
+    -------------------------------------------------  ---------------------------
+    Total                                      9.052ns (8.252ns logic, 0.800ns route)
+                                                       (91.2% logic, 8.8% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point gdp_c/gdpipe/square_out[21] (SLICEL.CIN), 1078 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     -0.100ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/sub_out[10] (FF)
+  Destination:          gdp_c/gdpipe/square_out[21] (FF)
+  Requirement:          8.922ns
+  Data Path Delay:      9.022ns (Levels of Logic = 9)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 8.922ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/sub_out[10] to gdp_c/gdpipe/square_out[21]
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICEL.XQ            Tcko                  0.591   gdp_c/gdpipe/sub_out[10]
+                                                       gdp_c/gdpipe/sub_out[10]
+    MULT18X18SIO.A10     net (fanout=2)     e  0.100   gdp_c/gdpipe/sub_out[10]
+    MULT18X18SIO.P17     Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_1_0_0[33:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_1_0_0[33:0]
+    SLICEL.F2            net (fanout=1)     e  0.100   gdp_c/gdpipe/un1_square_out_1[17]
+    SLICEL.COUT          Topcyf                1.195   gdp_c/gdpipe/square_out[7]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_axb_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_1
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_1/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[9]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_2
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_3
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_3/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[11]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_4
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_5
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_5/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[13]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_6
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_7
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_7/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_9
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_9/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_10
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_11
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_11/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[19]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_12
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_13
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_13/O
+    SLICEL.CLK           Tcinck                0.683   gdp_c/gdpipe/square_out[21]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_s_14
+                                                       gdp_c/gdpipe/square_out[21]
+    -------------------------------------------------  ---------------------------
+    Total                                      9.022ns (8.122ns logic, 0.900ns route)
+                                                       (90.0% logic, 10.0% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     -0.100ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/sub_out[8] (FF)
+  Destination:          gdp_c/gdpipe/square_out[21] (FF)
+  Requirement:          8.922ns
+  Data Path Delay:      9.022ns (Levels of Logic = 9)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 8.922ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/sub_out[8] to gdp_c/gdpipe/square_out[21]
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICEL.XQ            Tcko                  0.591   gdp_c/gdpipe/sub_out[8]
+                                                       gdp_c/gdpipe/sub_out[8]
+    MULT18X18SIO.B8      net (fanout=2)     e  0.100   gdp_c/gdpipe/sub_out[8]
+    MULT18X18SIO.P17     Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_1_0_0[33:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_1_0_0[33:0]
+    SLICEL.F2            net (fanout=1)     e  0.100   gdp_c/gdpipe/un1_square_out_1[17]
+    SLICEL.COUT          Topcyf                1.195   gdp_c/gdpipe/square_out[7]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_axb_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_1
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_1/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[9]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_2
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_3
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_3/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[11]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_4
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_5
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_5/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[13]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_6
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_7
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_7/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_9
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_9/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_10
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_11
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_11/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[19]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_12
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_13
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_13/O
+    SLICEL.CLK           Tcinck                0.683   gdp_c/gdpipe/square_out[21]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_s_14
+                                                       gdp_c/gdpipe/square_out[21]
+    -------------------------------------------------  ---------------------------
+    Total                                      9.022ns (8.122ns logic, 0.900ns route)
+                                                       (90.0% logic, 10.0% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     -0.100ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/sub_out[12] (FF)
+  Destination:          gdp_c/gdpipe/square_out[21] (FF)
+  Requirement:          8.922ns
+  Data Path Delay:      9.022ns (Levels of Logic = 9)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 8.922ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/sub_out[12] to gdp_c/gdpipe/square_out[21]
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICEL.XQ            Tcko                  0.591   gdp_c/gdpipe/sub_out[12]
+                                                       gdp_c/gdpipe/sub_out[12]
+    MULT18X18SIO.A12     net (fanout=2)     e  0.100   gdp_c/gdpipe/sub_out[12]
+    MULT18X18SIO.P17     Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_1_0_0[33:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_1_0_0[33:0]
+    SLICEL.F2            net (fanout=1)     e  0.100   gdp_c/gdpipe/un1_square_out_1[17]
+    SLICEL.COUT          Topcyf                1.195   gdp_c/gdpipe/square_out[7]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_axb_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_1
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_1/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[9]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_2
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_3
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_3/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[11]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_4
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_5
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_5/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[13]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_6
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_7
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_7/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_9
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_9/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_10
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_11
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_11/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/square_out[19]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_12
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_13
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_cry_13/O
+    SLICEL.CLK           Tcinck                0.683   gdp_c/gdpipe/square_out[21]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_square_out_add_2_s_14
+                                                       gdp_c/gdpipe/square_out[21]
+    -------------------------------------------------  ---------------------------
+    Total                                      9.022ns (8.122ns logic, 0.900ns route)
+                                                       (90.0% logic, 10.0% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point gdp_c/gdpipe/scale_out[18] (SLICEL.CIN), 560 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     0.100ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/square_out[1] (FF)
+  Destination:          gdp_c/gdpipe/scale_out[18] (FF)
+  Requirement:          8.922ns
+  Data Path Delay:      8.822ns (Levels of Logic = 7)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 8.922ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/square_out[1] to gdp_c/gdpipe/scale_out[18]
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICEL.XQ            Tcko                  0.591   gdp_c/gdpipe/square_out[1]
+                                                       gdp_c/gdpipe/square_out[1]
+    MULT18X18SIO.A1      net (fanout=1)     e  0.100   gdp_c/gdpipe/square_out[1]
+    MULT18X18SIO.P17     Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+    SLICEL.F1            net (fanout=1)     e  0.100   gdp_c/gdpipe/un1_scale_out_add_1
+    SLICEL.COUT          Topcyf                1.195   gdp_c/gdpipe/scale_out[7]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_axb_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_1
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_1/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/scale_out[9]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_2
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_3
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_3/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/scale_out[11]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_4
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_5
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_5/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/scale_out[13]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_6
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_7
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_7/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/scale_out[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9/O
+    SLICEL.CLK           Tcinck                0.943   gdp_c/gdpipe/scale_out[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_10
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_s_11
+                                                       gdp_c/gdpipe/scale_out[18]
+    -------------------------------------------------  ---------------------------
+    Total                                      8.822ns (8.122ns logic, 0.700ns route)
+                                                       (92.1% logic, 7.9% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.100ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/omega_r_1_[5] (FF)
+  Destination:          gdp_c/gdpipe/scale_out[18] (FF)
+  Requirement:          8.922ns
+  Data Path Delay:      8.822ns (Levels of Logic = 7)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 8.922ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/omega_r_1_[5] to gdp_c/gdpipe/scale_out[18]
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICEL.XQ            Tcko                  0.591   gdp_c/gdpipe/omega_r_1_[5]
+                                                       gdp_c/gdpipe/omega_r_1_[5]
+    MULT18X18SIO.B5      net (fanout=2)     e  0.100   gdp_c/gdpipe/omega_r_1_[5]
+    MULT18X18SIO.P17     Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+    SLICEL.F1            net (fanout=1)     e  0.100   gdp_c/gdpipe/un1_scale_out_add_1
+    SLICEL.COUT          Topcyf                1.195   gdp_c/gdpipe/scale_out[7]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_axb_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_1
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_1/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/scale_out[9]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_2
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_3
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_3/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/scale_out[11]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_4
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_5
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_5/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/scale_out[13]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_6
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_7
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_7/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/scale_out[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9/O
+    SLICEL.CLK           Tcinck                0.943   gdp_c/gdpipe/scale_out[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_10
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_s_11
+                                                       gdp_c/gdpipe/scale_out[18]
+    -------------------------------------------------  ---------------------------
+    Total                                      8.822ns (8.122ns logic, 0.700ns route)
+                                                       (92.1% logic, 7.9% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.100ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gdp_c/gdpipe/square_out[11] (FF)
+  Destination:          gdp_c/gdpipe/scale_out[18] (FF)
+  Requirement:          8.922ns
+  Data Path Delay:      8.822ns (Levels of Logic = 7)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk_c rising at 0.000ns
+  Destination Clock:    clk_c rising at 8.922ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: gdp_c/gdpipe/square_out[11] to gdp_c/gdpipe/scale_out[18]
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICEL.XQ            Tcko                  0.591   gdp_c/gdpipe/square_out[11]
+                                                       gdp_c/gdpipe/square_out[11]
+    MULT18X18SIO.A11     net (fanout=1)     e  0.100   gdp_c/gdpipe/square_out[11]
+    MULT18X18SIO.P17     Tmult                 4.873   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_1_0_0[24:0]
+    SLICEL.F1            net (fanout=1)     e  0.100   gdp_c/gdpipe/un1_scale_out_add_1
+    SLICEL.COUT          Topcyf                1.195   gdp_c/gdpipe/scale_out[7]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_axb_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_0
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_1
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_1/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/scale_out[9]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_2
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_3
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_3/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/scale_out[11]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_4
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_5
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_5/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/scale_out[13]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_6
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_7
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_7/O
+    SLICEL.COUT          Tbyp                  0.130   gdp_c/gdpipe/scale_out[15]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_8
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9
+    SLICEL.CIN           net (fanout=1)     e  0.100   gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_9/O
+    SLICEL.CLK           Tcinck                0.943   gdp_c/gdpipe/scale_out[17]
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_cry_10
+                                                       gdp_c/gdpipe/proc_main.svbl_69.un1_scale_out_add_1_s_11
+                                                       gdp_c/gdpipe/scale_out[18]
+    -------------------------------------------------  ---------------------------
+    Total                                      8.822ns (8.122ns logic, 0.700ns route)
+                                                       (92.1% logic, 7.9% route)
+
+--------------------------------------------------------------------------------
+
+Hold Paths: TS_clk = PERIOD TIMEGRP "clk" 8.922 ns HIGH 50%;
+--------------------------------------------------------------------------------
+
+Paths for end point gdp_c/senone_idx_buffer[0]_0_gdp_c.senone_idx_buffer[0]_1 (SLICEM.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.418ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               gdp_c/senone_index[1] (FF)
+  Destination:          gdp_c/senone_idx_buffer[0]_0_gdp_c.senone_idx_buffer[0]_1 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.418ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk_c rising at 8.922ns
+  Destination Clock:    clk_c rising at 8.922ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: gdp_c/senone_index[1] to gdp_c/senone_idx_buffer[0]_0_gdp_c.senone_idx_buffer[0]_1
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICEL.YQ            Tcko                  0.464   gdp_c/senone_index[1]
+                                                       gdp_c/senone_index[1]
+    SLICEM.BX            net (fanout=20)    e  0.100   gdp_c/senone_index[1]
+    SLICEM.CLK           Tdh         (-Th)     0.146   senone_idx[1]
+                                                       gdp_c/senone_idx_buffer[0]_0_gdp_c.senone_idx_buffer[0]_1
+    -------------------------------------------------  ---------------------------
+    Total                                      0.418ns (0.318ns logic, 0.100ns route)
+                                                       (76.1% logic, 23.9% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point gdp_c/senone_idx_buffer[0]_2_gdp_c.senone_idx_buffer[0]_1 (SLICEM.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.427ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               gdp_c/senone_index[3] (FF)
+  Destination:          gdp_c/senone_idx_buffer[0]_2_gdp_c.senone_idx_buffer[0]_1 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.427ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk_c rising at 8.922ns
+  Destination Clock:    clk_c rising at 8.922ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: gdp_c/senone_index[3] to gdp_c/senone_idx_buffer[0]_2_gdp_c.senone_idx_buffer[0]_1
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICEL.XQ            Tcko                  0.473   gdp_c/senone_index[3]
+                                                       gdp_c/senone_index[3]
+    SLICEM.BX            net (fanout=3)     e  0.100   gdp_c/senone_index[3]
+    SLICEM.CLK           Tdh         (-Th)     0.146   senone_idx[3]
+                                                       gdp_c/senone_idx_buffer[0]_2_gdp_c.senone_idx_buffer[0]_1
+    -------------------------------------------------  ---------------------------
+    Total                                      0.427ns (0.327ns logic, 0.100ns route)
+                                                       (76.6% logic, 23.4% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point gdp_c/senone_idx_buffer[0]_4_gdp_c.senone_idx_buffer[0]_1 (SLICEM.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.427ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               gdp_c/senone_index[5] (FF)
+  Destination:          gdp_c/senone_idx_buffer[0]_4_gdp_c.senone_idx_buffer[0]_1 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.427ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk_c rising at 8.922ns
+  Destination Clock:    clk_c rising at 8.922ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: gdp_c/senone_index[5] to gdp_c/senone_idx_buffer[0]_4_gdp_c.senone_idx_buffer[0]_1
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICEL.XQ            Tcko                  0.473   gdp_c/senone_index[5]
+                                                       gdp_c/senone_index[5]
+    SLICEM.BX            net (fanout=3)     e  0.100   gdp_c/senone_index[5]
+    SLICEM.CLK           Tdh         (-Th)     0.146   senone_idx[5]
+                                                       gdp_c/senone_idx_buffer[0]_4_gdp_c.senone_idx_buffer[0]_1
+    -------------------------------------------------  ---------------------------
+    Total                                      0.427ns (0.327ns logic, 0.100ns route)
+                                                       (76.6% logic, 23.4% route)
+
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: TS_clk = PERIOD TIMEGRP "clk" 8.922 ns HIGH 50%;
+--------------------------------------------------------------------------------
+Slack: 5.958ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 8.922ns
+  Low pulse: 4.461ns
+  Low pulse limit: 1.482ns (Trpw)
+  Physical resource: gdp_c/gdpipe/un1_square_out_3[1]/SR
+  Logical resource: gdp_c/gdpipe/sub_out_pipe_1/SR
+  Location pin: SLICEL.SR
+  Clock network: reset_c
+--------------------------------------------------------------------------------
+Slack: 5.958ns (period - (min high pulse limit / (high pulse / period)))
+  Period: 8.922ns
+  High pulse: 4.461ns
+  High pulse limit: 1.482ns (Trpw)
+  Physical resource: gdp_c/gdpipe/un1_square_out_3[1]/SR
+  Logical resource: gdp_c/gdpipe/sub_out_pipe_1/SR
+  Location pin: SLICEL.SR
+  Clock network: reset_c
+--------------------------------------------------------------------------------
+Slack: 5.958ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 8.922ns
+  Low pulse: 4.461ns
+  Low pulse limit: 1.482ns (Trpw)
+  Physical resource: gdp_c/gdpipe/un1_square_out_3[1]/SR
+  Logical resource: gdp_c/gdpipe/sub_out_pipe_2/SR
+  Location pin: SLICEL.SR
+  Clock network: reset_c
+--------------------------------------------------------------------------------
+
+
+1 constraint not met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |    9.052|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 2  Score: 230  (Setup/Max: 230, Hold: 0)
+
+Constraints cover 49410 paths, 0 nets, and 2655 connections
+
+Design statistics:
+   Minimum period:   9.052ns{1}   (Maximum frequency: 110.473MHz)
+
+
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Tue Mar 12 14:49:47 2013 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 183 MB
+
+
+
