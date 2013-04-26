@@ -160,7 +160,7 @@
 
 (defun feed-observation (x-comps senones &key (normalise 'nil) (numcomps 25))
   "Get all senone scores for a given observation and senones"
-  (format t "Starting scoring of ~a senones, with ~a components per frame~%"
+  (format t "Starting scoring of ~a senones, with ~a components per frame~%~%"
 	  (length senones) numcomps)
   (let ((result nil)
 	(x-comps (subseq (if (oframe-p x-comps)
@@ -210,7 +210,7 @@
 
 
 (defun print-senone-data (senones &key (stream t) (c-header 'nil) (numcomps 25))
-  (format t "Printing ~a senones, with ~a components per frame~%"
+  (format t "Printing ~a senones, with ~a components per frame~%~%"
 	  (length senones) numcomps)
   ;; Print header stuff
   (if c-header
@@ -259,7 +259,7 @@
 	  ("#~ans; // Wait for output~%~%" (+ 40 (* numcomps 10)))) ;; Assuming period = 10ns
   
   (let ((interval (* numcomps 5)))
-    (dolist (val (feed-observation observations senones numcomps))
+    (dolist (val (feed-observation observations senones :normalise t :numcomps numcomps))
       (printl stream "  " "~%"
 	      ("assert (score_ready == 1'b1) else $display(\"score_ready not high!\");")
 	      ("assert (senone_score[15:6] == 10'b~{~a~}) // (0x~{~a~})"

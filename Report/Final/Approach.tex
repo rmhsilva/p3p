@@ -7,11 +7,11 @@
 %   All the main theory behind the approach
 %   A description of what will be done
 
-This chapter provides details of the relevant theory behind HMM based speech recognition systems, as well as a description of the development environments used during the project.
+This chapter provides details of the relevant theory behind HMM based speech recognition systems, as well as a description of the various development environments used during the project.
 
 \section{The HMM based model} % (fold)
 \label{sec:the_hmm_based_model}
-	Due to the flexibility of HMMs, and the complexity of speech, there have been several different approaches to building speech models (the sheer size of the HTK book indicates how much flexibility exists).  However, at this stage the author is more interested in the implementation of the algorithms, rather than devising the best way of modelling speech.  Therefore, it was decided to use the pre-designed models from Voxforge for this project, and build the hardware to work with these models.  Thus, various parameters were fixed from the start, including:
+	Due to the flexibility of HMMs, and the complexity of speech, there have been several different approaches to building speech models (the sheer size of the HTK book indicates how much flexibility exists).  However, at this stage, the implementation of these algorithms is a more interesting pursuit, rather than devising the best way of modelling speech.  Therefore, it was decided to use the pre-designed models from Voxforge for this project, and build the hardware to work with these models.  Thus, various parameters were fixed from the start, including:
 
 	\begin{itemize}
 		\item Sampling rate of audio: 8kHz. %(Low Pass Filter with $\omega_0 = 4kHz$ required).
@@ -20,14 +20,13 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 		\item Pre-processing output: 12 MFCCs, 12 MFCC derivatives, 1 Energy measure.
 		\item Output probabilities of HMM states: Single Gaussian distribution, 25-element mean and variance vectors.
 		\item Number of monophones: 51 (Includes a monophone for silence.  This is also the number of transition matrices).
-		\item Number of senones: ~7000.
-		\item Number of HMMs: ~8300\footnote{There are more HMMs than senones because some senones are used in more than one HMM} (each with 3 outputting states).
+		\item Number of senones: \~7000.
+		\item Number of HMMs: \~8300\footnote{There are more HMMs than senones because some senones are used in more than one HMM} (each with 3 outputting states).
 	\end{itemize}
 
-	The only modification made to the Voxforge models was that they were adapted for the author's voice, primarily to gain confidence with using the HTK and HMMs.  Please see Appendix !!TODO!! for the scripts and HTK configuration files used to generate these models.
+	The only modification made to the Voxforge models was that they were adapted for the author's voice, primarily to gain confidence with using the HTK and HMMs.  Please see Appendix~\ref{apdx:voxforge} for the scripts and HTK configuration files used to generate these models.
 
-	The term `outputting states' refers to states that produce an observation -- most of the HMMs have 5 states in total, but the first and last are non-emitting.  The transition probability from the fourth to last state is the probability of exiting that particular HMM, which is useful for decoding purposes. The senones are context dependent, that is, there are many different senones for each monophone, each with different predecessor and successor monophones.  The number of transition matrices is equal to the number of monophones because...
-	% TODO: tidy up the description of my models.  Maybe this needs a whole section??
+	The term ``outputting states'' refers to states that produce an observation -- most of the HMMs have 5 states in total, but the first and last are non-emitting.  The transition probabilities between states one and two, and between states four and five, are primarily used to model inter-HMM probabilities for decoding purposes.  The senones are context dependent, that is, there are many different senones for each monophone, each with different predecessor and successor monophones.
 
 	\subsection{The HMM tasks} % (fold)
 	\label{sub:the_hmm_tasks}
@@ -37,14 +36,14 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 			\item Finding the probability that an HMM produced a given observation sequence, $P(O | \lambda)$.
 			\item Finding the `best' path through a trellis of HMMs and states to produce a given observation sequence.
 		\end{itemize}
-		For this project, the first problem is solved by using Voxforge (\ref{sec:the_htk}).  The second problem is potentially very computationally expensive, as the speech model may be complex or large.  In particular, this step requires scoring the senones of each HMM for every new observation frame, which is particularly time consuming if the HMMs have continuous output distributions.  In modern speech recognition systems, this step regularly accounts for up to 70\% of the total processing time \cite{lai2002performance}.  This is the step that the project focusses on.
+		For this project, the first problem is solved by using Voxforge (\ref{sec:the_htk}).  The second problem is potentially very computationally expensive, as the speech model may be complex or large.  In particular, this step requires evaluating the output probability of each state in the model for every new observation frame, which is particularly time consuming if the HMMs have continuous output distributions.  In modern speech recognition systems, this step regularly accounts for up to 70\% of the total processing time \cite{lai2002performance}.  This is the step that the project focusses on.
 
-		In all literature encountered, the Viterbi algorithm is the preferred method for solving problem 3.  It is an iterative approach to solving the optimisation problem, and has the added bonus that not much data needs to be stored during the calculation \cite{schuster2006speech}.  This problem is beyond the scope of the current project, but a full explanation of the Viterbi decoding process is available from \cite{rabiner1989tutorial},\cite{melnikoff2003speech},\cite{saeed2008advanced}.
+		In all literature encountered, the Viterbi algorithm is the preferred method for solving the final problem.  It is an iterative approach to solving the optimisation problem, and has the added bonus that not much data needs to be stored during the calculation \cite{schuster2006speech}.  This problem is beyond the scope of the current project, but a full explanation of the Viterbi decoding process is available from \cite{rabiner1989tutorial},\cite{saeed2008advanced}, \cite{young1989token}.
 	% subsection the_hmm_tasks (end)
 
 	\subsection{Senone scoring} % (fold)
 	\label{sub:senone_scoring}
-		As described in previous sections, the FPGA is intended to be used for scoring every senone in the model, for every observation vector.  In this system the new vectors arrive once every 10ms, and there are about 7000 senones that must be evaluated.  The mathematical operations required to do this are now outlined. % !!TODO!! some kind of 'this is x calculations'?
+		As described in previous sections, the FPGA is to be used to compute HMM emission probabilities for every senone in the model, for every observation vector.  In this system the new vectors arrive once every 10ms, and there are about 7000 senones that must be evaluated.  The mathematical operations required to do this are now outlined. % TODO!!: some kind of 'this is x calculations'?
 
 		If the observation vector at time $t$ is denoted as $\textbf{O}_t = {O_{t1}, O_{t2}, ..., O_{tN}}$, then the score of senone $j$ is $b_j(\textbf{O}_t)$ -- the probability of that senone producing $\textbf{O}_t$.  The output probability of each senone is an $N$-dimensional multivariate Normal distribution, represented by $N$-element vectors of means $\mu_j$ and standard deviations $\sigma_j$.  Usually an $N\times N$ covariance matrix  would be required, but due to the statistical nature of Mel Frequency Cepstral Coefficients, this matrix is diagonal, and thus can be represented with $N$ elements.  Therefore the score is given by:
 		\meq{score1}{
@@ -86,25 +85,68 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 
 	\subsection{L'Imperatrice} % (fold)
 	\label{sub:l_imperatrice_env}
-		The ARM-based `L'Imperatrice' board is still under active development, and several important features on it are very untested.  It is based on a Freescale iMX23 ARMv5 applications processor.  To be used for the project, the following items were required (in order of importance):
+		Several important features on the ARM-based ``L'Imperatrice'' board are still very untested, including parts essential to the project.  It is based on a Freescale iMX23 ARMv5 applications processor.  To be used for the project, the following items were required (in order of importance):
 		\begin{itemize}
 			\item Native or cross compiler set-up
 			\item Application UART functionality
 			\item GPIO functionality
 		\end{itemize}
 
-		An Linux Target Image Builder (LTIB) \nomenclature{LTIB}{Linux Target Image Builder} environment, which is primarily used for setting up board support packages (BSP), was installed on an Ubuntu virtual machine.  It has been used to build and test various kernel configurations, and also includes full cross-compiler support for the board.  It essentially provides a platform on which software for L'Imperatrice may be developed and deployed.
+		A Linux Target Image Builder (LTIB) \nomenclature{LTIB}{Linux Target Image Builder} environment, which is primarily used for setting up board support packages (BSP), was installed on an Ubuntu virtual machine.  It has been used to build and test various kernel configurations, and also includes full cross-compiler support for the board.  It essentially provides a platform on which software for L'Imperatrice may be developed and deployed.
 		In addition to LTIB, the ArchLinux build system (ABS) was investigated as a potential alternative to LTIB.  The primary advantage of the ABS is that only a small number of files need to be distributed, which, when run, will download and compile all dependencies of the build.  An ABS configuration exists for the Olinuxino, a Linux board also based on the Freescale iMX23, which may be tweaked to suit the L'Imperatrice.  However, due to lack of time and the relative ease of the LTIB set-up, this was not explored.
 	% subsection l_imperatrice_env (end)
 
 	\subsection{La Papessa} % (fold)
 	\label{sub:la_papessa_env}
-		The Xilinx FPGA-based `La Papessa' board is also actively being developed, and some of its features have not been tested.  In order to facilitate the development of code on the La Papessa board, several combinations of software environments were explored.  The FPGA is a Xilinx Spartan XC3S50AN, which is compatible with the Xilinx ISE Webpack design software package.  However, one drawback to the ISE Webpack is its lack of support for synthesis in SystemVerilog. Besides being syntactically more powerful, SystemVerilog is the HDL that is currently taught to all new undergraduates at the University of Southampton. Having some documentation of a proven way to use SystemVerilog with this board would improve its reception and usage. In addition, SystemVerilog has advantages over Verilog for verification and simulation, which will be used to improve the design.
+		The Xilinx FPGA-based ``La Papessa'' board is also being actively developed, and some of its features have not been tested.  In order to facilitate the development of code on the La Papessa board, several combinations of software environments were explored.  The FPGA is a Xilinx Spartan XC3S50AN, which is compatible with the Xilinx ISE Webpack design software package.  However, one drawback to the ISE Webpack is its lack of support for synthesis in SystemVerilog. Besides being syntactically more powerful, SystemVerilog is the HDL that is currently taught to all new undergraduates at the University of Southampton. Having some documentation of a proven way to use SystemVerilog with this board would improve its reception and usage. In addition, SystemVerilog has advantages over Verilog for verification and simulation, which will be used to improve the design.
 
-		Synplify Pro/Premier is an alternative HDL synthesis tool, which is compatible with the Xilinx software toolchain and also supports SystemVerilog. For this reason, and because the author is more familiar with the Synplify design flow, it was decided that Synplify Premier would be used for synthesis during the project.  The other design tasks (port mapping, programming file generation) are accomplished with ISE Webpack (See Appendix !!! for detailed description of this process).
+		Synplify Pro/Premier is an alternative HDL synthesis tool, which is compatible with the Xilinx software toolchain and also supports SystemVerilog. For primarily this reason, it was decided that Synplify Premier would be used for synthesis during the project.  The other design tasks (port mapping, programming file generation) are accomplished with ISE Webpack (See Appendix \ref{apdx:development_environment} for detailed description of this process).
 	% subsection la_papessa_env (end)
 
 % section hardware_dev_env (end)
 
+
+\section{Risk Analysis and Contingency Planning} % (fold)
+\label{sec:contingency_planning}
+	Efforts were made to divide the project work up into sections that were independent.  If at all possible, it was modularised, so that if one section became infeasible, it could be dropped without affecting the outcome of the final product greatly.  The Micro Arcana especially, was completely unknown, and therefore several alternatives were lined up in case it became impossible to use it.  The major risks identified are presented in Table~\ref{tab:risks}, along with possible solutions.
+
+	\begin{table}[tb]
+		\caption{Summary of identified risks}
+		\label{tab:risks}
+		\begin{center}
+			\begin{tabular}{ p{0.4\textwidth} | c | p{0.4\textwidth}}
+			\hline
+			\hline
+			\textbf{Risk} & \textbf{Negative} & \textbf{Solution}
+			\\            & \textbf{Impact}   & \\
+			\hline
+				La Papessa's on-board SRAM may not work, thus making it impossible to store a large number of scores.
+					& Low
+					& Reduce model size. Proof of concept is more important than storing many scores at this point.
+					\\ \hline
+				GPIO on L'Imperatrice may not work, or inter-board communication could be very hard.
+					& Low
+					& Develop and test the two modules separately.  Communications is a minor issue that can be solved later, if the main systems work.
+					\\ \hline
+				The Xilinx XC3S50 FPGA may be far too small to implement any useful algorithm or pipeline.
+					& High
+					& A University owned Altera development board, which has a far larger FPGA on it, can be used instead.
+					\\ \hline
+				L'Imparatrice may have too many non-functional parts, which would take too long to fix before being usable.
+					& High
+					& A Raspberry Pi (ARM based Linux board) can replace it, as these are known to be functional and available.
+					\\ \hline
+				Designing speech pre-processing code may be too time consuming or difficult.
+					& Medium
+					& The HTK is capable of producing observation vectors in the correct format, which can then be sent to the FPGA.
+					\\
+			\hline
+			\hline
+			\end{tabular}
+		\end{center}
+	\end{table}
+
+	A variety of measures were taken in order to protect against the possibility of work being lost.  Primarily, the source code and designs were backed up on external storage, as well as being regularly uploaded to a Github repository.  The `Git' version control software was used throughout the project.  The primary benefit was that it enforced a regular process of adding changes, validating them, and committing them to the repository.  This helps keep development on-track and focussed, as well as preserving sets of code that work.  It also provides a logbook style commit history, which allowed the progress of the project to be observed (see Appendix~\ref{apdx:git_commit_log}.
+% section contingency_planning (end)
 
 % chapter design_approach (end)

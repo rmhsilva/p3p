@@ -433,7 +433,7 @@
 (setf oframes (parse-input "sample1data.txt"))
 
 ;; Find some max values
-(unless nil
+(unless t
   (let ((smax (list 0)) (omax 0) (omin 0) (smin (list 0)))
     (dolist (o oframes omax)
       (dolist (comp (oframe-components o))

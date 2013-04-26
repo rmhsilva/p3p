@@ -12,9 +12,9 @@
 	\end{enumerate}
 
 	The overall system layout, shown in Figure~\ref{fig:hlsystem}, is comprised of two primary blocks -- L'Imperatrice and La Papessa (referred to as ``The processor'' and ``The FPGA'' respectively).  
-	The entire system is powered from a single supply connected to the processor board's battery connector, and the FPGA is powered through ribbon cable connecting the two boards.  This was done in order to minimise the amount of external circuitry needed, and to show that the two devices are able to work together fairly easily.
+	The entire system is powered from a single supply connected to the L'Imperatrice battery connector; La Papessa is powered through a ribbon cable between the two boards.  This was done in order to minimise the amount of external circuitry needed, and to show that the two devices are able to work together fairly easily.
 
-	From the list above, the first task is implemented on the FPGA, and the second on the processor.  These two blocks will now be examined in greater detail.
+	From the list above, the first task is implemented on La Papessa, and the second on L'Imperatrice.  These two blocks will now be examined in greater detail.
 
 	% How to display which tasks are accomplished by which parts?
 
@@ -39,7 +39,7 @@
 
 	The inputs and outputs of the Gaussian Distance Pipe, the module that performs the core calculation, are all signed 16-bit fixed point numbers, with varying scaling factors.  In particular, the $k$ parameter was generally larger than $x$, $mean$, and $omega$, and thus was scaled down.  The scaling factors were decided primarily by analysing the HMM models, to determine the largest and smallest numbers used.
 
-	These decisions were influenced by Melkinoff (\cite{melnikoff2003speech}), and the HTK, as they both use scaled 16-bit numbers to represent the parameters and scores.
+	These decisions were influenced by Melkinoff \cite{melnikoff2003speech}, and the HTK, as they both use scaled 16-bit numbers to represent the parameters and scores.
 % section number_format (end)
 
 
@@ -54,29 +54,29 @@
 
 	The system on La Papessa performs these main tasks:
 	\begin{itemize}
-		\item Receives observation vectors from the processor.
+		\item Receives observation vectors from L'Imperatrice.
 		\item Computes the score (Equation~\ref{eq:score_final}) of every senone in the model, with the given observation.
 		\item Normalises the senone scores.
-		\item Sends the scores back to the processor.
+		\item Sends the scores back to L'Imperatrice.
 	\end{itemize}
 
 	\subsection{Top Level Module} % (fold)
 	\label{sub:top_level_module}
-		A simplified hierarchical diagram of the top level module is given in Figure~\ref{fig:toplevel}, showing the main components of the system.  This module included the main controller logic, which essentially waited for a new observation vector, then cycled through the necessary operation states.  Figure~\ref{fig:topstatemachine} shows an ASM of this logic, and also outlines the main areas of the design that need explanation.
+		A simplified diagram of the top level module is given in Figure~\ref{fig:toplevel}, showing the main components of the system.  This module included the main controller logic, which essentially waited for a new observation vector, then cycled through the necessary operation states.  Figure~\ref{fig:topstatemachine} shows an ASM of this logic, and also outlines the main areas of the design that need explanation.
 
-		The top level module is also responsible for handling access to the on-board SRAM chip, which several modules need to write or read from.  It essentially multiplexes the required signals, and leaves them floating (high impedance) when they are not needed.  The `Debug signals' shown in Figure~\ref{fig:toplevel} are a number of internal signals that are routed to output ports in order to facilitate hardware debugging.
+		The top level module is also responsible for handling access to the on-board SRAM chip, which several modules need to write or read from.  It essentially multiplexes the required signals, and leaves them floating (high impedance) when they are not needed.  The ``Debug signals'' shown in Figure~\ref{fig:toplevel} are a number of internal signals that are routed to output ports in order to facilitate hardware debugging.
 
 		\begin{figure}[tb]
 			\begin{center}
-				\includegraphics[width=\figwidth]{TopLevel.PNG}
+				\includegraphics[width=\textwidth]{top_level}
 			\end{center}
-			\caption{Hierarchical component diagram of Top Level Module (Section~\ref{sub:top_level_module})}
+			\caption{Component diagram of the Top Level Module (Section~\ref{sub:top_level_module})}
 			\label{fig:toplevel}
 		\end{figure}
 
 		\begin{figure}[tb]
 			\begin{center}
-				\includegraphics[width=\figwidth]{TopLevelASM.PNG}
+				\includegraphics[width=0.6\textwidth]{TopLevel_asm}
 			\end{center}
 			\caption{ASM diagram of Top Level Module (Section~\ref{sub:top_level_module})}
 			\label{fig:topstatemachine}
@@ -86,11 +86,10 @@
 	\subsection{Gaussian Distance Pipeline} % (fold)
 	\label{sub:gaussian_distance_pipeline}
 		The Gaussian Distance Pipeline (GDP) is the core component of the system, and computes Equation~\ref{eq:score_final}.  It is a relatively simple 4-stage pipeline, with one stage for every step in the equation (subtract, square, scale, accumulate).  Although the gains from using a pipeline in this case are relatively small, it would be very useful if more complex models were used.  The Speech Silicon \cite{schuster2006speech} project had a substantially more complex GDP, as their senones have several Gaussian distributions that must be mixed to produce the final output distribution.  A block diagram of the GDP module is shown in Figure~\ref{fig:gdp_block}.  %TODO: describe the inputs etc...
-		% TODO: maybe a dataflow graph is more appropriate? Or a block diagram of operations?
 
 		\begin{figure}[tb]
 			\begin{center}
-				\includegraphics[width=\figwidth]{gdp_module_block.png}
+				\includegraphics[width=\textwidth]{gdp_module_block}
 			\end{center}
 			\caption{Gaussian Distance Pipeline block diagram}
 			\label{fig:gdp_block}
@@ -98,9 +97,9 @@
 
 		In this module, `\texttt{n\_senones}' and `\texttt{n\_components}' are both parameter inputs, which determine the number of senones and the number of components per mean and variance in the model.  This allowed the design to be scaled down as size constraints became restrictive.
 
-		The pipeline itself is a static object with not much control logic, and thus requires a controller which sequentially uses it to score each senone in the model.  This controller is a simple state machine of only two states (\texttt{IDLE} and \texttt{LOAD\_GDP}), which begins feeding the pipe when a `\texttt{new\_vector\_available}' input flag is asserted.  This module is shown in Figure~\ref{fig:gdp_ctrl_block}.  A `\texttt{last\_senone}' output flag is asserted when the GDP produces the last senone score.  When the controller is in the \texttt{LOAD\_GDP} state, it essentially loops through the senones in the model, extracting their parameters and sending them to the GDP.  
+		The pipeline itself is a static object without much control logic, and thus requires a controller which sequentially uses it to score each senone in the model.  This controller is a simple state machine of only two states (\texttt{IDLE} and \texttt{LOAD\_GDP}), which begins feeding the pipe when a `\texttt{new\_vector\_available}' input flag is asserted.  This module is shown in Figure~\ref{fig:gdp_ctrl_block}.  A `\texttt{last\_senone}' output flag is asserted when the GDP produces the last senone score.  When the controller is in the \texttt{LOAD\_GDP} state, it essentially loops through the senones in the model, extracting their parameters and sending them to the GDP.  
 
-		In order to facilitate the extraction and manipulation of senone parameters, a SystemVerilog structure was created, shown in Listing~\ref{lst:senonestr} below. A SystemVerilog ROM module, connected to the controller, was populated with the senone parameters, stored in this structure.  Thus, when `\texttt{new\_vector\_available}' is asserted, the controller simply counts from 0 up to \texttt{n\_senones} (the number of senones in the model), and pulls the required parameters out of the ROM.
+		In order to facilitate the extraction and manipulation of senone parameters, a SystemVerilog structure was created, shown in Listing~\ref{lst:senonestr}. A SystemVerilog ROM module, connected to the controller, was populated with the senone parameters, stored in this structure.  Thus, when `\texttt{new\_vector\_available}' is asserted, the controller simply counts from 0 up to \texttt{n\_senones} (the number of senones in the model), and pulls the required parameters out of the ROM.
 
 \begin{lstlisting}[style=customc, label=lst:senonestr, caption=Senone parameter data structure]
 typedef struct packed {
@@ -110,14 +109,14 @@ typedef struct packed {
 } senone_data;
 \end{lstlisting}
 
-		After asserting \texttt{new\_vector\_available}, and providing the revelant vector on the `\texttt{x}' input, the top level module will see  senone scores being sequentially produced, along with an index or ID which is unique to each senone.  The Top Level module is then responsible for storing the score in SRAM, and a `Maximiser' module registers the highest score seen.
+		After asserting \texttt{new\_vector\_available}, and providing the revelant vector on the `\texttt{x}' input, the top level module will see  senone scores being sequentially produced, along with an index or ID which is unique to each senone.  The Top Level module is then responsible for storing the score in SRAM, and a ``Maximiser'' module registers the highest score seen.
 		%TODO: show a multisim diagram of the normaliser??
 		%TODO: where does it get its data from???
 		\begin{figure}[tb]
 			\begin{center}
 				\includegraphics[width=\figwidth]{gdp_ctrl_block.png}
 			\end{center}
-			\caption{Gaussian Distance pip Controller block diagram}
+			\caption{Gaussian Distance Pipe Controller block diagram}
 			\label{fig:gdp_ctrl_block}
 		\end{figure}
 	% subsection gaussian_distance_pipeline (end)
@@ -135,7 +134,7 @@ typedef struct packed {
 
 		\begin{figure}[tb]
 			\begin{center}
-				\includegraphics[width=\figwidth]{sram_asm.png}
+				\includegraphics[width=0.6\textwidth]{SRAM_asm}
 			\end{center}
 			\caption{ASM of the SRAM access module (\ref{sub:onboard_sram})}
 			\label{fig:sram_asm}
@@ -163,12 +162,12 @@ typedef struct packed {
 	% Various bits from HTK (liftering etc)
 	% Makefile
 
-	The processor performs these main tasks:
+	L'Imperatrice performs these main tasks:
 	\begin{itemize}
 		\item Read speech data from a WAV file.
 		\item Pre-process -- pre-emphasise and window data, calculate FFT, calculate MFCCs, `Lifter' MFCCs.
 		\item Convert MFCCs to the correct binary format.
-		\item Send observation vector.
+		\item Send this observation vector to La Papessa.
 		\item Receive and display scores.
 	\end{itemize}
 
@@ -180,7 +179,7 @@ typedef struct packed {
 
 		The audio files were prepared specially, in a format that is simple to read and use.  The audio manipulation software `Audacity'\footnote{Audacity is available at \href{http://audacity.sourceforge.net/}{http://audacity.sourceforge.net/}, last checked April 2013.} was used to record and store speech as uncompressed (Microsoft) WAV files with unsigned 8-bit PCM encoding.  As Audacity does not support saving files with 8kHz sampling rates, the `sox'\footnote{SOX (Sound eXchange) is available at \href{http://sox.sourceforge.net/}{http://sox.sourceforge.net/}, last checked April 2013.} utility was used to downsample them from 48kHz to 8kHz.
 
-		In pre-processing the data, an attempt was made to match the processes that the HTK used as closely as possible, thus making it easier to verify that the process works correctly.  Samples from the audio files are read in sequential blocks of between 80 and 200 samples, depending on the window size required.  They blocks are windowed with a Hamming window to remove discontinuities at the edges which could cause excess spectral noise.  The DFT is taken of this data, using the FFTW library, which had to be specially packaged and compiled for use in LTIB (See Appendix !!TODO!!).  Finally, the magnitude is taken, so that the spectral data is fully real and may be used to calculate Mel Frequency Cepstral Coefficients (MFCCs).  An external library (LibMFCC) was used for this purpose.  The last operation, shown in Equation~\ref{eq:ceplifter}, is to perform `Liftering'\footnote{The name `Liftering' comes from the HTK book \cite{htkbook}} on each of the coefficients, where $L$ is a parameter.  This results in the Cepstral coefficients having similar magnitudes \cite{htkbook}, which is particularly convenient when they must be represented with a 16-bit fixed-point number.
+		In pre-processing the data, an attempt was made to match the processes that the HTK used as closely as possible, thus making it easier to verify that the process works correctly.  Samples from the audio files are read in sequential blocks of between 80 and 200 samples, depending on the window size required.  They blocks are windowed with a Hamming window to remove discontinuities at the edges which could cause excess spectral noise.  The DFT is taken of this data, using the FFTW library, which had to be specially packaged and compiled for use in LTIB (See Appendix~\ref{apdx:compiling_fftw_for_ltib}).  Finally, the magnitude is taken, so that the spectral data is fully real and may be used to calculate Mel Frequency Cepstral Coefficients (MFCCs).  An external library (LibMFCC) was used for this purpose, due to its availability and the time contraints on the project.  The last operation, shown in Equation~\ref{eq:ceplifter}, is to perform Liftering\footnote{The name ``Liftering'' comes from the HTK book \cite{htkbook}} on each of the coefficients, where $L$ is a parameter.  This results in the cepstral coefficients having similar magnitudes \cite{htkbook}, which is particularly convenient when they must be represented with a 16-bit fixed-point number.
 		\meq{ceplifter}{
 			{c^{\prime}}_n
 			= \left(1 + \frac{L}{2} sin \frac{\pi n}{L}\right) c_n
@@ -189,9 +188,9 @@ typedef struct packed {
 
 	\subsection{GPIO and Application UART} % (fold)
 	\label{sub:gpio_application_uart}
-		In order to communicate with the FPGA, the processor required access to a serial port.  The ideal solution is the built-in Application UART port on the iMX23 chip, which only needs configuring.  In addition, access to GPIO from inside a C program was required to assert the `new vector incoming' signal.
+		In order to communicate with the FPGA, the processor required access to a serial port.  The ideal solution is the built-in Application UART port on the iMX23 chip, which only needs configuring.  In addition, access to GPIO from inside a C program was required to assert the ``\texttt{new\_vector\_incoming}'' signal.
 
-		Both GPIO and Application UART must be enabled by selecting the relevant entry in the Kernel configuration menu at compile time (See Appendix !!TODO!!).  Using the Application UART from a C program requires opening the serial port file (\texttt{/dev/ttySP1}, usually) and using the \texttt{termios.h} library to configure it correctly.  The options used to configure the serial port are shown in Listing~\ref{lst:serialconfig}.
+		Both GPIO and Application UART must be enabled by selecting the relevant entry in the Kernel configuration menu at compile time (See Appendix~\ref{apdx:ltib_usage}).  Using the Application UART from a C program requires opening the serial port file (\texttt{/dev/ttySP1}, usually) and using the \texttt{termios.h} library to configure it correctly.  The options used to configure the serial port are shown in Listing~\ref{lst:serialconfig}.
 
 \begin{lstlisting}[style=customc, label=lst:serialconfig, caption=Serial Port Configuration]
 /* Set important serial port parameters: */
@@ -222,7 +221,7 @@ stty.c_cflag &= ~CRTSCTS;
 
 \section{Support Software} % (fold)
 \label{sec:support_software}
-	A set of utilities were written in Common Lisp in order to facilitate and accelerate various parts of the project development.  In particular, they greatly helped with the following tasks
+	A set of utilities were written in Common Lisp in order to facilitate and accelerate various parts of the project development.  Common Lisp was chosen due to its extreme power and flexibility, and because the IDE used, Emacs SLIME, is considered superior to any other.  In particular, these utilities helped with the following tasks (See Appendix~\ref{apdx:lisp_utils} for documentation):
 	\begin{itemize}
 		\item Parsing HMM definitions created by HTK, and extracting senone parameters
 		\item SystemVerilog testbench generation
@@ -234,7 +233,7 @@ stty.c_cflag &= ~CRTSCTS;
 	The HTK stores HMM definitions (along with transition matrices and senone definitions) in a human-readable plain-text Ascii file.  However, due to the very large model size, it was impractical to attempt to copy out parameters by hand.  For this reason, a parser was created that read an HMM definition file and stored the extracted data in a useful structure.  From here, it was possible to automatically generate C header files and SystemVerilog modules containing the parameters, in a suitable format.  In addition, it became possible to easily and quickly generate testbenches to test the GDP with many different senones.
 
 	Another set of utilities was created to aid converting between floating point numbers and the custom fixed-point representations used.
-	% TODO: needs expansion / improvement. What did the utilities do??
+	% TODO!: needs expansion / improvement. What did the utilities do??
 % section support_software (end)
 
 % chapter system_design (end)

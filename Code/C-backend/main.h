@@ -13,7 +13,7 @@
 /*****[ Other Defines ]**************************************************/
 
 #define NUM_COMPS     6					// Number of components per vector
-#define NUM_SENONES   5					// Number of senones to be scored
+#define NUM_SENONES   12				// Number of senones to be scored
 #define RESULT_SHIFT  3
 #define CFG_WAIT      100000			// 0.1s delay for uart h.w. config
 #define NEW_VEC_GPIO  GPIO_TO_PIN(92)	// new vector flag: bank,pin

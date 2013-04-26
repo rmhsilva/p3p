@@ -12,6 +12,9 @@
 \usepackage[disable]{todonotes}  		% Possible option: disable
 \newcommand{\inote}[1]{\todo[inline]{#1}}  % type \inote{bla bla}
 
+\usepackage[titletoc]{appendix}     % Put 'Appendix' in TOC
+\usepackage{array}
+
 %\input{Definitions}                % Include abbreviations
 \usepackage[intoc]{nomencl}					% Use the nomenclature package
 \makenomenclature % TODO: run `makeindex Main.nlo -s nomencl.ist -o Main.nls`
@@ -20,6 +23,16 @@
 \newcommand{\meq}[2] {							% Equation macro. \meq{label}{math}
 	\begin{align} \label{eq:#1} #2
 	\end{align}
+}
+
+\newcommand{\dobib}[1] {
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+  \addtotoc{\bibname}
+  \bibliography{#1}
 }
 
 \lstdefinestyle{customc}{						% Custom C listing style
@@ -38,6 +51,8 @@
 
 \def\figwidth{0.8\textwidth}    % Figure width used for most figures
 
+\renewcommand{\arraystretch}{1.3}  % Increase row separation in tables
+
 %\includeonly{,,} % Only compile these files
 %% ---------------------------------------------------------------------------%
 \begin{document}
@@ -53,17 +68,19 @@
 \keywords   {}
 \supervisor {Dr Steve Gunn}
 \examiner   {Dr Nick Harris}
-\degree     {Electronic Engineering with M.S.S.}
+\degree     {Electronic Engineering with Mobile and Secure Systems} %TODO fix
 \maketitle
-\begin{abstract}  %TODO Improve / finish this. Results?
-This report presents a proof of concept system that is aimed at investigating methods of performing speech recognition in embedded hardware.  It makes use of two new electronic boards, based on a Spartan 3 FPGA and an ARMv5 Linux applications processor, that are currently under development at the University of Southampton.  Speech data is pre-processed in Linux, and the FPGA performs the most computationally intensive part of a modern speech recognition system -- evaluating the large number of continuous probability distributions.  It is shown that the FPGA is capable of vastly reducing the time required to perform these operations.
+\begin{abstract}  % 141 words
+% the Abstract summarises the purpose of the project and what was achieved by the project.
+This report presents a proof of concept system that is aimed at investigating Hidden Markov Model based speech recognition in embedded hardware.  It makes use of two new electronic boards, based on a Spartan 3 FPGA and an ARMv5 Linux applications processor, that are currently under development at the University of Southampton.  Speech data is pre-processed in Linux, by performing spectral analysis followed by a Discrete Cosine transformed filterbank analysis, to produce Mel Frequency Cepstral Coefficients.  Given this observation data, the FPGA performs the most computationally intensive part of a modern HMM based speech recognition system -- evaluating the state emission probabilities.  It is shown that the FPGA is capable of performing these calculations faster than a software implementation on the Linux processor.  The resulting system is also a valuable example of how these two boards may be used in a practical setting.
 \end{abstract}
 \tableofcontents
-%\listoffigures
+\listoffigures
 %\listoftables
 %\lstlistoflistings
 %\listofsymbols{ll}{$w$ & The weight vector}
 \acknowledgements{Thanks to Steve Gunn, Srinandan Dasmahapatra}
+\authorshipdeclaration{Ricardo da Silva}
 %\dedicatory{To \dots}
 \clearpage
 \markboth{\nomname}{\nomname}
@@ -76,16 +93,16 @@ This report presents a proof of concept system that is aimed at investigating me
 \include{Introduction}    % Mostly done
 \include{Background}      % Partially.  Needs expansion on FPGA stuff
 \include{Approach}        % Needs tidying up
-\include{Implementation}  % Need: support software, build process, others
+\include{Implementation}  % 
 \include{Testing}         % Mostly done, needs expansion
-\include{Analysis}        % Fairly empty
+\include{Analysis}        % 
 \include{Conclusions}     % Mostly done
 
 %% ---------------------------------------------------------------------------%
-\appendix
-\input{Appendices/Index}
-\backmatter
 \bibliographystyle{plainnat}  % TODO: fix ecs bib style...
-\bibliography{../citations-ALL}
+\dobib{../citations-ALL}
+
+\appendices
+\input{Appendices/Index}
 %% ---------------------------------------------------------------------------%
 \end{document}

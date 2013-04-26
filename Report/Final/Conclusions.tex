@@ -8,18 +8,26 @@
 % Personal gains - learnt loads, got to be the first doing something large with micro arcana, 
 % Usefulness of result - someone interested in speech recognition, or 
 
-This report presented a proof of concept system for carrying out speech recognition related operations on embedded hardware.  The system was built on two boards from the Micro Arcana family of development boards, and performed speech pre-processing and Gaussian distance calculations.  A background of the relevant speech recognition theory was given, along with evaluations of various other techniques and approaches.  Descriptions and analyses of the completed design were presented, along with information on how it was tested.  In addition to the hardware based system, a multi-purpose software tool-kit was built that greatly helped during the design and testing stages of the project.
+This report presented a proof of concept system for carrying out speech recognition related operations on embedded hardware.  The system is built on two boards from the Micro Arcana family of development boards, and collectively performs two fundamental tasks:
+\begin{itemize}
+	\item Speech pre-processing, with Mel Frequency Cepstral Coefficients as the final observation vector.
+	\item Scoring the states of HMMs in a speech model, given this observation vector.
+\end{itemize}
 
-The principle goal was to design and implement part of an HMM based speech recognition system in embedded hardware, in order to evaluate and learn about such a system.  It was not intended to be used as a real recogniser, but rather to broaden the author's knowledge and experience, and provide a platform on which embedded speech recognition may be researched further.  The conclusions are given below.
+A background of the relevant speech recognition theory was given, along with evaluations of various other techniques and approaches.  Descriptions and analyses of the completed design were presented, along with information on how it was tested.  In addition to the hardware based system, a multi-purpose software tool-kit was created that greatly helped during the design and testing stages of the project.
+
+The principle goal was to design and implement part of an HMM based speech recognition system in embedded hardware, in order to evaluate and learn about such a system.  This has been fairly successful; the conclusions are given below.
+% It was not intended to be used as a real recogniser, but rather to broaden the author's knowledge and experience, and provide a platform on which embedded speech recognition may be researched further.  
+  % TODO: clean this paragraph up...
 
 
 \section{Usefulness of Results} % (fold)
 \label{sec:usefulness}
-	Due to size limitations of the FPGA, it was not possible to use a complete speech model with the implemented system.  However, the intention was never to build something that was usable with such a model, but rather to attempt to judge the usefulness of an FPGA in this situation.  With the results achieved it was possible to estimate the relationship between the system speed and model size, and thus show that the FPGA was capable of producing results faster than a traditional processor.
+	Due to size limitations of the FPGA, it was not possible to use a complete HMM speech model with the implemented system.  However, the intention was never to build something that was usable with such a model, but rather to attempt to judge the usefulness of an FPGA in this situation.  With the results achieved it was possible to estimate the relationship between the system speed and model size, and thus show that the FPGA was capable of producing results faster than a traditional processor.
 
 	Furthermore, this project is a valuable example of how two of the Micro Arcana family may be connected and used in a practical setting.  Some of the problems encountered are certainly not unique to this design, and therefore the solutions presented may be helpful in other projects.
 
-	As a development platform, there is potential for further investigation into embedded speech recognition using the two systems built here.  Indeed, there are several different aspects of the design that may be expanded upon or improved, as described in the further work section.  This is not a failing of the current project -- speech recognition is such a large and complex area that only a small part of it could possibly be implemented in the time frame set.
+	As a development platform, there is potential for further investigation into embedded speech recognition using the two systems built here.  Indeed, there are several different aspects of the design that may be expanded upon or improved, as described in the further work section.  This is not a failing of the current project -- speech recognition is such a large and complex area that only a small part of it could possibly be implemented in the time available.
 % section usefulness (end)
 
 
@@ -27,7 +35,7 @@ The principle goal was to design and implement part of an HMM based speech recog
 \label{sec:future_work}
 	There are many possibilities for developing this project further -- either by improving the system already built, or implementing other speech recognition tasks such as decoding.  With the system in its current state, there are a few areas that may be interesting to investigate.
 
-	Mel Frequency Cepstral Coefficients were computed using an existing library (LibMFCC) for the purposes of this project.  However, LibMFCC is extremely slow, and should definitely be optimised.  In addition, it would be very beneficial if the pre-processing generated the same MFCCs as those generated by the HTK.  This would require an in-depth analysis of the HTK system in order to determine the exact sequence of operations that are performed.
+	Primarily due to time constraints, the Mel Frequency Cepstral Coefficients were computed using an existing library (LibMFCC).  However, LibMFCC is extremely slow, and should definitely be optimised.  In addition, it would be very beneficial if the pre-processing generated the same MFCCs as those generated by the HTK.  This would require an in-depth analysis of the HTK system in order to determine the exact sequence of operations that are performed.
 
 	Communications between the boards needs improvement before the system can be considered realistically usable.  Better communications would need to be far faster, and possibly include features such as error-checking, hand-shaking, and control sequences.  Designing a better communications method between two of the Micro Arcana boards would be an interesting project, due to the size and speed constraints of the family.
 
@@ -35,11 +43,11 @@ The principle goal was to design and implement part of an HMM based speech recog
 % section future_work (end)
 
 
-\section{Personal Gains} % (fold)
-\label{sec:personal_gains}
-	As the author is still exploring the vast world of electronic engineering, one of the attractions of this project was its diversity and complexity.  The project involved several different areas of electronics, including digital systems design, complex algorithms and optimisation, embedded Linux programming, and hardware testing.  Completing this project, with all the different activities involved, was personally satisfying, especially as it involved working with hardware that had never been used in this manner before.
+% \section{Personal Gains} % (fold)
+% \label{sec:personal_gains}
+% 	As the author is still exploring the vast world of electronic engineering, one of the attractions of this project was its diversity and complexity.  The project involved several different areas of electronics, including digital systems design, complex algorithms and optimisation, embedded Linux programming, and hardware testing.  Completing this project, with all the different activities involved, was personally satisfying, especially as it involved working with hardware that had never been used in this manner before.
 
-	A sense of accomplishment followed completion of the system implementation, as it represented the union of many different technologies and techniques, useful from a educatory point of view, as well as being an interesting and challenging project.
+% 	A sense of accomplishment followed completion of the system implementation, as it represented the union of many different technologies and techniques, useful from a educatory point of view, as well as being an interesting and challenging project.
 	% I gained lots of experience with complex algorithms, digital design,
 	% Even though I did not implement the more complex algorithms, it was interesting learning about them, and how they work.
 	% This is the largest digital system I have ever built, and I have never interfaced an FPGA with a C program.  I have never used an embedded Linux board that was so undeveloped, and I have never

@@ -1,13 +1,10 @@
 %!TEX root = Main.tex
 % System testing: words
-\chapter{System Testing and Results} % (fold)
+\chapter{System Testing and Analysis} % (fold)
 \label{cha:system_testing}
 
 % Screenshots of data being sent and received (Logic)
-% SystemVerilog simulations in ModelSim
-% Hardware vs Software timing??? Roughly???
 % Timing analysis / diagrams
-% TODO: do some hardware analysis - how much current draw etc?
 
 The testing methods and results are documented in this chapter, along with an analysis of the final design.  The two primary blocks, described in the last chapter, were tested independently and then together, and will be presented here in the same manner.  A wide range of tools and techniques have been used to perform the testing, and to identify and fix errors encountered.
 
@@ -35,17 +32,17 @@ The testing methods and results are documented in this chapter, along with an an
 
 	\begin{figure}[tb]
 		\begin{center}
-			\includegraphics[width=\figwidth]{testbenches/gdp_wave.png}
+			\includegraphics[width=\figwidth]{testbenches/gdp_wave}
 		\end{center}
 		\caption{GDP testbench waveform}
 		\label{fig:test_gdp}
 	\end{figure}
 	
-	The Gaussian Distance pipe controller testbench gives a new observation to the controller, and then watches as senone scores are produced by the module.  SystemVerilog assertions are used to check whether correct scores are arriving at the time they should.  However, in order to test a large number of different inputs (which would result in different score outputs), a set of software utilities were written to automatically generate the testbench code.  This software made use of the HMM definition parser and a software version of the GDP that had already been created.  This allowed a very large number of senones to be tested in a matter of minutes, and determine how well the GDP pipe was working.  Figure~\ref{fig:test_gdp_ctrl} shows the GDP Controller being tested, with an example of the type of error message used to examine its behaviour.  In this test, % TODO: x of y senones had z error..
+	The Gaussian Distance pipe controller testbench gives a new observation to the controller, and then watches as senone scores are produced by the module.  SystemVerilog assertions are used to check whether correct scores are arriving at the time they should.  However, in order to test a large number of different inputs (which would result in different score outputs), a set of software utilities were written to automatically generate the testbench code.  This software made use of the HMM definition parser and a software version of the GDP that had already been created.  This allowed a very large number of senones to be tested in a matter of minutes, and determine how well the GDP pipe was working.  Figure~\ref{fig:test_gdp_ctrl} shows the GDP Controller being tested.
 
 	\begin{figure}[tb]
 		\begin{center}
-			\includegraphics[width=\figwidth]{testbenches/gdp_ctrl_wave.png}
+			\includegraphics[width=\figwidth]{testbenches/gdp_ctrl_wave}
 		\end{center}
 		\caption{GDP Controller testbench waveform and error messages}
 		\label{fig:test_gdp_ctrl}
@@ -59,7 +56,7 @@ The testing methods and results are documented in this chapter, along with an an
 
 	\subsection{Synthesis and Hardware Testing} % (fold)
 	\label{sub:gdp_synthesis_and_hardware_testing}
-		Unfortunately, due to the small size of the FPGA used, the initial synthesised design did not fit on it.  The full Voxforge model had over 7000 senones, and each observation had 25 parameters of 2 bytes each -- over 700kB of storage would be required for the full model.  As this far exceeds the resources available, the model size was reduced for this proof-of-concept project.  The number of statistical parameters was reduced to 6, and only 5 senones were scored at once, bringing the FPGA slice usage to about 99\%.  % Confirmed.  Although at this %, may be clock skew!
+		Unfortunately, due to the small size of the FPGA used, the initial synthesised design did not fit on it.  The full Voxforge model had over 7000 senones, and each observation had 25 parameters of 2 bytes each -- over 700kB of storage would be required for the full model.  As this far exceeds the resources available, the model size was reduced for this proof-of-concept project.  The number of statistical parameters was reduced to 6, and only 12 senones were scored at once, bringing the FPGA slice usage to about 90\%.  % Confirmed.  Although at this %, may be clock skew!
 
 		A variety of tools were used to repeatedly test the functionality of this hardware.  A Bus Pirate\footnote{Multi-purpose debugging tool that supports many different protocols.  See \href{http://dangerousprototypes.com/docs/Bus_Pirate}{http://dangerousprototypes.com/docs/Bus\_Pirate}} was used to communicate with the FPGA, which allows hexadecimal values to be easily sent and received over UART.  In order to debug the SystemVerilog, a large number of signals were routed to output pins, which were then monitored with a Saleae Logic analyser.
 	% subsection gdp_synthesis_and_hardware_testing (end)
@@ -72,7 +69,7 @@ The testing methods and results are documented in this chapter, along with an an
 
 	\begin{figure}[tb]
 		\begin{center}
-			\includegraphics[width=\figwidth]{testbenches/uart_wave.png}
+			\includegraphics[width=\figwidth]{testbenches/uart_wave}
 		\end{center}
 		\caption{UART testbench waveform}
 		\label{fig:test_uart}
@@ -90,16 +87,16 @@ The testing methods and results are documented in this chapter, along with an an
 
 \section{Pre-Processing} % (fold)
 \label{sec:pre_processing_testing}
-	There were several different stages to the pre-processing, and these were tested individually.  First and foremost, the FFT code was tested by using input data containing known sinusoidals.  The library used, FFTW, is well established and proven to work, and so the primary purpose here was to test the speed of the FFT.  It ran almost instantaneously (execution took 0.00000s, according to the Kernel time.h library), giving the correct results. %TODO confirm this!
+	There were several different stages to the pre-processing, and these were tested individually.  First and foremost, the FFT code was tested by using input data containing known sinusoidals.  The library used, FFTW, is well established and proven to work, and so the primary purpose here was to test the speed of the FFT.  It ran almost instantaneously (execution took 0.00000s, according to the Kernel time.h library), giving the correct results. %TODO!!! confirm this!
 
 	The other major operation that required extensive testing was the MFCC calculation.  The other operations, pre-emphasis, windowing and liftering, are fairly simple mathematical operations that are easy to verify.  One of the desired properties of the system is that it would produce MFCCs that matched those produced by the HTK. Unfortunately, this was not quite achieved.  In most tests, the energy coefficient matched, but the others were relatively different.  This implies either that there is a limitation or problem with the MFCC library used, or that the HTK performs extra (or different) pre-processing.
 
 	In addition, the library is very inefficient, causing the MFCCs to be produced far too slowly.  To be used in a real system, an important requirement is that all the pre-processing is much faster than the frame period.  With the current design, the only component breaking this requirement is the MFCC computation, due to the library's slowness and inefficiency.  All the other steps take a tiny fraction of the frame period, allowing a large amount of time for processing, and in later designs, decoding.
 % section pre_processing_testing (end)
 
-\section{Software based GDP speed} % (fold)
+\section{Software Based GDP Speed} % (fold)
 \label{sec:software_based_gdp_speed_testing}
-	The Gaussian Distance calculations were implemented in a C program in order to compare its performance with that of the FPGA.  It was found that the processor is capable of calculating a single senone score in 10µs on average -- about 100 times slower than the FPGA.  However, this version used double floating point precision, and thus is far more accurate than the FPGA.  Reducing the accuracy and using fixed-point values would definitely increase its speed.
+	The Gaussian Distance calculations were implemented in a C program in order to compare its performance with that of the FPGA.  It was found that the processor is capable of calculating a single senone score in 10µs on average -- about 100 times slower than the FPGA.  However, this version used double floating point precision, and thus is far more accurate than the FPGA.  Reducing the accuracy and using fixed-point values would definitely increase its speed.  % TODO!! Do this? It wouldn't be hard...
 % section software_based_gdp_speed_testing (end)
 
 
@@ -109,5 +106,6 @@ The testing methods and results are documented in this chapter, along with an an
 
 % % section full_system_testing (end)
 
+% \input{Analysis}
 
 % chapter system_testing (end)
