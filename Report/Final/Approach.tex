@@ -74,6 +74,18 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 		\[ K_j = - \frac{N}{2} \ln(2\pi) - \sum_{n=1}^N \ln(\sigma_{jn}) \]
 		\[ \Omega_{jn} = \frac{1}{2\sigma_{jn}^2} \]
 
+		% Nomenclature
+			\nomenclature{$\lambda(\pi,a,b)$}{A fully defined Hidden Markov Model}
+			\nomenclature{$\pi$}{The set of initial state probabilities}
+			\nomenclature{$a_{ij}$}{The probability of transitioning from state $i$ to state j}
+			\nomenclature{$b_j(O)$}{The probability of state $j$ emitting observation $O$}
+
+			\nomenclature{$\mu_j$}{N-dimensional vector of means for state $j$, indexed from 1 to N}
+			\nomenclature{$\sigma_j$}{N-dimensional vector of standard deviations for state $j$, indexed from 1 to N}
+			\nomenclature{$K_j$}{Pre-computed constant for state $j$}
+			\nomenclature{$\Omega_j$}{N-dimensional vector of pre-computed scaling factors for state $j$}
+
+
 	% subsection senone_scoring (end)
 % section the_hmm_based_model (end)
 

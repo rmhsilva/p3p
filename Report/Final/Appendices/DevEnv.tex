@@ -14,22 +14,22 @@
 
 	Once this is set up, the design process roughly follows this sequence:
 	\begin{enumerate}
-		\item Write SystemVerilog code.
-		\item Run implementation; fix errors until it synthesises correctly.
+		\item Write SystemVerilog code in Synplify.
+		\item Run Synplify implementation; fix errors until it synthesises correctly.
 		\item Open project with Xilinx design tools (via Tools menu).
 		\item Either manually edit the constraints file and add net to port mappings, or use the Floorplanner (post-synthesis) tool to do this.
-		\item Run implementation.  If mapping fails, your design may be too big to fit on the device.
+		\item Run Webpack implementation.  If mapping fails, the design may be too big to fit on the device.
 		\item Generate .bit programming file.
 		\item Open the `Impact' software (which comes with the ISE Webpack).
 		\item Create a new project, and select the .bit file created in the previous step.
-		\item From the Output menu, select Create new SVF file.
-		\item Perform whichever actions you want from the list on the left -- programming the flash takes a long time, so if you're still in the testing stages, only run ``Program FPGA''.
+		\item From the Output menu, select create new SVF file.
+		\item Perform whichever actions required from the list on the left -- programming the flash takes a long time, so if still in the testing stages, only run ``Program FPGA''.
 		\item End the SVF output (from the same menu as before).  This step is very important!
 		\item Open urJTAG and connect to the programming cable.
-		\item Use `svf programming-file.svf' to transfer your design to La Papessa!
+		\item Use `svf programming-file.svf' to transfer the design to La Papessa!
 	\end{enumerate}
 
-	As this process is fairly long, it may be useful to speed some parts up.  In particular, instead of repeatedly assigning pins with Floorplanner, it's easier to copy the constraints file once everything is assigned correctly.  Then when Webpack is opened again, and the constraints are automatically overwritten, you can simply copy in the correct pin assignments.  The constraints used for this project are available in the file archive, in the DevEnv folder.
+	As this process is fairly long, it may be useful to speed some parts up.  In particular, instead of repeatedly assigning pins with Floorplanner, it's easier to copy the constraints file once everything is assigned correctly.  Then when Webpack is opened again, and the constraints are automatically overwritten, simply copy in the correct pin assignments.  The constraints used for this project are available in the file archive, in the DevEnv folder.
 % sectapdx fpga_design_cycle (end)
 
 
@@ -39,12 +39,12 @@
 
 	\subsection{Cross compiling} % (fold)
 	\label{apdx:cross_compiling}
-		To compile code that will work on L'Imperatrice, you need to use the binaries installed by LTIB.  They are normally stored in:
+		To compile code that will work on L'Imperatrice, the binaries installed by LTIB must be used.  They are normally stored in:
 
 		\texttt{/opt/freescale/usr/local/gcc-x-glibc-x-x/arm-none-gnueabi/\\*
 		arm-none-linux-gnueabi/bin/}
 		  
-		Running the following command will add this to your path (\$ is your prompt):
+		Running the following command will add this to the path (\$ is the prompt):
 
 		\texttt{\$ PATH=/opt/freescale/usr/local/gcc-4.1.2-glibc-2.5-nptl-3/\\*
 		arm-none-linux-gnueabi/arm-none-linux-gnueabi/bin/:\$PATH}
@@ -63,11 +63,11 @@
 	\subsection{Compiling FFTW for LTIB} % (fold)
 	\label{apdx:compiling_fftw_for_ltib}
 		%Read: http://ltib.org/documentation-LtibFaq
-		In many cases you may want to build a library or package to install on L'Imperatrice.  For example, you may want to perform real time Fast Fourier Transforms using the FFTW library, which has native support for ARMv5 devices.  The general procedure, as described in the FAQ at \href{http://ltib.org/documentation-LtibFaq}{http://ltib.org/documentation-LtibFaq}, is:
+		In many cases one may want to build a library or package to install on L'Imperatrice.  For example, one may want to perform real time Fast Fourier Transforms using the FFTW library, which has native support for ARMv5 devices.  The general procedure, as described in the FAQ at \href{http://ltib.org/documentation-LtibFaq}{http://ltib.org/documentation-LtibFaq}, is:
 		\begin{enumerate}
 			\item Prepare the source files
 			\item Build and install the package to the rootfs using LTIB
-			\item Add -I and -L flags to gcc if you want to cross compile with the libraries you've just installed.
+			\item Add -I and -L flags to gcc to cross compile with the libraries that were just installed.
 		\end{enumerate}
 
 		The FFTW source can be downloaded from \href{http://www.fftw.org/download.html}{http://www.fftw.org/download.html}.  In order to add it to LTIB, a custom RPM spec file was created, available in the project file archive in the DevEnv folder.  Then the ltib binary is used to correctly configure and build FFTW from source, and add it to the list of installed packages.  This allows FFTW to be selected in the `Packages list' in the LTIB configuration menu, and thus installed in the rootfs.
