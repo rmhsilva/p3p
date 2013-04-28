@@ -18,7 +18,7 @@
 #include "preProcess.h"
 #include "main.h"
 
-#define DEBUG  // undef to hide debug messages
+#undef DEBUG  // undef to hide debug messages
 
 /****[ Global Variables ]************************************************/
 
@@ -174,6 +174,8 @@ void get_scores(uint16_t *observation, uint16_t *scores) {
 }
 
 
+/*****[ Main Routine ]***************************************************/
+
 /**
  * main_init: Does all initialisation and setup for main
  */
@@ -209,13 +211,12 @@ void main_init() {
 	disp(2,"[+] Init complete.\n");
 }
 
-
 int main(int argc, char const *argv[])
 {
 	int i, j, do_vectors=1;
 	uint16_t scores[NUM_SENONES];
 	uint16_t mfccs[NUM_COMPS];
-	//uint16_t mfccs[NUM_COMPS]; // = {0xdabe, 0x00c1, 0xfd3c, 0xfeda};
+	char disp_buf[5 + (NUM_SENONES*7)];
 	FILE *wav;
 
 	main_init();    // Initialise things
@@ -242,12 +243,20 @@ int main(int argc, char const *argv[])
 		
 		disp(2, "--- Observation Frame %d ---\n", i+1);
 		for(j=0; j<NUM_SENONES; j++)
-			disp(2, "Senone %d score: 0x%04x\n", j, scores[j]);
+			sprintf(disp_buf+(j*7), "0x%04x ", scores[j]);
+		printf("Scores: [ %s]\n", disp_buf);
+
+		/* Note: The results still need to be scaled up by RESULT_SHIFT
+		 * However this isn't necessary for simply displaying them
+		 */
 	}
 
-	disp(2,"[+] Done.\n");
+	// Exit
+	disp(2,"[+] Done, cleaning up.\n");
 	close(uart);
 	fclose(wav);
+	fftw_destroy_plan(fft_p);
+	fftw_free(fft_out);
 	usleep(100000);
 	gpio_wr(GPIO_TO_PIN(60), 0);
 	return 0;

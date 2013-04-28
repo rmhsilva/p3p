@@ -5,7 +5,7 @@
 // Simulate sampling by reading a wav file in chunks
 void emul_sample(FILE *wav_file, double *data, int n) {
 	int i;
-	uint8_t sample[2];	// TODO: are my files really unsigned?????
+	uint8_t sample[2];
 	static int position = 0;
 
 	// Skip over the WAV header

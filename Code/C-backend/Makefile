@@ -2,7 +2,7 @@
 # Ricardo da Silva, 2013
 
 # Final ELF name and target location (on SD card)
-TARGET = main
+TARGET = pre-process
 ROOTFS = /media/disk/root/
 
 # Source files
@@ -67,9 +67,11 @@ $(OBJDIR)/%.o : %.c $(DEPS)
 	@echo + Creating Object file from $<
 	$(CC) -o $@ -c $< $(CFLAGS)
 
+# Copy to SD card (shortcut)
 copy: $(TARGET)
 	$(CP) $(TARGET) $(ROOTFS)
 
+# Clean up
 clean: begin clean_all end
 
 clean_all:
