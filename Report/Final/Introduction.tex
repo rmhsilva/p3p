@@ -20,7 +20,7 @@
 
 	\subsection{Theoretical understanding} % (fold)
 	\label{sec:theoretical_understanding}
-		An important goal of the project is to develop a higher level understanding of the algorithms used in speech recognition, and to get experience designing a large-scale embedded application.  This project encompases a very wide range of subjects, including intelligent algorithms, digital systems design, embedded processing, and hardware design.
+		An important goal of the project is to develop a higher level understanding of the algorithms used in speech recognition, and to get experience designing a large-scale embedded application.  This project encompasses a very wide range of subjects, including intelligent algorithms, digital systems design, embedded processing, and hardware design.
 		% TODO develop
 	% subsection theoretical_understanding (end)
 
@@ -39,7 +39,7 @@
 \label{sec:contributions}
 	The project implements two parts of a modern speech recognition system, using two development boards from the Micro Arcana family.  The implementation, described in detail in Chapter~\ref{cha:system_design}, uses an FPGA to perform the most computationally expensive part of HMM based recognisers -- scoring the states of each HMM model for a given input vector.  Essentially, the ARM Linux based ``L'Imperatrice'' is used as the application controller, and is connected to the FPGA based ``La Papessa'' board.  The processor reads Microsoft WAV format speech files, performs the necessary pre-processing and sends observation vectors to the FPGA.  Given an observation, the FPGA processes it and sends back scores for each state in the speech model, which represent the probability of that state emitting the observation.  Given these scores, the next step for a speech recogniser would be to perform Viterbi decoding (possibly using token-passing or a similar algorithm) in order to find the most probable sequence of HMMs, and thus eventually find the most probable word or phoneme sequence spoken.
 
-	Accomplishing this required substancial research into HMM based speech recognition algorithms, embedded Linux, and digital design.  The two Micro Arcana boards are very new, and some vital parts on them were completely untested before this project.  Although there is significant research into the use of FPGAs for speech recognition, most cases use large FPGAs, and often a relatively fast PC to perform pre-processing.  This project is designed to be a proof of concept exercise -- it explores the capabilities of the boards, and provides an example of how they may be used together.  Furthermore, the results are satisfactory, and point towards an FPGA being an appropriate platform for performing these calculations.
+	Accomplishing this required substantial research into HMM based speech recognition algorithms, embedded Linux, and digital design.  The two Micro Arcana boards are very new, and some vital parts on them were completely untested before this project.  Although there is significant research into the use of FPGAs for speech recognition, most cases use large FPGAs, and often a relatively fast PC to perform pre-processing.  This project is designed to be a proof of concept exercise -- it explores the capabilities of the boards, and provides an example of how they may be used together.  Furthermore, the results are satisfactory, and point towards an FPGA being an appropriate platform for performing these calculations.
 % section contributions (end)
 
 

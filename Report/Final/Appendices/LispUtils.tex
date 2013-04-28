@@ -3,4 +3,59 @@
 \chapter{Support Software Documentation} % (fold)
 \label{apdx:lisp_utils}
 
-% TODO!!!
+This Appendix documents use of the Common Lisp utility tool-kit described in the report.  All development was carried out in Emacs, with the excellent SLIME being the main reason to do so.  The Common Lisp implementation used is SBCL, with Quicklisp used to install the only dependency, cl-ppcre.  The two files containing these utilities are extract.lisp and main.lisp, included in the project file archive.
+
+Much of the code is self documenting, so this chapter is primarily for overview.
+
+\section{Data structures} % (fold)
+\label{apdx:data_structures}
+	Four data structures were provided to store various parts that were extracted:
+	\begin{itemize}
+		\item \texttt{t-matrix}: Transition matrices
+		\item \texttt{senone}: Senones
+		\item \texttt{hmm}: Full HMM
+		\item \texttt{oframe}: Observation frame
+	\end{itemize}
+% sectapdx data_structures (end)
+
+
+\section{Parsing} % (fold)
+\label{apdx:hmm_parsing}
+	The primary function used to parse an HMM definition file is `parse-hmmdefs'.  This takes a single argument -- the path to a file.  The function returns three collections; lists of hmms, transition matrices, and senones that were found in the file.
+
+	The function is written using a set of macros which add the ability to define `blocks' in files, and easily search through a given file for these blocks.  When a block is found, the required variables are automatically extracted and assigned to variables, which may then be used to populate data structures as desired.
+
+	In addition, an file with observation data may also be parsed, using the `parse-input' function.  This function assumes that the file was created using a command similar to: 
+
+	\texttt{HList -e 200 -i 26 -o -h sample1.mfc > sample1-data.txt}
+% sectapdx hmm_parsing (end)
+
+
+\section{Binary utilities} % (fold)
+\label{apdx:binary_utilities}
+	A set of conversion utilities were created to aid moving from the custom binary fixed point notation used, and real floating point decimal values.
+
+	The important functions are `bin2dec' and `dec2bin' which perform the actions their names suggest.  However, before they can be used, the binary format must be defined, by creating a set of `bins' which represent the value stored by each position in a binary number.  This is done with `makebins'.
+% sectapdx binary_utilities (end)
+
+
+\section{System Modelling} % (fold)
+\label{apdx:system_modelling}
+	The GDP was implemented primarily so that the hardware could be easily tested.  It is designed as a closure, so that subsequent calls to it behave as they would if it was a hardware pipeline.
+
+	Furthermore, various helper functions were built to automatically feed a list of observations into the GDP, along with a specified list of senones, and to return the correct scores.
+% sectapdx system_modelling (end)
+
+
+\section{Automatic file generation} % (fold)
+\label{apdx:testbenches}
+	Functions were built to automatically create files containing testbenches, and senone data.  
+
+	The `print-senone-data' function creates a file containing a set of senone data, in either C or SystemVerilog code.
+
+	The `print-testbench' function builds a SystemVerilog testbench to test an observation vector.  It performs all the necessary conversions from floating point to hex, and also prints out assertions to confirm the answers given.
+
+	Both of these functions use the `printl' macro, which was designed to make it easier to print multiple lines into a stream.
+% sectapdx testbenches (end)
+
+% chap lisp_utils (end)

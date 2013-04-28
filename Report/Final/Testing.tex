@@ -6,7 +6,7 @@
 % Screenshots of data being sent and received (Logic)
 % Timing analysis / diagrams
 
-The testing methods and results are documented in this chapter, along with an analysis of the final design.  The two primary blocks, described in the last chapter, were tested independently and then together, and will be presented here in the same manner.  A wide range of tools and techniques have been used to perform the testing, and to identify and fix errors encountered.
+The testing methods and results are documented in this chapter.  The two primary blocks, described in the last chapter, were tested independently and then together, and will be presented here in the same manner.  A wide range of tools and techniques have been used to perform the testing, and to identify and fix errors encountered.
 
 % Testing & things to document:
 % x Testing methodology
@@ -23,6 +23,15 @@ The testing methods and results are documented in this chapter, along with an an
 	There were several phases of development, and thus testing, of this part of the design.  Initially, the full system was written and simulated in ModelSim, which supports SystemVerilog assertion based verification.  Each of the components of the design was built and tested separately, and then incrementally joined together and simulated as a whole.  Finally, the modules were tested in hardware -- first individually, and then as a full system.
 
 	A set of testbenches were developed for use within ModelSim, which tested each of the modules used by the system.  Most of the modules were fairly simple to simulate and verify, as the expected behaviour is generally constant and determinate.  For example, verifying the UART clock generator was a case of instantiating it, asserting the enable signal, and verifying the frequency of the output signals.  However, some modules and their testbenches deserve extra attention, as special methods were used to test them.  In several areas, the benefits of using SystemVerilog become clear, as assertions greatly simplified the validation and testing process.
+
+	Figure~\ref{fig:full_cycle} shows a simulation of the system performing a full cycle, from receiving an observation to sending back scores.
+	\begin{figure}[tb]
+		\begin{center}
+			\includegraphics[width=\textwidth]{testbenches/full_cycle}
+		\end{center}
+		\caption{Simulation waveforms showing a full cycle of the top level state machine}
+		\label{fig:full_cycle}
+	\end{figure}
 % section fpga_design_and_test_methodology (end)
 
 
@@ -52,11 +61,11 @@ The testing methods and results are documented in this chapter, along with an an
 	% TODO: talk about the error distribution??? I speak lots about how I found it (^) but don't actually say what the results were...
 
 
-	From Figure~\ref{fig:test_gdp_ctrl}, it is also possible to observe the (ideal) time the GDP takes to calculate a score.  In this case (when $n\_components=5$), each senone takes about 5 clock cycles (100ns with a 50MHz clock), after an initial pipeline loading delay.
+	From Figure~\ref{fig:test_gdp_ctrl}, it is also possible to observe the (ideal) time the GDP takes to calculate a score.  In this case (when \texttt{n\_components=5}), each senone takes 5 clock cycles (100ns with a 50MHz clock), after an initial pipeline loading delay.
 
 	\subsection{Synthesis and Hardware Testing} % (fold)
 	\label{sub:gdp_synthesis_and_hardware_testing}
-		Unfortunately, due to the small size of the FPGA used, the initial synthesised design did not fit on it.  The full Voxforge model had over 7000 senones, and each observation had 25 parameters of 2 bytes each -- over 700kB of storage would be required for the full model.  As this far exceeds the resources available, the model size was reduced for this proof-of-concept project.  The number of statistical parameters was reduced to 6, and only 12 senones were scored at once, bringing the FPGA slice usage to about 90\%.  % Confirmed.  Although at this %, may be clock skew!
+		Unfortunately, due to the small size of the FPGA used, the initial synthesised design did not fit on it.  The full Voxforge model had over 7000 senones, and each observation had 25 parameters of 2 bytes each -- over 700kB of storage would be required for the full model.  As this far exceeds the resources available, the model size was reduced for the project.  The number of statistical parameters was reduced to 6, and only 12 senones were scored at once, bringing the FPGA slice usage to about 90\%.  % Confirmed.  Although at this %, may be clock skew!
 
 		A variety of tools were used to repeatedly test the functionality of this hardware.  A Bus Pirate\footnote{Multi-purpose debugging tool that supports many different protocols.  See \href{http://dangerousprototypes.com/docs/Bus_Pirate}{http://dangerousprototypes.com/docs/Bus\_Pirate}} was used to communicate with the FPGA, which allows hexadecimal values to be easily sent and received over UART.  In order to debug the SystemVerilog, a large number of signals were routed to output pins, which were then monitored with a Saleae Logic analyser.
 	% subsection gdp_synthesis_and_hardware_testing (end)
@@ -65,11 +74,11 @@ The testing methods and results are documented in this chapter, along with an an
 
 \section{UART Communications} % (fold)
 \label{sec:uart_communications_testing}
-	Simulating and testing the UART module was done by creating two instances of the module, and cross-connecting their RX and TX pins.  This allowed both transmit and receive to be tested, and confirmed correct operation.  An example of this testbench running is shown in Figure~\ref{fig:test_uart}.  
+	Simulating and testing the UART module was done by creating two instances of the module, and cross-connecting their RX and TX pins.  This allowed both transmit and receive to be tested, and confirmed correct operation.  An example of this testbench running is shown in Figure~\ref{fig:test_uart}.
 
 	\begin{figure}[tb]
 		\begin{center}
-			\includegraphics[width=\figwidth]{testbenches/uart_wave}
+			\includegraphics[width=\textwidth]{testbenches/uart_wave}
 		\end{center}
 		\caption{UART testbench waveform}
 		\label{fig:test_uart}
@@ -81,22 +90,22 @@ The testing methods and results are documented in this chapter, along with an an
 
 \section{SRAM Access} % (fold)
 \label{sec:sram_access_testing}
-	A custom SystemVerilog module was designed in order to test writing and reading values to the onboard SRAM chip, as it was a completely untested part of the board.  The module performed fairly basic operations, such as looping through a set of values, writing them to SRAM, and then reading them out again.  Debug information was displayed on the output pins, allowing the process to be monitored.  This confirmed that the chip worked as expected, and would be usable for the project.
+	A custom SystemVerilog module was designed in order to test writing and reading values to the on-board SRAM chip, as it was a completely untested part of the board.  The module performed fairly basic operations, such as looping through a set of values, writing them to SRAM, and then reading them out again.  Debug information was displayed on the output pins, allowing the process to be monitored.  This confirmed that the chip worked as expected, and would be usable for the project.
 % section sram_access_testing (end)
 
 
 \section{Pre-Processing} % (fold)
 \label{sec:pre_processing_testing}
-	There were several different stages to the pre-processing, and these were tested individually.  First and foremost, the FFT code was tested by using input data containing known sinusoidals.  The library used, FFTW, is well established and proven to work, and so the primary purpose here was to test the speed of the FFT.  It ran almost instantaneously (execution took 0.00000s, according to the Kernel time.h library), giving the correct results. %TODO!!! confirm this!
+	There were several different stages to the pre-processing, and these were tested individually.  First and foremost, the FFT code was tested by using input data containing known sinusoids.  The library used, FFTW, is well established and proven to work, and so the primary purpose here was to test the speed of the FFT.  It ran almost instantaneously (execution took 0.000000s, according to the Kernel time.h library), giving the correct results.
 
 	The other major operation that required extensive testing was the MFCC calculation.  The other operations, pre-emphasis, windowing and liftering, are fairly simple mathematical operations that are easy to verify.  One of the desired properties of the system is that it would produce MFCCs that matched those produced by the HTK. Unfortunately, this was not quite achieved.  In most tests, the energy coefficient matched, but the others were relatively different.  This implies either that there is a limitation or problem with the MFCC library used, or that the HTK performs extra (or different) pre-processing.
 
-	In addition, the library is very inefficient, causing the MFCCs to be produced far too slowly.  To be used in a real system, an important requirement is that all the pre-processing is much faster than the frame period.  With the current design, the only component breaking this requirement is the MFCC computation, due to the library's slowness and inefficiency.  All the other steps take a tiny fraction of the frame period, allowing a large amount of time for processing, and in later designs, decoding.
+	In addition, the library is very inefficient, causing the MFCCs to be produced relatively slowly.
 % section pre_processing_testing (end)
 
 \section{Software Based GDP Speed} % (fold)
 \label{sec:software_based_gdp_speed_testing}
-	The Gaussian Distance calculations were implemented in a C program in order to compare its performance with that of the FPGA.  It was found that the processor is capable of calculating a single senone score in 10µs on average -- about 100 times slower than the FPGA.  However, this version used double floating point precision, and thus is far more accurate than the FPGA.  Reducing the accuracy and using fixed-point values would definitely increase its speed.  % TODO!! Do this? It wouldn't be hard...
+	The Gaussian Distance calculations were implemented in a C program in order to compare its performance with that of the FPGA.  It was found that the processor takes, on average, about 10$\mu s$ to calculate a single senone score -- about 100 times slower than the FPGA.  However, this version used double floating point precision, and thus is far more accurate than the FPGA.  Reducing the accuracy and using fixed-point values would definitely increase its speed.  % TODO!! Do this? It wouldn't be hard...
 % section software_based_gdp_speed_testing (end)
 
 
