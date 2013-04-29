@@ -2,22 +2,22 @@
 //typedef logic signed [15:0] num;
 
 module send #(parameter n_senones=10)
-    (
-	input logic clk, reset, start_send,
+  (
+  input logic clk, reset, start_send,
 
-    // Uart connection
-    input logic uart_ready,
-    output num tx_value,
-    output logic start_tx,
+  // Uart connection
+  input logic uart_ready,
+  output num tx_value,
+  output logic start_tx,
 
-    // SRAM connection
-    input num data_in,
-    input logic sram_ready, sram_idle,
-    output logic [20:0] data_addr,
-    output logic read_data,
+  // SRAM connection
+  input num data_in,
+  input logic sram_ready, sram_idle,
+  output logic [20:0] data_addr,
+  output logic read_data,
 
-    output logic send_done
-	);
+  output logic send_done
+  );
 
 // Module to send all the senone scores from memory to L'Imperatrice (via UART)
 
@@ -28,43 +28,43 @@ state_t state;
 
 
 always_ff @(posedge clk or posedge reset) begin
-    if (reset) begin
-        senone_index <= 0;
+  if (reset) begin
+    senone_index <= 0;
+    send_done <= 0;
+    state <= IDLE;
+  end
+  else
+    case (state)
+      IDLE: begin
         send_done <= 0;
-        state <= IDLE;
-    end
-    else
-        case (state)
-            IDLE: begin
-                send_done <= 0;
-                if (start_send) begin
-                    senone_index <= 0;
-                    state <= (sram_idle)? READING : WAITING;
-                end
-            end
-            
-            WAITING: state <= (sram_idle)? READING : WAITING;
+        if (start_send) begin
+          senone_index <= 0;
+          state <= (sram_idle)? READING : WAITING;
+        end
+      end
 
-            READING:
-                if (sram_ready) begin
-                    state <= SENDING;
-                    tx_value <= data_in;
-                    start_tx <= 1;
-                end
+      WAITING: state <= (sram_idle)? READING : WAITING;
 
-            SENDING: begin
-                start_tx <= 0;
-                if (uart_ready) begin
-                    if (senone_index == n_senones-1) begin
-                        state <= IDLE;
-                        send_done <= 1'b1;
-                    end else begin
-                        state <= READING;
-                        senone_index <= senone_index + 1;
-                    end
-                end
-              end
-        endcase
+      READING:
+        if (sram_ready) begin
+          state <= SENDING;
+          tx_value <= data_in;
+          start_tx <= 1;
+        end
+
+      SENDING: begin
+        start_tx <= 0;
+        if (uart_ready) begin
+          if (senone_index == n_senones-1) begin
+            state <= IDLE;
+            send_done <= 1'b1;
+          end else begin
+            state <= READING;
+            senone_index <= senone_index + 1;
+          end
+        end
+        end
+    endcase
 end
 
 // Assign sram and uart signals conditionally, to avoid bus contention

@@ -5,6 +5,8 @@
 
 This Appendix documents use of the Common Lisp utility tool-kit described in the report.  All development was carried out in Emacs, with the excellent SLIME being the main reason to do so.  The Common Lisp implementation used is SBCL, with Quicklisp used to install the only dependency, cl-ppcre.  The two files containing these utilities are extract.lisp and main.lisp, included in the project file archive.
 
+The best method of using these utilities is to load both files into the SLIME environment, using the slime C-c C-k command sequence.  This will make all the functions and data available on the top-level prompt (REPL).  Then they can all be used and adapted as necessary, without requiring any fancy packaging.
+
 Much of the code is self documenting, so this chapter is primarily for overview.
 
 \section{Data structures} % (fold)

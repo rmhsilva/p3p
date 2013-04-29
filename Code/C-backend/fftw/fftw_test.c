@@ -366,9 +366,10 @@ int main(int argc, char const *argv[])
 	// pass to libMFCC
 	// Problem: Computing each MFCC takes the same amount of time (~0.16s)
 	// This should not be the case, as the multiplication factors need to
-	// be computed only once...?
+	// be computed only once...
 	// The GetCoefficient should return ALL the coeffs..
-	// Computing the 10th coeff requires computing all the previous ones...?
+	// Computing the 10th coeff requires computing all the previous ones...
+	// LibMFCC is NOT ideal, but works (slowly) for now.
 	printf("[+] Computing MFCCs... ");
 	tic = clock();
 	for (i=0; i<N_CEPS; i++) {

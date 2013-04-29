@@ -15,8 +15,8 @@ module sram (
 
   // Actual RAM connections
   inout [7:0] sram_data,
-	output logic [20:0] sram_addr,
-	output logic sram_ce, sram_we, sram_oe
+  output logic [20:0] sram_addr,
+  output logic sram_ce, sram_we, sram_oe
   );
 
 // State machine things
@@ -31,34 +31,35 @@ reg [7:0] sram_data_reg;
 
 always_ff @(posedge clk or posedge reset) begin
   if(reset) begin
-    state <= IDLE;
-	end
-	else begin
-	  case (state)
-	    IDLE: if (write_data | read_data) begin
-	            address <= data_addr;
-	            buffer_in <= data_in;
+  state <= IDLE;
+  end
+  else begin
+    case (state)
+      IDLE:
+        if (write_data | read_data) begin
+          address <= data_addr;
+          buffer_in <= data_in;
 
-	            if (write_data) begin
-	              state <= WRITE1;
-	              //buffer <= data_in;
-	            end
-	            else if (read_data) state <= READ1;
-      	     end
+          if (write_data) begin
+            state <= WRITE1;
+            //buffer <= data_in;
+          end
+          else if (read_data) state <= READ1;
+        end
 
-	    WRITE1: state <= WRITE2;
-	    WRITE2: state <= IDLE;
+      WRITE1: state <= WRITE2;
+      WRITE2: state <= IDLE;
 
-	    READ1: begin
-	      state <= READ2;
-	      //buffer[7:0] <= sram_data;
-	    end
-	    READ2: begin
-	      state <= IDLE;
-	      //buffer[15:8] <= sram_data;
-	    end
-	  endcase
-	end
+      READ1: begin
+        state <= READ2;
+        //buffer[7:0] <= sram_data;
+      end
+      READ2: begin
+        state <= IDLE;
+        //buffer[15:8] <= sram_data;
+      end
+    endcase
+  end
 end
 
 always_comb begin
@@ -67,29 +68,28 @@ always_comb begin
   sram_oe = 1;
   sram_data_reg = 'b0;
   sram_addr = 'b0;
-  
+
   case (state)
     IDLE: begin
-		  sram_we = 1;
-		  sram_oe = 1;
-      //buffer = (write_data)? data_in : 'b0;
-		end
+      sram_we = 1;
+      sram_oe = 1;
+      end
     WRITE1, WRITE2: begin
-		  sram_we = 0;
-		  sram_oe = 1;
-		  sram_data_reg = (state==WRITE1)? buffer_in[7:0] : buffer_in[15:8];
-		  sram_addr = (state==WRITE1)? address : address+1;
+      sram_we = 0;
+      sram_oe = 1;
+      sram_data_reg = (state==WRITE1)? buffer_in[7:0] : buffer_in[15:8];
+      sram_addr = (state==WRITE1)? address : address+1;
     end
     READ1, READ2: begin
-		  sram_we = 1;
-		  sram_oe = 0;
-          buffer[7:0] = (state==READ1)? sram_data : buffer[7:0];
-          buffer[15:8]= (state==READ2)? sram_data : buffer[15:8];
-		  sram_addr = (state==READ1)? address : address+1;
+      sram_we = 1;
+      sram_oe = 0;
+      buffer[7:0] = (state==READ1)? sram_data : buffer[7:0];
+      buffer[15:8]= (state==READ2)? sram_data : buffer[15:8];
+      sram_addr = (state==READ1)? address : address+1;
     end
     default: begin
-    	sram_we = 1;
-    	sram_oe = 1;
+      sram_we = 1;
+      sram_oe = 1;
     end
   endcase
 end

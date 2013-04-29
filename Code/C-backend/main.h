@@ -21,7 +21,7 @@
 
 #define S_RATE      8000.0  // Sampling Rate for the data (Hz)
 #define PRE_EM      0.97    // Pre-emphasis to apply to data. Same as HTK
-//#define N             200 // Sample number = 25ms window * 8kHz sampling rate
+//#define N         200     // Sample number = 25ms window * 8kHz sampling rate
 #define N           80      // In this case, it's a 10ms window
 #define N_CEPS      NUM_COMPS
 #define N_CHANS     26      // Number of channels for MFCC comp. See HTK p77

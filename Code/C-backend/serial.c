@@ -1,5 +1,6 @@
 /**
- * Serial communications
+ * Serial communications.
+ * Not much other than config here really.
  * See http://pubs.opengroup.org/onlinepubs/007908775/xsh/termios.h.html
  */
 

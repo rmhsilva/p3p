@@ -17,7 +17,7 @@ logic [3:0] state;
 assign tx_ready = (state==0);
 
 // Logic - only change state on the baud tick event
-always_ff @(posedge clk)
+always_ff @(posedge clk) begin
   if (reset)
     state <= 4'b0;
   else
@@ -36,6 +36,7 @@ always_ff @(posedge clk)
   		4'b0010: if(baudtick) state <= 4'b0000;  // A single stop bit
   		default: if(baudtick) state <= 4'b0000;
   	endcase
+end
 
 // Output bit - takes data depending on state
 logic output_bit;

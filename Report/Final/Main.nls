@@ -1,0 +1,32 @@
+\begin{thenomenclature} 
+
+ \nomgroup{A}
+
+  \item [{$\lambda(\pi,a,b)$}]\begingroup A fully defined Hidden Markov Model\nomeqref {3.4}
+		\nompageref{13}
+  \item [{$\mu_j$}]\begingroup N-dimensional vector of means for state $j$, indexed from 1 to N\nomeqref {3.4}
+		\nompageref{13}
+  \item [{$\Omega_j$}]\begingroup N-dimensional vector of pre-computed scaling factors for state $j$\nomeqref {3.4}
+		\nompageref{13}
+  \item [{$\pi$}]\begingroup The set of initial state probabilities\nomeqref {3.4}
+		\nompageref{13}
+  \item [{$\sigma_j$}]\begingroup N-dimensional vector of standard deviations for state $j$, indexed from 1 to N\nomeqref {3.4}
+		\nompageref{13}
+  \item [{$a_{ij}$}]\begingroup The probability of transitioning from state $i$ to state j\nomeqref {3.4}
+		\nompageref{13}
+  \item [{$b_j(O)$}]\begingroup The probability of state $j$ emitting observation $O$\nomeqref {3.4}
+		\nompageref{13}
+  \item [{$K_j$}]\begingroup Pre-computed constant for state $j$\nomeqref {3.4}
+		\nompageref{13}
+  \item [{DTW}]\begingroup Dynamic Time Warping\nomeqref {2.0}
+		\nompageref{5}
+  \item [{FPGA}]\begingroup Field Programmable Gate Array\nomeqref {1.0}
+		\nompageref{1}
+  \item [{GDP}]\begingroup Gaussian Distance Pipeline\nomeqref {4.0}
+		\nompageref{18}
+  \item [{HMM}]\begingroup Hidden Markov Model\nomeqref {1.0}
+		\nompageref{1}
+  \item [{LTIB}]\begingroup Linux Target Image Builder\nomeqref {3.4}
+		\nompageref{13}
+
+\end{thenomenclature}

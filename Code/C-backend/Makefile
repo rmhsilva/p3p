@@ -12,7 +12,6 @@ DEPS = $(SOURCES:%.c=%.h)
 
 # Directory for all the objects (must not be blank!)
 # Automatically create the objects too!
-# The directories *must* be created first....
 OBJDIR = ./obj
 OBJECTS = $(SOURCES:%.c=$(OBJDIR)/%.o)
 
@@ -41,6 +40,7 @@ LDFLAGS += $(LIBS)
 CC = /opt/freescale/usr/local/gcc-4.1.2-glibc-2.5-nptl-3/arm-none-linux-gnueabi/arm-none-linux-gnueabi/bin/gcc
 RM = rm -f
 CP = sudo cp
+MKDIR = mkdir -p
 
 
 # Default (first) target
@@ -65,11 +65,15 @@ $(TARGET): $(OBJECTS)
 $(OBJDIR)/%.o : %.c $(DEPS)
 	@echo
 	@echo + Creating Object file from $<
+	@$(MKDIR) $(@D)
 	$(CC) -o $@ -c $< $(CFLAGS)
 
-# Copy to SD card (shortcut)
+# Copy to SD card (shortcut - assumes SD is mounted)
 copy: $(TARGET)
+	@echo
+	@echo + Attempting to copy $(TARGET)
 	$(CP) $(TARGET) $(ROOTFS)
+
 
 # Clean up
 clean: begin clean_all end

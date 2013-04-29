@@ -2,35 +2,35 @@
 //typedef logic signed [15:0] num;
 
 module top_level (
-	input logic clk, reset,  // clk: 50MHz onboard clock
-	output logic status_led, // Onboard status LED
-	output logic LRADC0_fix, // Fix to let L'Imperatrice boot
+  input logic clk, reset,  // clk: 50MHz onboard clock
+  output logic status_led, // Onboard status LED
+  output logic LRADC0_fix, // Fix to let L'Imperatrice boot
 
-	// Data uart:
-	output logic uart_tx,		     //-> pin 2, bank 2 of L'Imperatrice
-	input logic uart_rx,		     //-> pin 3, bank 2 of L'Imperatrice
-	input logic new_vector_incoming, //-> pin 5, bank 2 of L'Imperatrice
+  // Data uart:
+  output logic uart_tx,             //-> pin 2, bank 2 of L'Imperatrice
+  input logic uart_rx,              //-> pin 3, bank 2 of L'Imperatrice
+  input logic new_vector_incoming,  //-> pin 5, bank 2 of L'Imperatrice
 
-	// L'Imperatrice Debug uart re-route:
-	input logic duart_rx_in,	//-> FTDI TX pin
-	input logic duart_tx_in,	//-> pin 1, bank 2 of L'Imperatrice
-	output logic duart_rx_out,	//-> pin 0, bank 2 of L'Imperatrice
-	output logic duart_tx_out,	//-> FTDI RX pin
+  // L'Imperatrice Debug uart re-route:
+  input logic duart_rx_in,    //-> FTDI TX pin
+  input logic duart_tx_in,    //-> pin 1, bank 2 of L'Imperatrice
+  output logic duart_rx_out,  //-> pin 0, bank 2 of L'Imperatrice
+  output logic duart_tx_out,  //-> FTDI RX pin
 
-	// Onboard SRAM signals:
-	inout [7:0] sram_data,
-	output logic [20:0] sram_addr,
-	output logic sram_ce, sram_we, sram_oe
-	
-	// Debug outputs
+  // Onboard SRAM signals:
+  inout [7:0] sram_data,
+  output logic [20:0] sram_addr,
+  output logic sram_ce, sram_we, sram_oe
+
+  // Debug outputs
 // ,output logic clk_out,
-//	output logic [2:0] state_output,
-//	output logic start_norm_db, start_send_db, norm_done_db, send_done_db,
-//	output logic [7:0] sram_data_debug,
-//	output logic [3:0] sram_addr_debug,
-//	output logic ce_db, we_db, oe_db,
-//	output logic [2:0] sender_state
-	);
+//  output logic [2:0] state_output,
+//  output logic start_norm_db, start_send_db, norm_done_db, send_done_db,
+//  output logic [7:0] sram_data_debug,
+//  output logic [3:0] sram_addr_debug,
+//  output logic ce_db, we_db, oe_db,
+//  output logic [2:0] sender_state
+  );
 
 parameter n_components = 6;
 parameter n_senones = 12;
@@ -85,9 +85,6 @@ state_t state;
 assign LRADC0_fix = 1'b1;
 assign x = rx_buffer;
 assign new_vector_available = rx_available;
-// FOR TESTING:
-//assign new_vector_available = new_vector_incoming;
-//assign x = { 16'hF6A5, 16'hFEDA, 16'hFD3C, 16'h00C1, 16'hDABE }; // normally = rx_buffer
 
 // State machine
 always_ff @(posedge clk or posedge reset) begin : proc_mainFF
@@ -97,7 +94,6 @@ always_ff @(posedge clk or posedge reset) begin : proc_mainFF
       case (state)
         IDLE: begin
           if (rx_available) state <= PROC;
-          //if (new_vector_incoming) state <= PROC;   // TESTING. replace with above
         end
         PROC: if (last_senone) state <= NORM;
         NORM: if (norm_done) state <= SEND;
@@ -108,23 +104,23 @@ end
 
 // Signal logic
 always_ff @(posedge clk or posedge reset) begin : proc_start_signals
-	if (reset) begin
-		start_norm <= 0;
-		start_send <= 0;
-	end
-	else
-		case (state)
-			PROC: if (last_senone) start_norm <= 1;
-			NORM: begin
-				start_norm <= 0;
-				if (norm_done) start_send <= 1;
-			end
-			SEND: start_send <= 0;
-			default: begin
-				start_norm <= 0;
-				start_send <= 0;
-			end
-		endcase
+  if (reset) begin
+    start_norm <= 0;
+    start_send <= 0;
+  end
+  else
+    case (state)
+      PROC: if (last_senone) start_norm <= 1;
+      NORM: begin
+        start_norm <= 0;
+        if (norm_done) start_send <= 1;
+      end
+      SEND: start_send <= 0;
+      default: begin
+        start_norm <= 0;
+        start_send <= 0;
+      end
+    endcase
 end
 
 // Assign SRAM signals only when required, to avoid contention
@@ -172,21 +168,21 @@ assign {duart_rx_out,duart_tx_out} = {duart_rx_in,duart_tx_in};
 
 // Debug info on pins!
 //always_comb begin
-//	sram_data_debug = sram_data;
-//	sram_addr_debug = sram_addr[3:0];
-//	ce_db = sram_ce;
-//	we_db = sram_we;
-//	oe_db = sram_oe;
-//	
-//	state_output[2] = do_norm;
-//	clk_out = clk;
-//	
-//	case (state)
-//		IDLE: state_output[1:0] = 2'b00;
-//		PROC: state_output[1:0] = 2'b01;
-//		NORM: state_output[1:0] = 2'b10;
-//		SEND: state_output[1:0] = 2'b11;
-//	endcase
+//  sram_data_debug = sram_data;
+//  sram_addr_debug = sram_addr[3:0];
+//  ce_db = sram_ce;
+//  we_db = sram_we;
+//  oe_db = sram_oe;
+//
+//  state_output[2] = do_norm;
+//  clk_out = clk;
+//
+//  case (state)
+//    IDLE: state_output[1:0] = 2'b00;
+//    PROC: state_output[1:0] = 2'b01;
+//    NORM: state_output[1:0] = 2'b10;
+//    SEND: state_output[1:0] = 2'b11;
+//  endcase
 //end
 
 

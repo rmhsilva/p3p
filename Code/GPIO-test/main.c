@@ -1,3 +1,10 @@
+/**
+ * This program simply toggles a GPIO pin as fast as possible, 
+ * with the goal of measuring the maximum switching frequency that the
+ * chip is capable of when using direct memory access.
+ * Ricardo da Silva 2013
+ */
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,12 +17,12 @@
 
 int main(int argc, char const *argv[])
 {
-    gpio_map();
-    gpio_output(GPIO_TO_PIN(92));   // Bank 2, Pin 5
-    
-    for (;;) {
-        gpio_wr(GPIO_TO_PIN(92), 1);
-        gpio_wr(GPIO_TO_PIN(92), 0);
-    }
-    return 0;
+  gpio_map();
+  gpio_output(GPIO_TO_PIN(92));   // Bank 2, Pin 5
+  
+  for (;;) {
+    gpio_wr(GPIO_TO_PIN(92), 1);
+    gpio_wr(GPIO_TO_PIN(92), 0);
+  }
+  return 0;
 }

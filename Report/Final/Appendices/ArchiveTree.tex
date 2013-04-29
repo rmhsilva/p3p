@@ -1,8 +1,118 @@
 %!TEX root = ../Main.tex
 % Archive Tree
-\chapter{Archive Contents} % (fold)
+\chapter{File Archive Contents} % (fold)
 \label{apdx:archive_contents}
 
-Below is a tree of the files included in the archive submitted along with this report.
+Below is a full tree and description of the files included in the archive submitted along with this report.
 
-% Include compiled files that can be transferred and run on L'Imperatrice and La Papessa (ie ELFs and SVFs)
+% Source files
+% 	SystemVerilog code
+% 	Testbenches
+% 	Lisp utilities
+% 	Compiled versions of code
+
+% Files for dev env
+% 	La Papessa constraints
+% 	Spec file for FFTW
+
+
+
+\texttt{Source/GDP-in-C} \\
+- A C program which calculates senone scores; built to get an idea of the time a conventional processor takes to perform the calculations.
+
+\texttt{Source/GPIO-test} \\
+- A program to help measure the switching speed of memory mapped GPIO.
+
+\texttt{Source/Utilities} \\
+- The Common Lisp software utilities.  The HMM definitions used for the project are also in this folder.
+
+\texttt{Source/C-backend} \\
+- This is the main pre-processor application code.  A Makefile is included to facilitate building the code, which should then run on L'Imperatrice.  A sample WAV file is also included.
+
+\texttt{Source/SystemVerilog-Main} \\
+- This is the main SystemVerilog code that was built for the project.
+
+\texttt{Source/SystemVerilog-Simulation} \\
+- These are the testbenches and models required to test the modules provided in SystemVerilog-Main
+
+
+\texttt{Binaries/} \\
+- This folder contains a set of pre-compiled binary files and SVF files which may be transferred to L'Imperatrice or La Papessa without modification.  This includes binaries for all the programs stored in the Source directory.  There are two SVF files -- one writes the program to flash on the FPGA; the other is only a temporary (fast) write.
+
+
+\texttt{DevEnv/} \\
+- This folder contains various files that were important in the development environment.
+
+
+Below is a tree of the files included in the archive.
+
+\begin{lstlisting}
+Archive
+├── Binaries
+│   ├── fftw-test
+│   ├── gdp-test
+│   ├── gpio-test
+│   ├── pre-process
+│   ├── top-level-12s6.svf
+│   └── top-level-12s6c-flash.svf
+├── DevEnv
+│   ├── La Papessa Contraints.txt
+│   └── fftw.spec
+└── Source
+    ├── C-backend
+    │   ├── Makefile
+    │   ├── gpio.c
+    │   ├── gpio.h
+    │   ├── libmfcc
+    │   │   ├── libmfcc.c
+    │   │   └── libmfcc.h
+    │   ├── main.c
+    │   ├── main.h
+    │   ├── obj
+    │   │   └── libmfcc
+    │   ├── preProcess.c
+    │   ├── preProcess.h
+    │   ├── sample.c
+    │   ├── sample.h
+    │   ├── sample1.wav
+    │   ├── serial.c
+    │   └── serial.h
+    ├── FFTW
+    │   ├── fftw_test.c
+    │   ├── libmfcc.c
+    │   └── libmfcc.h
+    ├── GDP-in-C
+    │   └── gdp-test.c
+    ├── GPIO-test
+    │   ├── gpio.c
+    │   ├── gpio.h
+    │   └── main.c
+    ├── SystemVerilog-Main
+    │   ├── all_s_data.sv
+    │   ├── gdp.sv
+    │   ├── gdp_controller.sv
+    │   ├── max.sv
+    │   ├── normaliser.sv
+    │   ├── send.sv
+    │   ├── sram.sv
+    │   ├── top_level.sv
+    │   ├── uart
+    │   │   ├── baudgen.sv
+    │   │   ├── uart_rx.sv
+    │   │   └── uart_tx.sv
+    │   └── uart.sv
+    ├── SystemVerilog-Simulation
+    │   ├── sram_model.sv
+    │   ├── test_baudgen.sv
+    │   ├── test_gdp.sv
+    │   ├── test_gdp_controller.sv
+    │   ├── test_send.sv
+    │   ├── test_top_level.sv
+    │   └── test_uart.sv
+    └── Utilities
+        ├── extract.lisp
+        ├── hmmdefs
+        └── main.lisp
+
+14 directories, 51 files
+\end{lstlisting}
