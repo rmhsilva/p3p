@@ -20,13 +20,13 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 		\item Pre-processing output: 12 MFCCs, 12 MFCC derivatives, 1 Energy measure.
 		\item Output probabilities of HMM states: Single Gaussian distribution, 25-element mean and variance vectors.
 		\item Number of monophones: 51 (Includes a monophone for silence.  This is also the number of transition matrices).
-		\item Number of senones: \~7000.
-		\item Number of HMMs: \~8300\footnote{There are more HMMs than senones because some senones are used in more than one HMM} (each with 3 outputting states).
+		\item Number of senones: \about7000.
+		\item Number of HMMs: \about8300\footnote{There are more HMMs than senones because some senones are used in more than one HMM} (each with 3 outputting states).
 	\end{itemize}
 
 	The only modification made to the Voxforge models was that they were adapted for the author's voice, primarily to gain confidence with using the HTK and HMMs.  Please see Appendix~\ref{apdx:voxforge} for the scripts and HTK configuration files used to generate these models.
 
-	The term ``outputting states'' refers to states that produce an observation -- most of the HMMs have 5 states in total, but the first and last are non-emitting.  The transition probabilities between states one and two, and between states four and five, are primarily used to model inter-HMM probabilities for decoding purposes.  The senones are context dependent, that is, there are many different senones for each monophone, each with different predecessor and successor monophones.
+	The term `outputting states' refers to states that produce an observation -- most of the HMMs have 5 states in total, but the first and last are non-emitting.  The transition probabilities between states one and two, and between states four and five, are primarily used to model inter-HMM probabilities for decoding purposes.  The senones are context dependent, that is, there are many different senones for each monophone, each with different predecessor and successor monophones.
 
 	\subsection{The HMM tasks} % (fold)
 	\label{sub:the_hmm_tasks}
@@ -36,9 +36,9 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 			\item Finding the probability that an HMM produced a given observation sequence, $P(O | \lambda)$.
 			\item Finding the `best' path through a trellis of HMMs and states to produce a given observation sequence.
 		\end{itemize}
-		For this project, the first problem is solved by using Voxforge (\ref{sec:the_htk}).  The second problem is potentially very computationally expensive, as the speech model may be complex or large.  In particular, this step requires evaluating the output probability of each state in the model for every new observation frame, which is particularly time consuming if the HMMs have continuous output distributions.  In modern speech recognition systems, this step regularly accounts for up to 70\% of the total processing time \cite{lai2002performance}.  This is the step that the project focusses on.
+		For this project, the first problem is solved by using Voxforge (Section~\ref{sec:the_htk}).  The second problem is potentially very computationally expensive, as the speech model may be complex or large.  In particular, this step requires evaluating the output probability of each state in the model for every new observation frame, which is particularly time consuming if the HMMs have continuous output distributions.  In modern speech recognition systems, this step regularly accounts for up to 70\% of the total processing time \cite{lai2002performance}.  This is the step that the project focusses on.
 
-		In all literature encountered, the Viterbi algorithm is the preferred method for solving the final problem.  It is an iterative approach to solving the optimisation problem, and has the added bonus that not much data needs to be stored during the calculation \cite{schuster2006speech}.  This problem is beyond the scope of the current project, but a full explanation of the Viterbi decoding process is available from \cite{rabiner1989tutorial},\cite{saeed2008advanced}, \cite{young1989token}.
+		In all literature encountered, the Viterbi algorithm is the preferred method for solving the final problem.  It is an iterative approach to solving the optimisation problem, and has the added bonus that not much data needs to be stored during the calculation \cite{schuster2006speech}.  This problem is beyond the scope of the current project, but a full explanation of the Viterbi decoding process is available from \cite{rabiner1989tutorial}, \cite{saeed2008advanced}, \cite{young1989token}.
 	% subsection the_hmm_tasks (end)
 
 	\subsection{Senone scoring} % (fold)
@@ -55,10 +55,10 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 
 		However, hardware computation of this equation may be greatly simplified by taking logarithms of both sides, removing the need to evaluate exponentials:
 		\[
-		-\ln(\mathcal{N}(\textbf{O}_t; \boldsymbol{\mu}_j,\boldsymbol{\sigma}_j^2)) =
+		\ln(\mathcal{N}(\textbf{O}_t; \boldsymbol{\mu}_j,\boldsymbol{\sigma}_j^2))=
 		\]
 		\meq{score_ln}{
-			\left[ \frac{N}{2} \ln(2\pi) + \sum_{n=1}^N \ln(\sigma_{jn}) \right] +
+			\left[ -\frac{N}{2} \ln(2\pi) - \sum_{n=1}^N \ln(\sigma_{jn}) \right] -
 			\sum_{n=1}^N
 				(O_{tn} - \mu_{jn})^2
 				\left[ \frac{1}{2\sigma_{jn}^2} \right]
@@ -97,20 +97,20 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 
 	\subsection{L'Imperatrice} % (fold)
 	\label{sub:l_imperatrice_env}
-		Several important features on the ARM-based ``L'Imperatrice'' board are still very untested, including parts essential to the project.  It is based on a Freescale iMX23 ARMv5 applications processor.  To be used for the project, the following items were required (in order of importance):
+		Several important features on the ARM-based L'Imperatrice board are still very untested, including parts essential to the project.  It is based on a Freescale iMX23 ARMv5 applications processor.  To be used for the project, the following items were required (in order of importance):
 		\begin{itemize}
 			\item Native or cross compiler setup
 			\item Application UART functionality
-			\item GPIO functionality
+			\item GPIO functionality  \nomenclature{GPIO}{General Purpose Input Output}
 		\end{itemize}
 
 		A Linux Target Image Builder (LTIB) \nomenclature{LTIB}{Linux Target Image Builder} environment, which is primarily used for setting up board support packages (BSP), was installed on an Ubuntu virtual machine.  It has been used to build and test various kernel configurations, and also includes full cross-compiler support for the board.  It essentially provides a platform on which software for L'Imperatrice may be developed and deployed.
-		In addition to LTIB, the ArchLinux build system (ABS) was investigated as a potential alternative to LTIB.  The primary advantage of the ABS is that only a small number of files need to be distributed, which, when run, will download and compile all dependencies of the build.  An ABS configuration exists for the Olinuxino, a Linux board also based on the Freescale iMX23, which may be tweaked to suit the L'Imperatrice.  However, due to lack of time and the relative ease of the LTIB setup, this was not explored.
+		In addition to LTIB, the ArchLinux Build System (ABS) was investigated as a potential alternative to LTIB.  The primary advantage of the ABS is that only a small number of files need to be distributed, which, when run, will download and compile all dependencies of the build.  An ABS configuration exists for the Olinuxino, a Linux board also based on the Freescale iMX23, which may be tweaked to suit the L'Imperatrice.  However, due to lack of time and the relative ease of the LTIB setup, this was not explored.
 	% subsection l_imperatrice_env (end)
 
 	\subsection{La Papessa} % (fold)
 	\label{sub:la_papessa_env}
-		The Xilinx FPGA-based ``La Papessa'' board is also being actively developed, and some of its features have not been tested.  In order to facilitate the development of code on the La Papessa board, several combinations of software environments were explored.  The FPGA is a Xilinx Spartan XC3S50AN, which is compatible with the Xilinx ISE Webpack design software package.  However, one drawback to the ISE Webpack is its lack of support for synthesis in SystemVerilog. Besides being syntactically more powerful, SystemVerilog is the HDL that is currently taught to all new undergraduates at the University of Southampton. Having some documentation of a proven way to use SystemVerilog with this board would improve its reception and usage. In addition, SystemVerilog has advantages over Verilog for verification and simulation, which will be used to improve the design.
+		The Xilinx FPGA-based La Papessa board is also being actively developed, and some of its features have not been tested.  In order to facilitate the development of code on the La Papessa board, several combinations of software environments were explored.  The FPGA is a Xilinx Spartan XC3S50AN, which is compatible with the Xilinx ISE Webpack design software package.  However, one drawback to the ISE Webpack is its lack of support for synthesis in SystemVerilog. Besides being syntactically more powerful, SystemVerilog is the HDL that is currently taught to all new undergraduates at the University of Southampton. Having some documentation of a proven way to use SystemVerilog with this board would improve its reception and usage. In addition, SystemVerilog has advantages over Verilog for verification and simulation, which can be used to improve the design.
 
 		Synplify Pro/Premier is an alternative HDL synthesis tool, which is compatible with the Xilinx software toolchain and also supports SystemVerilog. For primarily this reason, it was decided that Synplify Premier would be used for synthesis during the project.  The other design tasks (port mapping, programming file generation) are accomplished with ISE Webpack (See Appendix \ref{apdx:development_environment} for detailed description of this process).
 	% subsection la_papessa_env (end)
@@ -120,7 +120,7 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 
 \section{Risk Analysis and Contingency Planning} % (fold)
 \label{sec:contingency_planning}
-	Efforts were made to divide the project work up into sections that were independent.  If at all possible, it was modularised, so that if one section became infeasible, it could be dropped without affecting the outcome of the final product greatly.  The Micro Arcana especially, was completely unknown, and therefore several alternatives were lined up in case it became impossible to use it.  The major risks identified are presented in Table~\ref{tab:risks}, along with possible solutions.
+	Efforts were made to divide the project work up into sections that were independent.  If at all possible, it was modularised, so that if one section became infeasible, it could be dropped without affecting the outcome of the final product greatly.  The Micro Arcana boards, especially, were completely unknown and several alternatives were lined up in case it became impossible to use them.  The major risks identified are presented in Table~\ref{tab:risks}, along with possible solutions.
 
 	\begin{table}[tb]
 		\caption{Summary of identified risks}
@@ -132,7 +132,7 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 			\textbf{Risk} & \textbf{Negative} & \textbf{Solution}
 			\\            & \textbf{Impact}   & \\
 			\hline
-				La Papessa's on-board SRAM may not work, thus making it impossible to store a large number of scores.
+				La Papessa's onboard SRAM may not work, thus making it impossible to store a large number of scores.
 					& Low
 					& Reduce model size. Proof of concept is more important than storing many scores at this point.
 					\\ \hline

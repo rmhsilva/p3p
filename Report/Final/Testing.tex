@@ -51,13 +51,13 @@ The testing methods and results are documented in this chapter.  The two primary
 
 	\begin{figure}[tb]
 		\begin{center}
-			\includegraphics[width=\figwidth]{testbenches/gdp_ctrl_wave}
+			\includegraphics[width=\textwidth]{testbenches/gdp_ctrl_wave}
 		\end{center}
 		\caption{GDP Controller testbench waveform and error messages}
 		\label{fig:test_gdp_ctrl}
 	\end{figure}
 
-	Being able to easily test many senones was important because the use of fixed-point arithmetic inevitably causes numerical errors that vary with the operations and numbers being used.  The GDP may produce the correct result for one set of inputs, but another set of inputs may produce an erroneous result that was caused by the fixed-point number not having high enough precision.  In fact, in most cases, the least significant bits of the result were wrong.  Because of this, it was important to determine the distribution of the error magnitudes, in order to decide whether the number format needed changing.  Automatic testbench generation made this far easier, as testbenches could be created which automatically displayed which senone scores where wrong, and by how much.  The final system tolerated errors in the last 6 bits of the result, as this corresponds to less than 0.5\% of the total value.
+	Being able to easily test many senones was important because the use of fixed-point arithmetic inevitably causes numerical errors that vary with the operations and numbers being used.  The GDP may produce the correct result for one set of inputs, but another set of inputs may produce an erroneous result that was caused by the fixed-point number not having high enough precision.  In fact, in most cases, the least significant bits of the result were wrong.  Because of this, it was important to determine the distribution of the error magnitudes, in order to decide whether the number format needed changing.  Automatic testbench generation made this far easier, as testbenches could be created which automatically displayed the senone scores that were wrong, and by how much.  The final system tolerated errors in the last 6 bits of the result, as this corresponds to less than 0.5\% of the total value.
 	% TODO: talk about the error distribution??? I speak lots about how I found it (^) but don't actually say what the results were...
 
 
@@ -98,7 +98,7 @@ The testing methods and results are documented in this chapter.  The two primary
 \label{sec:pre_processing_testing}
 	There were several different stages to the pre-processing, and these were tested individually.  First and foremost, the FFT code was tested by using input data containing known sinusoids.  The library used, FFTW, is well established and proven to work, and so the primary purpose here was to test the speed of the FFT.  It ran almost instantaneously (execution took 0.000000s, according to the Kernel time.h library), giving the correct results.
 
-	The other major operation that required extensive testing was the MFCC calculation.  The other operations, pre-emphasis, windowing and liftering, are fairly simple mathematical operations that are easy to verify.  One of the desired properties of the system is that it would produce MFCCs that matched those produced by the HTK. Unfortunately, this was not quite achieved.  In most tests, the energy coefficient matched, but the others were relatively different.  This implies either that there is a limitation or problem with the MFCC library used, or that the HTK performs extra (or different) pre-processing.
+	The other major operation that required extensive testing was the MFCC calculation.  The other operations, pre-emphasis, windowing and liftering, are fairly straightforward mathematical operations that are easy to verify.  One of the desired properties of the system is that it would produce MFCCs that matched those produced by the HTK. Unfortunately, this was not quite achieved.  In most tests, the energy coefficient matched, but the others were relatively different.  This implies either that there is a limitation or problem with the MFCC library used, or that the HTK performs extra (or different) pre-processing.
 
 	In addition, the library is very inefficient, causing the MFCCs to be produced relatively slowly.
 % section pre_processing_testing (end)
