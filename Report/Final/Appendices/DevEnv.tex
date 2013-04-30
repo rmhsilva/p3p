@@ -77,4 +77,13 @@
 % section ltib_usage (end)
 
 
+\section{Notes on L'Imperatrice} % (fold)
+\label{apdx:notes_on_l_imperatrice}
+	In order to connect the two boards via ribbon cable, a couple of extra features had to be implemented.
+
+	The Application UART on L'Imperatrice is on Port 2, which is also where the Debug UART lives.  In order to still be able to connect to the debug UART once the two boards were connected, the signals were rerouted inside the FPGA, so that Debug UART appeared on a different port on La Papessa.
+
+	When L'Imperatrice boots, one of its pins (LRADC0) must be held high (or floating), or it will select the wrong boot sequence (and fail with a Kernel panic).  However, if La Papessa is connected to the board after boot, the sudden load on the voltage regulator causes the chip to reboot, and then fail due to LRADC0 being pulled low by the FPGA.  In order to fix this, an output on the FPGA is assigned to be permanently high, and then routed to this pin.
+% sectapdx notes_on_l_imperatrice (end)
+
 % chapter development_environment (end)

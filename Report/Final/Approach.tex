@@ -99,13 +99,13 @@ This chapter provides details of the relevant theory behind HMM based speech rec
 	\label{sub:l_imperatrice_env}
 		Several important features on the ARM-based ``L'Imperatrice'' board are still very untested, including parts essential to the project.  It is based on a Freescale iMX23 ARMv5 applications processor.  To be used for the project, the following items were required (in order of importance):
 		\begin{itemize}
-			\item Native or cross compiler set-up
+			\item Native or cross compiler setup
 			\item Application UART functionality
 			\item GPIO functionality
 		\end{itemize}
 
 		A Linux Target Image Builder (LTIB) \nomenclature{LTIB}{Linux Target Image Builder} environment, which is primarily used for setting up board support packages (BSP), was installed on an Ubuntu virtual machine.  It has been used to build and test various kernel configurations, and also includes full cross-compiler support for the board.  It essentially provides a platform on which software for L'Imperatrice may be developed and deployed.
-		In addition to LTIB, the ArchLinux build system (ABS) was investigated as a potential alternative to LTIB.  The primary advantage of the ABS is that only a small number of files need to be distributed, which, when run, will download and compile all dependencies of the build.  An ABS configuration exists for the Olinuxino, a Linux board also based on the Freescale iMX23, which may be tweaked to suit the L'Imperatrice.  However, due to lack of time and the relative ease of the LTIB set-up, this was not explored.
+		In addition to LTIB, the ArchLinux build system (ABS) was investigated as a potential alternative to LTIB.  The primary advantage of the ABS is that only a small number of files need to be distributed, which, when run, will download and compile all dependencies of the build.  An ABS configuration exists for the Olinuxino, a Linux board also based on the Freescale iMX23, which may be tweaked to suit the L'Imperatrice.  However, due to lack of time and the relative ease of the LTIB setup, this was not explored.
 	% subsection l_imperatrice_env (end)
 
 	\subsection{La Papessa} % (fold)

@@ -11,7 +11,7 @@
 		\item Design a C program to pre-process speech data according to the required form described in Section~\ref{sec:the_hmm_based_model}.
 	\end{enumerate}
 
-	The overall system layout, shown in Figure~\ref{fig:hlsystem}, is comprised of two primary blocks -- the processor and the FPGA (on L'Imperatrice and La Papessa boards respectively).  The entire system is powered from a single supply connected to the L'Imperatrice battery connector; La Papessa is powered through a ribbon cable between the two boards.  This was done in order to minimise the amount of external circuitry needed, and to show that the two devices are able to work together fairly easily.
+	The overall system layout, shown in Figure~\ref{fig:hlsystem}, is comprised of two primary blocks -- the processor and the FPGA (on L'Imperatrice and La Papessa boards respectively).  The entire system is powered from a single supply connected to the L'Imperatrice battery connector; La Papessa is powered through a ribbon cable between the two boards.  This was done in order to minimise the amount of external circuitry needed, and to show that the two devices are able to work together fairly easily.  The only special purpose connection is the LRADC0 fix, which is held high by the FPGA to prevent errors during the processor boot sequence.  In addition, the Linux serial port is on the DUART pins, which are rerouted inside the FPGA so that they are still accessible when the cable is connected.
 
 	From the list above, the first task is implemented on La Papessa, and the second on L'Imperatrice.  These two blocks will now be examined in greater detail.
 
@@ -21,7 +21,7 @@
 
 	\begin{figure}[tb]
 		\begin{center}
-			\includegraphics[width=\figwidth]{complete-system-overview.png}
+			\includegraphics[width=\textwidth]{complete-system-overview}
 		\end{center}
 		\caption{Complete system overview}
 		\label{fig:hlsystem}
@@ -62,7 +62,7 @@
 	\label{sub:top_level_module}
 		A simplified diagram of the top level module is given in Figure~\ref{fig:toplevel}, showing the main components of the system.  This module included the main controller logic, which essentially waited for a new observation vector, then cycled through the necessary operation states.  Figure~\ref{fig:topstatemachine} shows an ASM of this logic, and also outlines the main areas of the design that need explanation.
 
-		The top level module is also responsible for handling access to the on-board SRAM chip, which several modules need to write or read from.  It essentially multiplexes the required signals, and leaves them floating (high impedance) when they are not needed.  The ``Debug signals'' shown in Figure~\ref{fig:toplevel} are a number of internal signals that are routed to output ports in order to facilitate hardware debugging.
+		The top level module is also responsible for handling access to the onboard SRAM chip, which several modules need to write or read from.  It essentially multiplexes the required signals, and leaves them floating (high impedance) when they are not needed.  The ``Debug signals'' shown in Figure~\ref{fig:toplevel} are a number of internal signals that are routed to output ports in order to facilitate hardware debugging.
 
 		\begin{figure}[tb]
 			\begin{center}
@@ -126,7 +126,7 @@ typedef struct packed {  /* num: typedef logic signed [15:0] num; */
 	\label{sub:onboard_sram}
 		In order for the normaliser to access the senone scores, they must be stored somewhere as they are processed through the GDP.  One option would be to store them on the FPGA itself, where they would be accessible to all the modules.  However, this is impractical due to the potential size of an HMM model, and thus the large amount of RAM that would be required.  A better alternative would be to use external SRAM with low latency that is made accessible to whichever modules need it.
 
-		Revision C of La Papessa board includes an on-board SRAM chip, which has an 8 bit data bus and 21 bit address bus, and was completely untested before this work.  In order to use it easily, a module was created primarily to interface the 8 bit data bus with the 16 bit number system used.  It's only operations are to write and read 16 bit values to the SRAM, and signal when it is ready or idle.  This is accomplished with the state machine shown in Figure~\ref{fig:sram_asm}.
+		Revision C of La Papessa board includes an onboard SRAM chip, which has an 8 bit data bus and 21 bit address bus, and was completely untested before this work.  In order to use it easily, a module was created primarily to interface the 8 bit data bus with the 16 bit number system used.  It's only operations are to write and read 16 bit values to the SRAM, and signal when it is ready or idle.  This is accomplished with the state machine shown in Figure~\ref{fig:sram_asm}.
 
 		\begin{figure}[tb]
 			\begin{center}
