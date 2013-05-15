@@ -214,7 +214,7 @@
 	  (length senones) numcomps)
   ;; Print header stuff
   (if c-header
-      (format stream "Senone senones[] = {~%")
+      (format stream "Senone senones[N_SENONES] = {~%")
       (format stream "  case (senone_index)~%"))
   (let ((count (length senones)))
     

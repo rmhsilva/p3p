@@ -16,14 +16,14 @@
 	\begin{enumerate}
 		\item Write SystemVerilog code in Synplify.
 		\item Run Synplify implementation; fix errors until it synthesises correctly.
-		\item Open project with Xilinx design tools (via Tools menu).
+		\item Open project with Xilinx design tools (via Options menu).
 		\item Either manually edit the constraints file and add net to port mappings, or use the Floorplanner (post-synthesis) tool to do this.
-		\item Run Webpack implementation.  If mapping fails, the design may be too big to fit on the device.
+		\item Run the ISE Webpack implementation.  If mapping fails, the design may be too big to fit on the device.
 		\item Generate .bit programming file.
 		\item Open the `iMPACT' software (which comes with the ISE Webpack).
 		\item Create a new project, and select the .bit file created in the previous step.
 		\item From the Output menu, select create new SVF file.
-		\item Perform whichever actions required from the list on the left -- programming the flash takes a long time, so if still in the testing stages, only run ``Program FPGA''.
+		\item Perform whichever actions required from the list on the left -- programming the flash takes a long time, so if still in the testing stages, only run `Program FPGA'.
 		\item End the SVF output (from the same menu as before).  This step is very important!
 		\item Open urJTAG and connect to the programming cable.
 		\item Use `svf programming-file.svf' to transfer the design to La Papessa!
